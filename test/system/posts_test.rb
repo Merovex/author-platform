@@ -14,7 +14,7 @@ class PostsTest < ApplicationSystemTestCase
     visit posts_url
     click_on "New Post"
 
-    fill_in "Published on", with: @post.published_on
+    fill_in "Published on", with: @post.published_at
     fill_in "Slug", with: @post.slug
     fill_in "Title", with: @post.title
     fill_in "User", with: @post.user_id
@@ -28,7 +28,7 @@ class PostsTest < ApplicationSystemTestCase
     visit posts_url
     click_on "Edit", match: :first
 
-    fill_in "Published on", with: @post.published_on
+    fill_in "Published on", with: @post.published_at
     fill_in "Slug", with: @post.slug
     fill_in "Title", with: @post.title
     fill_in "User", with: @post.user_id

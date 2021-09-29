@@ -1,13 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  slug: MyString
-  title: MyString
+  title: Title One
   user: one
-  published_on: 2021-09-29 07:19:08
+  published_at: 2021-09-29 07:19:08
 
 two:
-  slug: MyString
-  title: MyString
+  title: Title Two
   user: two
-  published_on: 2021-09-29 07:19:08
+  published_at: 2021-09-29 07:19:08
