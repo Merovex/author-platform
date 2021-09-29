@@ -63,3 +63,5 @@ group :test do
 end
 
 gem 'devise', git: 'https://github.com/strobilomyces/devise', branch: 'patch-1'
+
+gem "cancancan", "~> 3.3"
