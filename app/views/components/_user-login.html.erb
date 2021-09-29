@@ -1,0 +1,5 @@
+<% if user_signed_in? %>
+  <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'btn bg-white text-brand-500' %>
+<% else %>
+  <%= link_to 'Insiders', new_user_session_path, class: 'btn bg-indigo-100 hover:bg-white' %>
+<%end%>

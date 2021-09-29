@@ -1,0 +1,14 @@
+<aside class="max-w-lg px-8 py-4 mx-auto my-8 text-center transform border rounded -rotate-1">
+<% flash.each do |type, msg| %>
+  <%= render 'components/banner', type: type, msg: msg%>
+<% end %>
+<p class="py-2 font-bold">Subscribe below to get future posts from Ben Wilson</p>
+
+<%#= form_with(model: Subscription.new) do |form| %>
+  <%#= form.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Type your email…", class: 'form-input rounded' %>
+  <%#= form.submit "Subscribe", class: button_css('blue') %>
+<%# end %>
+
+<p>Or grab the <%= link_to 'RSS feed', "#", class: "underline" %></p>
+
+</aside>
