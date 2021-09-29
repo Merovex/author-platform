@@ -1,10 +1,11 @@
-<p id="notice"><%= notice %></p>
+<article class="<%=t('css_article')%>">
+<%#= render 'components/actions', obj: @post %>
+<aside class="text-center text-gray-500 opacity-75"><%= @post.published_at.strftime('%d %B %Y') %></aside>
+<div class="text-center"><%= headline(@post.title) %></div>
 
-<%= render @post %>
+<section class="mb-12 font-serif prose max-w-prose lg:prose-xl dark:prose-dark">
+<%= @post.content %>
+</section>
 
-<div>
-  <%= link_to "Edit this post", edit_post_path(@post) %> |
-  <%= link_to "Back to posts", posts_path %>
-
-  <%= button_to "Destroy this post", post_path(@post), method: :delete %>
-</div>
+<%= render 'components/subscribe' %>
+</article>

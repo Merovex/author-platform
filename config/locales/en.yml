@@ -31,3 +31,8 @@
 
 en:
   hello: "Hello world"
+  blurb: "Blurb"
+  excerpt: "Excerpt"
+  css_article: 'max-w-2xl mx-4 md:mx-auto my-16'
+  css_prose: 'mb-8 font-serif prose max-w-prose lg:prose-xl dark:prose-dark'
+  css_h2: ''
