@@ -12,10 +12,10 @@
 
     <% @posts.each do |post| %>
       <article class="px-8 py-4 my-8 border rounded-lg shadow-lg">
-        <aside class="text-center text-gray-500 opacity-75"><%= post.published_at.strftime('%d %B %Y') %></aside>
+        <aside class="text-center text-gray-500 dark:text-gray-300 opacity-75"><%= post.published_at.strftime('%d %B %Y') %></aside>
         <%= h2(post.title, "text-center mt-2 mb-4") %>
-        <p class='prose lg:prose-xl dark:prose-dark'><%= post.content.to_plain_text.truncate(256) %></p>
-        <p class='my-4 text-center'><%= link_to 'Read More', post, class: button_css('purple') %></p>
+        <p class='prose lg:prose-xl dark:text-gray-300 dark:prose-dark'><%= post.content.to_plain_text.truncate(256) %></p>
+        <p class='my-4 text-center'><%= link_to 'Read More', post, class: button_css('violet') %></p>
       </article>
     <% end %>
 </div>

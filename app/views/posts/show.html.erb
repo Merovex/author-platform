@@ -1,9 +1,9 @@
 <article class="<%=t('css_article')%>">
 <%#= render 'components/actions', obj: @post %>
-<aside class="text-center text-gray-500 opacity-75"><%= @post.published_at.strftime('%d %B %Y') %></aside>
+<aside class="text-center text-gray-500 dark:text-gray-300 opacity-75"><%= @post.published_at.strftime('%d %B %Y') %></aside>
 <div class="text-center"><%= headline(@post.title) %></div>
 
-<section class="mb-12 font-serif prose max-w-prose lg:prose-xl dark:prose-dark">
+<section class="mb-12 font-serif prose max-w-prose lg:prose-xl dark:prose-dark dark:text-gray-300">
 <%= @post.content %>
 </section>
 

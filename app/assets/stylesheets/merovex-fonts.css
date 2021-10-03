@@ -1,0 +1,54 @@
+@font-face {
+  font-family: MerovexSans;
+  src: url('./fonts/SourceSansPro-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: MerovexSans-Italic;
+  src: url('./fonts/SourceSansPro-Italic.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: MerovexSans-Bold;
+  src: url('./fonts/SourceSansPro-Bold.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: MerovexSans-BoldItalic;
+  src: url('./fonts/SourceSansPro-BoldItalic.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: MerovexDisplay;
+  src: url('./fonts/FjallaOne-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: MerovexSerif;
+  src: url('./fonts/SourceSerifPro-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: MerovexSerif-Italic;
+  src: url('./fonts/SourceSerifPro-Italic.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: MerovexSerif-Bold;
+  src: url('./fonts/SourceSerifPro-Bold.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: MerovexSerif-BoldItalic;
+  src: url('./fonts/SourceSerifPro-BoldItalic.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
