@@ -1,0 +1,55 @@
+<%= form_with(model: book) do |form| %>
+  <% if book.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+      <ul>
+        <% book.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.label :title, class: 'font-bold text-2xl' %>
+    <%= form.text_field :title, class: 'form-input w-full block rounded' %>
+  </div>
+
+  <div class="my-8">
+    <%= form.label :is_featured %>
+    <%= form.check_box :is_featured %>
+  </div>
+
+  <%= h2(:episode) %>
+  <%= form.fields_for :episode, @episode do |episode| %>
+      <div class="field">
+        <%= episode.collection_select(:series_id, @series, :id, :title) %>
+        <%= episode.label :order, "# in series" %>
+        <%= episode.text_field :order %>
+      </div>
+  <% end %>
+
+  <div class="my-8">
+    <%= h2(:synopsis) %>
+    <%= form.rich_text_area :synopsis %>
+  </div>
+
+  <div class="my-8">
+    <%= h2(:excerpt) %>
+    <%= form.rich_text_area :excerpt %>
+  </div>
+
+  <div class="field">
+    <%= h2(:cover) %>
+    <%= form.file_field :cover, accept: 'image/png,image/gif,image/jpeg' %>
+  </div>
+  
+  <div class="field">
+    <%= h2(:hero_background) %>
+    <%= form.file_field :hero_background, accept: 'image/png,image/gif,image/jpeg' %>
+  </div>
+
+  <div class="my-12">
+    <%= form.submit "Submit", class: button_css('blue')%>
+  </div>
+<% end %>

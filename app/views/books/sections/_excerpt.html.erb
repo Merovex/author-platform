@@ -1,0 +1,13 @@
+<% unless @book.excerpt.blank? %>
+<section id='feature' class='py-4 <%= zebra() %>'>
+  <div class="<%=t('css_article')%> ">
+    <%= h2("Excerpt from <em>#{@book}</em>".html_safe) %>
+    <div class="<%=t('css_prose')%> my-4">
+    <%= @book.excerpt %>
+    </div>
+    <aside class='py-8 text-center'>
+    <%= render 'components/buy-cta', locals: {book: @book} %>
+    </aside>
+  </div>
+</section>
+<% end %>

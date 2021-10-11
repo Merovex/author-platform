@@ -1,0 +1,7 @@
+<div class='grid place-content-center'>
+  <% if book.cover.attached? %>
+    <%= image_tag book.thumb, class: 'rounded' %>
+  <% else %>
+  <img src='https://via.placeholder.com/200x300?text=Book+Cover' class='rounded'>
+  <% end %>
+</div>

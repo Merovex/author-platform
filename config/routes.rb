@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  
+  resources :series
+  resources :authors
+  resources :books do
+    resources :praises
+  end
   resources :posts
   devise_for :users, controllers: {
     sessions: 'users/sessions',

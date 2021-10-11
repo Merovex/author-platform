@@ -35,4 +35,5 @@ en:
   excerpt: "Excerpt"
   css_article: 'max-w-2xl mx-4 md:mx-auto my-16'
   css_prose: 'mb-8 font-serif prose max-w-prose lg:prose-xl dark:prose-dark'
-  css_h2: ''
+  css_h2: 'mb-8'
+  css_link: 'inline-block mx-3 my-6 font-sans text-blue-500 dark:text-blue-200 visited:text-violet-500 dark:visited:text-violet-400'

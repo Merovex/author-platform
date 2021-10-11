@@ -1,0 +1,12 @@
+<%# https://lineardesign.com/blog/landing-page-layout/ %>
+<%= render 'books/sections/hero', overlay: 'bg-gray-800' %>
+<section class='py-4 text-center'>
+  <%= render 'components/actions', obj: @book %>
+  <%= render 'components/subscribe' %>
+</section>
+<%= render 'books/sections/testimonials' %>
+<%= render 'books/sections/series-list' %>
+<%= render 'books/sections/excerpt' %>
+<section class='mb-8'>
+  <%= render 'components/subscribe' %>
+</section>

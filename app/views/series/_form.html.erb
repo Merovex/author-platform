@@ -1,0 +1,27 @@
+<%= form_with(model: series) do |form| %>
+  <% if series.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(series.errors.count, "error") %> prohibited this series from being saved:</h2>
+
+      <ul>
+        <% series.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: 'form-input w-full rounded' %>
+  </div>
+
+  <div class="my-4">
+    <%= h2('Synopsis') %>
+    <%= form.rich_text_area :content %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Submit", class: button_css('blue')%>
+  </div>
+<% end %>

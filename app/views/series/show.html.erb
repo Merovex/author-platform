@@ -1,0 +1,7 @@
+<div class="<%=t('css_article')%>">
+  <%= render 'components/actions', obj: @series %>
+  <%= headline(@series.title) %>
+  <section class='<%= t('prose') %>'>
+    <%#= @series.content %>
+  </section>
+</div>
