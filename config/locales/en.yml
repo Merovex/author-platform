@@ -34,6 +34,7 @@ en:
   blurb: "Blurb"
   excerpt: "Excerpt"
   css_article: 'max-w-2xl mx-4 md:mx-auto my-16'
-  css_prose: 'mb-8 font-serif prose max-w-prose lg:prose-xl dark:prose-dark'
+  css_prose: 'mb-12 font-serif prose max-w-prose lg:prose-xl dark:prose-dark dark:text-gray-300'
   css_h2: 'mb-8'
-  css_link: 'inline-block mx-3 my-6 font-sans text-blue-500 dark:text-blue-200 visited:text-violet-500 dark:visited:text-violet-400'
+  css_link: 'font-sans text-blue-500 dark:text-blue-200 visited:text-violet-500 dark:visited:text-violet-400 underline'
+  css_action_link: 'inline-block px-2 py-1 font-sans bg-blue-500 rounded-md dark:bg-blue-200 hover:bg-violet-500 dark:hover:bg-violet-400 text-white'

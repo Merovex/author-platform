@@ -1,10 +1,6 @@
-<h1>Editing praise</h1>
 
-<%= render "form", praise: @praise %>
-
-<br>
-
-<div>
-  <%= link_to "Show this praise", @praise %> |
-  <%= link_to "Back to praises", praises_path %>
+<div class="<%=t('css_article')%>">
+  <%= headline('Edit Praise') %>
+  <%= render "form", praise: @praise %>
+  <%= link_to "Back to book", book_path(@praise.book) %>
 </div>

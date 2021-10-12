@@ -4,12 +4,12 @@
     <%= h2("Other books in #{@book.series.title} series") %>
   </div>
   <div class='overflow-x-scroll whitespace-nowrap  <%= zebra() %>'>
-    <% @book.series.books.each do |book| %>
+    <% @book.series.episodes.sort_by{|i| i.order }.each do |episode| %>
       <div class='inline-block m-3'>
-        <%= link_to book do %>
-          <%= render 'books/cover', book: book %>
+        <%= link_to episode.book do %>
+          <%= render 'books/cover', book: episode.book %>
         <% end %>
-        <h3 class='my-2 text-xl text-center'><em><%= book.title %></em></h3>
+        <h3 class='my-2 text-xl text-center'><em><%= episode.book.title %></em></h3>
       </div>
     <% end %>
   </div>

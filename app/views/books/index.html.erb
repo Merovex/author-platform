@@ -1,6 +1,8 @@
-<%= link_to "New book", new_book_path %>
+
 
 <div class="<%=t('css_article')%>">
+  <%= link_to "New book", new_book_path, class: t('css_action_link') %>
+  <%= link_to "New series", new_series_path, class: t('css_action_link') %>
   <% if can? :admin, Book %>
     <div class="flex mt-5 lg:mt-0 lg:ml-4h">
       <%= link_to 'New Book', new_book_path, class: 'mx-4 hover:underline' %>

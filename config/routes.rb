@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :pages
+  resources :errors
   
   resources :series
   resources :authors
@@ -11,6 +13,8 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     confirmations: 'users/confirmations'
   }
+  get "/404" => "errors#not_found"
   get 'landing/index'
+  get '/:slug' => "pages#show"
   root to: 'landing#index'
 end

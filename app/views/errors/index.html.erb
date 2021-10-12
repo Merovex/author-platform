@@ -1,0 +1,9 @@
+<article class="<%=t('css_article')%>">
+<h1 class="text-6xl">Sorry <%= @slug %></h1>
+
+<p class='text-xl my-8'>We could not find that page. Go to <a href="/" class="<%=t('css_link')%>">our home page</a> and try again.</p>
+
+<aside class='text-xl '>
+As an administrator, you can <%= link_to "create a new page", new_page_path + "?slug=#{@slug}", class: t('css_link') %> if you would like.
+</aside>
+</article>

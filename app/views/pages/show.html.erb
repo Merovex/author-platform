@@ -1,0 +1,6 @@
+<article class="<%=t('css_article')%>">
+<%= render 'components/actions', obj: @page %>
+<div class="text-center"><%= headline(@page.title) %></div>
+<section class="<%=t('css_prose')%>">
+<%= @page.content %>
+</section>
