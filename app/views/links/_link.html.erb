@@ -1,0 +1,10 @@
+<div>
+  <%= h2("TITLE") %>
+  <p><%= link_to link.url, link.url %></p>
+  <aside class="my-4">
+    <span><%= link_to link.short, link.short %></span>
+    <a class="<%= t('css_action_link')%>">Copy</a>
+    <%= link_to 'Edit', edit_link_path(link), class: t('css_action_link') %>
+  </aside>
+  <p><span class="text-3xl"><%= link.clicked %></span> Clicks</p>
+</div>

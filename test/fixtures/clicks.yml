@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  clickable_id: 1
+  clickable_type: MyString
+  country_code: MyString
+  country: MyString
+  state_code: MyString
+  state: MyString
+  city: MyString
+  map: MyString
+  ip: MyString
+
+two:
+  user: two
+  clickable_id: 1
+  clickable_type: MyString
+  country_code: MyString
+  country: MyString
+  state_code: MyString
+  state: MyString
+  city: MyString
+  map: MyString
+  ip: MyString

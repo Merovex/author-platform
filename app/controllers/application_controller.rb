@@ -7,9 +7,14 @@ class ApplicationController < ActionController::Base
       format.js   { head :forbidden, content_type: 'text/html' }
     end
   end
-  # private
-  #   def record_not_found
-  #     redirect_to '/errors#not_found'
-  #     # redirect_to '/books#index'
-  #   end
+  private
+  def set_click
+    @click = Click.new
+
+    ip = (request.remote_ip == '::1') ? "98.169.113.226" : request.remote_ip
+    locx = Geocoder.search(ip).first
+
+    @click.locate(locx)
+    @click.save
+  end
 end

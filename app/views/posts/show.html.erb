@@ -4,6 +4,7 @@
 <div class="text-center"><%= headline(@post.title) %></div>
 
 <section class="<%=t('css_prose')%>">
+<%= @post.clicks.inspect %>
 <%= @post.content %>
 </section>
 

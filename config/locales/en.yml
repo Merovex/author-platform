@@ -37,4 +37,4 @@ en:
   css_prose: 'mb-12 font-serif prose max-w-prose lg:prose-xl dark:prose-dark dark:text-gray-300'
   css_h2: 'mb-8'
   css_link: 'font-sans text-blue-500 dark:text-blue-200 visited:text-violet-500 dark:visited:text-violet-400 underline'
-  css_action_link: 'inline-block px-2 py-1 font-sans bg-blue-500 rounded-md dark:bg-blue-200 hover:bg-violet-500 dark:hover:bg-violet-400 text-white'
+  css_action_link: 'border-solid border inline-block px-2 text-sm uppercase font-sans border-blue-200 rounded-md dark:border-blue-400 hover:bg-blue-500 dark:hover:bg-blue-400 text-white'

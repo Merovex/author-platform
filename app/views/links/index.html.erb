@@ -1,0 +1,9 @@
+<article class="<%=t('css_article')%>">
+<%= link_to "New link", new_link_path, class: t('css_action_link')%>
+<div class="py-8">
+<%= render @links %>
+</div>
+<% if @links.length > 10 %>
+<%= link_to "New link", new_link_path, class: t('css_action_link')%>
+<% end %>
+</article>

@@ -65,3 +65,7 @@ end
 gem 'devise', git: 'https://github.com/strobilomyces/devise', branch: 'patch-1'
 
 gem "cancancan", "~> 3.3"
+
+gem "geocoder", "~> 1.7"
+
+gem "aws-sdk-locationservice", "~> 1.9"

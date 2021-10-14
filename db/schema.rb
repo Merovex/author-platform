@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_11_185549) do
+ActiveRecord::Schema.define(version: 2021_10_14_095704) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,24 @@ ActiveRecord::Schema.define(version: 2021_10_11_185549) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "clicks", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "clickable_id"
+    t.string "clickable_type"
+    t.string "country_code"
+    t.string "country"
+    t.string "state_code"
+    t.string "state"
+    t.string "city"
+    t.string "map"
+    t.string "ip"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.float "latitude"
+    t.float "longitude"
+    t.index ["user_id"], name: "index_clicks_on_user_id"
+  end
+
   create_table "episodes", force: :cascade do |t|
     t.bigint "book_id", null: false
     t.bigint "series_id", null: false
@@ -80,6 +98,15 @@ ActiveRecord::Schema.define(version: 2021_10_11_185549) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["book_id"], name: "index_episodes_on_book_id"
     t.index ["series_id"], name: "index_episodes_on_series_id"
+  end
+
+  create_table "links", force: :cascade do |t|
+    t.string "slug"
+    t.string "url"
+    t.integer "clicked", default: 0
+    t.text "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "pages", force: :cascade do |t|
@@ -144,6 +171,7 @@ ActiveRecord::Schema.define(version: 2021_10_11_185549) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "authors", "books"
   add_foreign_key "authors", "users"
+  add_foreign_key "clicks", "users"
   add_foreign_key "episodes", "books"
   add_foreign_key "episodes", "series"
   add_foreign_key "posts", "users"
