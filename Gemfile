@@ -69,3 +69,7 @@ gem "cancancan", "~> 3.3"
 gem "geocoder", "~> 1.7"
 
 gem "aws-sdk-locationservice", "~> 1.9"
+
+gem "chartkick", "~> 4.0"
+
+gem "groupdate", "~> 5.2"

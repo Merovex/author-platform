@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
   before_action :get_series, only: %i[ new edit ]
   before_action :set_book, only: %i[ show edit update destroy ]
-  before_action :set_click, only: %i[ show ]
+  # before_action :set_click, only: %i[ show ]
 
   # GET /books or /books.json
   def index
@@ -10,7 +10,7 @@ class BooksController < ApplicationController
 
   # GET /books/1 or /books/1.json
   def show
-    @book.clicks << @click
+    @book.clicks << @click unless @click.nil?
   end
 
   # GET /books/new

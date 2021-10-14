@@ -29,4 +29,25 @@ module ApplicationHelper
     ].join(' ')
     content = tag.h2(text, class: "#{css_class} #{klass}")
   end
+  def barchart(data, type = 'undefined')
+    id = SecureRandom.uuid.split('-').first
+    # https://github.com/ankane/chartkick
+    answer = <<EOF
+    <canvas id="chart-#{id}" class='max-h-48 w-1/2 mx-auto overflow-x-scroll'></canvas>
+    <script>
+      var ctx = document.getElementById('chart-#{id}').getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: #{data.keys.inspect},
+            datasets: [{ label: '# of #{type}', data: #{data.values.inspect}, }]
+        },
+        options: {
+            scales: { y: { beginAtZero: true } }
+        }
+      });
+    </script>
+EOF
+  return answer.html_safe
+  end
 end
