@@ -1,6 +1,5 @@
 class Book < ApplicationRecord
   include Sluggable
-  include Clickable
   
   has_rich_text :synopsis
   has_rich_text :excerpt

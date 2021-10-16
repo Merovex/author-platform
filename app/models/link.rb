@@ -1,5 +1,4 @@
 class Link < ApplicationRecord
-  include Clickable
 
   validates :url, presence: true, uniqueness: true
   validates :url, format: URI::regexp(%w[http https])

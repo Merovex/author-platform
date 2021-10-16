@@ -73,3 +73,9 @@ gem "aws-sdk-locationservice", "~> 1.9"
 gem "chartkick", "~> 4.0"
 
 gem "groupdate", "~> 5.2"
+
+gem "ahoy_matey", "~> 4.0"
+
+gem "blazer", "~> 2.4"
+
+gem "maxminddb", "~> 0.1.22"

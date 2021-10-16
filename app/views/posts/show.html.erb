@@ -1,10 +1,9 @@
 <article class="<%=t('css_article')%>">
 <%#= render 'components/actions', obj: @post %>
 <aside class="text-center text-gray-500 dark:text-gray-300 opacity-75"><%= @post.published_at.strftime('%d %B %Y') %></aside>
-<div class="text-center"><%= headline(@post.title) %></div>
+<div class="text-center"><%= headline(@post.title.titlecase) %></div>
 
 <section class="<%=t('css_prose')%>">
-<%= @post.clicks.inspect %>
 <%= @post.content %>
 </section>
 

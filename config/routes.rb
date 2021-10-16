@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   
   resources :pages
   resources :errors
+
+  mount Blazer::Engine, at: "blazer"
   
   resources :series
   resources :authors

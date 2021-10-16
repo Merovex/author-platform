@@ -1,5 +1,3 @@
-
-
 <div class="<%=t('css_article')%>">
   <%= link_to "New book", new_book_path, class: t('css_action_link') %>
   <%= link_to "New series", new_series_path, class: t('css_action_link') %>
@@ -10,7 +8,5 @@
     </div>
   <% end %>
   <%= content_for(:title, 'Books') %>
-  <% @books.each do |book| %>
-    <%= render book %>
-  <%end %>
+  <%= render @books %>
 </div>

@@ -1,0 +1,13 @@
+<article class="px-8 py-4 my-8 border rounded-lg shadow-lg">
+  <%- 
+    dtg = ""
+    dtg = if obj.has_attribute? :published_at 
+  %>
+  <aside class="text-center text-gray-500 dark:text-gray-300 opacity-75">
+    <%= dtg %>
+  </aside>
+  <%- end %>
+  <%= h2(obj.title, "text-center mt-2 mb-4") %>
+  <p class='prose lg:prose-xl dark:text-gray-300 dark:prose-dark'><%= obj.content.to_plain_text.truncate(256) %></p>
+  <p class='my-4 text-center'><%= link_to 'Read More', obj, class: button_css('violet'), aria: {label: "#{obj.class}: #{obj.title}, on #{dtg}" } %></p>
+</article>

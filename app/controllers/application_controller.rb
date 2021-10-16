@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  after_action :track_action
+
   # rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
@@ -8,13 +10,7 @@ class ApplicationController < ActionController::Base
     end
   end
   private
-  def set_click
-    @click = Click.new
-
-    ip = (request.remote_ip == '::1') ? "98.169.113.226" : request.remote_ip
-    locx = Geocoder.search(ip).first
-
-    @click.locate(locx)
-    @click.save
+  def track_action
+    ahoy.track "Ran action", request.path_parameters
   end
 end
