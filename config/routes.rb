@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   resources :links
   get '/s/:slug', to: 'links#show', as: :short
   
@@ -18,6 +19,9 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     confirmations: 'users/confirmations'
   }
+  get 'users/all'
+  get 'users/show'
+  get 'users/me'
   get "/404" => "errors#not_found"
   get 'landing/index'
   get '/:slug' => "pages#show"

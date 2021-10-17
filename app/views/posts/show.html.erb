@@ -1,4 +1,4 @@
-<article class="<%=t('css_article')%>">
+<article>
 <%#= render 'components/actions', obj: @post %>
 <aside class="text-center text-gray-500 dark:text-gray-300 opacity-75"><%= @post.published_at.strftime('%d %B %Y') %></aside>
 <div class="text-center"><%= headline(@post.title.titlecase) %></div>

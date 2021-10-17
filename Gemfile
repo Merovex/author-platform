@@ -79,3 +79,5 @@ gem "ahoy_matey", "~> 4.0"
 gem "blazer", "~> 2.4"
 
 gem "maxminddb", "~> 0.1.22"
+
+gem "rolify", "~> 6.0"

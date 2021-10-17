@@ -14,7 +14,11 @@ module Sluggable
   end
 
   def to_param
-    [title.to_s.parameterize, slug].join('-')
+    if title.present?
+      [title.to_s.parameterize, slug].join('-')
+    else
+      slug
+    end
   end
 
   module ClassMethods

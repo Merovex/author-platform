@@ -1,0 +1,22 @@
+<article>
+  <%= headline('Users') %>
+  <table class="table table-auto bordered w-full">
+    <thead>
+    <tr>
+      <th class='border py-1 px-2 font-bold text-yellow-500'> Email </th>
+      <%# <th class='border py-1 px-2 font-bold text-yellow-500'> Role </th> %>
+      <th class='border py-1 px-2 font-bold text-yellow-500'> Visits </th>
+      <th class='border py-1 px-2 font-bold text-yellow-500'> Last visited </th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td class='border py-1 px-2'><%= user.email %></td>
+          <%# <td class='border py-1 px-2'>= user.roles.map(&:name)</td> %>
+          <td class='border text-center py-1 px-2'><%= user.visits.count %></td>
+          <td class='border text-center py-1 px-2'><%= user.visits.last.started_at.strftime('%Y %B %d @ %H:%M') %></td>
+        </tr>
+      <% end%>
+      </tbody>
+  </table>
