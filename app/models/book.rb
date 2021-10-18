@@ -16,10 +16,10 @@ class Book < ApplicationRecord
 
   scope :featured, -> { where(is_featured: true) }
   def thumb
-    cover.variant(auto_orient: true, rotate: 0, resize: "200x300^", crop: '200x300+0+0')
+    cover.variant(auto_orient: true, rotate: 0, resize: "200x300^", crop: '200x300+0+0', format: :webp)#.processed.url
   end
   def background
-    cover.variant(auto_orient: true, rotate: 0, resize: "200x300^", crop: '200x300+0+0')
+    cover.variant(auto_orient: true, rotate: 0, resize: "200x300^", crop: '200x300+0+0')#.processed.url
   end
   def to_s
     title

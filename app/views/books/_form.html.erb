@@ -39,16 +39,28 @@
     <%= form.rich_text_area :excerpt %>
   </div>
 
-  <div class="field">
-    <%= h2(:cover) %>
-    <%= form.file_field :cover, accept: 'image/png,image/gif,image/jpeg' %>
+  <%= h2(:cover) %>  
+  <div class='grid gap-4 py-5 px-4 lg:grid-cols-3 field'>
+    <% if book.cover.attached? %>
+      <aside class='grid place-content-center'>
+        <%= image_tag book.thumb, class: 'rounded' %>
+      </aside>
+    <% end %>
+    <div class='grid lg:col-span-2 place-content-center'>
+      <%= form.file_field :cover, accept: 'image/png,image/gif,image/jpeg' %>
+    </div>
   </div>
-  
-  <div class="field">
-    <%= h2(:hero_background) %>
-    <%= form.file_field :hero_background, accept: 'image/png,image/gif,image/jpeg' %>
+  <%= h2(:hero_background) %>  
+  <div class='grid gap-4 py-5 px-4 lg:grid-cols-3 field'>
+    <% if book.cover.attached? %>
+      <aside class='grid place-content-center'>
+        <%= image_tag book.background, class: 'rounded' %>
+      </aside>
+    <% end %>
+    <div class='grid lg:col-span-2 place-content-center'>
+      <%= form.file_field :hero_background, accept: 'image/png,image/gif,image/jpeg' %>
+    </div>
   </div>
-
   <div class="my-12">
     <%= form.submit "Submit", class: button_css('blue')%>
   </div>
