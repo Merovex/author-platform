@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_17_100052) do
+ActiveRecord::Schema.define(version: 2021_10_17_210416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,16 @@ ActiveRecord::Schema.define(version: 2021_10_17_100052) do
     t.datetime "started_at", precision: 6
     t.index ["user_id"], name: "index_ahoy_visits_on_user_id"
     t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true
+  end
+
+  create_table "announcements", force: :cascade do |t|
+    t.string "title"
+    t.text "summary"
+    t.datetime "published_at", precision: 6
+    t.string "announceable_id"
+    t.string "announceable_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "authors", force: :cascade do |t|
@@ -249,6 +259,18 @@ ActiveRecord::Schema.define(version: 2021_10_17_100052) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "subscribers", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "ahoy_visit_id"
+    t.string "email"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at", precision: 6
+    t.datetime "confirmation_sent_at", precision: 6
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_subscribers_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -293,4 +315,5 @@ ActiveRecord::Schema.define(version: 2021_10_17_100052) do
   add_foreign_key "episodes", "series"
   add_foreign_key "posts", "users"
   add_foreign_key "praises", "books"
+  add_foreign_key "subscribers", "users"
 end

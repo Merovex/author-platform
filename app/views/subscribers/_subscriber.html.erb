@@ -1,0 +1,37 @@
+<div id="<%= dom_id subscriber %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">User:</strong>
+    <%= subscriber.user_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Ahoy visit:</strong>
+    <%= subscriber.ahoy_visit_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Email:</strong>
+    <%= subscriber.email %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Confirmation token:</strong>
+    <%= subscriber.confirmation_token %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Confirmed at:</strong>
+    <%= subscriber.confirmed_at %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Confirmation sent at:</strong>
+    <%= subscriber.confirmation_sent_at %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this subscriber", subscriber, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this subscriber', edit_subscriber_path(subscriber), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

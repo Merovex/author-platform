@@ -13,9 +13,6 @@ class Ability
         # * Comments
         # Can receive status emails
         can :read, :all
-      elsif user.has_role? :subscriber
-        # Can receive status emails
-        can :read, :all
       elsif user.has_role? :banned
         # User was kicked out for being an asshole
       elsif user.has_role? :outcast
@@ -26,3 +23,4 @@ class Ability
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
   end
 end
+_s
