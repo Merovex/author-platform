@@ -1,6 +1,6 @@
 <% if @book.series.books.count > 0 %>
 <section id='other-titles' class='p-4'>
-  <div class="<%=t('css_article')%>">
+  <div class="main">
     <%= h2("Other books in #{@book.series.title} series") %>
   </div>
   <div class='overflow-x-scroll whitespace-nowrap  <%= zebra() %>'>

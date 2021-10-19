@@ -1,6 +1,6 @@
 <% unless @book.excerpt.blank? %>
 <section id='feature' class='py-4 <%= zebra() %>'>
-  <div class="<%=t('css_article')%> ">
+  <div class="main ">
     <%= h2("Excerpt from <em>#{@book}</em>".html_safe) %>
     <div class="<%=t('css_prose')%> my-4">
     <%= @book.excerpt %>

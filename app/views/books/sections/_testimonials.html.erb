@@ -1,11 +1,11 @@
 <% if @book.praises.count > 0 %>
   <section id='testimonials' class="py-4 <%= zebra() %>">
-    <div class="<%=t('css_article')%> ">
+    <div class="main ">
     <%= h2("Praise for <em>#{@book}</em>".html_safe) %>
     <% @book.praises.each do |p| %>
       <div class="<%=t('css_prose')%>">
       <%= p.comment %>
-      <%= link_to "Edit Praise", edit_book_praise_path(@book, p), class: t('css_action_link') %>
+      <%= link_to "Edit Praise", edit_book_praise_path(@book, p), class: 'action' %>
       </div>
     <%end%>
     <aside class='py-8 mt-4 text-center'>
