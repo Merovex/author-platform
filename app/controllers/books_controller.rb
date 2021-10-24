@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
   before_action :get_series, only: %i[ new edit ]
   before_action :set_book, only: %i[ show edit update destroy ]
+  after_action :get_cover_bgcolor, only: %i[ create update ]
 
   # GET /books or /books.json
   def index
@@ -9,7 +10,6 @@ class BooksController < ApplicationController
 
   # GET /books/1 or /books/1.json
   def show
-    @book.clicks << @click unless @click.nil?
   end
 
   # GET /books/new
@@ -73,5 +73,11 @@ class BooksController < ApplicationController
     # Only allow a list of trusted parameters through.
     def book_params
       params.require(:book).permit(:title, :is_featured, :released_on, :synopsis, :excerpt, :cover, :hero_background, episode_attributes: [:order, :series_id])
+    end
+    def get_cover_bgcolor
+      return if @book.cover.nil?
+      color = `convert #{rails_blob_url(@book.cover)} -resize 1x1 txt:-`.match(/#[A-Fa-f0-9]{3,6}/)
+      @book.cover_color = color unless color == @book.cover_color
+      @book.save!
     end
 end

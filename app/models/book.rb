@@ -1,5 +1,8 @@
+
 class Book < ApplicationRecord
   include Sluggable
+
+  attribute :cover_color, :string, default: "#888888"
   
   has_rich_text :synopsis
   has_rich_text :excerpt
@@ -13,6 +16,7 @@ class Book < ApplicationRecord
 
   has_many :praises
   has_many :authors
+  has_many :links, as: :linkable, dependent: :destroy
 
   scope :featured, -> { where(is_featured: true) }
   def thumb
@@ -20,6 +24,9 @@ class Book < ApplicationRecord
   end
   def background
     cover.variant(auto_orient: true, rotate: 0, resize: "200x300^", crop: '200x300+0+0')#.processed.url
+  end
+  def bgcolor
+    cover.variant(auto_orient: true, rotate: 0, resize: "1x1^", negate: true)#.processed.url
   end
   def to_s
     title

@@ -1,16 +1,17 @@
-<section id='hero'>
+<%- background, text = bgcolor(@book.cover_color) %>
+<section id='hero' >
   <div class="relative flex items-center content-center justify-center pt-16 pb-32" style="min-height:75vh">
-    <div class="absolute top-0 z-0 w-full h-full bg-center bg-cover" style="background-image:url(&#x27;<%=hero_background(@book)%>&#x27;)">
-    <div class="absolute top-0 z-10 w-full h-full bg-center bg-cover opacity-20" 
-    style="background-image:url(&#x27;<%= image_url('backgrounds/oil-underlay.jpg')%>&#x27;)"></div>
-    <span id="blackOverlay" class="w-full h-full absolute opacity-95 bg-gray-900 <%= overlay || 'bg-gray-900' %>"></span>
+    <div ide='underlay-1' class="absolute top-0 z-0 w-full h-full bg-center bg-cover" style="background-image:url(&#x27;<%=hero_background(@book)%>&#x27;)">
+    <div ide='underlay-2' class="absolute top-0 z-10 w-full h-full bg-center bg-cover opacity-20" 
+    style="background-image:url(&#x27;<%= image_url('backgrounds/tin-background.jpeg') %>&#x27;)"></div>
+    <span id="overlay" class="w-full h-full absolute opacity-90 <%= background %>"></span>
   </div>
-  <div class="container relative max-w-screen-lg p-4 mx-auto text-white md:text-2xl">
+  <div class="container relative max-w-screen-lg p-4 mx-auto <%= text %> md:text-2xl">
     <%= render layout: 'books/layout', locals: {book: @book} do %>
       <h1 class="my-6 text-4xl text-center lg:text-6xl font-display">
         <%= @book.title %>
       </h1>
-      <div class="<%=t('css_prose')%> text-white text-center">
+      <div class="<%=t('css_prose')%> <%= text %> text-center">
         <%= @book.synopsis %>
       </div>
       <aside class='mt-8 text-center'>
