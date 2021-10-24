@@ -7,3 +7,6 @@
 ].each do |link| %>
   <%= render 'elements/navbar-menu-link', text: link.first, url: link.last %>
 <% end %>
+<% if can? :admin, Book %>
+<%= render 'elements/navbar-menu-link', text: "Links", url: links_path %>
+<% end %>

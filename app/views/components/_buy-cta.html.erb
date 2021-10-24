@@ -1,3 +1,14 @@
 <%= link_to 'Amazon', "#", class: button_css('green') %>
 <%= link_to 'Kindle', "#", class: button_css('blue') %>
 <%= link_to 'Audible', "#", class: button_css('yellow') %>
+
+<% locals[:book].links.each do |link|
+label = link.tag_list.first || 'buy book'
+color = get_button_color(label)
+%>
+<%= link_to(label.titleize, link.url, class: button_css('kindle')) %>
+<% end %>
+
+<% if can? :admin, Book %>
+<%= link_to "Add Link", "#", class: 'action' %>
+<% end %>

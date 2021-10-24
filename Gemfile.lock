@@ -71,6 +71,8 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    acts-as-taggable-on (5.0.0)
+      activerecord (>= 4.2.8)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     ahoy_matey (4.0.1)
@@ -181,6 +183,8 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.4.2)
       loofah (~> 2.3)
+    rails_dominant_colors (0.2.0)
+      mini_magick (~> 4.10)
     railties (7.0.0.alpha2)
       actionpack (= 7.0.0.alpha2)
       activesupport (= 7.0.0.alpha2)
@@ -245,6 +249,7 @@ PLATFORMS
   x86_64-darwin-20
 
 DEPENDENCIES
+  acts-as-taggable-on (~> 5.0)
   ahoy_matey (~> 4.0)
   aws-sdk-locationservice (~> 1.9)
   blazer (~> 2.4)
@@ -264,6 +269,7 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.0.alpha2)
+  rails_dominant_colors (~> 0.2.0)
   redis (~> 4.0)
   rolify (~> 6.0)
   selenium-webdriver

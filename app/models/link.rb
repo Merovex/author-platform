@@ -9,6 +9,9 @@ class Link < ApplicationRecord
       return slug unless exists?(slug: slug)
     end
   }
+  belongs_to :linkable, polymorphic: true, optional: true
+  acts_as_taggable_on :tags
+
   def short
     Rails.application.routes.url_helpers.short_url(slug: self.slug, only_path: true)
   end

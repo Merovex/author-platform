@@ -72,3 +72,5 @@ gem "maxminddb", "~> 0.1.22"
 gem "rolify", "~> 6.0"
 
 gem "mini_magick", "~> 4.11"
+
+gem "acts-as-taggable-on", "~> 5.0"

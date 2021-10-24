@@ -19,3 +19,6 @@ Ahoy.visit_duration = 4.hours
 #   data[:city] = request.headers["<city-header>"]
 #   super(data)
 # end
+ActsAsTaggableOn::Tagging.class_eval do
+  clear_validators!
+end

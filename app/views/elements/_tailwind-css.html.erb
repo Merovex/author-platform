@@ -1,6 +1,6 @@
 
 .card {
-  @apply px-8 py-4 my-8 border rounded-lg shadow-lg;
+  @apply px-8 py-4 my-8 border border-opacity-50 rounded-lg shadow-lg;
 }
 .card time {
   @apply text-center text-gray-500 dark:text-gray-300 opacity-75 block;
@@ -10,6 +10,15 @@
 }
 main > article, .main {
   @apply max-w-2xl mx-4 md:mx-auto my-16;
+}
+.headline {
+  @apply font-display text-3xl md:text-5xl text-black dark:text-white mt-4 mb-8;
+}
+.subtitle {
+  @apply font-display text-2xl md:text-3xl text-black dark:text-white;
+}
+.panel-headline {
+  @apply font-sans text-2xl md:text-3xl text-black dark:text-white font-bold mt-4 mb-8 text-center;
 }
 a.action {
   @apply border-solid border inline-block p-2 mx-1 text-sm uppercase font-sans border-blue-200 rounded-md dark:border-blue-400 hover:bg-blue-500 dark:hover:bg-blue-400 dark:text-white;
