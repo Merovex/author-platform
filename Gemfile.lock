@@ -112,6 +112,7 @@ GEM
       xpath (~> 3.2)
     chartkick (4.0.5)
     childprocess (4.1.0)
+    color (1.8)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
     debug (1.2.4)
@@ -183,8 +184,6 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.4.2)
       loofah (~> 2.3)
-    rails_dominant_colors (0.2.0)
-      mini_magick (~> 4.10)
     railties (7.0.0.alpha2)
       actionpack (= 7.0.0.alpha2)
       activesupport (= 7.0.0.alpha2)
@@ -257,6 +256,7 @@ DEPENDENCIES
   cancancan (~> 3.3)
   capybara (>= 3.26)
   chartkick (~> 4.0)
+  color (~> 1.8)
   debug (>= 1.0.0)
   devise!
   geocoder (~> 1.7)
@@ -269,7 +269,6 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.0.alpha2)
-  rails_dominant_colors (~> 0.2.0)
   redis (~> 4.0)
   rolify (~> 6.0)
   selenium-webdriver

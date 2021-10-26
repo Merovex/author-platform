@@ -1,6 +1,6 @@
 <% is_card ||= false %>
 <section id="<%= dom_id book %>" class='grid gap-4 py-5 px-4 lg:grid-cols-3<% if is_card %> shadow-lg rounded-lg my-6 border<%end%>'>
-  <aside class='grid place-content-center'>
+  <aside class='grid place-content-center dark-image'>
     <%= render 'books/cover', book: book %>
   </aside>
   <section class='grid lg:col-span-2 place-content-center'>
