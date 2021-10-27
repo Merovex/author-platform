@@ -7,5 +7,36 @@
     <% end %>
     
     <%= render 'components/subscribe' %>
-    <%= render @posts %>
+    <% if can? :admin, Post %>
+      <% if @posts.pending_published.count() > 0%>
+      <section class="p-4">
+        <h2 class="h2">Pending Release</h2>
+        <%# <%= render @posts.pending_published.reverse %> 
+        <table class='w-full border table-fixed'>
+        <thead>
+          <tr>
+            <th class="w-2/3 border">Title</th>
+            <th class="w-1/3 border">Release Date</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @posts.pending_published.reverse.each do |post| %>
+        <tr>
+          <td class="px-2 border">
+            <%= link_to post.title, post, class: "link" %>
+            (<%= link_to "edit", edit_post_path(post), class: 'link' %>)
+          </td>
+          <td class="text-center border"><%= post.published_at.strftime('%d %B %Y @ %H:%M') %></td>
+        </tr>
+        </tbody>
+        <% end %>
+        </table>
+      </section>
+      <h2 class="h2">Published</h2>
+      <% else %>
+        <p class="text-center opacity-60">Everything is published.</p>
+      <% end %>
+    
+    <% end %>
+    <%= render @posts.published.reverse %>
 </div>
