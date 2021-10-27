@@ -23,6 +23,9 @@ main > article, .main {
 a.action {
   @apply border-solid border inline-block p-2 mx-1 text-sm uppercase font-sans border-blue-200 rounded-md dark:border-blue-400 hover:bg-blue-500 dark:hover:bg-blue-400 dark:text-white;
 }
+.field, .actions {
+  @apply mt-8
+}
 @media (prefers-color-scheme: dark) {
   .dark-image {
     filter: saturate(105%) contrast(110%) brightness(0.9) greyscale(0%);

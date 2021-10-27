@@ -22,10 +22,21 @@
 
   <div class="field">
     <%= form.label :published_at %>
-    <%= form.datetime_select :published_at %>
+    <%= form.text_field :published_at, 
+          placeholder: "Select Date...",
+          readonly: 'readonly',
+          class: 'flatpickr flatpickr-input active form-input',
+          data: {
+            controller: "flatpickr",
+            flatpickr_date_format: "Y-m-d",
+            flatpickr_min_date: Time.zone.now
+          }
+    %>
   </div>
 
   <div class="actions">
     <%= form.submit "Submit", class: button_css('blue') %>
+    or
+    <%= link_to "Cancel", posts_path, class: button_css('red') %>
   </div>
 <% end %>

@@ -17,6 +17,7 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Submit", class: button_css('blue') %> or
+    <%= link_to "Cancel", book_path(@praise.book) + "#testimonials", class: button_css('red') %>
   </div>
 <% end %>

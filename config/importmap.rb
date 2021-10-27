@@ -10,3 +10,4 @@ pin "@hotwired/stimulus-importmap-autoloader", to: "stimulus-importmap-autoloade
 pin_all_from "app/javascript/controllers", under: "controllers"
 pin "trix"
 pin "@rails/actiontext", to: "actiontext.js"
+pin "flatpickr", to: "https://ga.jspm.io/npm:flatpickr@4.6.9/dist/flatpickr.js"
