@@ -4,6 +4,7 @@
 # Use node modules from a JavaScript CDN by running ./bin/importmap
 
 pin "application"
+pin "helpers/local-time"
 pin "@hotwired/turbo-rails", to: "turbo.js"
 pin "@hotwired/stimulus", to: "stimulus.js"
 pin "@hotwired/stimulus-importmap-autoloader", to: "stimulus-importmap-autoloader.js"

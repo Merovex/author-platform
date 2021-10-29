@@ -1,7 +1,8 @@
+<% kls = "inline-block rounded drop-shadow" %>
 <div class='grid place-content-center'>
   <% if book.cover.attached? %>
-    <%= image_tag book.thumb, class: 'rounded drop-shadow' %>
+    <%= image_tag book.thumb, class: kls %>
   <% else %>
-  <img src='https://via.placeholder.com/200x300?text=Book+Cover' class='rounded drop-shadow inline-block'>
+  <img src='https://via.placeholder.com/200x300?text=Book+Cover' class='<%= kls %>'>
   <% end %>
 </div>

@@ -11,7 +11,6 @@
       <% if @posts.pending_published.count() > 0%>
       <section class="p-4">
         <h2 class="h2">Pending Release</h2>
-        <%# <%= render @posts.pending_published.reverse %> 
         <table class='w-full border table-fixed'>
         <thead>
           <tr>
@@ -26,7 +25,14 @@
             <%= link_to post.title, post, class: "link" %>
             (<%= link_to "edit", edit_post_path(post), class: 'link' %>)
           </td>
-          <td class="text-center border"><%= post.published_at.strftime('%d %B %Y @ %H:%M') %></td>
+          <td class="text-center border">
+            <% if post.published_at.nil? %> 
+              <%= link_to 'post now', "#", class: "link" %>
+            <% else %>
+              <%= local_time(post.published_at, '%d %B %Y @ %H:%M %Z') %>
+              <%= local_relative_time(post.published_at, '%d %B %Y @ %H:%M') %>
+            <% end %>
+          </td>
         </tr>
         </tbody>
         <% end %>

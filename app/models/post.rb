@@ -8,6 +8,7 @@ class Post < ApplicationRecord
     where("published_at < ?", Time.now)
   end
   def self.pending_published
-    where("published_at > ?", Time.now)
+    # where("published_at > ? and published_at is null")
+    where("published_at is ?", nil).or(self.where("published_at > ?", Time.now))
   end
 end

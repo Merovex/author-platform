@@ -1,6 +1,10 @@
 <article>
 <%= render 'components/actions', obj: @post %>
-<aside class="text-center text-gray-500 opacity-75 dark:text-gray-300"><%= @post.published_at.strftime('%d %B %Y') %></aside>
+<aside class="text-center text-gray-500 opacity-75 dark:text-gray-300">
+  <%= @post.published_at.strftime('%d %B %Y') unless @post.published_at.nil? %>
+  <br>HERE<br>
+  <%= local_time_ago(Time.now) %>
+</aside>
 <div class="text-center"><%= headline(@post.title.titlecase) %></div>
 
 <section class="<%=t('css_prose')%>">

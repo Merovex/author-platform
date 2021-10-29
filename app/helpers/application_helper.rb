@@ -24,7 +24,7 @@ module ApplicationHelper
     id = SecureRandom.uuid.split('-').first
     # https://github.com/ankane/chartkick
     answer = <<EOF
-    <canvas id="chart-#{id}" class='max-h-48 w-1/2 mx-auto overflow-x-scroll'></canvas>
+    <canvas id="chart-#{id}" class='w-1/2 mx-auto overflow-x-scroll max-h-48'></canvas>
     <script>
       var ctx = document.getElementById('chart-#{id}').getContext('2d');
       var myChart = new Chart(ctx, {
@@ -40,5 +40,9 @@ module ApplicationHelper
     </script>
 EOF
   return answer.html_safe
+  end
+  def format_time(time, timezone)
+    time = time.to_time
+    content_tag(:span, I18n.l(time, format: :long), data: { timezone: timezone, time: time.iso8601 })
   end
 end

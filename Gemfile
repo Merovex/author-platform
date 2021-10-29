@@ -75,3 +75,5 @@ gem "mini_magick", "~> 4.11"
 
 gem "acts-as-taggable-on", "~> 5.0"
 gem "color", "~> 1.8"
+
+gem "local_time", "~> 2.1"
