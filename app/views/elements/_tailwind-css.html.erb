@@ -1,4 +1,6 @@
-
+body {
+  @apply flex flex-col min-h-screen bg-white dark:bg-gray-700 dark:text-white;
+}
 .card {
   @apply px-8 py-4 my-8 border border-opacity-50 rounded-lg shadow-lg;
 }
@@ -14,11 +16,17 @@
 .h2 {
   @apply font-display text-2xl md:text-3xl text-black dark:text-white text-center mt-2 mb-4;
 }
+.bordered {
+  @apply border border-black rounded rounded-lg shadow-lg lg:rounded-xl dark:border-white dark:border-opacity-20 border-opacity-10;
+}
 main > article, .main {
-  @apply max-w-2xl mx-4 md:mx-auto my-16;
+  @apply max-w-4xl mx-4 md:mx-auto my-16 p-8 rounded-lg;
+}
+.single {
+  @apply shadow-lg bordered mb-12;
 }
 .headline {
-  @apply font-display text-3xl md:text-5xl text-black dark:text-white mt-4 mb-8;
+  @apply font-display text-3xl md:text-5xl text-brand-500 dark:text-brand-100 mt-4 mb-8;
 }
 .subtitle {
   @apply font-display text-2xl md:text-3xl text-black dark:text-white;
@@ -26,8 +34,12 @@ main > article, .main {
 .panel-headline {
   @apply font-sans text-2xl md:text-3xl text-black dark:text-white font-bold mt-4 mb-8 text-center;
 }
-a.action {
-  @apply border-solid border inline-block p-2 mx-1 text-sm uppercase font-sans border-blue-200 rounded-md dark:border-blue-400 hover:bg-blue-500 dark:hover:bg-blue-400 dark:text-white;
+.button {
+  @apply p-2 px-4 mx-2 inline-block font-sans font-bold text-base transition duration-200 ease-in-out border rounded shadow-md focus:outline-none hover:shadow-sm hover:opacity-100 opacity-80 ;
+}
+.action {
+  @apply border-solid border inline-block p-2 mx-1 text-sm uppercase font-sans border-blue-200 rounded-md dark:border-blue-400 hover:bg-blue-500 dark:hover:bg-blue-400 hover:text-white dark:text-white;
+  <%# @apply button uppercase border-solid border-blue-200 dark:border-blue-400; %>
 }
 .field, .actions {
   @apply mt-8
@@ -39,4 +51,9 @@ a.action {
   .dark-image img {
     filter: drop-shadow(0em 0em 1em #AAA);
   }
+}
+blockquote .quote-mark {
+  font-size: 10rem;
+  right: 100%;
+  @apply absolute top-0 leading-none text-white text-opacity-20 font-display;
 }

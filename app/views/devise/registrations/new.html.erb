@@ -10,19 +10,6 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-input rounded w-full" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", class: "form-input rounded w-full" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-input rounded w-full" %>
-  </div>
-
   <div class="my-8">
     <%= f.submit "Sign up", class: button_css('blue') %>
   </div>

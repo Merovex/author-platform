@@ -1,6 +1,6 @@
 module ApplicationHelper
   def button_css(color = 'blue')
-    "bg-#{color}-500 bg-opacity-70 hover:bg-opacity-100 text-white px-4 py-2 rounded font-medium mx-2 transition duration-200 each-in-out text-base inline-block"
+    "bg-#{color}-500 border-#{color}-600 text-white button"
   end
   def zebra()
     cycle('bg-gray-100 dark:bg-gray-700','', name: 'zebra')
