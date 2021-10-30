@@ -77,3 +77,5 @@ gem "acts-as-taggable-on", "~> 5.0"
 gem "color", "~> 1.8"
 
 gem "local_time", "~> 2.1"
+
+gem "invisible_captcha", "~> 2.0"
