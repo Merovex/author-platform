@@ -7,7 +7,7 @@ module Sluggable
     validates :slug, presence: true, uniqueness: true
     attribute :slug, :string, default: lambda {
       loop do
-        slug = SecureRandom.uuid.split('-').first
+        slug = SecureRandom.base64(6).tr('+/=','')
         return slug unless exists?(slug: slug)
       end
     }
