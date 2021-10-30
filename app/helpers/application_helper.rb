@@ -45,4 +45,9 @@ EOF
     time = time.to_time
     content_tag(:span, I18n.l(time, format: :long), data: { timezone: timezone, time: time.iso8601 })
   end
+  def lokal_time(time)
+    time_tag(time, data: { controller: 'localtime', format: '%d-%b-%Y'})
+    # <time datetime="2021-10-29T09:48:06Z" data-local="time-ago">October 29, 2021  9:48am</time>
+    # "<time datetime="2021-10-29T09:48:06Z" data-local="time-ago">#{time}</time>".raw
+  end
 end

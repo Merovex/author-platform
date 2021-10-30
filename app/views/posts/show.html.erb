@@ -4,6 +4,8 @@
   <%= @post.published_at.strftime('%d %B %Y') unless @post.published_at.nil? %>
   <br>HERE<br>
   <%= local_time_ago(Time.now) %>
+  <br>HERE<br>
+  <%= lokal_time(@post.published_at) %>
 </aside>
 <div class="text-center"><%= headline(@post.title.titlecase) %></div>
 
