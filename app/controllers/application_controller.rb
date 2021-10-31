@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user_from_token!
 
-  after_action :track_action
+  # after_action :track_action
 
   # rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
   rescue_from CanCan::AccessDenied do |exception|

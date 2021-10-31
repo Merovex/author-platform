@@ -1,10 +1,14 @@
 # frozen_string_literal: true
-
+# https://www.mintbit.com/blog/passwordless-authentication-in-ruby-on-rails-with-devise
 class Users::SessionsController < Devise::SessionsController
-  # def new
-  #   cookies[:pre_signin_url] = request.referer
-  #   super
-  # end
+  def new
+    cookies.delete(:pre_signin_url) if cookies.key?(:pre_signin_url)
+    cookies[:pre_signin_url] = { 
+      value: URI(request.referer),
+      expires: 10.minutes.from_now
+     } unless request.referer.nil?
+    super
+  end
   def destroy
     flash[:success] = 'It was good to see you. Please come again.'
     super
@@ -13,11 +17,14 @@ class Users::SessionsController < Devise::SessionsController
     user = User.find_by(authentication_token: params[:authentication_token])
     now = Time.now.utc
     if user.present? && user.authentication_token_expires_at > now
-      user.update(authentication_token: SecureRandom.base64(12).tr('+/=',''), authentication_token_expires_at: now)
+      user.update(
+        authentication_token: SecureRandom.base64(12).tr('+/=',''),
+        authentication_token_expires_at: now
+      )
       sign_in(user)
-      # destination_url = cookies[:pre_signin_url] || root_path
-      # cookies.delete(:pre_signin_url) if cookies.key?(:pre_signin_url)
-      # redirect_to destination_url
+      destination_url = cookies[:pre_signin_url] || root_path
+      cookies.delete(:pre_signin_url) if cookies.key?(:pre_signin_url)
+      redirect_to destination_url
     else
       flash[:alert] = 'There was an error while authentication. Please enter your email again.'
       redirect_to new_user_session_path
