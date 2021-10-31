@@ -1,20 +1,14 @@
 import { Controller } from "@hotwired/stimulus"
-import { format } from 'date-fns'
+import { format, formatDistanceToNow } from 'date-fns'
 
+// https://date-fns.org/v2.25.0/docs/formatDistanceToNowStrict
 export default class extends Controller {
   connect() {
-    // var thyme = this.element.getAttribute('datetime');
-    // // var fmt = this.element.getAttribute('data-format');
-    // var date = new Date(thyme);
-    // // console.log(new Intl.RelativeTimeFormat("en", { numeric: 'always' }).format(0, 'day'));
-    // // Output: today
-    // // console.log(new Intl.RelativeTimeFormat("en", { numeric: 'auto' }).format(0, 'day'));
-    // var output = format(Date.new, 'MM/dd/yyyy');
-    // // var output = date.toString();
-    // // var output = format(date)
-    // output = format(new Date(2014, 1, 11), 'MM/dd/yyyy')
-    // console.log(date, output)
+    var thyme = this.element.dateTime
+    var fmt = this.element.getAttribute('data-format');
+    var date = new Date(thyme);
 
-    this.element.textContent = "FIX LOCAL TIME"
+    if (fmt == 'relative') { this.element.textContent = formatDistanceToNow(date, { addSuffix: true }); }
+    else { this.element.textContent = format(date, fmt); }
   }
 }

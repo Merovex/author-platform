@@ -29,7 +29,7 @@
             <% if post.published_at.nil? %> 
               <%= link_to 'post now', "#", class: "link" %>
             <% else %>
-              <%= local_time(post.published_at, '%d %B %Y @ %H:%M %Z') %>
+              <%= local_time(post.published_at, 'relative') %>
             <% end %>
           </td>
         </tr>
