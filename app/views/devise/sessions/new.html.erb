@@ -1,28 +1,25 @@
-
 <%= render layout: 'components/user-panel' do %>
-
 <%= panel_headline('Log in') %>
-
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-input rounded w-full' %>
+    <%= f.email_field :email, autofocus: true, class: 'form-input rounded w-full' %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password", class: 'form-input rounded w-full' %>
-  </div>
+  <%# <div class="field">
+    <%= f.label :password ><br />
+    <%= f.password_field :password, autocomplete: "current-password", class: 'form-input rounded w-full' >
+  </div> %>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="items-center field">
+  <% if devise_mapping.rememberable? and false %>
+    <div class="items-center field">``
       <%= f.check_box :remember_me, class: "form-checkbox rounded" %>
       <%= f.label :remember_me, class: 'ml-2' %>
     </div>
   <% end %>
 
   <div class="my-8">
-    <%= f.submit "Log in", class: button_css('blue') %>
+    <%= f.submit "Send Confirmation Email", class: button_css('blue') %>
   </div>
 <% end %>
 <% end %>

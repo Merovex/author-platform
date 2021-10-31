@@ -1,0 +1,14 @@
+
+
+<article class="text-center">
+<%= headline('Email Confirmed') %>
+<section class="mx-auto mb-12 text-2xl prose text-center">
+<p class='text-center'>Looks like you're legit. Come on in.</p>
+</section>
+<%= form_tag(authenticate_token_url) do %>
+  <%= hidden_field_tag :authentication_token, @authentication_token %>
+  <div class="text-center">
+    <%= submit_tag "Continue", class: button_css('blue')%>
+  </div>
+<% end %>
+</article>

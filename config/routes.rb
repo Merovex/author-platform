@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :pages
   resources :errors
 
-  mount Blazer::Engine, at: "blazer"
+  # mount Blazer::Engine, at: "blazer"
   
   resources :series
   resources :authors
@@ -21,6 +21,12 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     confirmations: 'users/confirmations'
   }
+
+  devise_scope :user do
+    get 'confirm-email', to: 'users/sessions#email_confirmed'#, only_path: true
+    post 'authenticate-token', to: 'users/sessions#authenticate_token'
+  end
+
   get 'users/all'
   get 'users/show'
   get 'users/me'
