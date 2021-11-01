@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_post, only: %i[ show edit update destroy publish ]
   before_action :authenticate_user!, except: %i[show index]
   # load_and_authorize_resource
   
@@ -12,6 +12,19 @@ class PostsController < ApplicationController
   # GET /posts/1 or /posts/1.json
   def show
     
+  end
+  def publish
+    
+    @post.published_at = Time.now.utc
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to @post, notice: "Post was successfully published." }
+        format.json { render :show, status: :created, location: @post }
+      else
+        format.html { render :index, status: :unprocessable_entity }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # GET /posts/new

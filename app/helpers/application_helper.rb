@@ -46,8 +46,15 @@ EOF
     content_tag(:span, I18n.l(time, format: :long), data: { timezone: timezone, time: time.iso8601 })
   end
   def local_time(time, format="MM/dd/yyyy")
-    time_tag(time, data: { controller: 'localtime', format: format}) unless time.nil?
-    # <time datetime="2021-10-29T09:48:06Z" data-local="time-ago">October 29, 2021  9:48am</time>
-    # "<time datetime="2021-10-29T09:48:06Z" data-local="time-ago">#{time}</time>".raw
+    return if time.nil?
+
+    time_tag(time, data: { controller: 'localtime', format: format})
+  end
+  def local_time_popover(time)
+    return if time.nil?
+    
+    summary = time_tag(time, data: { controller: 'localtime', format: 'relative'})
+    details = time_tag(time, data: { controller: 'localtime', format: "dd MMMM YYYY"})
+    content_tag(:details,  content_tag(:summary, summary) + content_tag(:span, details) )
   end
 end

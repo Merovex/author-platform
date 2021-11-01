@@ -19,22 +19,22 @@
           </tr>
         </thead>
         <tbody>
-        <% @posts.pending_published.reverse.each do |post| %>
-        <tr>
-          <td class="px-2 border">
-            <%= link_to post.title, post, class: "link" %>
-            (<%= link_to "edit", edit_post_path(post), class: 'link' %>)
-          </td>
-          <td class="text-center border">
-            <% if post.published_at.nil? %> 
-              <%= link_to 'post now', "#", class: "link" %>
-            <% else %>
-              <%= local_time(post.published_at, 'relative') %>
-            <% end %>
-          </td>
-        </tr>
+          <% @posts.pending_published.reverse.each do |post| %>
+          <tr>
+            <td class="px-2 border">
+              <%= link_to post.title, post, class: "link" %>
+              (<%= link_to "edit", edit_post_path(post), class: 'link' %>)
+            </td>
+            <td class="text-center border">
+              <% if post.published_at.nil? %> 
+                <%= link_to 'post now', post_path(post) + "/publish", class: "link" %>
+              <% else %>
+                <%= local_time_popover(post.published_at) %>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
         </tbody>
-        <% end %>
         </table>
       </section>
       <h2 class="h2">Published</h2>

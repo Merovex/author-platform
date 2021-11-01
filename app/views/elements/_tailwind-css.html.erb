@@ -41,6 +41,17 @@ main > article, .main {
   @apply border-solid border inline-block p-2 mx-1 text-sm uppercase font-sans border-blue-200 rounded-md dark:border-blue-400 hover:bg-blue-500 dark:hover:bg-blue-400 hover:text-white dark:text-white;
   <%# @apply button uppercase border-solid border-blue-200 dark:border-blue-400; %>
 }
+details summary::-webkit-details-marker,
+details summary::marker {
+  content: '';
+  display: none;
+}
+details summary {
+  cursor: pointer;
+}
+details summary > * {
+  display: inline;
+}
 .field, .actions {
   @apply mt-8
 }

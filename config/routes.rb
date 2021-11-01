@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get 'users/all'
   get 'users/show'
   get 'users/me'
+  get 'posts/:id/publish' => "posts#publish"
   get "/404" => "errors#not_found"
   get 'landing/index'
   get '/:slug' => "pages#show"
