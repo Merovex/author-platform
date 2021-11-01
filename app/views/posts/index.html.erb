@@ -9,7 +9,7 @@
     <%= render 'components/subscribe' %>
     <% if can? :admin, Post %>
       <% if @posts.pending_published.count() > 0%>
-      <section class="p-4">
+      <section class="p-4 card">
         <h2 class="h2">Pending Release</h2>
         <table class='w-full border table-fixed'>
         <thead>
