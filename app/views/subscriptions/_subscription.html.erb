@@ -1,17 +1,11 @@
-<div id="<%= dom_id subscription %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">User:</strong>
-    <%= subscription.user_id %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Source type:</strong>
-    <%= subscription.source_type %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this subscription", subscription, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this subscription', edit_subscription_path(subscription), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
-</div>
+<tr id="<%= dom_id subscription %>" class="<%= zebra() %>">
+  <td class="p-2 ">
+    <%= link_to subscription.user.email, "#" %>
+  </td>
+  <td class="p-2 text-center">
+    <%= subscription.posts ? "Yes" : "" %>
+  </td>
+  <td class="p-2 text-center">
+    <%= subscription.books ? "Yes" : "" %>
+  </td>
+</tr>

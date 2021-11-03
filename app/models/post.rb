@@ -4,11 +4,16 @@ class Post < ApplicationRecord
 
   include Sluggable
   
+  def publish_now
+    write_attribute(:published_at, Time.now.utc)
+  end
+  def unpublish
+    write_attribute(:published_at, nil)
+  end
   def self.published 
-    where("published_at < ?", Time.now)
+    where("published_at < ?", Time.now.utc)
   end
   def self.pending_published
-    # where("published_at > ? and published_at is null")
-    where("published_at is ?", nil).or(self.where("published_at > ?", Time.now))
+    where("published_at > ?", Time.now.utc).or(self.where(published_at: nil))
   end
 end

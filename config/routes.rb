@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   get 'posts/:id/publish' => "posts#publish"
   get "/404" => "errors#not_found"
   get 'landing/index'
+  get '/subscribers' => 'subscriptions#subscribers'
   get '/:slug' => "pages#show"
   root to: 'landing#index'
 end

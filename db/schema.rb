@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_30_111450) do
+ActiveRecord::Schema.define(version: 2021_11_02_114804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -274,6 +274,16 @@ ActiveRecord::Schema.define(version: 2021_10_30_111450) do
     t.index ["user_id"], name: "index_subscribers_on_user_id"
   end
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "source_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "posts"
+    t.string "books"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
+  end
+
   create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
@@ -347,4 +357,5 @@ ActiveRecord::Schema.define(version: 2021_10_30_111450) do
   add_foreign_key "posts", "users"
   add_foreign_key "praises", "books"
   add_foreign_key "subscribers", "users"
+  add_foreign_key "subscriptions", "users"
 end

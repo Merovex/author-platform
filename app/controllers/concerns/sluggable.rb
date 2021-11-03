@@ -2,15 +2,11 @@
 
 module Sluggable
   extend ActiveSupport::Concern
+  include Slug
 
   included do
     validates :slug, presence: true, uniqueness: true
-    attribute :slug, :string, default: lambda {
-      loop do
-        slug = SecureRandom.base64(6).tr('+/=','')
-        return slug unless exists?(slug: slug)
-      end
-    }
+    attribute :slug, :string, default: unique_slug(:slug)
   end
 
   def to_param

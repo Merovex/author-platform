@@ -1,15 +1,39 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
-
-    <%= render @subscription %>
-
-    <%= link_to 'Edit this subscription', edit_subscription_path(@subscription), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to 'Delete this subscription', subscription_path(@subscription), method: :delete, data: { confirm: "Are you sure you want to delete this subscription?" }, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-    </div>
-    <%= link_to 'Back to subscriptions', subscriptions_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  </div>
-</div>
+<%- checkbox_css = 'bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-6 w-6 rounded' %>
+<article class="single">
+  <%= headline("Subscriptions") %>
+  <section class="prose lg:prose-xl max-w-none">
+  <p>
+    Whether you are an Insider or just a subscriber, I would like to share periodic updates with you.
+    You are subscribed to any of the following items marked with a checkbox.
+    If you believe this to be in error, or no longer wish to subscribe, then uncheck and hit the button.
+  </p>
+  <p>
+    Your privacy is something I value. The email list is not shared with a third party service.
+    See our <a href="/privacy">privacy policy</a> for more information.
+  </p>
+  </section>
+  <%= form_with(model: @subscription) do |form| %>
+  <table class="w-full text-xl">
+    <tbody>
+      <tr>
+        <td class="font-bold py-8">Newsletter</td>
+        <td class='px-8 text-center'><%= form.check_box :wants_posts, {checked: (!@subscription.posts.nil?), class: checkbox_css}, true, false %></td>
+        <td>Receive periodic, newsworthy emails from the author.</td>
+      </tr>
+      <tr>
+        <td class="font-bold py-8">Books</td>
+        <td class='px-8 text-center'><%= form.check_box :wants_books, {checked: (!@subscription.books.nil?), class: checkbox_css}, true, false %></td>
+        <td>Receive periodic, emails about newly published books.</td>
+      </tr>
+      <tr>
+      <td class="font-bold py-8">
+      &nbsp;
+      </td>
+      <td class='text-center'><%= form.submit "Update", class: button_css('blue') %></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <% end %>
+</article>
+class: 'bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-6 w-6 rounded'

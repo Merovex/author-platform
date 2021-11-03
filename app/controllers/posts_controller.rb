@@ -14,8 +14,7 @@ class PostsController < ApplicationController
     
   end
   def publish
-    
-    @post.published_at = Time.now.utc
+    @post.publish_now
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: "Post was successfully published." }

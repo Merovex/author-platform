@@ -9,7 +9,9 @@ class User < ApplicationRecord
   has_many :posts
   has_many :visits, class_name: "Ahoy::Visit"
 
-  include Sluggable
+  # validates :email, email: true
+
+  include Sluggable, Subscriber
 
   rolify
   after_create :assign_default_role
