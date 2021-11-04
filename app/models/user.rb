@@ -1,7 +1,6 @@
 class User < ApplicationRecord
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :trackable, 
          :passwordless_authenticatable, :registerable,
          :recoverable, :rememberable, :confirmable, :lockable, :validatable
@@ -9,7 +8,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :visits, class_name: "Ahoy::Visit"
 
-  # validates :email, email: true
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
 
   include Sluggable, Subscriber
 
@@ -36,4 +35,5 @@ class User < ApplicationRecord
         break token unless User.where(authentication_token: token).first
       end
     end
+    
 end

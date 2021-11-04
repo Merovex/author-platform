@@ -1,10 +1,15 @@
 <article class="main">
+  <%= headline('Subscribers')  %>
+  <section class="prose max-w-none my-12 text-2xl">
+    <p>You have <%= @subscriptions.count %> people subscribed to your website, listed below.</p>
+  </section>
   <table id="subscriptions" class="min-w-full bordered">
     <thead>
       <tr class='p-4 bg-brand-800 text-gray-50'>
-      <th>Email/user</th>
-      <th>Posts</th>
-      <th>Books</th>
+        <th>Email/User</th>
+        <th>Posts</th>
+        <th>Books</th>
+      </tr>
     </thead>
     <tbody>
       <%= render @subscriptions %>

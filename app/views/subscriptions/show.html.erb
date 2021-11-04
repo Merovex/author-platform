@@ -1,5 +1,10 @@
 <%- checkbox_css = 'bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-6 w-6 rounded' %>
 <article class="single">
+  <% if can? :admin, Subscription %>
+    <aside class="text-right">
+      <%= link_to "Subscribers", subscribers_path, class: button_css('blue') %>
+    </aside>
+  <% end %>
   <%= headline("Subscriptions") %>
   <section class="prose lg:prose-xl max-w-none">
   <p>
@@ -18,12 +23,12 @@
       <tr>
         <td class="font-bold py-8">Newsletter</td>
         <td class='px-8 text-center'><%= form.check_box :wants_posts, {checked: (!@subscription.posts.nil?), class: checkbox_css}, true, false %></td>
-        <td>Receive periodic, newsworthy emails from the author.</td>
+        <td>Get newsworthy emails about what's going on.</td>
       </tr>
       <tr>
         <td class="font-bold py-8">Books</td>
         <td class='px-8 text-center'><%= form.check_box :wants_books, {checked: (!@subscription.books.nil?), class: checkbox_css}, true, false %></td>
-        <td>Receive periodic, emails about newly published books.</td>
+        <td>Get an email when a new book is published.</td>
       </tr>
       <tr>
       <td class="font-bold py-8">
@@ -33,7 +38,5 @@
       </tr>
     </tbody>
   </table>
-  
   <% end %>
 </article>
-class: 'bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-6 w-6 rounded'
