@@ -1,4 +1,7 @@
 module ApplicationHelper
+  def inverse_button_css(color='blue')
+    "bg-gray-50 border-#{color}-600 text-black button"
+  end
   def button_css(color = 'blue')
     "bg-#{color}-500 border-#{color}-600 text-white button"
   end

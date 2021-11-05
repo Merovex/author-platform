@@ -82,3 +82,5 @@ gem "paper_trail", "~> 12.1"
 gem "meta-tags", "~> 2.16"
 
 gem "email_validator", "~> 2.2"
+
+gem "mailcatcher", "~> 0.2.4"
