@@ -1,9 +1,10 @@
 class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
-  devise :database_authenticatable, :trackable, 
-         :passwordless_authenticatable, :registerable,
-         :recoverable, :rememberable, :confirmable, :lockable, :validatable
+  devise :database_authenticatable,
+          :trackable, 
+          :magic_link_authenticatable, :registerable,
+          :recoverable, :rememberable, :confirmable, :lockable, :validatable
 
   has_many :posts
   has_many :visits, class_name: "Ahoy::Visit"
