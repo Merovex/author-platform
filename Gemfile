@@ -2,8 +2,8 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "2.7.1"
-gem "rails", "~> 7.0.0.alpha2"
-gem "pg", "~> 1.1"
+gem "rails"#, "~> 7.0.0.alpha2"
+gem "pg"
 gem "puma", "~> 5.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails", ">= 0.3.4"
