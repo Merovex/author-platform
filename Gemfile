@@ -8,7 +8,8 @@ gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails", ">= 0.3.4"
-gem "turbo-rails", ">= 0.7.11"
+# gem "turbo-rails", ">= 0.7.11"
+gem 'turbo-rails', '~> 0.8'
 gem "stimulus-rails", ">= 0.4.0"
 # 
 gem "sprockets-rails", ">= 3.4.1"

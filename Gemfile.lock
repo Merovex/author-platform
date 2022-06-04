@@ -301,8 +301,9 @@ GEM
     thor (1.2.1)
     tilt (2.0.10)
     timeout (0.3.0)
-    turbo-rails (7.1.1)
-      rails (>= 6.0.0)
+    turbo-rails (0.9.1)
+      actionpack (>= 6.0.0)
+      railties (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     warden (1.2.9)
@@ -361,7 +362,7 @@ DEPENDENCIES
   selenium-webdriver
   sprockets-rails (>= 3.4.1)
   stimulus-rails (>= 0.4.0)
-  turbo-rails (>= 0.7.11)
+  turbo-rails (~> 0.8)
   web-console (>= 4.1.0)
   webdrivers
 
