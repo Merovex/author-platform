@@ -1,5 +1,5 @@
 <%= render layout: 'components/user-panel' do %>
-<%= panel_headline('Log in') %>
+<%= panel_headline('Log In') %>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :email %><br />

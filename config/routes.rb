@@ -16,15 +16,19 @@ Rails.application.routes.draw do
   end
   resources :posts
   devise_for :users, controllers: {
-    sessions: 'users/sessions',
+    sessions: "devise/passwordless/sessions",
     registrations: 'users/registrations',
     confirmations: 'users/confirmations'
   }
-
   devise_scope :user do
-    get 'confirm-email', to: 'users/sessions#email_confirmed'#, only_path: true
-    post 'authenticate-token', to: 'users/sessions#authenticate_token'
+    get "/users/magic_link",
+      to: "devise/passwordless/magic_links#show",
+      as: "users_magic_link"
   end
+  # devise_scope :user do
+  #   get 'confirm-email', to: 'users/sessions#email_confirmed'#, only_path: true
+  #   post 'authenticate-token', to: 'users/sessions#authenticate_token'
+  # end
 
   get 'users/all'
   get 'users/show'
