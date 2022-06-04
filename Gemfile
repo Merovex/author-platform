@@ -24,7 +24,7 @@ gem "jbuilder", "~> 2.7"
 gem "redis", "~> 4.0"
 
 # Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", ">= 1.4.4", require: true
+gem 'bootsnap', '>= 1.6.0', require: false
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
