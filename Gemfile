@@ -2,17 +2,20 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "2.7.1"
+
+gem "nokogiri", "~> 1.13"
+gem "mini_portile2", "~> 2.8"
+
 gem "rails"
 gem "rake"
+gem "pkg-config"
 # gem install pg -- --with-pg-config=/Applications/Postgres.app/Contents/Versions/latest/bin
 gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails", ">= 0.3.4"
-# gem "turbo-rails", ">= 0.7.11"
 gem 'turbo-rails', '~> 0.8'
 gem "stimulus-rails", ">= 0.4.0"
-# 
 gem "sprockets-rails", ">= 3.4.1"
 
 # Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
@@ -72,8 +75,9 @@ gem "rolify", "~> 6.0"
 gem "mini_magick", "~> 4.11"
 gem "acts-as-taggable-on", "~> 5.0"
 gem "color", "~> 1.8"
-gem "invisible_captcha", "~> 2.0"
+# gem "invisible_captcha", "~> 2.0"
 gem "paper_trail", "~> 12.1"
 gem "meta-tags", "~> 2.16"
 gem "email_validator", "~> 2.2"
+
 
