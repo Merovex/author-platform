@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "2.7.1"
 gem "rails"
+gem "rake"
 # gem install pg -- --with-pg-config=/Applications/Postgres.app/Contents/Versions/latest/bin
 gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
