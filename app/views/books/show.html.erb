@@ -1,5 +1,5 @@
 <%# https://lineardesign.com/blog/landing-page-layout/ %>
-<%= render 'books/sections/hero' %>
+<%= render 'books/sections/hero' unless @book.nil? %>
 <section class='py-4 text-center'>
   <%= render 'components/actions', obj: @book %>
   <%= render 'components/subscribe' %>

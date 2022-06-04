@@ -43,5 +43,10 @@
       <% end %>
     
     <% end %>
+    <% if @posts.empty? %>
+    <div class="">
+    <h2>No Articles</h2>
+    </div>
+    <%end%>
     <%= render @posts.published.reverse %>
 </div>

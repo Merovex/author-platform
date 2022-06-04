@@ -1,6 +1,11 @@
 class LandingController < ApplicationController
   def index
     @book = Book.featured.last || Book.last
-    render "books/show"
+    if @book.nil?
+      @posts = Post.all
+      render "posts/index"
+    else
+      render "books/show"
+    end
   end
 end
