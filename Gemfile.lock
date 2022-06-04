@@ -357,6 +357,7 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (~> 5.0)
   rails
+  rake (~> 13.0)
   redis (~> 4.0)
   rolify (~> 6.0)
   selenium-webdriver
