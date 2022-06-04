@@ -2,8 +2,7 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "2.7.1"
-gem "rails"#, "~> 7.0.0.alpha2"
-gem "rake", "~> 13.0"
+gem "rails"
 # gem install pg -- --with-pg-config=/Applications/Postgres.app/Contents/Versions/latest/bin
 gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
@@ -25,7 +24,7 @@ gem "jbuilder", "~> 2.7"
 gem "redis", "~> 4.0"
 
 # Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", ">= 1.4.4", require: false
+gem "bootsnap", ">= 1.4.4", require: true
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
@@ -56,7 +55,7 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
-
+# Application specific
 gem 'devise', git: 'https://github.com/strobilomyces/devise', branch: 'patch-1'
 gem "devise-passwordless"
 
