@@ -43,6 +43,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console", ">= 4.1.0"
+  gem "mailcatcher", "~> 0.2.4"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler", ">= 2.3.3"
@@ -74,4 +75,4 @@ gem "invisible_captcha", "~> 2.0"
 gem "paper_trail", "~> 12.1"
 gem "meta-tags", "~> 2.16"
 gem "email_validator", "~> 2.2"
-gem "mailcatcher", "~> 0.2.4"
+
