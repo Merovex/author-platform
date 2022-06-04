@@ -10,7 +10,7 @@ module Slug
     def unique_slug(key)
       loop do
         slug = self.make_slug
-        return slug unless self!.exists?({key.to_sym => slug})
+        return slug unless self.exists?({key.to_sym => slug})
       end
     end
   end
