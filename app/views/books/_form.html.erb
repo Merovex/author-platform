@@ -50,9 +50,9 @@
       <%= form.file_field :cover, accept: 'image/png,image/gif,image/jpeg' %>
     </div>
   </div>
-  <%= h2(:hero_background) %>  
+  <%= h2(:hero_background) %>
   <div class='grid gap-4 py-5 px-4 lg:grid-cols-3 field'>
-    <% if book.cover.attached? %>
+    <% if book.hero_background.attached? %>
       <aside class='grid place-content-center'>
         <%= image_tag book.background, class: 'rounded' %>
       </aside>

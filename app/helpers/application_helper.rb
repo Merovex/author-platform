@@ -17,7 +17,7 @@ module ApplicationHelper
     tag.section(content, class: 'section')
   end
   def panel_headline(title)
-    content = tag.h1(title, class: 'panel_headline')
+    content = tag.h1(title, class: 'panel-headline')
   end
   def h2(text, klass='')
     text = t(text) if text.is_a?(Symbol)
