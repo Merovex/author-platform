@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
 
-  # include Sluggable, Subscriber
+  include Sluggable, Subscriber
 
   rolify
   after_create :assign_default_role
