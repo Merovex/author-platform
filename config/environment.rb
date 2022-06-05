@@ -17,6 +17,6 @@ ActionMailer::Base.smtp_settings = {
   port:            587,
   authentication: :plain,
   user_name:      'apikey',
-  password:       Rails.credentials.dig(:sendgrid, :api_key),
+  password:       Rails.application.credentials.dig(:sendgrid, :api_key),
   enable_starttls_auto: true
 }
