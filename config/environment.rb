@@ -14,3 +14,4 @@ ActionMailer::Base.smtp_settings = {
   authentication: :plain,
   enable_starttls_auto: true
 }
+#u = User.first; u.subscription.destroy; u.destroy; u = User.new(email: 'merovex@gmail.com').save
