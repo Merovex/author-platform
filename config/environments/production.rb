@@ -66,16 +66,16 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.smtp_settings.smtp_settings = {
-    user_name:      'apikey',
-    password:       ENV['SENDGRID_PASSWORD'],
-    # password:       Rails.application.credentials.dig(:sendgrid, :api_key),
-    domain:         'merovex-author-website.herokuapp.com',
-    address:        "smtp.sendgrid.net",
-    port:            587,
-    authentication: :plain,
-    enable_starttls_auto: true
-  }
+  # config.action_mailer.smtp_settings.smtp_settings = {
+  #   user_name:      'apikey',
+  #   password:       ENV['SENDGRID_PASSWORD'],
+  #   # password:       Rails.application.credentials.dig(:sendgrid, :api_key),
+  #   domain:         'merovex-author-website.herokuapp.com',
+  #   address:        "smtp.sendgrid.net",
+  #   port:            587,
+  #   authentication: :plain,
+  #   enable_starttls_auto: true
+  # }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
