@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+u.# frozen_string_literal: true
 
 module Subscriber
   extend ActiveSupport::Concern
