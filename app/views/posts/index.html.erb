@@ -41,12 +41,13 @@
       <% else %>
         <p class="text-center opacity-60">Everything is published.</p>
       <% end %>
-    
     <% end %>
-    <% if @posts.empty? %>
-    <div class="">
-    <h2>No Articles</h2>
-    </div>
+    <% if @posts.empty? or @posts.published.empty? %>
+      <div class="text-center text-xl">
+      <h2>No Articles published.</h2>
+      </div>
+    <%else%>
+      <%= render @posts.published.reverse %>
     <%end%>
-    <%= render @posts.published.reverse %>
+    
 </div>

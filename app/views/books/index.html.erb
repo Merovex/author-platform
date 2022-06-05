@@ -6,6 +6,11 @@
     </div>
   <% end %>
   <%= content_for(:title, 'Books') %>
-  
-  <%= render @books %>
+  <% if @books.empty? %>
+    <div class="text-center text-xl">
+      <h2>No Books published.</h2>
+    </div>
+  <% else %>
+    <%= render @books %>
+  <% end %>
 </div>

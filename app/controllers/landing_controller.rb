@@ -4,7 +4,6 @@ class LandingController < ApplicationController
     if @book.nil?
       @posts = Post.all
       render "posts/index"
-      # render :index
     else
       render "books/show"
     end
