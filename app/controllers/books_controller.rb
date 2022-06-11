@@ -78,7 +78,7 @@ class BooksController < ApplicationController
     def get_cover_bgcolor
       return if @book.cover.nil?
       color = "888888"
-      color = `convert #{rails_blob_url(@book.cover)} -resize 1x1 txt:-`.match(/#[A-Fa-f0-9]{3,6}/) if @book.cover.exists?
+      color = `convert #{rails_blob_url(@book.cover)} -resize 1x1 txt:-`.match(/#[A-Fa-f0-9]{3,6}/) unless @book.cover.nil?
       unless color == @book.cover_color
         @book.cover_color = color
         @book.save!
