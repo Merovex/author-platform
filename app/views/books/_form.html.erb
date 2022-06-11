@@ -21,12 +21,14 @@
   </div>
 
   <%= h2(:episode) %>
+  <%- if @episode.exist? %>
   <%= form.fields_for :episode, @episode do |episode| %>
       <div class="field">
         <%= episode.collection_select(:series_id, @series, :id, :title) %>
         <%= episode.label :order, "# in series" %>
         <%= episode.text_field :order %>
       </div>
+  <% end %>
   <% end %>
 
   <div class="my-8">
