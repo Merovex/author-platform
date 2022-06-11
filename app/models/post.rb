@@ -1,8 +1,7 @@
 class Post < ApplicationRecord
+  include Sluggable
   belongs_to :user
   has_rich_text :content
-
-  include Sluggable
   
   def publish_now
     write_attribute(:published_at, Time.now.utc)
