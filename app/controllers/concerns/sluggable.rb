@@ -2,12 +2,12 @@
 
 module Sluggable
   extend ActiveSupport::Concern
-  include Slug
+  # include Slug
 
   included do
     validates :slug, presence: true, uniqueness: true
-    # attribute :slug, :string, default: unique_slug(:slug)
-    has_secure_token :slug, length: 6
+    attribute :slug, :string
+    # has_secure_token :slug, length: 6
   end
 
   def to_param

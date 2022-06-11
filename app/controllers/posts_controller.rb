@@ -1,8 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy publish ]
   before_action :authenticate_user!, except: %i[show index]
-  # load_and_authorize_resource
-  
 
   # GET /posts or /posts.json
   def index
@@ -28,7 +26,7 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @post = Post.new
+    @post = Post.new(slug: SecureRandom.base64(6).tr('+/=',''))
   end
 
   # GET /posts/1/edit
