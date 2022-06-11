@@ -6,8 +6,7 @@ module Sluggable
 
   included do
     validates :slug, presence: true, uniqueness: true
-    attribute :slug, :string#, default: unique_slug(:slug)
-    before_create { self.slug = SecureRandom.base64(6).tr('+/=','') }
+    attribute :slug, :string, default: unique_slug(:slug)
   end
 
   def to_param
