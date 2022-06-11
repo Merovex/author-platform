@@ -28,7 +28,7 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @post = Post.new(slug: SecureRandom.base64(6).tr('+/=',''))
+    @post = Post.new
   end
 
   # GET /posts/1/edit
