@@ -81,3 +81,5 @@ gem "meta-tags", "~> 2.16"
 gem "email_validator", "~> 2.2"
 
 
+
+gem "aws-sdk-s3", "~> 1.114"
