@@ -9,7 +9,7 @@ module Slug
     end
     def unique_slug(key)
       loop do
-        slug = self.make_slug
+        slug = SecureRandom.base64(6).tr('+/=','')
         # return nil unless self.exists?
         return slug unless self.exists?({key.to_sym => slug})
       end
