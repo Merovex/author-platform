@@ -1,6 +1,6 @@
 <div class="max-w-2xl mx-auto">
     <% headline("Posts") %>
-    <% if user_signed_in? %>
+    <% if can? :admin, Post %>
       <div class="mt-8">
       <%= link_to 'New Post', new_post_path, class: 'action' %>
       </div>

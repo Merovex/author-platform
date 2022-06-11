@@ -13,9 +13,11 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   # end
 
   # GET /resource/confirmation?confirmation_token=abcdef
-  # def show
-  #   super
-  # end
+  def show
+    super do
+      sign_in(resource) if resource.errors.empty?
+    end
+  end
 
   # protected
 
@@ -31,6 +33,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   protected
     def after_confirmation_path_for(resource_name, resource)
       token = resource.send(:set_reset_password_token)
-      edit_password_path(resource, reset_password_token: token)
+      # edit_password_path(resource, reset_password_token: token) # No password, so not needed.
+      after_sign_in_path_for(resource)
     end
 end
