@@ -1,7 +1,5 @@
 class LinksController < ApplicationController
   before_action :set_link, only: %i[ show edit update destroy ]
-  # before_action :set_click, only: %i[ show ]
-  after_action :track_action, only: %i[ show ]
 
   # GET /links or /links.json
   def index
@@ -10,7 +8,7 @@ class LinksController < ApplicationController
 
   # GET /links/1 or /links/1.json
   def show
-    # @link.clicks << @click
+    ahoy.track "Follow Link", object: 'link', id: @link.id
     redirect_to @link.url, allow_other_host: true
   end
 
@@ -29,11 +27,9 @@ class LinksController < ApplicationController
 
     respond_to do |format|
       if @link.save
-        format.html { redirect_to @link, notice: "Link was successfully created." }
-        format.json { render :show, status: :created, location: @link }
+        format.html { redirect_to :index, notice: "Link was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @link.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -43,10 +39,8 @@ class LinksController < ApplicationController
     respond_to do |format|
       if @link.update(link_params)
         format.html { redirect_to @link, notice: "Link was successfully updated." }
-        format.json { render :show, status: :ok, location: @link }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @link.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -56,7 +50,6 @@ class LinksController < ApplicationController
     @link.destroy
     respond_to do |format|
       format.html { redirect_to links_url, notice: "Link was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 
@@ -65,12 +58,7 @@ class LinksController < ApplicationController
     def set_link
       @link = Link.find_by_slug(params[:slug] || params[:id])
     end
-
-    # Only allow a list of trusted parameters through.
     def link_params
       params.require(:link).permit(:url, :comment, :tag_list)
-    end
-    def track_action
-      ahoy.track "Follow Link", object: 'link', id: @link.id
     end
 end

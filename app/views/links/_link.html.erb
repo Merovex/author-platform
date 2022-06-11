@@ -6,5 +6,5 @@
     <a class="<%= 'action'%>">Copy</a>
     <%= link_to 'Edit', edit_link_path(link), class: 'action' %>
   </aside>
-  <p><span class="text-3xl"><%= Ahoy::Event.where_props(object: 'link', id: link.id).count %></span> Clicks</p>
+  <p><span class="text-3xl"><%= Ahoy::Event.where_props(object: 'link', id: link.id).count / 2 %></span> Clicks</p>
 </div>
