@@ -75,7 +75,7 @@ Rails.application.configure do
   # Sendmail Configuration
   config.action_mailer.smtp_settings = {
     user_name:      'apikey',
-    password:       ENV['SENDGRID_PASSWORD'],
+    password:       <%= Rails.application.credentials.dig(:sendgrid, :api_key) %>,
     domain:         'merovex-author-platform.herokuapp.com',
     address:        "smtp.sendgrid.net",
     port:            587,
