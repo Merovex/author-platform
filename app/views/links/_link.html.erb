@@ -1,10 +1,10 @@
-<div>
-  <%= h2("TITLE") %>
-  <p><%= link_to link.url, link.url %></p>
+<div class="panel mb-6">
+  <%= h2(link.url) %>
+  <p><%= link_to "Visit URL", link.url %></p>
   <aside class="my-4">
     <span><%= link_to link.short, link.short %></span>
     <a class="<%= 'action'%>">Copy</a>
     <%= link_to 'Edit', edit_link_path(link), class: 'action' %>
   </aside>
-  <p><span class="text-3xl"><%= link.clicked %></span> Clicks</p>
+  <p><span class="text-3xl"><%= Ahoy::Event.where_props(object: 'link', id: link.id).count %></span> Clicks</p>
 </div>

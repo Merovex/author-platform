@@ -1,6 +1,7 @@
 class LinksController < ApplicationController
   before_action :set_link, only: %i[ show edit update destroy ]
-  before_action :set_click, only: %i[ show ]
+  # before_action :set_click, only: %i[ show ]
+  after_action :track_action, only: %i[ show ]
 
   # GET /links or /links.json
   def index
@@ -9,7 +10,7 @@ class LinksController < ApplicationController
 
   # GET /links/1 or /links/1.json
   def show
-    @link.clicks << @click
+    # @link.clicks << @click
     redirect_to @link.url, allow_other_host: true
   end
 
@@ -63,11 +64,13 @@ class LinksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_link
       @link = Link.find_by_slug(params[:slug] || params[:id])
-      
     end
 
     # Only allow a list of trusted parameters through.
     def link_params
       params.require(:link).permit(:url, :comment, :tag_list)
+    end
+    def track_action
+      ahoy.track "Follow Link", object: 'link', id: @link.id
     end
 end

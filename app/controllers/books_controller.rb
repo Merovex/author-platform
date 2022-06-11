@@ -2,6 +2,7 @@ class BooksController < ApplicationController
   before_action :get_series, only: %i[ new edit ]
   before_action :set_book, only: %i[ show edit update destroy ]
   after_action :get_cover_bgcolor, only: %i[ create update ]
+  after_action :track_action, only: %i[show]
 
   # GET /books or /books.json
   def index
@@ -83,5 +84,8 @@ class BooksController < ApplicationController
         @book.cover_color = color
         @book.save!
       end
+    end
+    def track_action
+      ahoy.track "View Book", object: 'book', id: @book.id
     end
 end
