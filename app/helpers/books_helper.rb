@@ -16,8 +16,10 @@ module BooksHelper
   def brightness(hex)
     brightness = Color::RGB.new(*hex_to_rgb(hex)).to_yiq.brightness
   end
-  def complementary(hex)
+  def complementary(hex="#888888")
     # comp = Color::RGB.new(*hex_to_rgb(hex)).to_hsl
+    # raise hex.inspect
+    hex = "#888888" if hex.nil?
     comp = Color::RGB.from_html(hex).to_hsl
     base = Color::RGB.from_html(hex)
 
