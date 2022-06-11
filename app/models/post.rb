@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
-  include Sluggable
+  # include Sluggable
+  has_secure_token :slug, length: 6
   belongs_to :user
   has_rich_text :content
   
