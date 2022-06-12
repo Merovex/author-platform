@@ -86,13 +86,8 @@ GEM
       activesupport (>= 5.2)
       device_detector
       safely_block (>= 0.2.1)
-    asset_sync (2.15.2)
-      activemodel (>= 4.1.0)
-      fog-core
-      mime-types (>= 2.99)
-      unf
     aws-eventstream (1.2.0)
-    aws-partitions (1.595.0)
+    aws-partitions (1.598.0)
     aws-sdk-core (3.131.1)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.525.0)
@@ -148,24 +143,7 @@ GEM
     errbase (0.2.2)
     erubi (1.10.0)
     eventmachine (1.0.9.1)
-    excon (0.92.3)
     ffi (1.15.5)
-    fog-aws (3.14.0)
-      fog-core (~> 2.1)
-      fog-json (~> 1.1)
-      fog-xml (~> 0.1)
-    fog-core (2.3.0)
-      builder
-      excon (~> 0.71)
-      formatador (>= 0.2, < 2.0)
-      mime-types
-    fog-json (1.2.0)
-      fog-core
-      multi_json (~> 1.10)
-    fog-xml (0.1.4)
-      fog-core
-      nokogiri (>= 1.5.11, < 2.0.0)
-    formatador (1.1.0)
     geocoder (1.8.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
@@ -211,15 +189,11 @@ GEM
     meta-tags (2.16.0)
       actionpack (>= 3.2.0, < 7.1)
     method_source (1.0.0)
-    mime-types (3.4.1)
-      mime-types-data (~> 3.2015)
-    mime-types-data (3.2022.0105)
     mini_magick (4.11.0)
     mini_mime (1.1.2)
     mini_portile2 (2.8.0)
     minitest (5.15.0)
     msgpack (1.5.2)
-    multi_json (1.15.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
     net-imap (0.2.3)
@@ -276,7 +250,7 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.4.2)
+    rails-html-sanitizer (1.4.3)
       loofah (~> 2.3)
     railties (7.0.3)
       actionpack (= 7.0.3)
@@ -342,9 +316,6 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
-    unf (0.1.4)
-      unf_ext
-    unf_ext (0.0.8.2)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.0)
@@ -372,7 +343,6 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on (~> 5.0)
   ahoy_matey (~> 4.0)
-  asset_sync (~> 2.15)
   aws-sdk-locationservice (~> 1.9)
   aws-sdk-s3 (~> 1.114)
   blazer (~> 2.4)
@@ -385,7 +355,6 @@ DEPENDENCIES
   devise!
   devise-passwordless
   email_validator (~> 2.2)
-  fog-aws (~> 3.14)
   geocoder (~> 1.7)
   groupdate (~> 5.2)
   image_processing (~> 1.2)
