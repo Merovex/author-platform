@@ -1,7 +1,7 @@
 <div>
 <p><%= link_to 'View this post online', @post %></p>
 <p>You're subscribed to Ben Wilson's website.</p>
-<p>Don't want these posts anymore? <%= link_to 'unsubscribe', posts_unsubscribe_path(@user.subscription) %></p>
+<p>Don't want these posts anymore? <%= link_to 'unsubscribe', posts_unsubscribe_url(@user.subscription) %></p>
 <%# <p>ADDRESS</p> %>
 <p style='text-align: center'>Copyright &copy; <%= @post.created_at.year %></p>
 </div>
