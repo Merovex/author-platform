@@ -19,7 +19,7 @@ class User < ApplicationRecord
     end
   end
 
-  include Subscriber
+  include Sluggable, Subscriber
 
   rolify
   after_create :assign_default_role
