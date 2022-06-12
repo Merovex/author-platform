@@ -31,7 +31,7 @@ class Book < ApplicationRecord
     cover.variant(auto_orient: true, rotate: 0, resize: "200x300^", crop: '200x300+0+0', format: :webp)#.processed.url
   end
   def background
-    cover.variant(auto_orient: true, rotate: 0, resize: "200x300^", crop: '200x300+0+0')#.processed.url
+    hero_background#.variant(auto_orient: true, rotate: 0, resize: "200x300^", crop: '200x300+0+0')#.processed.url
   end
   def bgcolor
     cover.variant(auto_orient: true, rotate: 0, resize: "1x1^", negate: true)#.processed.url
