@@ -6,8 +6,8 @@ class Subscription < ApplicationRecord
   attribute :slug, :string
   def set_slug
     loop do
-      self.slug = slug = SecureRandom.base64(6).tr('+/=','')
-      break unless Subscription.where(slug: slug).exists?
+      self.slug = SecureRandom.base64(6).tr('+/=','')
+      break unless Subscription.where(slug: self.slug).exists?
     end
   end
   def to_param
