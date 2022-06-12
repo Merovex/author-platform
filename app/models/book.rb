@@ -1,5 +1,6 @@
 
 class Book < ApplicationRecord
+  include Sluggable
   before_create :set_slug
   attribute :slug, :string
   def set_slug
