@@ -150,11 +150,21 @@ GEM
     eventmachine (1.0.9.1)
     excon (0.92.3)
     ffi (1.15.5)
+    fog-aws (3.14.0)
+      fog-core (~> 2.1)
+      fog-json (~> 1.1)
+      fog-xml (~> 0.1)
     fog-core (2.3.0)
       builder
       excon (~> 0.71)
       formatador (>= 0.2, < 2.0)
       mime-types
+    fog-json (1.2.0)
+      fog-core
+      multi_json (~> 1.10)
+    fog-xml (0.1.4)
+      fog-core
+      nokogiri (>= 1.5.11, < 2.0.0)
     formatador (1.1.0)
     geocoder (1.8.0)
     globalid (1.0.0)
@@ -209,6 +219,7 @@ GEM
     mini_portile2 (2.8.0)
     minitest (5.15.0)
     msgpack (1.5.2)
+    multi_json (1.15.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
     net-imap (0.2.3)
@@ -374,6 +385,7 @@ DEPENDENCIES
   devise!
   devise-passwordless
   email_validator (~> 2.2)
+  fog-aws (~> 3.14)
   geocoder (~> 1.7)
   groupdate (~> 5.2)
   image_processing (~> 1.2)
