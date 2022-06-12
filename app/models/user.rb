@@ -31,6 +31,9 @@ class User < ApplicationRecord
     end
   end
 
+  def subscribers
+    where("published_at < ?", Time.now.utc)
+  end
   protected
     def password_required?
       confirmed? ? super : false

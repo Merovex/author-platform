@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[ show edit update destroy publish ]
+  before_action :set_post, only: %i[ show edit update destroy publish broadcast ]
   before_action :authenticate_user!, except: %i[show index]
 
   # GET /posts or /posts.json
@@ -16,6 +16,23 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: "Post was successfully published." }
+        format.json { render :show, status: :created, location: @post }
+      else
+        format.html { render :index, status: :unprocessable_entity }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  def broadcast
+    respond_to do |format|
+      if @post.broadcasted_at.nil?
+        subscribers = Subscription.users(:posts)
+        subscribers.each do |subscriber|
+          SubscriptionMailer.post_email(subscriber,@post).deliver
+        end
+        @post.broadcasted_at = Time.now.utc
+        @post.save
+        format.html { redirect_to @post, notice: "Post was successfully broadcast to #{subscribers.count} subscribers." }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :index, status: :unprocessable_entity }

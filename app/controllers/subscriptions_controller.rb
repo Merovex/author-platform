@@ -1,12 +1,24 @@
 class SubscriptionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_subscription, only: %i[ index show update destroy ]
+  before_action :set_subscription, only: %i[ index show update destroy unsub_posts ]
 
   def index
     render :show
   end
   def subscribers
     @subscriptions = Subscription.all
+  end
+  def unsub_books
+    @subscription.unsubscribe(:books)
+    respond_to do |format|
+      format.html { redirect_to root_url, alert: "You have been unsubscribed from future book announcements." }
+    end
+  end
+  def unsub_posts
+    @subscription.unsubscribe(:posts)
+    respond_to do |format|
+      format.html { redirect_to root_url, alert: "You have been unsubscribed from future posts." }
+    end
   end
   def update
     [ %i[wants_posts posts], %i[wants_books books] ].each do |check, key|

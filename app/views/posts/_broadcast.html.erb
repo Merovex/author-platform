@@ -1,0 +1,12 @@
+<% if post.broadcasted_at.nil? %>
+  <div class='card w-1/2 mx-auto bg-yellow-200 dark:yellow-600 border-opacity-50 text-center'>
+  <p><strong>Your message is live on the web for anyone and everyone to see.</strong> Copy this link to share it:</p>
+  <div class='inline-flex mx-auto w-full my-4'>
+    <input class="form-input rounded block w-full" value="<%= post_url post %>">
+    <button class='<%= button_css('blue') %>'>Copy</button>
+  </div>
+
+  <p class='mb-4'>If you’d also like to send this message to your subscribers, click the button below.</p>
+  <%= link_to "Email it to my subscribers", posts_broadcast_path(post), class: button_css('blue') %>
+  </div>
+<% end %>

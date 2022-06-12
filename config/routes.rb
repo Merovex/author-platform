@@ -25,15 +25,13 @@ Rails.application.routes.draw do
       to: "devise/passwordless/magic_links#show",
       as: "users_magic_link"
   end
-  # devise_scope :user do
-  #   get 'confirm-email', to: 'users/sessions#email_confirmed'#, only_path: true
-  #   post 'authenticate-token', to: 'users/sessions#authenticate_token'
-  # end
-
+  
+  get 'subscriptions/:slug/unsub_posts' => "subscriptions#unsub_posts", as: "posts_unsubscribe"
   get 'users/all'
   get 'users/show'
   get 'users/me'
   get 'posts/:id/publish' => "posts#publish"
+  get 'posts/:id/broadcast' => "posts#broadcast", as: "posts_broadcast"
   get "/404" => "errors#not_found"
   get 'landing/index'
   get '/subscribers' => 'subscriptions#subscribers'

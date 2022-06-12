@@ -3,6 +3,9 @@
     <%= post.published_at.strftime('%d %B %Y') %>
   </time>
   <h2><%= link_to(post.title.titlecase, post)%></h2>
+  <% if post.broadcasted_at and can? :edit, post %>
+  <p class='text-yellow-600 text-bold text-center'>Sent to subscribers (<%= post.broadcasted_at.strftime('%d %B %Y') %>).</p>
+  <% end %>
   <p class='prose font-serif lg:prose-xl dark:text-gray-300 dark:prose-dark'>
     <%= post.content.to_plain_text.truncate(256) %>
   </p>

@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   attribute :slug, :string
   def set_slug
     loop do
-      self.slug = SecureRandom.base64(6).tr('+/=','')
+      self.slug = slug = SecureRandom.base64(6).tr('+/=','')
       break unless Post.where(slug: slug).exists?
     end
   end
@@ -13,6 +13,9 @@ class Post < ApplicationRecord
   
   def publish_now
     write_attribute(:published_at, Time.now.utc)
+  end
+  def broadcast_now
+    write_attribute(:broadcasted_at, Time.now.utc)
   end
   def unpublish
     write_attribute(:published_at, nil)

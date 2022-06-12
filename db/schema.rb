@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_03_182154) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_12_132757) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -233,6 +233,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_03_182154) do
     t.datetime "published_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "broadcasted_at"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -280,6 +281,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_03_182154) do
     t.datetime "updated_at", null: false
     t.string "posts"
     t.string "books"
+    t.string "slug"
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 

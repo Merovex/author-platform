@@ -3,18 +3,6 @@
 module Sluggable
   extend ActiveSupport::Concern
 
-  # included do
-  #   before_create :set_slug
-  #   attribute :slug, :string#, default: unique_slug(:slug)
-  # end
-  # def set_slug
-  #   loop do
-  #     self.slug = SecureRandom.base64(6).tr('+/=','')
-  #     break unless exists?(slug: slug)
-  #     # break unless Post.where(slug: slug).exists?
-  #   end
-  # end
-
   def to_param
     if title.present?
       [title.to_s.parameterize, slug].join('-')

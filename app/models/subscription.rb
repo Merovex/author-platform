@@ -1,6 +1,18 @@
 class Subscription < ApplicationRecord
   belongs_to :user
+
   include Slug
+  before_create :set_slug
+  attribute :slug, :string
+  def set_slug
+    loop do
+      self.slug = slug = SecureRandom.base64(6).tr('+/=','')
+      break unless Subscription.where(slug: slug).exists?
+    end
+  end
+  def to_param
+    slug
+  end
 
   attribute :posts, :string, default: unique_slug(:posts)
   attribute :books, :string, default: unique_slug(:books)
@@ -20,6 +32,10 @@ class Subscription < ApplicationRecord
   end
   def self.users(key)
     self.where.not({key.to_sym => nil}).map{ |o| o.user }
+  end
+  def find_using_slug(param)
+    slug = param.split('-').last || param
+    where(slug: slug).limit(1).first
   end
   protected
     def unique_slug(key)

@@ -47,7 +47,7 @@
       <h2>No Articles published.</h2>
       </div>
     <%else%>
-      <%= render @posts.published.reverse %>
+      <%= render @posts.published.order('published_at desc') %>
     <%end%>
     
 </div>
