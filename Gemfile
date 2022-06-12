@@ -83,3 +83,5 @@ gem "email_validator", "~> 2.2"
 
 
 gem "aws-sdk-s3", "~> 1.114", require: false
+
+gem "asset_sync", "~> 2.15"

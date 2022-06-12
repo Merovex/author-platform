@@ -30,6 +30,15 @@ Rails.application.configure do
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
+  AssetSync.configure do |con|
+    con.fog_provider = 'AWS'
+    con.fog_region = 'us-east-2'
+    con.fog_directory = 'merovex-platform-storage'
+    con.aws_access_key_id = Rails.application.credentials.dig(:aws, :access_key_id)
+    con.aws_secret_access_key = Rails.application.credentials.dig(:aws, :secret_access_key)
+    con.prefix = "assets"
+    con.public_path = Pathname("./public")
+  end
   # You set your `config.assets.compile = true` in production.
   # This can negatively impact the performance of your application.
   # 
