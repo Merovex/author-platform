@@ -3,7 +3,7 @@
 <section class='py-4 text-center'>
   <%= render 'components/actions', obj: @book %>
   <%= render 'components/subscribe' %>
-<%= barchart(Click.group_by_day(:created_at, format: "%d %b").count, 'visits') %>
+<%#= barchart(Click.group_by_day(:created_at, format: "%d %b").count, 'visits') %>
 </section>
 <%= render 'books/sections/testimonials' %>
 <%= render 'books/sections/series-list' %>
