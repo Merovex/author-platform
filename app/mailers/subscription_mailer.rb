@@ -1,4 +1,4 @@
-class SubscriptionMailer < ActionMailer::Base
+class SubscriptionMailer < ApplicationMailer
   def post_email(user, request)
     @post = request
     @user = user
