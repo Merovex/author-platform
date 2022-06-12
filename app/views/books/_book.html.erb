@@ -3,7 +3,11 @@
     <%= link_to book.title, book %>
   </h3>
   <div class="<%=t('css_prose')%>">
-    <%= book.synopsis.to_plain_text.truncate(160) %>
+    <% if book.tagline.nil? %>
+      <%= book.synopsis.to_plain_text.truncate(160) %>
+    <% else %>
+      <%= book.tagline %>
+    <% end %>
   </div>
   <aside class='mt-8 text-center'>
     <%= link_to 'Read More', book, class: button_css('purple') %>

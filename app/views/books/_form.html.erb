@@ -29,6 +29,10 @@
         <%= episode.text_field :order %>
       </div>
   <% end %>
+  <div class="field">
+    <%= form.label :tagline, class: 'font-bold text-2xl' %>
+    <%= form.text_area :tagline, class: 'form-input w-full block rounded' %>
+  </div>
 
   <div class="my-8">
     <%= h2(:synopsis) %>
