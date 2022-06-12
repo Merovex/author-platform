@@ -1,5 +1,12 @@
 class Post < ApplicationRecord
-  include Sluggable
+  before_create :set_slug
+  attribute :slug, :string
+  def set_slug
+    loop do
+      self.slug = SecureRandom.base64(6).tr('+/=','')
+      break unless Post.where(slug: slug).exists?
+    end
+  end
   belongs_to :user
   has_rich_text :content
   

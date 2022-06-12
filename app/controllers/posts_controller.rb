@@ -26,7 +26,9 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @post = Post.new(slug: SecureRandom.base64(6).tr('+/=',''))
+    # @post = Post.new(slug: SecureRandom.base64(6).tr('+/=',''))
+    @post = Post.new
+    @post.slug = Post.unique_slug
   end
 
   # GET /posts/1/edit

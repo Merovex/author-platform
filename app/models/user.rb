@@ -10,8 +10,16 @@ class User < ApplicationRecord
   has_many :events, class_name: "Ahoy::Event"
 
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
+  before_create :set_slug
+  attribute :slug, :string
+  def set_slug
+    loop do
+      self.slug = SecureRandom.base64(6).tr('+/=','')
+      break unless User.where(slug: slug).exists?
+    end
+  end
 
-  include Sluggable, Subscriber
+  include Subscriber
 
   rolify
   after_create :assign_default_role

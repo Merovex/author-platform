@@ -1,6 +1,13 @@
 
 class Book < ApplicationRecord
-  include Sluggable
+  before_create :set_slug
+  attribute :slug, :string
+  def set_slug
+    loop do
+      self.slug = SecureRandom.base64(6).tr('+/=','')
+      break unless Book.where(slug: slug).exists?
+    end
+  end
 
   attribute :cover_color, :string, default: "#888888"
   

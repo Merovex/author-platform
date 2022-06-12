@@ -2,13 +2,18 @@
 
 module Sluggable
   extend ActiveSupport::Concern
-  # include Slug
 
-  included do
-    validates :slug, presence: true, uniqueness: true
-    attribute :slug, :string
-    # has_secure_token :slug, length: 6
-  end
+  # included do
+  #   before_create :set_slug
+  #   attribute :slug, :string#, default: unique_slug(:slug)
+  # end
+  # def set_slug
+  #   loop do
+  #     self.slug = SecureRandom.base64(6).tr('+/=','')
+  #     break unless exists?(slug: slug)
+  #     # break unless Post.where(slug: slug).exists?
+  #   end
+  # end
 
   def to_param
     if title.present?
