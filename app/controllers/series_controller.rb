@@ -1,5 +1,6 @@
 class SeriesController < ApplicationController
   before_action :set_series, only: %i[ show edit update destroy ]
+  load_and_authorize_resource
 
   # GET /series or /series.json
   def index

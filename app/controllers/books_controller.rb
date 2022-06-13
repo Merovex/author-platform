@@ -3,6 +3,7 @@ class BooksController < ApplicationController
   before_action :set_book, only: %i[ show edit update destroy ]
   after_action :get_cover_bgcolor, only: %i[ create update ]
   after_action :track_action, only: %i[show]
+  load_and_authorize_resource
 
   # GET /books or /books.json
   def index
