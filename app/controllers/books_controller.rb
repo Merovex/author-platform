@@ -1,14 +1,28 @@
 class BooksController < ApplicationController
   before_action :get_series, only: %i[ new edit ]
-  before_action :set_book, only: %i[ show edit update destroy ]
+  before_action :set_book, only: %i[ show edit update destroy release]
   after_action :get_cover_bgcolor, only: %i[ create update ]
   after_action :track_action, only: %i[show]
   load_and_authorize_resource
 
   # GET /books or /books.json
   def index
-    @books = Book.all
+    @published = Book.published
+    @unpublished = Book.unpublished
   end
+  def release
+    @book.released_on = DateTime.now
+    respond_to do |format|
+      if @book.save
+        format.html { redirect_to @book, notice: "Book was successfully published." }
+        format.json { render :show, status: :created, location: @book }
+      else
+        format.html { render :index, status: :unprocessable_entity }
+        format.json { render json: @book.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
 
   # GET /books/1 or /books/1.json
   def show
@@ -75,12 +89,12 @@ class BooksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def book_params
-      params.require(:book).permit(:title, :is_featured, :released_on, :synopsis, :tagline, :excerpt, :cover, :hero_background, episode_attributes: [:order, :series_id])
+      params.require(:book).permit(:title, :is_featured, :released_on, :status, :synopsis, :tagline, :excerpt, :cover, :hero_background, episode_attributes: [:order, :series_id])
     end
     def get_cover_bgcolor
-      return if @book.cover.nil?
+      return unless @book.cover.attached?
       color = "888888"
-      color = `convert #{rails_blob_url(@book.cover)} -resize 1x1 txt:-`.match(/#[A-Fa-f0-9]{3,6}/) unless @book.cover.nil?
+      color = `convert #{rails_blob_url(@book.cover)} -resize 1x1 txt:-`.match(/#[A-Fa-f0-9]{3,6}/)
       unless color == @book.cover_color
         @book.cover_color = color
         @book.save!

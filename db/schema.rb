@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_12_203549) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_13_214939) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -179,6 +179,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_12_203549) do
     t.datetime "updated_at", null: false
     t.string "cover_color"
     t.text "tagline"
+    t.index ["is_featured"], name: "index_books_on_is_featured"
+    t.index ["released_on"], name: "index_books_on_released_on"
   end
 
   create_table "clicks", force: :cascade do |t|

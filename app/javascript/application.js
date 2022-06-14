@@ -5,14 +5,15 @@ import "controllers"
 import "trix"
 import "@rails/actiontext"
 
-import flatpickr from "flatpickr";
-document.onreadystatechange = () => {
-  flatpickr(".flatpickr-input", {
-    dateFormat: "Y-m-d H:i",
-    enableTime: true,
-    time_24hr: true
-  });
-};
+// using CDN Version
+// import flatpickr from "flatpickr";
+// document.onreadystatechange = () => {
+//   flatpickr(".flatpickr-input", {
+//     dateFormat: "Y-m-d H:i",
+//     enableTime: true,
+//     time_24hr: true
+//   });
+// };
 
 
 // import "helpers/local-time"

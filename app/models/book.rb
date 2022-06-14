@@ -11,6 +11,7 @@ class Book < ApplicationRecord
   end
 
   attribute :cover_color, :string, default: "#888888"
+  attribute :status, :string, default: "wip"
   
   has_rich_text :synopsis
   has_rich_text :excerpt
@@ -27,6 +28,9 @@ class Book < ApplicationRecord
   has_many :links, as: :linkable, dependent: :destroy
 
   scope :featured, -> { where(is_featured: true) }
+  scope :unpublished, -> { where("released_on > ? OR released_on IS NULL", DateTime.now) }
+  scope :published, -> { where("released_on <= ?", DateTime.now) }
+
   def thumb
     cover.variant(auto_orient: true, rotate: 0, resize: "200x300^", crop: '200x300+0+0', format: :webp)#.processed.url
   end

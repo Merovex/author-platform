@@ -14,14 +14,30 @@
     <%= form.label :title, class: 'font-bold text-2xl' %>
     <%= form.text_field :title, class: 'form-input w-full block rounded' %>
   </div>
+  <div class="field">
+    <%= form.label :released_on %>
+    <%= form.text_field :released_on, 
+          placeholder: "Select Date...",
+          xreadonly: 'readonly',
+          enableTime: false,
+          altInput: true,
+          altFormat: "j F Y",
+          dateFormat: "Y-m-d",
+          class: 'flatpickr flatpickr-input active form-input rounded',
+          data: {
+            controller: "flatpickr",
+            flatpickr_date_format: "Y-m-d",
+            flatpickr_min_date: Time.zone.now
+          }
+    %>
+  </div>
 
   <div class="my-8">
     <%= form.label :is_featured %>
-    <%= form.check_box :is_featured %>
+    <%= form.check_box :is_featured, class: 'rounded' %>
   </div>
 
-  <%= h2(:episode) %>
-  
+  <%= form.label :episode, class: 'h3' %>
   <%= form.fields_for :episode, @episode do |episode| %>
       <div class="field">
         <%= episode.collection_select(:series_id, @series, :id, :title) %>
@@ -30,21 +46,21 @@
       </div>
   <% end %>
   <div class="field">
-    <%= form.label :tagline, class: 'font-bold text-2xl' %>
+    <%= form.label :tagline, class: 'h3' %>
     <%= form.text_area :tagline, class: 'form-input w-full block rounded' %>
   </div>
 
   <div class="my-8">
-    <%= h2(:synopsis) %>
+    <%= form.label :synopsis, class: 'h3' %>
     <%= form.rich_text_area :synopsis %>
   </div>
 
   <div class="my-8">
-    <%= h2(:excerpt) %>
+    <%= form.label :excerpt, class: 'h3' %>
     <%= form.rich_text_area :excerpt %>
   </div>
 
-  <%= h2(:cover) %>  
+  <%= form.label :cover, class: 'h3' %>
   <div class='grid gap-4 py-5 px-4 lg:grid-cols-3 field'>
     <% if book.cover.attached? %>
       <aside class='grid place-content-center'>
@@ -55,7 +71,8 @@
       <%= form.file_field :cover, accept: 'image/png,image/gif,image/jpeg' %>
     </div>
   </div>
-  <%= h2(:hero_background) %>
+  
+  <%= form.label :hero_background, class: 'h3' %>
   <div class='grid gap-4 py-5 px-4 lg:grid-cols-3 field'>
     <% if book.hero_background.attached? %>
       <aside class='grid place-content-center'>

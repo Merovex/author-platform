@@ -6,11 +6,45 @@
     </div>
   <% end %>
   <%= content_for(:title, 'Books') %>
-  <% if @books.empty? %>
+  <% unless @unpublished.empty? %>
+    <section class="p-4 card">
+      <h2 class="h2">Unpublished works</h2>
+      <table class='w-full border table-fixed'>
+      <thead>
+        <tr>
+          <th class="w-1/2 border">Title</th>
+          <th class="w-1/4 border">Release Date</th>
+          <th class="w-1/4 border">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @unpublished.each do |book| %>
+        <tr>
+          <td class="px-2 border">
+            <%= link_to book.title, book, class: "link" %>
+            (<%= link_to "edit", edit_book_path(book), class: 'link' %>)
+          </td>
+          <td class="text-center border">
+            <% if book.released_on.nil? %> 
+              <%= link_to 'release today', book_release_path(book), class: "link" %>
+            <% else %>
+              <%= local_time_popover(book.released_on) %>
+            <% end %>
+          </td>
+          <td class='text-center border'>
+          <%= link_to "Destroy", book_path(book), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'link' %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+      </table>
+    </section>
+  <%end%>
+  <% if @published.empty? %>
     <div class="text-center text-xl">
       <h2>No Books published.</h2>
     </div>
   <% else %>
-    <%= render @books %>
+    <%= render @published %>
   <% end %>
 </div>

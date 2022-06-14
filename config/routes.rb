@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get 'users/all'
   get 'users/show'
   get 'users/me'
+  get 'book/:id/release' => "books#release", as: "book_release"
   get 'posts/:id/publish' => "posts#publish"
   get 'posts/:id/broadcast' => "posts#broadcast", as: "posts_broadcast"
   get "/404" => "errors#not_found"
