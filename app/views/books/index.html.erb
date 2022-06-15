@@ -14,27 +14,12 @@
         <tr>
           <th class="w-1/2 border">Title</th>
           <th class="w-1/4 border">Release Date</th>
-          <th class="w-1/4 border">Delete</th>
+          <th class="w-1/4 border">Actions</th>
         </tr>
       </thead>
       <tbody>
         <% @unpublished.each do |book| %>
-        <tr>
-          <td class="px-2 border">
-            <%= link_to book.title, book, class: "link" %>
-            (<%= link_to "edit", edit_book_path(book), class: 'link' %>)
-          </td>
-          <td class="text-center border">
-            <% if book.released_on.nil? %> 
-              <%= link_to 'release today', book_release_path(book), class: "link" %>
-            <% else %>
-              <%= local_time_popover(book.released_on) %>
-            <% end %>
-          </td>
-          <td class='text-center border'>
-          <%= link_to "Destroy", book_path(book), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'link' %>
-          </td>
-        </tr>
+        <%= render 'unpublished-book', book: book %>
         <% end %>
       </tbody>
       </table>

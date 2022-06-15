@@ -1,0 +1,2 @@
+class WritingEntry < ApplicationRecord
+end

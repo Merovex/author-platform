@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Writing goals</h1>
+
+<div id="writing_goals">
+  <% @writing_goals.each do |writing_goal| %>
+    <%= render writing_goal %>
+    <p>
+      <%= link_to "Show this writing goal", writing_goal %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New writing goal", new_writing_goal_path %>

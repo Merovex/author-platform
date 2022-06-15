@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Writing entries</h1>
+
+<div id="writing_entries">
+  <% @writing_entries.each do |writing_entry| %>
+    <%= render writing_entry %>
+    <p>
+      <%= link_to "Show this writing entry", writing_entry %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New writing entry", new_writing_entry_path %>

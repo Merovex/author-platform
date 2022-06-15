@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_13_214939) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_15_101232) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -351,6 +351,28 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_13_214939) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  create_table "writing_entries", force: :cascade do |t|
+    t.date "wrote_on"
+    t.integer "count"
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "writing_goal_id", null: false
+    t.index ["writing_goal_id"], name: "index_writing_entries_on_writing_goal_id"
+  end
+
+  create_table "writing_goals", force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.date "start_on"
+    t.date "finish_on"
+    t.integer "target"
+    t.text "summary"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["book_id"], name: "index_writing_goals_on_book_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "authors", "books"
@@ -362,4 +384,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_13_214939) do
   add_foreign_key "praises", "books"
   add_foreign_key "subscribers", "users"
   add_foreign_key "subscriptions", "users"
+  add_foreign_key "writing_entries", "writing_goals"
+  add_foreign_key "writing_goals", "books"
 end

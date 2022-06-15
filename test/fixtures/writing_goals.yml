@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  book: one
+  start_on: 2022-06-14
+  finish_on: 2022-06-14
+  target: 1
+  summary: MyText
+
+two:
+  book: two
+  start_on: 2022-06-14
+  finish_on: 2022-06-14
+  target: 1
+  summary: MyText

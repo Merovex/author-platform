@@ -86,7 +86,6 @@ class BooksController < ApplicationController
     def get_series
       @series = Series.all
     end
-
     # Only allow a list of trusted parameters through.
     def book_params
       params.require(:book).permit(:title, :is_featured, :released_on, :status, :synopsis, :tagline, :excerpt, :cover, :hero_background, episode_attributes: [:order, :series_id])

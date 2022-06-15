@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @writing_entry %>
+
+<div>
+  <%= link_to "Edit this writing entry", edit_writing_entry_path(@writing_entry) %> |
+  <%= link_to "Back to writing entries", writing_entries_path %>
+
+  <%= button_to "Destroy this writing entry", @writing_entry, method: :delete %>
+</div>

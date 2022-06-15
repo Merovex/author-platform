@@ -2,20 +2,18 @@ class Subscription < ApplicationRecord
   belongs_to :user
 
   include Slug
-  before_create :set_slug
-  attribute :slug, :string
-  def set_slug
-    loop do
-      self.slug = SecureRandom.base64(6).tr('+/=','')
-      break unless Subscription.where(slug: self.slug).exists?
-    end
-  end
+  before_create :set_subscriptions
+  
   def to_param
     slug
   end
 
-  attribute :posts, :string, default: unique_slug(:posts)
-  attribute :books, :string, default: unique_slug(:books)
+  # attribute :posts, :string, default: unique_slug(:posts)
+  # attribute :books, :string, default: unique_slug(:books)
+  def set_subscriptions
+    posts = unique_slug(:posts)
+    books = unique_slug(:books)
+  end
 
   def change(attr)
     (self.read_attribute(attr.to_sym).nil?) ? subscribe(attr) : unsubscribe(attr)

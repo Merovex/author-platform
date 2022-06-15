@@ -1,0 +1,35 @@
+<div class='main'>
+<%= form_for([@writing_goal, @writing_entry]) do |form| %>
+  <% if writing_entry.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(writing_entry.errors.count, "error") %> prohibited this writing_entry from being saved:</h2>
+
+      <ul>
+        <% writing_entry.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.date_field :wrote_on, class: 'hidden' %>
+  </div>
+
+  <div>
+    <%= form.label :count, style: "display: block" %>
+    <%= form.number_field :count %>
+  </div>
+
+  <div>
+    <%= form.label :comment, style: "display: block" %>
+    <%= form.text_field :comment %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Save Changes", class: button_css('blue') %>
+    <%= link_to "Never Mind", :back, class: inverse_button_css('red')%>
+  </div>
+<% end %>
+
+</div>

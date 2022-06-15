@@ -1,14 +1,7 @@
 
 class Book < ApplicationRecord
-  include Sluggable
-  before_create :set_slug
-  attribute :slug, :string
-  def set_slug
-    loop do
-      self.slug = SecureRandom.base64(6).tr('+/=','')
-      break unless Book.where(slug: slug).exists?
-    end
-  end
+  
+  include Slug, Sluggable
 
   attribute :cover_color, :string, default: "#888888"
   attribute :status, :string, default: "wip"
@@ -21,9 +14,13 @@ class Book < ApplicationRecord
 
   has_one :episode, dependent: :destroy
   has_one :series, through: :episode
+  
   accepts_nested_attributes_for :episode, allow_destroy: true
 
-  has_many :praises
+  has_one :writing_goal, dependent: :destroy
+  before_create :build_writing_goal
+  
+  has_many :praises, dependent: :destroy
   has_many :authors
   has_many :links, as: :linkable, dependent: :destroy
 

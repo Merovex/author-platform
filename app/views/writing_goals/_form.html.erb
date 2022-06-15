@@ -1,0 +1,66 @@
+<%= form_with(model: writing_goal) do |form| %>
+  <%#= form.text_field :book_id %>
+  <% if writing_goal.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(writing_goal.errors.count, "error") %> prohibited this writing_goal from being saved:</h2>
+
+      <ul>
+        <% writing_goal.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <section class='flex'>
+    <div class='flex-1'>
+      <%= form.label :start_on %>
+      <%= form.text_field :start_on, 
+            placeholder: "Select Date...",
+            xreadonly: 'readonly',
+            enableTime: false,
+            altInput: true,
+            altFormat: "j F Y",
+            dateFormat: "Y-m-d",
+            class: 'flatpickr flatpickr-input active form-input rounded block',
+            data: {
+              controller: "flatpickr",
+              flatpickr_date_format: "Y-m-d",
+              flatpickr_min_date: Time.zone.now
+            }
+      %>
+    </div>
+    <div class='flex-1'>
+      <%= form.label :finish_on %>
+      <%= form.text_field :finish_on, 
+            placeholder: "Select Date...",
+            xreadonly: 'readonly',
+            enableTime: false,
+            altInput: true,
+            altFormat: "j F Y",
+            dateFormat: "Y-m-d",
+            class: 'flatpickr flatpickr-input active form-input rounded block',
+            data: {
+              controller: "flatpickr",
+              flatpickr_date_format: "Y-m-d",
+              flatpickr_min_date: Time.zone.now
+            }
+      %>
+    </div>
+  </section>
+
+  <div>
+    <%= form.label :target %>
+    <%= form.number_field :target, class: 'form-input rounded block' %>
+  </div>
+
+  <div class='my-4'>
+    <%= form.label :summary %>
+    <%= form.text_area :summary, class: 'form-input w-full block rounded' %>
+  </div>
+
+  <div class='my-4'>
+    <%= form.submit "Save Changes", class: button_css('blue')%> or 
+    <%= link_to "Never Mind", :back, class: inverse_button_css('red')%>
+  </div>
+<% end %>

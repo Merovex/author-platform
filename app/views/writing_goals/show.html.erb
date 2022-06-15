@@ -1,0 +1,58 @@
+<div class="main">
+  <div>
+    <%= link_to "Back to #{@book}", book_path(@book), class: 'action' %>
+    <%= link_to "Edit", edit_writing_goal_path(@writing_goal), class: 'action' %>
+  </div>
+  <%= headline("Writing Goal: #{@book}") %>
+  <table class='w-full table-fixed my-12'>
+    <tr>
+      <th>Start:</th>
+      <td><%= @writing_goal.start_on.strftime("%d %B %Y") || "Not set" %></td>
+      <th>Finish:</th>
+      <td><%= @writing_goal.finish_on.strftime("%d %B %Y") || "Not set" %></td>
+    </tr>
+    <tr> <th>Target:</th><td><%= number_with_delimiter(@writing_goal.target) %></td> </tr>
+    <tr> <th>Summary:</th><td> <%= (@writing_goal.summary.nil? or @writing_goal.summary.empty?) ? "No Summary" : @writing_goal.summary %></td> </tr>
+  </table>
+
+<%= h2('Entries') %>
+  <table class='w-full table-fixed my-12'>
+    <thead>
+      <tr>
+        <th class='border w-40'>Date</th>
+        <th class='border w-20'>Logged</th>
+        <th class='border w-20'>Target</th>
+        <th class='border w-40' colspan='2'>Running Total</th>
+        <th class='border'>Comment</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% (@writing_goal.start_on..@writing_goal.finish_on).each do |date| %>
+      <tr>
+        <td class='border text-center'>
+          <%= date.strftime('%d %b %Y') %>
+          (
+            <% if @entries[date].nil? %>
+              <%= link_to 'new', new_writing_goal_writing_entry_path(@writing_goal, date), class: 'link' %>
+            <% else %>
+            <%= link_to 'edit', edit_writing_goal_writing_entry_path(@writing_goal,@entries[date]), class: 'link' %>
+            <% end %>
+          )
+        </td>
+        <td class='border text-right pr-1'>
+         <% unless @entries[date].nil? %>
+           <% @total += @entries[date].count %>
+           <% @percentage = @total.to_f / @target.to_f * 100.0 %>
+           <% comment = @entries[date].comment || "" %>
+           <%= number_with_delimiter(@entries[date].count) %>
+         <% end %>
+        </td>
+        <td class='border text-right pr-1'><%= number_with_delimiter(@target) %></td>
+        <td class='border text-right pr-1'><%= number_with_delimiter(@total) %></td>
+        <td class='border text-right pr-1'><%= number_to_percentage( @percentage, precision: 0 )  %></td>
+        <td class='border px-2'><%= truncate(comment, length: 45) %></td>
+      </tr>
+    <%end%>
+    </tbody>
+  </table>
+</div>

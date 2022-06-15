@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   resources :subscriptions
   
   resources :links
@@ -11,6 +12,9 @@ Rails.application.routes.draw do
   
   resources :series
   resources :authors
+  resources :writing_goals do
+    resources :writing_entries, path_names: { new: 'new/:date' }
+  end
   resources :books do
     resources :praises
   end

@@ -4,17 +4,13 @@ module Sluggable
   extend ActiveSupport::Concern
 
   def to_param
-    if title.present?
       [title.to_s.parameterize, slug].join('-')
-    else
-      slug
-    end
   end
 
   module ClassMethods
-    def find_using_slug(param)
-      slug = param.split('-').last || param
-      where(slug: slug).limit(1).first
-    end
+    # def find_using_slug(param)
+    #   slug = param.split('-').last || param
+    #   where(slug: slug).limit(1).first
+    # end
   end
 end
