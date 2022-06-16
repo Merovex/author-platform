@@ -22,8 +22,8 @@
       <%= render "elements/tailwind-css" %>
     </style>
   </head>
-
   <body class='dark:bg-gray-600 dark:text-gray-300'>
+  <%= turbo_frame_tag "modal" %>
     <%= render 'components/navbar' %>
     <main class="min-h-screen">
       <%= yield %>

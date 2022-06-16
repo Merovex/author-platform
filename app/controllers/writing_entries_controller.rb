@@ -1,4 +1,5 @@
 class WritingEntriesController < ApplicationController
+  before_action :ensure_frame_response, only: [:new, :edit]
   before_action :set_writing_goal
   before_action :set_writing_entry, only: %i[ show edit update destroy ]
 
@@ -27,6 +28,8 @@ class WritingEntriesController < ApplicationController
 
     respond_to do |format|
       if @writing_entry.save
+        @date = @writing_entry.wrote_on;
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@date, partial: "writing_entries/writing_entry", locals: {entry: @writing_entry}) }
         format.html { redirect_to writing_goal_url(@writing_goal), notice: "Writing entry was successfully created." }
         format.json { render :show, status: :created, location: @writing_entry }
       else
@@ -40,6 +43,8 @@ class WritingEntriesController < ApplicationController
   def update
     respond_to do |format|
       if @writing_entry.update(writing_entry_params)
+        @date = @writing_entry.wrote_on;
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@date, partial: "writing_entries/writing_entry", locals: {entry: @writing_entry}) }
         format.html { redirect_to writing_goal_url(@writing_goal), notice: "Writing entry was successfully updated." }
         format.json { render :show, status: :ok, location: @writing_entry }
       else
@@ -64,9 +69,12 @@ class WritingEntriesController < ApplicationController
     def set_writing_goal
       # http://localhost:3000/writing_goals/In6BrC9/writing_entries/1/edit
       @writing_goal = WritingGoal.find_using_slug(params[:writing_goal_id])
+      @target = @writing_goal.target
+      @total = 0;
     end
     def set_writing_entry
       @writing_entry = @writing_goal.writing_entries.find(params[:id])
+      
     end
 
     # Only allow a list of trusted parameters through.

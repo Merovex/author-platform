@@ -1,8 +1,4 @@
 
-<div class="main">
-<div class='lg:w-2/3 mx-auto'>
-<%= headline("Edit: #{@writing_entry.wrote_on}")%>
-<%= render "form", writing_entry: @writing_entry %>
-</div>
-</div>
-
+<%= render TurboModalComponent.new(title: "New Post!") do %>
+  <%= render "form", writing_entry: @writing_entry %>
+<% end %>

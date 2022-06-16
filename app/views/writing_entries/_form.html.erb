@@ -1,4 +1,3 @@
-<div class='main'>
 <%= form_for([@writing_goal, @writing_entry]) do |form| %>
   <% if writing_entry.errors.any? %>
     <div style="color: red">
@@ -18,18 +17,15 @@
 
   <div>
     <%= form.label :count, style: "display: block" %>
-    <%= form.number_field :count %>
+    <%= form.number_field :count, class: 'rounded' %>
   </div>
 
   <div>
     <%= form.label :comment, style: "display: block" %>
-    <%= form.text_field :comment %>
+    <%= form.text_field :comment, class: 'rounded' %>
   </div>
 
   <div class="actions">
     <%= form.submit "Save Changes", class: button_css('blue') %>
-    <%= link_to "Never Mind", :back, class: inverse_button_css('red')%>
-  </div>
+    
 <% end %>
-
-</div>

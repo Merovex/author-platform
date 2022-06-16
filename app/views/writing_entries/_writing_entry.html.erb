@@ -1,17 +1,21 @@
-<div id="<%= dom_id writing_entry %>">
-  <p>
-    <strong>Wrote on:</strong>
-    <%= writing_entry.wrote_on %>
-  </p>
-
-  <p>
-    <strong>Count:</strong>
-    <%= writing_entry.count %>
-  </p>
-
-  <p>
-    <strong>Comment:</strong>
-    <%= writing_entry.comment %>
-  </p>
-
-</div>
+<%- 
+unless entry.nil?
+  @total += entry.count 
+  @percentage = @total.to_f / @target.to_f * 100.0 
+  comment = entry.comment || ""
+end
+link = (entry.nil?) ? new_writing_goal_writing_entry_path(@writing_goal, @date) :  edit_writing_goal_writing_entry_path(@writing_goal,entry)
+ %>
+<tr id='<%= @date %>' class='entry'>
+  <td class='border text-center'>
+    <%= @date.to_fs(:dmy) %>
+    ( <%= link_to 'edit', link, class: 'link', data: { turbo_frame: 'modal' } %> )
+  </td>
+  <td class='border text-right pr-1 count'>
+    <%= number_with_delimiter(entry.count) unless entry.nil? %>
+  </td>
+  <td class='border text-right pr-1'></td>
+  <td class='border text-right pr-1'><%= number_with_delimiter(@total) %></td>
+  <td class='border text-right pr-1'><%= number_to_percentage( @percentage, precision: 0 )  %></td>
+  <td class='border px-2'><%= truncate(comment, length: 45) %></td>
+</tr>
