@@ -7,10 +7,10 @@ class WritingGoal < ApplicationRecord
   def to_param
     slug
   end
-  # module ClassMethods
-  #   def find_using_slug(param)
-  #     slug = param.split('-').last || param
-  #     where(slug: slug).limit(1).first
-  #   end
-  # end
+  module ClassMethods
+    def find_using_slug(slug)
+      # slug = param.split('-').last || param
+      where(slug: slug).limit(1).first
+    end
+  end
 end

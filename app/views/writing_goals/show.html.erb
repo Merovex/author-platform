@@ -4,15 +4,16 @@
     <%= link_to "Edit", edit_writing_goal_path(@writing_goal), class: 'action' %>
   </div>
   <%= headline("Writing Goal: #{@book}") %>
-  <table class='w-full table-fixed my-12'>
+  <table class='w-full table-fixed my-12 text-xl'>
     <tr>
       <th>Start:</th>
       <td><%= @writing_goal.start_on.strftime("%d %B %Y") || "Not set" %></td>
       <th>Finish:</th>
-      <td id='end-on'><%= @writing_goal.finish_on.strftime("%d %B %Y") || "Not set" %></td>
+      <td id='end-on' data-end-on="<%= @writing_goal.finish_on %>"><%= @writing_goal.finish_on.strftime("%d %B %Y") || "Not set" %></td>
     </tr>
     <tr> <th>Target:</th><td id='writing-target'><%= number_with_delimiter(@writing_goal.target) %></td> </tr>
-    <tr> <th>Summary:</th><td> <%= (@writing_goal.summary.nil? or @writing_goal.summary.empty?) ? "No Summary" : @writing_goal.summary %></td> </tr>
+    <tr> <th>Summary:</th><td> <%= (@writing_goal.summary.nil? or @writing_goal.summary.empty?) ? "..." : @writing_goal.summary %></td>
+    </tr>
   </table>
 
 <%= h2('Entries') %>
@@ -21,8 +22,8 @@
       <tr>
         <th class='border w-40'>Date</th>
         <th class='border w-20'>Logged</th>
-        <th class='border w-20'>Daily Target</th>
         <th class='border w-40' colspan='2'>Running Total</th>
+        <th class='border w-20'>Daily Target</th>
         <th class='border'>Comment</th>
       </tr>
     </thead>
@@ -36,27 +37,26 @@
   </table>
 </div>
 <script type="text/javascript">
+  const target = parseInt(document.getElementById('writing-target').innerHTML.replace(/,/g, ''))
+  const end_on = new Date(document.getElementById('end-on').innerHTML)
   function entryMath() {
     var total = 0;
-    const target = parseInt(document.getElementById('writing-target').innerHTML.replace(/,/g, ''))
-    const end_on = new Date(document.getElementById('end-on').innerHTML)
-    // console.log(end_on)
     var el = [...document.getElementsByClassName("entry")];
     el.forEach(function(entry){
-      var today = new Date(entry.cells[0].innerHTML.split("(")[0].trim())
-      var count = parseInt(entry.cells[1].innerHTML.replace(/,/g, '')) || 0;
+      var today = new Date(entry.dataset.date)
+      var count = parseInt(entry.dataset.count)
+
       var days_left = Math.ceil((end_on - today) / (1000 * 60 * 60 * 24))
       var daily_pace = Math.ceil((target - count) / days_left);
       
       total = total + count
-      entry.cells[2].innerHTML = daily_pace.toLocaleString()
-      entry.cells[3].innerHTML = total.toLocaleString()
-      entry.cells[4].innerHTML = parseInt(total / target * 100) + "%";
-      
+      entry.cells[2].innerHTML = total.toLocaleString()
+      entry.cells[3].innerHTML = parseInt(total / target * 100) + "%";
+      entry.cells[4].innerHTML = daily_pace.toLocaleString()
     });
   }
   const interval = setInterval(function() {
     entryMath()
-  }, 100);
+  }, 125);
  entryMath()
 </script>

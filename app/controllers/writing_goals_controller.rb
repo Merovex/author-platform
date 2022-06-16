@@ -48,7 +48,7 @@ class WritingGoalsController < ApplicationController
     # raise @writing_goal.book.inspect
     respond_to do |format|
       if @writing_goal.update(writing_goal_params)
-        format.html { redirect_to writing_goals_url(@writing_goal), notice: "Writing goal was successfully updated." }
+        format.html { redirect_to writing_goal_url(@writing_goal), notice: "Writing goal was successfully updated." }
         format.json { render :show, status: :ok, location: @writing_goal }
       else
         format.html { render :edit, status: :unprocessable_entity }

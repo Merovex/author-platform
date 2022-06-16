@@ -1,5 +1,4 @@
 <%= form_with(model: writing_goal) do |form| %>
-  <%#= form.text_field :book_id %>
   <% if writing_goal.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(writing_goal.errors.count, "error") %> prohibited this writing_goal from being saved:</h2>
