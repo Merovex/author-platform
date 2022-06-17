@@ -214,6 +214,8 @@ GEM
     nokogiri (1.13.6)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
+    nokogiri (1.13.6-arm64-darwin)
+      racc (~> 1.4)
     nokogiri (1.13.6-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.13.6-x86_64-linux)
@@ -303,6 +305,14 @@ GEM
     stimulus-rails (1.0.4)
       railties (>= 6.0.0)
     strscan (3.0.3)
+    tailwindcss-rails (2.0.8)
+      railties (>= 6.0.0)
+    tailwindcss-rails (2.0.8-arm64-darwin)
+      railties (>= 6.0.0)
+    tailwindcss-rails (2.0.8-x86_64-darwin)
+      railties (>= 6.0.0)
+    tailwindcss-rails (2.0.8-x86_64-linux)
+      railties (>= 6.0.0)
     temple (0.8.2)
     thin (1.6.2)
       daemons (>= 1.0.9)
@@ -339,6 +349,7 @@ GEM
     zeitwerk (2.5.4)
 
 PLATFORMS
+  arm64-darwin
   ruby
   x86_64-darwin-20
   x86_64-linux
@@ -380,6 +391,7 @@ DEPENDENCIES
   selenium-webdriver
   sprockets-rails (>= 3.4.1)
   stimulus-rails (>= 0.4.0)
+  tailwindcss-rails (~> 2.0)
   turbo-rails (~> 0.8)
   view_component (~> 2.57)
   web-console (>= 4.1.0)
@@ -389,4 +401,4 @@ RUBY VERSION
    ruby 2.7.6p219
 
 BUNDLED WITH
-   2.3.3
+   2.3.16

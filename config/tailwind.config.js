@@ -1,6 +1,17 @@
-tailwind.config = {
+const defaultTheme = require('tailwindcss/defaultTheme')
+
+module.exports = {
+  content: [
+    './app/helpers/**/*.rb',
+    './app/javascript/**/*.js',
+    './app/views/**/*.{erb,html,slim}'
+  ],
   theme: {
     extend: {
+      screens: {
+        'print': { 'raw': 'print' },
+        // => @media  print { ... }
+      },
       typography: (theme) => ({
         light: {
           css: {
@@ -174,25 +185,18 @@ tailwind.config = {
         },
         'black': {
           'DEFAULT': '#161110'
-        },
-        'amazon': {
-          500: '#ff9900',
-        },
-        'audible': {
-          500: '#961110',
-        },
-        'kindle': {
-          500: '#198ae2',
-        },
-        'nobles': {
-          500: '#3e5962',
         }
       },
       fontFamily: {
-        'sans': ["MerovexSans", '-apple-system', 'system-ui', "Segoe UI", 'Roboto', 'Lato', 'Helvetica', 'Arial', 'sans-serif'],
-        'serif': ["MerovexSerif", 'Cambria', 'Georgia', "Times New Roman", 'Times', 'serif'],
-        'display': ["MerovexDisplay", "MerovexSans", '-apple-system', 'system-ui', "Segoe UI", 'Roboto', 'Lato', 'Helvetica', 'Arial', 'sans-serif']
+        'sans': ["MerovexSans", ...defaultTheme.fontFamily.sans],
+        'serif': ["MerovexSerif", ...defaultTheme.fontFamily.serif],
+        'display': ["MerovexDisplay", "MerovexSans", ...defaultTheme.fontFamily.sans]
       }
     },
   },
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/typography'),
+  ]
 }

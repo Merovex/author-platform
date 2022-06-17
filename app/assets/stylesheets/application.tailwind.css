@@ -1,39 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   @apply flex flex-col min-h-screen bg-white dark:bg-gray-700 dark:text-white;
 }
+
 .card {
   @apply px-8 py-4 my-8 border border-opacity-50 rounded shadow-lg;
 }
+
 .panel {
   @apply p-2 border border-opacity-50 rounded shadow-lg;
 }
+
 .card time {
   @apply text-center text-gray-500 dark:text-gray-300 opacity-75 block;
 }
+
 .card h2 {
   @apply font-display text-2xl md:text-3xl text-black dark:text-white text-center mt-2 mb-4;
 }
+
 .link {
   @apply underline text-blue-500 dark:text-blue-300;
 }
+
 .h2 {
   @apply font-display text-2xl md:text-3xl text-black dark:text-white text-center mt-2 mb-4;
 }
+
 .h3 {
   @apply font-sans text-xl md:text-2xl text-black dark:text-white text-center mt-2 mb-4;
 }
+
 .bordered {
   @apply border border-black rounded rounded-lg shadow-lg lg:rounded-xl dark:border-white dark:border-opacity-20 border-opacity-10;
 }
-main > article, .main {
+
+main>article,
+.main {
   @apply max-w-4xl mx-4 md:mx-auto my-16 p-8 rounded-lg;
 }
+
 .single {
   @apply mb-12;
 }
+
 .lone-checkbox {
-  <%# @apply bg-gray-50 border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded %>
+  @apply bg-gray-50 border-gray-300 focus:ring-blue-300 h-4 w-4 rounded
 }
+
 .headline {
   @apply font-display text-3xl md:text-5xl text-brand-500 dark:text-brand-100 mt-4 mb-8;
 }
@@ -41,49 +58,63 @@ main > article, .main {
 .user-menu-link {
   @apply text-black dark:text-white block px-4 py-2 text-sm hover:bg-gray-500 hover:bg-opacity-10;
 }
+
 .subtitle {
   @apply font-display text-2xl md:text-3xl text-black dark:text-white;
 }
+
 .panel-headline {
   @apply font-sans text-2xl md:text-3xl text-black dark:text-white font-bold mt-4 mb-8 text-center;
 }
+
 .button {
-  @apply px-4 py-2 mx-2 inline-block font-sans font-bold text-sm transition duration-200 ease-in-out border rounded shadow-md focus:outline-none hover:shadow-sm hover:opacity-100 opacity-80 ;
+  @apply px-4 py-2 mx-2 inline-block font-sans font-bold text-sm transition duration-200 ease-in-out border rounded shadow-lg focus:outline-none hover:shadow-sm hover:opacity-100 opacity-70;
 }
+
 .action {
   @apply border-solid border inline-block p-2 mx-1 text-sm uppercase font-sans border-blue-200 rounded-md dark:border-blue-400 hover:bg-blue-500 dark:hover:bg-blue-400 hover:text-white dark:text-white;
-  <%# @apply button uppercase border-solid border-blue-200 dark:border-blue-400; %>
+
 }
+
 details summary::-webkit-details-marker,
 details summary::marker {
   content: '';
   display: none;
 }
+
 details summary {
   cursor: pointer;
 }
-details summary > * {
+
+details summary>* {
   display: inline;
 }
-.field, .actions {
+
+.field,
+.actions {
   @apply mt-8
 }
-@media (prefers-color-scheme: dark) {
+
+@media (prefers-color-scheme:dark) {
   .dark-image {
     filter: saturate(105%) contrast(110%) brightness(0.9) greyscale(0%);
   }
+
   .dark-image img {
     filter: drop-shadow(0em 0em 1em #AAA);
   }
 }
+
 blockquote .quote-mark {
   font-size: 10rem;
   right: 100%;
   @apply absolute top-0 leading-none text-white text-opacity-20 font-display;
 }
+
 .modal {
   @apply flex items-center justify-center fixed z-40 inset-0 h-full p-6 backdrop-brightness-75 backdrop-blur-sm;
 }
+
 .modal-window {
   @apply w-full max-w-lg overflow-hidden relative bg-white border-gray-500 p-5 rounded;
 }

@@ -1,9 +1,29 @@
 module ApplicationHelper
   def inverse_button_css(color='blue')
-    "bg-gray-50 border-#{color}-600 text-black button"
+    border_color = {
+      blue: "border-blue-500",
+      red: "border-red-500",
+      purple: "border-violet-500",
+      violet: "border-violet-500",
+      audible: "border-[#961110]",
+      amazon: "border-[#ff9900]",
+      kindle: "border-[#198ae2]",
+      nobles: "border-[#3e5962]"
+    }[color.to_sym]
+    "bg-gray-50 #{border_color} text-black button"
   end
   def button_css(color = 'blue')
-    "bg-#{color}-500 border-gray-500/50 text-white button"
+    bg_color = {
+      blue: "bg-blue-500",
+      red: "bg-red-500",
+      purple: "bg-violet-500",
+      violet: "bg-violet-500",
+      audible: "bg-[#961110]",
+      amazon: "bg-[#ff9900]",
+      kindle: "bg-[#198ae2]",
+      nobles: "bg-[#3e5962]"
+    }[color.to_sym]
+    "#{bg_color} border-gray-500/50 text-white button shadow-lg shadow-blue-500/50"
   end
   def zebra()
     cycle('bg-gray-100 dark:bg-gray-700','', name: 'zebra')

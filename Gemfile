@@ -88,3 +88,5 @@ gem "aws-sdk-s3", "~> 1.114", require: false
 # gem "fog-aws", "~> 3.14"
 
 gem "view_component", "~> 2.57"
+
+gem "tailwindcss-rails", "~> 2.0"
