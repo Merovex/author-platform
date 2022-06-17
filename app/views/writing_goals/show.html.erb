@@ -7,9 +7,9 @@
   <table class='w-full table-fixed my-12 text-xl'>
     <tr>
       <th>Start:</th>
-      <td><%= @writing_goal.start_on.strftime("%d %B %Y") || "Not set" %></td>
+      <td><%= dateness(@writing_goal.start_on, "%d %B %Y") || "Not set" %></td>
       <th>Finish:</th>
-      <td id='end-on' data-end-on="<%= @writing_goal.finish_on %>"><%= @writing_goal.finish_on.strftime("%d %B %Y") || "Not set" %></td>
+      <td id='end-on' data-end-on="<%= dateness(@writing_goal.finish_on) || "" %>"><%= dateness(@writing_goal.finish_on, "%d %B %Y") || "Not set" %></td>
     </tr>
     <tr> <th>Target:</th><td id='writing-target'><%= number_with_delimiter(@writing_goal.target) %></td> </tr>
     <tr> <th>Summary:</th><td> <%= (@writing_goal.summary.nil? or @writing_goal.summary.empty?) ? "..." : @writing_goal.summary %></td>
@@ -28,10 +28,12 @@
       </tr>
     </thead>
     <tbody id='writing_entries'>
+    <% unless (@writing_goal.start_on.nil? or @writing_goal.finish_on.nil?) %>
     <% (@writing_goal.start_on..@writing_goal.finish_on).each do |date| %>
       <% @entry = (@entries[date].nil?) ? nil : @entries[date] %>
       <% @date = date %>
       <%= render 'writing_entries/writing_entry', entry: @entry %>
+    <%end%>
     <%end%>
     </tbody>
   </table>

@@ -11,7 +11,7 @@ class WritingGoalsController < ApplicationController
   def show
     @total = 0
     @percentage = 0
-    @target = (@writing_goal.target > 0) ? @writing_goal.target : 1
+    @target = (@writing_goal.target.nil? or @writing_goal.target > 0) ? @writing_goal.target : 1
     @entries = {}
     @writing_goal.writing_entries.each do |entry|
       @entries[entry.wrote_on] = entry
@@ -30,17 +30,17 @@ class WritingGoalsController < ApplicationController
   # POST /writing_goals or /writing_goals.json
   def create
     raise "HERE?".inspect
-    @writing_goal = WritingGoal.new(writing_goal_params)
+    # @writing_goal = WritingGoal.new(writing_goal_params)
 
-    respond_to do |format|
-      if @writing_goal.save
-        format.html { redirect_to writing_goal_url(@writing_goal), notice: "Writing goal was successfully created." }
-        format.json { render :show, status: :created, location: @writing_goal }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @writing_goal.errors, status: :unprocessable_entity }
-      end
-    end
+    # respond_to do |format|
+    #   if @writing_goal.save
+    #     format.html { redirect_to writing_goal_url(@writing_goal), notice: "Writing goal for #{@writing_goal.book.title} was successfully created." }
+    #     format.json { render :show, status: :created, location: @writing_goal }
+    #   else
+    #     format.html { render :new, status: :unprocessable_entity }
+    #     format.json { render json: @writing_goal.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /writing_goals/1 or /writing_goals/1.json
@@ -48,7 +48,7 @@ class WritingGoalsController < ApplicationController
     # raise @writing_goal.book.inspect
     respond_to do |format|
       if @writing_goal.update(writing_goal_params)
-        format.html { redirect_to writing_goal_url(@writing_goal), notice: "Writing goal was successfully updated." }
+        format.html { redirect_to writing_goal_url(@writing_goal), notice: "Writing goal for <em>#{@writing_goal.book.title}</em> was successfully updated." }
         format.json { render :show, status: :ok, location: @writing_goal }
       else
         format.html { render :edit, status: :unprocessable_entity }

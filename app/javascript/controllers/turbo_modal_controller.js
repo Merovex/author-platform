@@ -6,9 +6,11 @@ export default class extends Controller {
   // hide modal
   // action: "turbo-modal#hideModal"
   hideModal() {
+
     this.element.parentElement.removeAttribute("src")
     // Remove src reference from parent frame element
     // Without this, turbo won't re-open the modal on subsequent click
+    this.modalTurboFrame.src = null
     this.modalTarget.remove()
   }
 
@@ -35,5 +37,8 @@ export default class extends Controller {
       return;
     }
     this.hideModal()
+  }
+  get modalTurboFrame() {
+    return document.querySelector("turbo-frame[id='modal']")
   }
 }

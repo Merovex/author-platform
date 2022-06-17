@@ -2,9 +2,11 @@
   <%= tag.div data: { controller: "turbo-modal",
                       turbo_modal_target: "modal",
                       action: "turbo:submit-end->turbo-modal#submitEnd keyup@window->turbo-modal#closeWithKeyboard click@window->turbo-modal#closeBackground" },
-                      class: "p-5 bg-slate-300 fixed z-10 top-10 mx-auto rounded-md w-96 break-words text-black" do %>
-    <h1 class="font-bold text-3xl"><%= @title %></h1>
-    <%= content %>
-    <%= button_tag "Close", data: { action: "turbo-modal#hideModal" }, type: "button", class: 'bg-red-500 border-red-600 text-white button' %>
+              class: "modal" do %>
+    <%= tag.div class: "modal-window" do %>
+      <h1 class="font-bold text-3xl"><%= @title %></h1>
+      <%= content %>
+      <%= button_tag "Close", data: { action: "turbo-modal#hideModal" }, type: "button", class: 'bg-red-500 border-red-600 text-white button' %>
+    <% end %>
   <% end %>
 <% end %>
