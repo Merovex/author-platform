@@ -3,7 +3,7 @@
 
 <%= form_with(model: User.new, url: user_registration_path) do |form| %>
   <%= form.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Type your email…", class: 'form-input rounded' %>
-  <%= form.submit "Subscribe", class: button_css('blue') %>
+  <%= form.submit "Subscribe", class: button_css('violet') %>
 <% end %>
 
 <p>Or grab the <%= link_to 'RSS feed', "#", class: "underline" %></p>
