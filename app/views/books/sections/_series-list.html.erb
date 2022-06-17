@@ -1,10 +1,10 @@
 <% if @book.series.books.count > 0 %>
 <section id='other-titles' class='p-4'>
   <div class="main">
-    <%= h2("Other books in #{@book.series.title} series") %>
+    <%= h2("Books in #{@book.series.title} series") %>
   </div>
-  <div class='overflow-x-scroll whitespace-nowrap  <%= zebra() %>'>
-    <% @book.series.episodes.sort_by{|i| i.order }.each do |episode| %>
+  <div class='overflow-x-scroll whitespace-nowrap flex justify-center <%= zebra() %>'>
+    <% @book.series.episodes.sort_by{ |i| i.order }.each do |episode| %>
       <% next unless episode.book.is_released?  %>
       <div class='inline-block m-3'>
         <%= link_to episode.book do %>
