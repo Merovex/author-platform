@@ -60,6 +60,6 @@ class LinksController < ApplicationController
       @link = Link.find_by_slug(params[:slug] || params[:id])
     end
     def link_params
-      params.require(:link).permit(:url, :comment, :tag_list)
+      params.require(:link).permit(:url, :comment, :tag_list, :css)
     end
 end

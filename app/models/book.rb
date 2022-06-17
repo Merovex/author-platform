@@ -23,6 +23,7 @@ class Book < ApplicationRecord
   has_many :praises, dependent: :destroy
   has_many :authors
   has_many :links, as: :linkable, dependent: :destroy
+  # belongs_to :clickable, polymorphic: true, optional: true
 
   scope :featured, -> { where(is_featured: true) }
   scope :unpublished, -> { where("released_on > ? OR released_on IS NULL", DateTime.now) }

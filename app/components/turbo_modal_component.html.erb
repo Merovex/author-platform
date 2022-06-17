@@ -4,9 +4,9 @@
                       action: "turbo:submit-end->turbo-modal#submitEnd keyup@window->turbo-modal#closeWithKeyboard click@window->turbo-modal#closeBackground" },
               class: "modal" do %>
     <%= tag.div class: "modal-window" do %>
+      <%= button_tag "X", data: { action: "turbo-modal#hideModal" }, type: "button", class: 'absolute right-0 bg-red-500 border-red-600 text-white button' %>
       <h1 class="font-bold text-3xl"><%= @title %></h1>
       <%= content %>
-      <%= button_tag "Close", data: { action: "turbo-modal#hideModal" }, type: "button", class: 'bg-red-500 border-red-600 text-white button' %>
     <% end %>
   <% end %>
 <% end %>

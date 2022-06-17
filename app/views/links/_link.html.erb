@@ -1,8 +1,13 @@
 <div class="panel mb-6">
   <%= h2(link.url) %>
-  <p><%= link_to "Visit URL", link.url %></p>
+  <p><%= link_to "Visit URL", sanitize(link.url) %></p>
   <aside class="my-4">
-    <span><%= link_to link.short, link.short %></span>
+  <% unless link.linkable.nil? %>
+  <p class="text-xl">
+    Link for <%= link.linkable %>
+  </p>
+  <% end %>
+    <span><%= link_to link.short, sanitize(link.short) %></span>
     <a class="<%= 'action'%>">Copy</a>
     <%= link_to 'Edit', edit_link_path(link), class: 'action' %>
   </aside>

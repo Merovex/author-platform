@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   end
   resources :books do
     resources :praises
+    resources :book_links
   end
   resources :posts
   devise_for :users, controllers: {

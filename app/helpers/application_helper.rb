@@ -3,7 +3,7 @@ module ApplicationHelper
     "bg-gray-50 border-#{color}-600 text-black button"
   end
   def button_css(color = 'blue')
-    "bg-#{color}-500 border-#{color}-600 text-white button"
+    "bg-#{color}-500 border-gray-500/50 text-white button"
   end
   def zebra()
     cycle('bg-gray-100 dark:bg-gray-700','', name: 'zebra')
