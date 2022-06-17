@@ -5,6 +5,7 @@
   </div>
   <div class='overflow-x-scroll whitespace-nowrap  <%= zebra() %>'>
     <% @book.series.episodes.sort_by{|i| i.order }.each do |episode| %>
+      <% next unless episode.book.is_released?  %>
       <div class='inline-block m-3'>
         <%= link_to episode.book do %>
           <%= render 'books/cover', book: episode.book %>

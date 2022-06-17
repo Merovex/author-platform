@@ -40,4 +40,8 @@ class Book < ApplicationRecord
   def to_s
     title
   end
+  def is_released?
+    return false if released_on.nil?
+    return released_on <= DateTime.now
+  end
 end
