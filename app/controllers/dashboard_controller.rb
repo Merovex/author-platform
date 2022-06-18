@@ -10,15 +10,19 @@ class DashboardController < ApplicationController
     @wip_wordcount = 0
     @finish_on = Date.today()
     @target = 75000
+    @total_days = 0
+    @remaining = "---"
 
     unless (@wip.nil?)
       @wip_wordcount = @wip.writing_goal.writing_entries.map(&:count).inject(0, :+)
       @finish_on = @wip.writing_goal.finish_on
       @target = @wip.writing_goal.target
+      @total_days = @wip.writing_goal.writing_entries.count
+      @remaining = (Date.today + ((@target - @wip_wordcount) / 1000).to_i).strftime("%-d %b")
     end
     
     @heatmap_days = {}
-    @remaining = (Date.today + ((@target - @wip_wordcount) / 1000).to_i).strftime("%-d %b")
+    
     @entries.each do |entry|
       day = entry.wrote_on.strftime("%Y-%m-%d")
       @heatmap_days[day] = {words: 0, target: 1000} if @heatmap_days[day].nil?

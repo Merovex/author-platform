@@ -15,7 +15,7 @@
       <span id="days-remaining" class="text-2xl font-bold ">
       <%= (@finish_on - Date.today).to_i %>
       </span> /
-      <span id="total-days" class="text-2xl font-bold "><%= @wip.writing_goal.writing_entries.count %></span>
+      <span id="total-days" class="text-2xl font-bold "><%= @total_days %></span>
     </div>
     Days (left/done)
   </div>
@@ -25,7 +25,7 @@
   </div>
   
 </section>
-<% if can? :admin, Book %>
+<% if !@wip.nil? and can? :admin, Book %>
   <table class='w-full'>
     <%= render 'books/unpublished-book', book: @wip %>
   </table>
