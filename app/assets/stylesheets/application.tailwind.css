@@ -122,3 +122,34 @@ blockquote .quote-mark {
 .modal-window {
   @apply w-full max-w-lg overflow-hidden relative bg-white border-gray-500 p-5 rounded;
 }
+svg.caligraph {
+  @apply bg-heatmap-4;
+}
+
+.calgraph-text {
+  @apply font-sans text-xs dark:fill-gray-200/50 fill-gray-600/50;
+}
+
+.calgraph-text-bold {
+  @apply font-sans text-xs dark:fill-gray-200 fill-gray-600;
+}
+
+.calgraph-1 {
+  @apply fill-gray-200/5 stroke-gray-500/25 dark:stroke-gray-500/50
+}
+
+.calgraph-2 {
+  @apply fill-heatmap-1 stroke-gray-500/25 dark:stroke-gray-500/75 dark:fill-heatmap-dark/25
+}
+
+.calgraph-3 {
+  @apply fill-heatmap-2 stroke-gray-500/25 dark:stroke-gray-500/75 dark:fill-heatmap-dark/50
+}
+
+.calgraph-4 {
+  @apply fill-heatmap-3 stroke-gray-500/25 dark:stroke-gray-500/75 dark:fill-heatmap-dark/75
+}
+
+.calgraph-5 {
+  @apply fill-heatmap-4 stroke-gray-500/25 dark:stroke-gray-500/75 dark:fill-heatmap-dark
+}

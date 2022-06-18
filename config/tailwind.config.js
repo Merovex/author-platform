@@ -184,6 +184,16 @@ module.exports = {
         'white': {
           'DEFAULT': '#FFFFFF'
         },
+        heatmap: {
+          DEFAULT: '#528f51', //'#528F51',
+          dark: '#8BF683',
+          '0': '#FFFFFF',
+          '1': '#A9C7A8',
+          '2': '#86B185',
+          '3': '#639A62',
+          // '4': '#528F51',
+          '4': '#427241',
+        },
         'black': {
           'DEFAULT': '#161110'
         }

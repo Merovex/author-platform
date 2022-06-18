@@ -1,0 +1,16 @@
+
+<div class="main">
+<%= headline('Dashboard') %>
+  <div id='heatmap'></div>
+
+</div>
+
+<%= javascript_include_tag( 'calendar-graph' )%>
+<script type="text/javascript">
+  const heatmap_data = <%= @heatmap_days.to_json.html_safe %>
+  const heatmap_graph = new CalendarGraph({
+    data: heatmap_data,
+    target: parseInt(document.getElementById('heatmap').value)
+  })
+  heatmap_graph.render();
+</script>

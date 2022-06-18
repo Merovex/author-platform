@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'dashboard/' => 'dashboard#index'
+  get 'dashboard/pages'
+  get 'dashboard/posts'
+  get 'dashboard/subscribers' => 'subscriptions#subscribers', as: 'subscribers'
   
   resources :subscriptions
   
@@ -40,7 +44,7 @@ Rails.application.routes.draw do
   get 'posts/:id/broadcast' => "posts#broadcast", as: "posts_broadcast"
   get "/404" => "errors#not_found"
   get 'landing/index'
-  get '/subscribers' => 'subscriptions#subscribers'
   get '/:slug' => "pages#show"
+  
   root to: 'landing#index'
 end
