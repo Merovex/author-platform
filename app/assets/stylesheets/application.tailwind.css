@@ -51,6 +51,10 @@ main>article,
   @apply bg-gray-50 border-gray-300 focus:ring-blue-300 h-4 w-4 rounded
 }
 
+.form-panel {
+  @apply lg:w-2/3 max-w-2xl mx-auto;
+}
+
 .headline {
   @apply font-display text-3xl md:text-5xl text-brand-500 dark:text-brand-100 mt-4 mb-8;
 }

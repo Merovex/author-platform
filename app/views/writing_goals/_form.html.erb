@@ -16,16 +16,11 @@
       <%= form.label :start_on %>
       <%= form.text_field :start_on, 
             placeholder: "Select Date...",
-            xreadonly: 'readonly',
-            enableTime: false,
-            altInput: true,
-            altFormat: "j F Y",
-            dateFormat: "Y-m-d",
             class: 'flatpickr flatpickr-input active form-input rounded block',
             data: {
               controller: "flatpickr",
               flatpickr_date_format: "Y-m-d",
-              flatpickr_min_date: Time.zone.now
+              flatpickr_enable_time: false
             }
       %>
     </div>

@@ -16,15 +16,15 @@
     <%= form.text_field :title, class: 'form-input rounded block w-full' %>
   </div>
   <div class="field">
-    <%= form.label :published_at, class: 'block' %>
+    <%= form.label :published_at, "Publish this on", class: 'block' %>
     <%= form.text_field :published_at, 
           placeholder: "Select Date & Time...",
           class: 'flatpickr flatpickr-input active form-input rounded',
           data: {
             controller: "flatpickr",
             flatpickr_enable_time: true,
-            # flatpickr_default_date: Time.zone.now,
-            flatpickr_date_ormat: "Y-m-d  H:i"
+            flatpickr_week_numbers: true,
+            flatpickr_date_ormat: "Y-m-d H:i"
           }
     %>
   </div>
