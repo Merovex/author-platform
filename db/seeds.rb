@@ -17,7 +17,7 @@ WritingEntry.delete_all
   goal = book.writing_goal
   CSV.foreach(Rails.root.join(fname), headers: true) do |row|
     date = Date.parse(row["Date"])
-    raise date.inspect
+    # raise date.inspect
     entry = book.writing_goal.writing_entries.create(wrote_on: date, count: row["Words"])
     entry.save
     puts entry.inspect
