@@ -26,6 +26,7 @@ class Book < ApplicationRecord
   # belongs_to :clickable, polymorphic: true, optional: true
 
   scope :featured, -> { where(is_featured: true) }
+  scope :wip, -> { where(is_wip: true) }
   scope :unpublished, -> { where("released_on > ? OR released_on IS NULL", DateTime.now) }
   scope :published, -> { where("released_on <= ?", DateTime.now) }
 

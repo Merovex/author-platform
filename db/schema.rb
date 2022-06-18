@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_17_124310) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_18_134017) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -179,8 +179,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_17_124310) do
     t.datetime "updated_at", null: false
     t.string "cover_color"
     t.text "tagline"
+    t.boolean "is_wip"
     t.index ["is_featured"], name: "index_books_on_is_featured"
+    t.index ["is_wip"], name: "index_books_on_is_wip"
     t.index ["released_on"], name: "index_books_on_released_on"
+    t.index ["slug"], name: "index_books_on_slug"
   end
 
   create_table "clicks", force: :cascade do |t|
@@ -264,6 +267,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_17_124310) do
     t.text "synopsis"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_series_on_slug"
   end
 
   create_table "subscribers", force: :cascade do |t|
@@ -286,6 +290,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_17_124310) do
     t.string "posts"
     t.string "books"
     t.string "slug"
+    t.index ["books"], name: "index_subscriptions_on_books"
+    t.index ["posts"], name: "index_subscriptions_on_posts"
+    t.index ["slug"], name: "index_subscriptions_on_slug"
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
@@ -360,6 +367,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_17_124310) do
     t.datetime "updated_at", null: false
     t.bigint "writing_goal_id", null: false
     t.index ["writing_goal_id"], name: "index_writing_entries_on_writing_goal_id"
+    t.index ["wrote_on"], name: "index_writing_entries_on_wrote_on"
   end
 
   create_table "writing_goals", force: :cascade do |t|
@@ -372,6 +380,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_17_124310) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.index ["book_id"], name: "index_writing_goals_on_book_id"
+    t.index ["slug"], name: "index_writing_goals_on_slug"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

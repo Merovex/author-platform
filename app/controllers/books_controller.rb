@@ -88,7 +88,7 @@ class BooksController < ApplicationController
     end
     # Only allow a list of trusted parameters through.
     def book_params
-      params.require(:book).permit(:title, :is_featured, :released_on, :status, :synopsis, :tagline, :excerpt, :cover, :hero_background, episode_attributes: [:order, :series_id])
+      params.require(:book).permit(:title, :is_featured, :is_wip, :released_on, :status, :synopsis, :tagline, :excerpt, :cover, :hero_background, episode_attributes: [:order, :series_id])
     end
     def get_cover_bgcolor
       return unless @book.cover.attached?

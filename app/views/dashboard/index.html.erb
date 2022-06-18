@@ -1,15 +1,47 @@
 
 <div class="main">
-<%= headline('Dashboard') %>
-  <div id='heatmap'></div>
+<section class="flex gap-3 font-sans text-sm">
+  <div class="flex-1 py-4 text-center card border-[#696aaa] border-2 bg-[#51528f] text-white">
+    <span id="earned-value" class="block text-2xl font-bold"><%= number_with_delimiter(@wip_wordcount) %></span>
+    WIP Wordcount
+  </div>
 
+  <div class="flex-1 py-4 text-center card border-[#6aaa69] border-2 bg-[#528f51] text-white">
+    <span id="annual-wordcount" class="block text-2xl font-bold"><%= number_with_delimiter(@annual_wordcount) %></span>
+    Annual Wordcount
+  </div>
+  <div class="flex-1 py-4 text-center card border-[#aa696a] border-2 bg-[#8f5152] text-white">
+    <div>
+      <span id="days-remaining" class="text-2xl font-bold ">
+      <%= (@finish_on - Date.today).to_i %>
+      </span> /
+      <span id="total-days" class="text-2xl font-bold "><%= @wip.writing_goal.writing_entries.count %></span>
+    </div>
+    Days (left/done)
+  </div>
+  <div class="flex-1 py-4 text-center card border-[#698baa] border-2 bg-[#51718f] text-white">
+    <span id="tracking-date" class="block text-2xl font-bold"><%= @remaining %></span>
+    Expected Completion
+  </div>
+  
+</section>
+<% if can? :admin, Book %>
+  <table class='w-full'>
+    <%= render 'books/unpublished-book', book: @wip %>
+  </table>
+<% end %>
+
+<%= headline('Dashboard') %>
+  <section>
+  <%= h2('Heatmap') %>
+  <div id='heatmap'></div>
+  </section>
 </div>
 
 <%= javascript_include_tag( 'calendar-graph' )%>
 <script type="text/javascript">
-  const heatmap_data = <%= @heatmap_days.to_json.html_safe %>
   const heatmap_graph = new CalendarGraph({
-    data: heatmap_data,
+    data: <%= @heatmap_days.to_json.html_safe %>,
     target: parseInt(document.getElementById('heatmap').value)
   })
   heatmap_graph.render();
