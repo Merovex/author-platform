@@ -7,9 +7,8 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require 'csv'
 require 'date'
-
+WritingEntry.delete_all
 [
-  ["38RCTQbW", "lib/bellicose-writing-history.csv"],
   ["e31clAUB", "lib/gambit-writing-history.csv"],
   ["YbVVavjh", "lib/imbroglio-writing-history.csv"],
 ].each do |slug, fname|
@@ -17,8 +16,8 @@ require 'date'
   book = Book.find_using_slug(slug)
   goal = book.writing_goal
   CSV.foreach(Rails.root.join(fname), headers: true) do |row|
-    month, day, year = row["Date"].split("/")
-    date = Date.new("20#{year}".to_i, month.to_i, day.to_i)
+    date = Date.parse(row["Date"])
+    raise date.inspect
     entry = book.writing_goal.writing_entries.create(wrote_on: date, count: row["Words"])
     entry.save
     puts entry.inspect
