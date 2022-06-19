@@ -1,0 +1,23 @@
+<tr>
+<td class="px-2 border">
+<% unless book.series.nil? %>
+    <%= book.series.title  %>:
+    <%= book.order %>
+    <% end %>
+</td>
+  <td class="px-2 border">
+    <%= link_to book.title, book, class: "link" %>
+  </td>
+  <td class="text-center border">
+    <% if book.released_on.nil? %> 
+      <%= link_to 'release today', book_release_path(book), class: "link" %>
+    <% else %>
+      <%= local_time_popover(book.released_on) %>
+    <% end %>
+  </td>
+  <td class='text-center border'>
+    <%= link_to icon("pencil-alt", 'icon-link'), edit_book_path(book), class: 'link' %> |
+    <%= link_to icon("trash", 'icon-link'), book_path(book), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'link' %> |
+    <%= link_to icon("presentation-chart-line", 'icon-link'), writing_goal_path(book.writing_goal), class: 'link' if book.is_wip %> 
+  </td>
+</tr>

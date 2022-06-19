@@ -13,7 +13,7 @@
   <div class="flex-1 py-4 text-center card border-[#aa696a] border-2 bg-[#8f5152] text-white">
     <div>
       <span id="days-remaining" class="text-2xl font-bold ">
-      <%= (@finish_on - Date.today).to_i %>
+      <%= @wip.writing_goal.days_remaining %>
       </span> /
       <span id="total-days" class="text-2xl font-bold "><%= @total_days %></span>
     </div>
@@ -25,9 +25,10 @@
   </div>
   
 </section>
-<% if !@wip.nil? and can? :admin, Book %>
+<% if !@wips.empty? and can? :admin, Book %>
   <table class='w-full'>
-    <%= render 'books/unpublished-book', book: @wip %>
+    <%= render 'books/book_row_header' %>
+    <%= render partial: 'books/book_row', collection: @wips, as: :book %>
   </table>
 <% end %>
 

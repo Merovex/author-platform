@@ -1,5 +1,5 @@
 <% if post.broadcasted_at.nil? and can? :admin, Post %>
-  <div class='card w-1/2 mx-auto bg-yellow-200 dark:yellow-600 border-opacity-50 text-center'>
+  <div class='card w-full mx-auto bg-yellow-200 dark:yellow-600 border-opacity-50 text-center'>
   <p><strong>Your message is live on the web for anyone and everyone to see.</strong> Copy this link to share it:</p>
   <div class='inline-flex mx-auto w-full my-4'>
     <input class="form-input rounded block w-full" value="<%= post_url post %>">

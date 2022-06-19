@@ -1,12 +1,11 @@
 class DashboardController < ApplicationController
   def index
-    @entries = WritingEntry.all
-    @wip = Book.wip.last
+    # @entries = 
     
-    jan_1 = Date.new(Time.now().year,1,1)
-    dec_31 = Date.new(Time.now().year,12,31)
+    @wips = Book.wips
+    @wip = @wips.last
     
-    @annual_wordcount = WritingEntry.where(wrote_on: jan_1 .. dec_31).map(&:count).inject(0, :+)
+    @annual_wordcount = WritingEntry.annual_wordcount(Time.now().year)
     @wip_wordcount = 0
     @finish_on = Date.today()
     @target = 75000
@@ -14,28 +13,25 @@ class DashboardController < ApplicationController
     @remaining = "---"
 
     unless (@wip.nil?)
-      @wip_wordcount = @wip.writing_goal.writing_entries.map(&:count).inject(0, :+)
-      @finish_on = @wip.writing_goal.finish_on
-      @target = @wip.writing_goal.target
-      @total_days = @wip.writing_goal.writing_entries.count
-      @remaining = (Date.today + ((@target - @wip_wordcount) / 1000).to_i).strftime("%-d %b")
+      @wip_wordcount = @wip.writing_goal.wordcount
+      @target = @wip.writing_goal.target || 0
+      @total_days = @wip.writing_goal.days_written
+      @remaining = @wip.writing_goal.days_remaining
     end
     
     @heatmap_days = {}
     
-    @entries.each do |entry|
+    WritingEntry.all.each do |entry|
       day = entry.wrote_on.strftime("%Y-%m-%d")
-      @heatmap_days[day] = {words: 0, target: 1000} if @heatmap_days[day].nil?
+      title = entry.writing_goal.book.title
+      @heatmap_days[day] = {words: 0, target: 1000, title: title} if @heatmap_days[day].nil?
       @heatmap_days[day][:words] += entry.count
     end
   end
 
-  def pages
+  def admin
   end
-
-  def posts
-  end
-
+  
   def subscribers
   end
 end

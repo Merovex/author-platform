@@ -23,12 +23,18 @@ class Book < ApplicationRecord
   has_many :praises, dependent: :destroy
   has_many :authors
   has_many :links, as: :linkable, dependent: :destroy
+  has_many :writing_entries, through: :writing_goal, as: :entries
   # belongs_to :clickable, polymorphic: true, optional: true
 
   scope :featured, -> { where(is_featured: true) }
-  scope :wip, -> { where(is_wip: true) }
+  scope :wips, -> { where(is_wip: true) }
   scope :unpublished, -> { where("released_on > ? OR released_on IS NULL", DateTime.now) }
   scope :published, -> { where("released_on <= ?", DateTime.now) }
+
+  def order
+    return "" if series.nil?
+    return episode.order
+  end
 
   def thumb
     cover.variant(auto_orient: true, rotate: 0, resize: "200x300^", crop: '200x300+0+0', format: :webp)#.processed.url

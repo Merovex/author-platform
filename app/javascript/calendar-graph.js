@@ -143,6 +143,7 @@ class CalendarGraph {
     var y = day_of_week * this.fullsize + this.offset[0]
     var x = week * this.fullsize + this.offset[1]
     var value = (data != undefined) ? data['words'] : 0;
+    var title = (data != undefined) ? data['title'] : "";
 
     var css_class; var level;
     switch (true) {
@@ -166,6 +167,7 @@ class CalendarGraph {
     const day = this.createCell(x, y);
     day.setAttributeNS(null, 'data-date', date.toISOString().split('T')[0]);
     day.setAttributeNS(null, 'data-terms', this.terms);
+    day.setAttributeNS(null, 'data-title', title);
     day.setAttributeNS(null, 'data-count', value);
     day.setAttributeNS(null, 'data-level', level);
     day.setAttributeNS(null, "class", `${this.css_class}-${level}` + " calgraph-day");
@@ -202,7 +204,8 @@ class CalendarGraph {
   }
 }
 function cgCreateTip(ev) {
-  document.getElementById("cg-msg").innerHTML = `${this.dataset.date}: ${this.dataset.count} ${this.dataset.terms}`
+  var title = (this.dataset.title === undefined) ? "" : this.dataset.title
+  document.getElementById("cg-msg").innerHTML = `${this.dataset.date}: ${this.dataset.count} ${this.dataset.terms} ${title}`
 }
 function cgCancelTip(ev) {
   document.getElementById("cg-msg").innerHTML = ''

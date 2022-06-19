@@ -7,10 +7,16 @@
     <aside class="absolute panel z-10 w-56 p-2 bg-white dark:bg-black right-0" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
     <div class="py-1" role="none">
       <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-      <a href="#" class="user-menu-link" role="menuitem" tabindex="-1" id="menu-item-0">Profile</a>
-      <a href="#" class="user-menu-link" role="menuitem" tabindex="-1" id="menu-item-1">Support</a>
-      <a href="#" class="user-menu-link" role="menuitem" tabindex="-1" id="menu-item-2">License</a>
+      <% if can? :admin, Post %>
+      <hr>
+      <%= link_to "Dashboard", dashboard_path(), role: 'menuitem', tabindex: '-1', class: 'user-menu-link' %>
+      <%= link_to "Books Admin", books_admin_path(), role: 'menuitem', tabindex: '-1', class: 'user-menu-link' %>
+      <%= link_to "Posts Admin", posts_admin_path(), role: 'menuitem', tabindex: '-1', class: 'user-menu-link' %>
+      <%# <a href="#" class="user-menu-link" role="menuitem" tabindex="-1" id="menu-item-0">Dashboard</a> %>
+      <%# <a href="#" class="user-menu-link hidden" role="menuitem" tabindex="-1" id="menu-item-1">Support</a> %>
+      <%# <a href="#" class="user-menu-link hidden" role="menuitem" tabindex="-1" id="menu-item-2">License</a> %>
       <%= link_to 'Subscriptions', subscriptions_path, class: 'user-menu-link' %>
+      <% end %>
       <hr>
       <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'user-menu-link' %>
     </div>

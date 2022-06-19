@@ -6,18 +6,20 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.published
+  end
+  def admin
+    @posts = Post.all.order("published_at DESC")
   end
 
   # GET /posts/1 or /posts/1.json
   def show
-    
   end
   def publish
     @post.publish_now
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: "Post was successfully published." }
+        format.html { redirect_to :back, notice: "Post was successfully published." }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :index, status: :unprocessable_entity }
@@ -27,12 +29,12 @@ class PostsController < ApplicationController
   end
   def broadcast
     respond_to do |format|
-      if @post.broadcasted_at.nil?
+      if @post.unbroadcasted?
         subscribers = Subscription.users(:posts)
         subscribers.each do |subscriber|
           SubscriptionMailer.post_email(subscriber,@post).deliver
         end
-        @post.broadcasted_at = Time.now.utc
+        @post.broadcast_now
         @post.save
         format.html { redirect_to @post, notice: "Post was successfully broadcast to #{subscribers.count} subscribers." }
         format.json { render :show, status: :created, location: @post }

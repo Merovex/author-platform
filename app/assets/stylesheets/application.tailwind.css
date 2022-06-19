@@ -40,7 +40,7 @@ body {
 
 main>article,
 .main {
-  @apply max-w-4xl mx-4 md:mx-auto my-16 p-8 rounded-lg;
+  @apply max-w-4xl mx-4 md:mx-auto p-8 rounded-lg;
 }
 
 .single {
@@ -114,7 +114,12 @@ blockquote .quote-mark {
   right: 100%;
   @apply absolute top-0 leading-none text-white text-opacity-20 font-display;
 }
-
+.icon {
+  @apply h-6 inline-block;
+}
+.icon-link {
+  @apply icon opacity-50 hover:opacity-100;
+}
 .modal {
   @apply flex items-center justify-center fixed z-40 inset-0 h-full p-6 backdrop-brightness-75 backdrop-blur-sm;
 }

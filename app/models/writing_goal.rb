@@ -7,9 +7,18 @@ class WritingGoal < ApplicationRecord
   def to_param
     slug
   end
+  def days_written
+    writing_entries.count
+  end
+  def wordcount
+    writing_entries.map(&:count).inject(0, :+)
+  end
+  def days_remaining
+    return 0 if finish_on.nil?
+    (finish_on - Date.today).to_i
+  end
   module ClassMethods
     def find_using_slug(slug)
-      # slug = param.split('-').last || param
       where(slug: slug).limit(1).first
     end
   end

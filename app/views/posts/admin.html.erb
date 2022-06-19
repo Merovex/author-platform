@@ -1,0 +1,29 @@
+<div class="main">
+
+<% if can? :admin, Post %>
+  <%= headline("Post Adminstration")  %>
+  <div class="mt-8">
+    <%= link_to 'New Post', new_post_path, class: 'action' %>
+  </div>
+
+  <section class="p-4 card">
+  <%= h2('Published') %>
+  <% if @posts.empty? %>
+    <p class="text-center opacity-60">Read my lips. No New Posts.</p>
+  <% else %>
+        <table class='w-full border table-fixed'>
+    <thead>
+      <tr>
+        <th class="w-1/2 border">Title</th>
+        <th class="w-1/4 border">Release Date</th>
+        <th class="w-1/4 border">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+        <%= render partial: 'post_row', collection: @posts, as: :post %>
+    </tbody>
+    </table>
+  <% end %>
+  </section>
+<% end %>
+</div>

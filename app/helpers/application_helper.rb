@@ -1,4 +1,7 @@
 module ApplicationHelper
+  def icon(name, klass='icon')
+    image_tag("icons/#{name}.svg", class: klass)
+  end
   def inverse_button_css(color='blue')
     border_color = {
       blue: "border-blue-500",

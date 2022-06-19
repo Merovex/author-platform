@@ -1,4 +1,4 @@
 <div class="form-panel">
 <%= headline('Editing: '+@book.title) %>
-<%= render 'form', book: @book %>
+<%= render 'form', book: @book, url: book_path(@book) %>
 </div>

@@ -2,50 +2,12 @@
     <% headline("Posts") %>
     <% if can? :admin, Post %>
       <div class="mt-8">
-      <%= link_to 'New Post', new_post_path, class: 'action' %>
+      <%= link_to "Admin", posts_admin_path(), class: 'action' %>
       </div>
     <% end %>
     
     <%= render 'components/subscribe' %>
-    <% if can? :admin, Post %>
-      <% if @posts.pending_published.count() > 0%>
-      <section class="p-4 card">
-        <h2 class="h2">Pending Release</h2>
-        <table class='w-full border table-fixed'>
-        <thead>
-          <tr>
-            <th class="w-1/2 border">Title</th>
-            <th class="w-1/4 border">Release Date</th>
-            <th class="w-1/4 border">Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @posts.pending_published.reverse.each do |post| %>
-          <tr>
-            <td class="px-2 border">
-              <%= link_to post.title, post, class: "link" %>
-              (<%= link_to "edit", edit_post_path(post), class: 'link' %>)
-            </td>
-            <td class="text-center border">
-              <% if post.published_at.nil? %> 
-                <%= link_to 'post now', post_path(post) + "/publish", class: "link" %>
-              <% else %>
-                <%= local_time_popover(post.published_at) %>
-              <% end %>
-            </td>
-            <td class='text-center border'>
-            <%= link_to "Destroy", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'link' %>
-            </td>
-          </tr>
-          <% end %>
-        </tbody>
-        </table>
-      </section>
-      <h2 class="h2">Published</h2>
-      <% else %>
-        <p class="text-center opacity-60">Everything is published.</p>
-      <% end %>
-    <% end %>
+
     <% if @posts.empty? or @posts.published.empty? %>
       <div class="text-center text-xl">
       <h2>No Articles published.</h2>

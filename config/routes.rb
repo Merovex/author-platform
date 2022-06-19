@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   get 'dashboard/' => 'dashboard#index'
-  get 'dashboard/pages'
-  get 'dashboard/posts'
+  
   get 'dashboard/subscribers' => 'subscriptions#subscribers', as: 'subscribers'
   
   resources :subscriptions
@@ -14,15 +13,20 @@ Rails.application.routes.draw do
 
   # mount Blazer::Engine, at: "blazer"
   
-  resources :series
+  resources :series do 
+    resources :books, only: [:new, :create, :edit, :update]
+  end
   resources :authors
   resources :writing_goals do
     resources :writing_entries, path_names: { new: 'new/:date' }
   end
+  get 'books/admin' => 'books#admin'
   resources :books do
     resources :praises
     resources :book_links
   end
+  
+  get 'posts/admin' => 'posts#admin'
   resources :posts
   devise_for :users, controllers: {
     sessions: "devise/passwordless/sessions",
