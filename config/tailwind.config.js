@@ -250,9 +250,9 @@ module.exports = {
         },
       },
       fontFamily: {
-        'sans': ["MerovexSans", ...defaultTheme.fontFamily.sans],
-        'serif': ["MerovexSerif", ...defaultTheme.fontFamily.serif],
-        'display': ["MerovexDisplay", "MerovexSans", ...defaultTheme.fontFamily.sans]
+        'sans': ["Merovex Sans", ...defaultTheme.fontFamily.sans],
+        'serif': ["Merovex Serif", ...defaultTheme.fontFamily.serif],
+        'display': ["Merovex Display", "MerovexSans", ...defaultTheme.fontFamily.sans]
       }
     },
   },
