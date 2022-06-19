@@ -1,0 +1,30 @@
+<section>
+  <%= h2('Heatmap') %>
+  <h3 id='contribution'></h3>
+  <div class='flex w-full'>
+  <div id='heatmap' class='flex-1'>
+    <div id='calgraph'></div>
+  </div>
+  <div class="flex-1">
+  <ul>
+    <%- entries_years(entries).each do |e| %>
+      <li>
+        <%= tag.button( e, onclick: "build_heatmap(this.innerHTML)") %>
+      </li>
+    <%- end %>
+  </ul>
+  </div>
+</section>
+<%= javascript_include_tag( 'calendar-graph' )%>
+<script type="text/javascript">
+  function build_heatmap(year) {
+      const heatmap_graph = new CalendarGraph({
+      data: <%= set_heatmap_data(entries) %>,
+      target: parseInt(document.getElementById('heatmap').value),
+      year: year
+    })
+    heatmap_graph.render();
+    heatmap_graph.write_contribution();
+  }
+  build_heatmap(<%= entries_years(entries).first %>)
+</script>

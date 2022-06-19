@@ -2,25 +2,25 @@
 <div class="main">
 <section class="flex gap-3 font-sans text-sm">
   <div class="flex-1 py-4 text-center card border-[#696aaa] border-2 bg-[#51528f] text-white">
-    <span id="earned-value" class="block text-2xl font-bold"><%= number_with_delimiter(@wip_wordcount) %></span>
+    <span id="earned-value" class="block text-2xl font-bold"><%= number_with_delimiter(@goal.wordcount) %></span>
     WIP Wordcount
   </div>
 
   <div class="flex-1 py-4 text-center card border-[#6aaa69] border-2 bg-[#528f51] text-white">
-    <span id="annual-wordcount" class="block text-2xl font-bold"><%= number_with_delimiter(@annual_wordcount) %></span>
+    <span id="annual-wordcount" class="block text-2xl font-bold"><%= number_with_delimiter(WritingEntry.annual_wordcount(Time.now().year)) %></span>
     Annual Wordcount
   </div>
   <div class="flex-1 py-4 text-center card border-[#aa696a] border-2 bg-[#8f5152] text-white">
     <div>
       <span id="days-remaining" class="text-2xl font-bold ">
-      <%= @wip.writing_goal.days_remaining %>
+      <%= @goal.days_remaining %>
       </span> /
-      <span id="total-days" class="text-2xl font-bold "><%= @total_days %></span>
+      <span id="total-days" class="text-2xl font-bold "><%= @goal.writing_entries.count %></span>
     </div>
     Days (left/done)
   </div>
   <div class="flex-1 py-4 text-center card border-[#698baa] border-2 bg-[#51718f] text-white">
-    <span id="tracking-date" class="block text-2xl font-bold"><%= @remaining %></span>
+    <span id="tracking-date" class="block text-2xl font-bold"><%= target_completion(@goal) %></span>
     Expected Completion
   </div>
   
@@ -33,17 +33,5 @@
 <% end %>
 
 <%= headline('Dashboard') %>
-  <section>
-  <%= h2('Heatmap') %>
-  <div id='heatmap'></div>
-  </section>
+  <%= render "dashboard/heatmap", entries: WritingEntry.all %>
 </div>
-
-<%= javascript_include_tag( 'calendar-graph' )%>
-<script type="text/javascript">
-  const heatmap_graph = new CalendarGraph({
-    data: <%= @heatmap_days.to_json.html_safe %>,
-    target: parseInt(document.getElementById('heatmap').value)
-  })
-  heatmap_graph.render();
-</script>

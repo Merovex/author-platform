@@ -41,6 +41,8 @@ class CalendarGraph {
     this.terms = options.terms || 'words';
     this.breakpoints = options.breakpoints || [0.6, 1.2]
     this.css_class = options.css_class || 'calgraph'
+    this.year = options.year || new Date().getFullYear();
+    this.total = 0;
 
     this.offset = [25, 20]; // Y & X offsets
     this.fullsize = this.size + this.padding;
@@ -118,9 +120,8 @@ class CalendarGraph {
       'calgraph-4',
       'calgraph-5'
     ]
-    let cell_x = this.fullsize;
     let key = null;
-    cells.forEach((item, idx) => {
+    cells.forEach((item) => {
       legend_x += this.fullsize
       key = this.createCell(legend_x, legend_y)
       key.setAttribute('class', item)
@@ -173,6 +174,9 @@ class CalendarGraph {
     day.setAttributeNS(null, "class", `${this.css_class}-${level}` + " calgraph-day");
     return day;
   }
+  write_contribution() {
+    document.getElementById('contribution').innerHTML = `${this.total.toLocaleString()} words written in ${this.year}`
+  }
   render() {
     const div = document.getElementById('heatmap')
     const svg = document.createElementNS(this.ns, 'svg')
@@ -184,17 +188,18 @@ class CalendarGraph {
     svg.setAttributeNS(null, 'overflow', 'hidden')
     svg.setAttributeNS(this.ns, 'viewbox', '0 0 ' + this.svgsize[0] + ' ' + this.svgsize[1] + ' 200')
 
-    // const now = new Date();
-    const eoy = new Date(new Date().getFullYear(), 11, 31);
-    // console.log(eoy)
-    const nyd = new Date(new Date().getFullYear(), 0, 1);
+    const eoy = new Date(this.year, 11, 31);
+    const nyd = new Date(this.year, 0, 1);
     for (var d = nyd; d <= eoy; d.setDate(d.getDate() + 1)) {
-      svg.appendChild(this.drawDay(d, this.data[d.toISOString().split('T')[0]]))
+      let this_day = this.data[d.toISOString().split('T')[0]]
+      let value = (this_day !== undefined) ? parseInt(this_day['words']) : 0;
+      this.total += value;
+      svg.appendChild(this.drawDay(d, this_day))
     }
 
     svg.appendChild(this.drawAxis())
     svg.appendChild(this.drawLegend())
-    div.appendChild(svg)
+    div.replaceChild(svg, div.firstElementChild)
     document.querySelectorAll('.calgraph-day').forEach(function (day) {
       if (day.dataset.count > 0) {
         day.addEventListener('mouseover', cgCreateTip);
