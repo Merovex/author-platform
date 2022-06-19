@@ -252,7 +252,7 @@ module.exports = {
       fontFamily: {
         'sans': ["Merovex Sans", ...defaultTheme.fontFamily.sans],
         'serif': ["Merovex Serif", ...defaultTheme.fontFamily.serif],
-        'display': ["Merovex Display", "MerovexSans", ...defaultTheme.fontFamily.sans]
+        'display': ["Merovex Display", ...defaultTheme.fontFamily.sans]
       }
     },
   },
