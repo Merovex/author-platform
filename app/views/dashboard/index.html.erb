@@ -1,26 +1,26 @@
 
 <div class="main">
 <section class="flex gap-3 font-sans text-sm">
-  <div class="flex-1 py-4 text-center card border-[#696aaa] border-2 bg-[#51528f] text-white">
-    <span id="earned-value" class="block text-2xl font-bold"><%= number_with_delimiter(@goal.wordcount) %></span>
+  <div class="flex-1 py-4 text-center card border-violet-400 border-2 bg-violet-300 text-violet-800">
+    <span id="earned-value" class="block text-4xl tracking-tight font-semibold"><%= number_with_delimiter(@goal.wordcount) %></span>
     WIP Wordcount
   </div>
 
-  <div class="flex-1 py-4 text-center card border-[#6aaa69] border-2 bg-[#528f51] text-white">
-    <span id="annual-wordcount" class="block text-2xl font-bold"><%= number_with_delimiter(WritingEntry.annual_wordcount(Time.now().year)) %></span>
+  <div class="flex-1 py-4 text-center card border-green-400 border-2 bg-green-400 text-green-900">
+    <span id="annual-wordcount" class="block text-4xl tracking-tight font-semibold"><%= number_with_delimiter(WritingEntry.annual_wordcount(Time.now().year)) %></span>
     Annual Wordcount
   </div>
-  <div class="flex-1 py-4 text-center card border-[#aa696a] border-2 bg-[#8f5152] text-white">
+  <div class="flex-1 py-4 text-center card border-red-400 border-2 bg-red-300 text-red-700">
     <div>
-      <span id="days-remaining" class="text-2xl font-bold ">
+      <span id="days-remaining" class="text-4xl tracking-tight font-semibold ">
       <%= @goal.days_remaining %>
       </span> /
-      <span id="total-days" class="text-2xl font-bold "><%= @goal.writing_entries.count %></span>
+      <span id="total-days" class="text-4xl tracking-tight font-semibold "><%= @goal.writing_entries.count %></span>
     </div>
     Days (left/done)
   </div>
-  <div class="flex-1 py-4 text-center card border-[#698baa] border-2 bg-[#51718f] text-white">
-    <span id="tracking-date" class="block text-2xl font-bold"><%= target_completion(@goal) %></span>
+  <div class="flex-1 py-4 text-center card border-indigo-400 border-2 bg-indigo-300 text-indigo-800">
+    <span id="tracking-date" class="block text-4xl tracking-tight font-semibold"><%= target_completion(@goal) %></span>
     Expected Completion
   </div>
   

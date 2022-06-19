@@ -3,7 +3,12 @@
 @tailwind utilities;
 
 body {
-  @apply flex flex-col min-h-screen bg-white dark:bg-gray-700 dark:text-white;
+  @apply flex flex-col min-h-screen bg-white dark:bg-gray-900 dark:text-white font-normal;
+}
+@media only screen and (-webkit-min-device-pixel-ratio : 2) {
+  body {
+    @apply font-medium;
+  }
 }
 
 .card {
@@ -56,7 +61,7 @@ main>article,
 }
 
 .headline {
-  @apply font-display text-3xl md:text-5xl text-brand-500 dark:text-brand-100 mt-4 mb-8;
+  @apply font-display text-3xl md:text-5xl text-indigo-500 dark:text-brand-100 mt-4 mb-8;
 }
 
 .user-menu-link {
@@ -74,10 +79,12 @@ main>article,
 .button {
   @apply px-4 py-2 mx-2 inline-block font-sans font-bold text-sm transition duration-200 ease-in-out border rounded shadow-lg focus:outline-none hover:shadow-sm hover:opacity-100 opacity-70;
 }
+.year_button-active {
+  @apply bg-violet-500;
+}
 
 .action {
   @apply border-solid border inline-block p-2 mx-1 text-sm uppercase font-sans border-blue-200 rounded-md dark:border-blue-400 hover:bg-blue-500 dark:hover:bg-blue-400 hover:text-white dark:text-white;
-
 }
 
 details summary::-webkit-details-marker,
@@ -128,33 +135,26 @@ blockquote .quote-mark {
   @apply w-full max-w-lg overflow-hidden relative bg-white border-gray-500 p-5 rounded;
 }
 svg.caligraph {
-  @apply bg-heatmap-4;
+  
 }
-
 .calgraph-text {
   @apply font-sans text-xs dark:fill-gray-200/50 fill-gray-600/50;
 }
-
 .calgraph-text-bold {
   @apply font-sans text-xs dark:fill-gray-200 fill-gray-600;
 }
-
 .calgraph-1 {
-  @apply fill-gray-200/5 stroke-gray-500/25 dark:stroke-gray-500/50
+  @apply fill-gray-400/[.15] stroke-gray-500/25 dark:stroke-gray-500/25;
 }
-
 .calgraph-2 {
-  @apply fill-heatmap-1 stroke-gray-500/25 dark:stroke-gray-500/75 dark:fill-heatmap-dark/25
+  @apply fill-heatmap-200 dark:fill-heatmap-400/25 stroke-gray-500/[.15]
 }
-
 .calgraph-3 {
-  @apply fill-heatmap-2 stroke-gray-500/25 dark:stroke-gray-500/75 dark:fill-heatmap-dark/50
+  @apply fill-heatmap-400 dark:fill-heatmap-400/50 stroke-gray-500/[.15]
 }
-
 .calgraph-4 {
-  @apply fill-heatmap-3 stroke-gray-500/25 dark:stroke-gray-500/75 dark:fill-heatmap-dark/75
+  @apply fill-heatmap-600 dark:fill-heatmap-400/75 stroke-gray-500/[.15]
 }
-
 .calgraph-5 {
-  @apply fill-heatmap-4 stroke-gray-500/25 dark:stroke-gray-500/75 dark:fill-heatmap-dark
+  @apply fill-heatmap-700 dark:fill-heatmap-400 stroke-gray-500/[.15]
 }

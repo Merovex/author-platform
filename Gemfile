@@ -90,3 +90,5 @@ gem "aws-sdk-s3", "~> 1.114", require: false
 gem "view_component", "~> 2.57"
 
 gem "tailwindcss-rails", "~> 2.0"
+
+gem "net-http", "~> 0.2.2"

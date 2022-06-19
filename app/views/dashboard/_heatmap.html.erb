@@ -6,10 +6,10 @@
     <div id='calgraph'></div>
   </div>
   <div class="flex-1">
-  <ul>
-    <%- entries_years(entries).each do |e| %>
+  <ul class='text-sm'>
+    <%- entries_years(entries).each do |year| %>
       <li>
-        <%= tag.button( e, onclick: "build_heatmap(this.innerHTML)") %>
+        <%= tag.button(year, id: "button_#{year}", onclick: "build_heatmap(this.innerHTML)", class: 'year-button hover:bg-gray-500/5 rounded mb-1 py-1 px-2') %>
       </li>
     <%- end %>
   </ul>
@@ -25,6 +25,11 @@
     })
     heatmap_graph.render();
     heatmap_graph.write_contribution();
+    const active_classes = ['bg-indigo-500', 'text-white']
+    document.querySelectorAll('.year-button').forEach(function (button) {
+      button.classList.remove(...active_classes)
+    })
+    document.getElementById('button_'+year).classList.add(...active_classes)
   }
   build_heatmap(<%= entries_years(entries).first %>)
 </script>
