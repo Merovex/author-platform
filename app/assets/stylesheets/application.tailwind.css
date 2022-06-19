@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply flex flex-col min-h-screen bg-white dark:bg-gray-900 dark:text-white font-normal;
+  @apply flex flex-col min-h-screen font-normal bg-white dark:bg-gray-900 dark:text-white;
 }
 @media only screen and (-webkit-min-device-pixel-ratio : 2) {
   body {
@@ -20,23 +20,23 @@ body {
 }
 
 .card time {
-  @apply text-center text-gray-500 dark:text-gray-300 opacity-75 block;
+  @apply block text-center text-gray-500 opacity-75 dark:text-gray-300;
 }
 
 .card h2 {
-  @apply font-display text-2xl md:text-3xl text-black dark:text-white text-center mt-2 mb-4;
+  @apply mt-2 mb-4 text-2xl text-center text-black font-display md:text-3xl dark:text-white;
 }
 
 .link {
-  @apply underline text-blue-500 dark:text-blue-300;
+  @apply text-blue-500 underline dark:text-blue-300;
 }
 
 .h2 {
-  @apply font-display text-2xl md:text-3xl text-black dark:text-white text-center mt-2 mb-4;
+  @apply mt-2 mb-4 text-2xl text-center text-black font-display md:text-3xl dark:text-white;
 }
 
 .h3 {
-  @apply font-sans text-xl md:text-2xl text-black dark:text-white text-center mt-2 mb-4;
+  @apply mt-2 mb-4 font-sans text-xl text-center text-black md:text-2xl dark:text-white;
 }
 
 .bordered {
@@ -45,7 +45,7 @@ body {
 
 main>article,
 .main {
-  @apply max-w-4xl mx-4 md:mx-auto p-8 rounded-lg;
+  @apply max-w-4xl p-8 mx-4 rounded-lg md:mx-auto;
 }
 
 .single {
@@ -57,34 +57,34 @@ main>article,
 }
 
 .form-panel {
-  @apply lg:w-2/3 max-w-2xl mx-auto;
+  @apply max-w-2xl mx-auto lg:w-2/3;
 }
 
 .headline {
-  @apply font-display text-3xl md:text-5xl text-indigo-500 dark:text-brand-100 mt-4 mb-8;
+  @apply mt-4 mb-8 text-3xl text-indigo-500 font-display md:text-5xl dark:text-brand-100;
 }
 
 .user-menu-link {
-  @apply text-black dark:text-white block px-4 py-2 text-sm hover:bg-gray-500 hover:bg-opacity-10;
+  @apply block px-4 py-2 text-sm text-black dark:text-white hover:bg-gray-500 hover:bg-opacity-10;
 }
 
 .subtitle {
-  @apply font-display text-2xl md:text-3xl text-black dark:text-white;
+  @apply text-2xl text-black font-display md:text-3xl dark:text-white;
 }
 
 .panel-headline {
-  @apply font-sans text-2xl md:text-3xl text-black dark:text-white font-bold mt-4 mb-8 text-center;
+  @apply mt-4 mb-8 font-sans text-2xl font-bold text-center text-black md:text-3xl dark:text-white;
 }
 
 .button {
-  @apply px-4 py-2 mx-2 inline-block font-sans font-bold text-sm transition duration-200 ease-in-out border rounded shadow-lg focus:outline-none hover:shadow-sm hover:opacity-100 opacity-70;
+  @apply inline-block px-4 py-2 mx-2 font-sans text-sm font-bold transition duration-200 ease-in-out border rounded shadow-lg focus:outline-none hover:shadow-sm hover:opacity-100 opacity-70;
 }
 .year_button-active {
   @apply bg-violet-500;
 }
 
 .action {
-  @apply border-solid border inline-block p-2 mx-1 text-sm uppercase font-sans border-blue-200 rounded-md dark:border-blue-400 hover:bg-blue-500 dark:hover:bg-blue-400 hover:text-white dark:text-white;
+  @apply inline-block p-2 mx-1 font-sans text-sm uppercase border border-blue-200 border-solid rounded-md dark:border-blue-400 hover:bg-blue-500 dark:hover:bg-blue-400 hover:text-white dark:text-white;
 }
 
 details summary::-webkit-details-marker,
@@ -122,17 +122,17 @@ blockquote .quote-mark {
   @apply absolute top-0 leading-none text-white text-opacity-20 font-display;
 }
 .icon {
-  @apply h-6 inline-block;
+  @apply inline-block h-6;
 }
 .icon-link {
-  @apply icon opacity-50 hover:opacity-100;
+  @apply opacity-50 icon hover:opacity-100;
 }
 .modal {
-  @apply flex items-center justify-center fixed z-40 inset-0 h-full p-6 backdrop-brightness-75 backdrop-blur-sm;
+  @apply fixed inset-0 z-40 flex items-center justify-center h-full p-6 backdrop-brightness-75 backdrop-blur-sm;
 }
 
 .modal-window {
-  @apply w-full max-w-lg overflow-hidden relative bg-white border-gray-500 p-5 rounded;
+  @apply relative w-full max-w-lg p-5 overflow-hidden bg-white border-gray-500 rounded;
 }
 svg.caligraph {
   
@@ -157,4 +157,78 @@ svg.caligraph {
 }
 .calgraph-5 {
   @apply fill-heatmap-700 dark:fill-heatmap-400 stroke-gray-500/[.15]
+}
+@font-face {
+  font-family: "Merovex Display";
+  src: url("./fonts/FjallaOne-Regular.ttf");
+  font-display: swap;
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Merovex Serif';
+  font-display: swap;
+  font-weight: 400 500 600 700 800;
+  font-style: normal;
+  font-stretch: normal;
+  src: url('./fonts/SourceSerif4Variable-Roman.ttf.woff2') format('woff2'),
+    url('./fonts/SourceSerif4Variable-Roman.ttf.woff') format('woff'),
+    url('./fonts/SourceSerif4Variable-Roman.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Merovex Serif';
+  font-display: swap;
+  font-weight: 400 500 600 700 800;
+  font-style: italic;
+  font-stretch: normal;
+  src: url('./fonts/SourceSerif4Variable-Italic.ttf.woff2') format('woff2'),
+    url('./fonts/SourceSerif4Variable-Italic.ttf.woff') format('woff'),
+    url('./fonts/SourceSerif4Variable-Italic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Merovex Code';
+  font-display: swap;
+  font-weight: 400 500 600 700 800;
+  font-style: normal;
+  font-stretch: normal;
+  src: url('./fonts/SourceCodeVariable-Roman.ttf.woff2') format('woff2'),
+    url('./fonts/SourceCodeVariable-Roman.ttf.woff') format('woff'),
+    url('./fonts/SourceCodeVariable-Roman.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Merovex Code';
+  font-display: swap;
+  font-weight: 400 500 600 700 800;
+  font-style: italic;
+  font-stretch: normal;
+  src: url('./fonts/SourceCodeVariable-Italic.ttf.woff2') format('woff2'),
+    url('./fonts/SourceCodeVariable-Italic.ttf.woff') format('woff'),
+    url('./fonts/SourceCodeVariable-Italic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Merovex Sans';
+  font-weight: 400 500 600 700 800;
+  font-style: normal;
+  font-stretch: normal;
+  font-display: swap;
+  src: url('./fonts/SourceSans3VF-Roman.ttf.woff2') format('woff2'),
+    url('./fonts/SourceSans3VF-Roman.ttf.woff') format('woff'),
+    url('./fonts/SourceSans3VF-Roman.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Merovex Sans';
+  font-weight: 400 500 600 700 800;
+  font-style: italic;
+  font-stretch: normal;
+  font-display: swap;
+  src: url('./fonts/SourceSans3VF-Italic.ttf.woff2') format('woff2'),
+    url('./fonts/SourceSans3VF-Italic.ttf.woff') format('woff'),
+    url('./fonts/SourceSans3VF-Italic.ttf') format('truetype');
 }
