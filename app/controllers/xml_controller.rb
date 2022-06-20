@@ -1,7 +1,7 @@
 class XmlController < ApplicationController
   def atom
     @feed_title = "FNORD"
-    @recent_items = Post.published.limit(10).sort{|a,b| b.created_at <=> a.created_at }
+    @posts = Post.published.limit(10).sort{|a,b| b.created_at <=> a.created_at }
     @person = User.first
     respond_to do |format|
       format.xml

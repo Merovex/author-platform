@@ -1,22 +1,15 @@
-xml.rss("version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/") do
-  xml.channel do
-    xml.title(@feed_title)
-    xml.link(@url)
-    xml.description "Ben Wilson, Author: Recent Updates"
-    xml.language "en-us"
-    xml.ttl "40"
+atom_feed do |feed|
+  feed.title("My great blog!")
+  feed.updated(@posts.first.updated_at) if @posts.count > 0
 
-    @recent_items.each do |item|
-      xml.item do
-        xml.title(item.title)
-        xml.description(post_description(item)) if post_description(item)
-        xml.pubDate(item.published_at)
-        # xml.guid(@person.firm.account.url + @recent_items.url(item))
-        # xml.link(@person.firm.account.url + @recent_items.url(item))
-        xml.guid(post_url(item))
-        xml.link(post_url(item))
+  @posts.each do |post|
+    feed.entry(post) do |entry|
+      next if post.content.to_plain_text.empty? || post.title.blank?
+      entry.title(post.title)
+      entry.content(post.content.to_plain_text, type: 'text')
 
-        xml.tag!("dc:creator", item.author_name) if post_has_creator?(item)
+      entry.author do |author|
+        author.name(post.author_name)
       end
     end
   end
