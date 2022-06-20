@@ -8,6 +8,10 @@ class Post < ApplicationRecord
   scope :published, -> { where("published_at < ?", Time.now.utc) }
   scope :unpublished, -> { where("published_at > ?", Time.now.utc).or(self.where(published_at: nil)) }
   
+  def author_name
+    return user.email if user.name.blank?
+    return user.name
+  end
   def publish_now
     write_attribute(:published_at, Time.now.utc)
   end

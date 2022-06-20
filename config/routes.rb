@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get 'dashboard/' => 'dashboard#index'
+  get 'atom.xml' => 'xml#atom', format: :xml, as: :atom
+  get 'sitemap.xml' => 'xml#sitemap', format: :xml, as: :sitemap
   
   get 'dashboard/subscribers' => 'subscriptions#subscribers', as: 'subscribers'
   
