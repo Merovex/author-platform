@@ -1,5 +1,5 @@
 atom_feed do |feed|
-  feed.title("My great blog!")
+  feed.title("Ben Wilson, Author")
   feed.updated(@posts.first.updated_at) if @posts.count > 0
 
   @posts.each do |post|
