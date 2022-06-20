@@ -8,7 +8,7 @@ module Slug
   end
   def set_slug
     loop do
-      self.slug = SecureRandom.base64(6).tr('+/=','')
+      self.slug = SecureRandom.base64(4).tr('+/=','')
       slug = self.slug
       break unless Book.where(slug: slug).exists?
     end
@@ -20,7 +20,7 @@ module Slug
     end
     def unique_slug(key)
       loop do
-        slug = SecureRandom.base64(6).tr('+/=','')
+        slug = SecureRandom.base64(4).tr('+/=','')
         return slug unless self.where({key.to_sym => slug}).exists?
       end
     end

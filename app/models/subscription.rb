@@ -38,7 +38,7 @@ class Subscription < ApplicationRecord
   protected
     def unique_slug(key)
       loop do
-        slug = SecureRandom.base64(6).tr('+/=','')
+        slug = SecureRandom.base64(4).tr('+/=','')
         return slug# unless self.exists?({key.to_sym => slug})
       end
     end

@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def slug_url(obj)
+    return "" unless obj.respond_to?(:slug)
+    return [polymorphic_url(obj.class), obj.slug].join("/").downcase
+  end
   def icon(name, klass='icon')
     image_tag("icons/#{name}.svg", class: klass)
   end

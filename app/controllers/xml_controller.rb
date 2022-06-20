@@ -12,6 +12,7 @@ class XmlController < ApplicationController
       @pages = Page.all
       @books = Book.published
       @posts = Post.published.sort{|a,b| b.created_at <=> a.created_at }
+      @last_mod = @posts.sort{|a,b| b.updated_at <=> a.updated_at }.first.updated_at.inspect
       # raise @posts.inspect
     respond_to do |format|
       format.xml

@@ -14,7 +14,7 @@ class User < ApplicationRecord
   attribute :slug, :string
   def set_slug
     loop do
-      self.slug = SecureRandom.base64(6).tr('+/=','')
+      self.slug = SecureRandom.base64(4).tr('+/=','')
       break unless User.where(slug: slug).exists?
     end
   end
