@@ -90,7 +90,7 @@ Devise.setup do |config|
   # It will change confirmation, password recovery and other workflows
   # to behave the same regardless if the e-mail provided was right or wrong.
   # Does not affect registerable.
-  # config.paranoid = true
+  config.paranoid = true
 
   # By default Devise will store the user in session. You can skip storage for
   # particular strategies by setting this option.
@@ -143,7 +143,7 @@ Devise.setup do |config|
   # without confirming their account.
   # Default is 0.days, meaning the user cannot access the website without
   # confirming their account.
-  # config.allow_unconfirmed_access_for = 2.days
+  config.allow_unconfirmed_access_for = 0.days
 
   # A period that the user is allowed to confirm their account before their
   # token becomes invalid. For example, if set to 3.days, the user can confirm
@@ -151,7 +151,7 @@ Devise.setup do |config|
   # their account can't be confirmed with the token any more.
   # Default is nil, meaning there is no restriction on how long a user can take
   # before confirming their account.
-  # config.confirm_within = 3.days
+  config.confirm_within = 3.days
 
   # If true, requires any email changes to be confirmed (exactly the same way as
   # initial account confirmation) to be applied. Requires additional unconfirmed_email
@@ -316,7 +316,7 @@ Devise.setup do |config|
   config.mailer = "Devise::Passwordless::Mailer"
 
   # Time period after a magic login link is sent out that it will be valid for.
-  config.passwordless_login_within = 20.minutes
+  config.passwordless_login_within = 5.minutes
 
   # The secret key used to generate passwordless login tokens. The default value
   # is nil, which means defer to Devise's `secret_key` config value. Changing this
@@ -327,7 +327,7 @@ Devise.setup do |config|
   # When using the :trackable module, set to true to consider magic link tokens
   # generated before the user's current sign in time to be expired. In other words,
   # each time you sign in, all existing magic links will be considered invalid.
-  # config.passwordless_expire_old_tokens_on_sign_in = false
+  config.passwordless_expire_old_tokens_on_sign_in = true
 end
 # Devise.add_module(:passwordless_authenticatable, {
 #   strategy: true,
