@@ -45,7 +45,7 @@ body {
 
 main>article,
 .main {
-  @apply max-w-4xl p-8 mx-4 rounded-lg md:mx-auto;
+  @apply max-w-3xl p-8 mx-4 rounded-lg md:mx-auto;
 }
 
 .single {

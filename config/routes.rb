@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   
   resources :links
   get '/s/:slug', to: 'links#show', as: :short
+  get '/landing/:book_id', to: 'landing#show', as: 'landing'
   
   resources :pages
   resources :errors

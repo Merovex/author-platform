@@ -1,4 +1,4 @@
-<aside class="max-w-lg mx-auto my-8 text-center transform card -rotate-1">
+<aside class="max-w-lg mx-auto my-8 text-center transform card -xrotate-1">
 <p class="py-2 font-bold">Subscribe below to get future posts from Ben Wilson</p>
 
 <%= form_with(model: User.new, url: user_registration_path) do |form| %>
@@ -7,6 +7,6 @@
   <%= form.submit "Subscribe", class: button_css('violet') %>
 <% end %>
 
-<p>Or grab the <%= link_to 'RSS feed', "/atom.xml", class: "underline" %></p>
+<%# <p>Or grab the <%= link_to 'RSS feed', "/atom.xml", class: "underline" %>
 
 </aside>

@@ -1,11 +1,25 @@
 require 'color/rgb/contrast'
 module BooksHelper
-  def hero_background(book)
-    # return rails_blob_url(book.cover)
-    return rails_blob_url(book.background) if book.hero_background.attached?
-    return rails_blob_url(book.cover) if book.cover.attached?
-    
-    "https://images.unsplash.com/photo-1503830481035-f1180021daf5"
+  def book_cover_image(book, klass="")
+    if book.cover.attached?
+      image_tag(
+        book.cover.variant(auto_orient: true, rotate: 0, resize: "200x300^", crop: '200x300+0+0', format: :webp),
+        class: klass
+      )
+    else
+      image_tag('https://via.placeholder.com/200x300?text=Book+Cover', class: klass)
+    end
+  end
+  def book_cover_background_image(book)
+    if book.hero_background.attached?
+      rails_blob_url(
+        book.hero_background.variant(auto_orient: true, rotate: 0, resize: "1600x900^", crop: '1600x900+0+0')#.processed.url
+      )
+    elsif book.cover.attached?
+      rails_blob_url(book.cover)
+    else
+      "https://images.unsplash.com/photo-1503830481035-f1180021daf5"
+    end
   end
   def hex_to_rgb(hex="#888888")
     r = hex[1,2].to_i(16)

@@ -8,7 +8,6 @@ class BooksController < ApplicationController
   # GET /books or /books.json
   def index
     @published = Book.published
-    # @unpublished = Book.unpublished
   end
   def admin
     @series = Series.all
@@ -25,12 +24,10 @@ class BooksController < ApplicationController
       end
     end
   end
-
-
   # GET /books/1 or /books/1.json
   def show
   end
-
+  
   # GET /books/new
   def new
     @book = Book.new

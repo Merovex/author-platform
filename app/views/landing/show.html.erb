@@ -1,0 +1,14 @@
+<article class='font-serif'>
+<%= headline("Welcome from <em>#{strip_tags(@book.title)}</em>".html_safe)%>
+
+<section class='max-w-2xl w-2xl trix-content'>
+<p>
+  I hope you enjoyed reading <em><%= strip_tags(@book.title) %></em> as much as I enjoyed writing it.
+</p>
+<p>
+If you are here, then that must be the case. If you have not already signed up for my newsletter, then I invite you to sign up.
+You will receive an email notification when new books are published, and you will receive occasional updates about what I am up to.
+</p>
+</section>
+<%= render 'components/subscribe' %>
+</article>

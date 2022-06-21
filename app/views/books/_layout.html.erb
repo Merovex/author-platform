@@ -1,7 +1,9 @@
 <% is_card ||= false %>
 <section id="<%= dom_id book %>" class='grid gap-4 py-5 px-4 lg:grid-cols-3<% if is_card %> shadow-lg rounded-lg my-6 border<%end%>'>
   <aside class='grid place-content-center <%= 'dark-image' unless is_card %>'>
-    <%= render 'books/cover', book: book, is_card: is_card %>
+    <div class='grid place-content-center'>
+      <%= book_cover_image(book, "inline-block rounded drop-shadow") %>
+    </div>
   </aside>
   <section class='grid lg:col-span-2 place-content-center'>
     <%= yield %>
