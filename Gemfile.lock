@@ -258,6 +258,8 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.4.3)
       loofah (~> 2.3)
+    rails_heroicons (0.7.0)
+      activesupport (>= 6.0.3)
     railties (7.0.3)
       actionpack (= 7.0.3)
       activesupport (= 7.0.3)
@@ -392,6 +394,7 @@ DEPENDENCIES
   pkg-config
   puma (~> 5.0)
   rails
+  rails_heroicons (~> 0.7.0)
   rake
   redis (~> 4.0)
   rolify (~> 6.0)

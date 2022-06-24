@@ -1,16 +1,20 @@
-<article class="single">
-<%= render 'components/actions', obj: @post %>
-<%- if @post.broadcastable? %>
-<%= render 'posts/broadcast', post: @post %>
-<%- end %>
-<aside class="text-center text-gray-500 opacity-75 dark:text-gray-300">
-  <%= local_time(@post.published_at, 'dd MMMM yyyy') %>
-</aside>
-<div class="text-center"><%= headline(@post.title.titlecase) %></div>
+<article class='single'>
+  <% if can? :admin, Post %>
+    <%= render layout: "components/action_panel" do %>
+      <%= link_to "Edit post", edit_post_path(@post) %>
+      <%= link_to "Broadcast", posts_broadcast_path(@post) if @post.broadcastable? %>
+    <% end %>
+  <% end %>
+  <div class='mx-8'>
+    <aside class="mx-12 text-center text-gray-500 opacity-75 dark:text-gray-300">
+    <%= local_time(@post.published_at, 'dd MMMM yyyy') %>
+    </aside>
+    <div class="text-center"><%= headline(@post.title.titlecase) %></div>
 
-<section class="<%=t('css_prose')%>">
-<%= @post.content %>
-</section>
+    <section class="<%=t('css_prose')%>">
+    <%= @post.content %>
+    </section>
 
-<%= render 'components/subscribe' %>
+    <%= render 'components/subscribe' %>
+  </div>
 </article>

@@ -1,0 +1,15 @@
+<div id="<%= dom_id todo %>" class='flex items-center my-1 space-x-4'>
+  <%= bi_icon('list') %>
+  <div class="flex space-x-3 form-check">
+    <%= check_box_tag("name", false, checked = !todo.done_at.nil?, class: "todo_checkbox") %>
+    <label class="inline-block text-gray-800 form-check-label" for="flexCheckDefault">
+      <%= link_to(todo.summary.truncate(70), todo, class: "link") %>
+    </label>
+    <% unless todo.due_on.nil? %>
+    <div>
+    <%= bi_icon('calendar', class: "h-4 w-4 inline-block") %>
+    <%= time_tag todo.due_on, date: todo.due_on, class: "text-sm" %>
+    </div>
+    <% end %>
+  </div>
+</div>

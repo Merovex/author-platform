@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :store_user_location!, if: :storable_location?
   before_action :authenticate_user_from_token!
-
+  before_action :set_current_user, if: :user_signed_in?
   # after_action :track_action
 
   # rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
@@ -43,6 +43,9 @@ class ApplicationController < ActionController::Base
     def ensure_frame_response
       return unless Rails.env.development?
       redirect_to root_path unless turbo_frame_request?
+    end
+    def set_current_user
+      Current.user = current_user
     end
     
 end

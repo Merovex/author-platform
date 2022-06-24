@@ -3,15 +3,21 @@ module ApplicationHelper
     return "" unless obj.respond_to?(:slug)
     return [polymorphic_url(obj.class), obj.slug].join("/").downcase
   end
-  def icon(name, klass='icon')
-    image_tag("icons/#{name}.svg", class: klass)
+  def bi_icon(name, args={})
+    klass = strip_tags(args[:class]) || ""
+    return raw("<i class='bi-icon bi-#{name} #{klass}'></i>")
+  end
+  def icon(name, klass='inline-block w-5 h-5')
+    return heroicon(name, class_name: klass)
   end
   def inverse_button_css(color='blue')
     border_color = {
-      blue: "border-blue-500",
-      red: "border-red-500",
-      purple: "border-violet-500",
-      violet: "border-violet-500",
+      brand: "border-brand",
+      error: "border-error",
+      # blue: "border-blue-500",
+      # red: "border-red-500",
+      # purple: "border-violet-500",
+      # violet: "border-violet-500",
       audible: "border-[#961110]",
       amazon: "border-[#ff9900]",
       kindle: "border-[#198ae2]",
@@ -21,10 +27,12 @@ module ApplicationHelper
   end
   def button_css(color = 'blue')
     bg_color = {
-      blue: "bg-blue-500",
-      red: "bg-red-500",
-      purple: "bg-violet-500",
-      violet: "bg-violet-500",
+      brand: "bg-brand",
+      error: "bg-error",
+      # blue: "bg-blue-500",
+      # red: "bg-red-500",
+      # purple: "bg-violet-500",
+      # violet: "bg-violet-500",
       audible: "bg-[#961110]",
       amazon: "bg-[#ff9900]",
       kindle: "bg-[#198ae2]",
@@ -33,7 +41,7 @@ module ApplicationHelper
     "#{bg_color} border-gray-500/50 text-white button shadow-lg shadow-blue-500/50"
   end
   def zebra()
-    cycle('bg-gray-100 dark:bg-gray-700','', name: 'zebra')
+    cycle('bg-subtle','', name: 'zebra')
   end
   def headline(title, wrap_title = true)
     content_for(:title, title)
@@ -49,6 +57,10 @@ module ApplicationHelper
   def h2(text, klass='')
     text = t(text) if text.is_a?(Symbol)
     content = tag.h2(text, class: "subtitle #{klass}")
+  end
+  def h3(text, klass='')
+    text = t(text) if text.is_a?(Symbol)
+    content = tag.h3(text, class: " #{klass}")
   end
   def barchart(data, type = 'undefined')
     id = SecureRandom.uuid.split('-').first

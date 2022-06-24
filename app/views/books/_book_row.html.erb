@@ -16,8 +16,8 @@
     <% end %>
   </td>
   <td class='text-center border'>
-    <%= link_to icon("pencil-alt", 'icon-link'), edit_book_path(book), class: 'link' %> |
-    <%= link_to icon("trash", 'icon-link'), book_path(book), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'link' %> |
-    <%= link_to icon("presentation-chart-line", 'icon-link'), writing_goal_path(book.writing_goal), class: 'link' if book.is_wip %> 
+    <%= link_to bi_icon("pencil-square"), edit_book_path(book), class: 'ml-4 link' %>
+    <%= link_to bi_icon("trash"), book_path(book), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'ml-4 link' %>
+    <%= link_to bi_icon("speedometer2"), writing_goal_path(book.writing_goal), class: 'ml-4 link' if book.is_wip %> 
   </td>
 </tr>

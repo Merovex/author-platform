@@ -64,10 +64,11 @@
   </div>
 
   <%= form.label :cover, class: 'h3' %>
-  <div class='grid gap-4 py-5 px-4 lg:grid-cols-3 field'>
+  <div class='grid gap-4 px-4 py-5 lg:grid-cols-3 field'>
     <% if book.cover.attached? %>
       <aside class='grid place-content-center'>
-        <%= image_tag book.thumb, class: 'rounded' %>
+      <%= book_cover_image(book) %>
+        <%#= image_tag book.thumb, class: 'rounded' %>
       </aside>
     <% end %>
     <div class='grid lg:col-span-2 place-content-center'>
@@ -76,10 +77,10 @@
   </div>
   
   <%= form.label :hero_background, class: 'h3' %>
-  <div class='grid gap-4 py-5 px-4 lg:grid-cols-3 field'>
+  <div class='grid gap-4 px-4 py-5 lg:grid-cols-3 field'>
     <% if book.hero_background.attached? %>
       <aside class='grid place-content-center'>
-        <%= image_tag book.background, class: 'rounded' %>
+        <%= image_tag book_cover_background_image(book), class: 'rounded' %>
       </aside>
     <% end %>
     <div class='grid lg:col-span-2 place-content-center'>

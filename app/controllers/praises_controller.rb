@@ -27,8 +27,7 @@ class PraisesController < ApplicationController
 
     respond_to do |format|
       if @praise.save
-        format.html { redirect_to @book, notice: "Praise was successfully created." }
-        format.json { render :show, status: :created, location: @praise }
+        format.turbo_stream { render turbo_stream: turbo_stream.append('praises-list', partial: "praises/praise", locals: {praise: @praise}) }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @praise.errors, status: :unprocessable_entity }
@@ -40,8 +39,7 @@ class PraisesController < ApplicationController
   def update
     respond_to do |format|
       if @praise.update(praise_params)
-        format.html { redirect_to @book, notice: "Praise was successfully updated." }
-        format.json { render :show, status: :ok, location: @praise }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@praise, partial: "praises/praise", locals: {praise: @praise}) }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @praise.errors, status: :unprocessable_entity }
@@ -53,6 +51,7 @@ class PraisesController < ApplicationController
   def destroy
     @praise.destroy
     respond_to do |format|
+      format.turbo_stream
       format.html { redirect_to praises_url, notice: "Praise was successfully destroyed." }
       format.json { head :no_content }
     end

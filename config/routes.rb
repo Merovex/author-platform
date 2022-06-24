@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  # get 'toolbar/show'
+  
+  resources :todolists, shallow: true do
+    resources :todos
+  end
+  post 'todo/:id/toolbar' => 'todos#toolbar', format: :turbo_stream, as: 'todo_toolbar'
   get 'dashboard/' => 'dashboard#index'
   get 'atom.xml' => 'xml#atom', format: :xml, as: :atom
   get 'sitemap.xml' => 'xml#sitemap', format: :xml, as: :sitemap

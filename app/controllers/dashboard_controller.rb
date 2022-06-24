@@ -2,6 +2,7 @@ class DashboardController < ApplicationController
   def index
     @wips = Book.wips
     @goal = @wips.last.writing_goal
+    @todolists = Todolist.all
     # @wip = @wips.last
     
     # @annual_wordcount = WritingEntry.annual_wordcount(Time.now().year)

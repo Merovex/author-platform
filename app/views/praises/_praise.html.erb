@@ -1,10 +1,14 @@
-<div id="<%= dom_id praise %>" class="scaffold_record">
-  <p>
-    <strong>Book:</strong>
-    <%= praise.book_id %>
-  </p>
-
-  <p>
-    <%= link_to "Show this praise", praise %>
-  </p>
+<div class="flex my-8" id='<%= dom_id(praise)%>'>
+  <div class='flex-1 font-serif text-lg'><%= praise.comment %></div>
+  <div class="text-right">
+    <%= link_to bi_icon('pencil-square'),
+                edit_book_praise_path(@book, praise), 
+                data: { turbo_frame: 'modal' },
+                class: 'link ml-4' %>
+    <%= button_to bi_icon('trash'),
+                  book_praise_path(@book, praise),
+                  data: { confirm: "Are you sure you want to delete this rave?" },
+                  method: :delete,
+                  class: 'link ml-4 inline' %>
+  </div>
 </div>

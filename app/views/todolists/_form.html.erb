@@ -1,0 +1,27 @@
+<%= form_with(model: todolist, class: "contents") do |form| %>
+  <% if todolist.errors.any? %>
+    <div id="error_explanation" class="px-3 py-2 mt-3 text-base font-medium rounded-lg bg-error">
+      <h2><%= pluralize(todolist.errors.count, "error") %> prohibited this todolist from being saved:</h2>
+
+      <ul>
+        <% todolist.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="mt-8">
+    <%= form.rich_text_area :content %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Save Changes", class: button_css('brand') %>
+    <%= link_to "Never Mind", :back, class: inverse_button_css('red')%>
+  </div>
+<% end %>

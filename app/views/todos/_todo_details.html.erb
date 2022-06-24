@@ -1,0 +1,27 @@
+    <header class='text-center'>
+      <%= tag.h1(@todo, class: "text-3xl mr-12 mb-8") %>
+    </header>
+    <hr>
+    <div class="flex my-4">
+      <div class="w-40 pr-4 font-semibold text-right ">Added By</div>
+      <div class="flex-1 "><span><%= @todo.created_by.to_s %></span> on 
+        <%= time_tag @todo.created_at, date: @todo.created_at, format: "%a, %B %d" %>
+      </div>
+    </div>
+    <div class="flex hidden my-4">
+      <div class="w-40 pr-4 font-semibold text-right ">Assigned To</div>
+      <div class="flex-1 "><%= @todo.assigned_to.to_s unless @todo.assigned_to.nil? %></div>
+    </div>
+    <div class="flex hidden">
+      <div class="w-40 pr-4 font-semibold text-right ">When Done, Notify</div>
+      <div class="flex-1 ">Value</div>
+    </div>
+    <div class="flex my-4">
+      <div class="w-40 pr-4 font-semibold text-right ">Due on</div>
+      <div class="flex-1 "><%= time_tag( @todo.due_on, date: @todo.due_on, format: "%a, %B %d") unless @todo.due_on.nil? %></div>
+    </div>
+    <div class="flex my-4">
+      <div class="w-40 pr-4 font-semibold text-right ">Notes</div>
+      <div class="flex-1 "><%= @todo.description %></div>
+    </div>
+    <hr>

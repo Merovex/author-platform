@@ -1,0 +1,11 @@
+<div class="main">
+
+  <div class="flex items-center justify-between">
+    <%= headline('To-dos') %>
+    <%= link_to icon('plus') +'New list', new_todolist_path, class: "button bg-indigo-500 text-white dark:bg-indigo-300 dark:text-black" %>
+  </div>
+
+  <div id="todolists" class="min-w-full">
+    <%= render @todolists %>
+  </div>
+</div>

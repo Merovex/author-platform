@@ -6,6 +6,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :confirmable, :lockable, :validatable
 
   has_many :posts
+  # has_many :books
+  has_many :todolists
+  has_many :assigntments, class_name: :todos
+
   has_many :visits, class_name: "Ahoy::Visit"
   has_many :events, class_name: "Ahoy::Event"
 
@@ -33,6 +37,9 @@ class User < ApplicationRecord
 
   def subscribers
     where("published_at < ?", Time.now.utc)
+  end
+  def to_s
+    return (name.nil?) ? email : name
   end
   protected
     def password_required?

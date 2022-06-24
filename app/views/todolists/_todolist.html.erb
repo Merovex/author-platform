@@ -1,0 +1,18 @@
+<article id="<%= dom_id todolist %>">
+  <header class='mt-6'>
+      <span class="text-xs opacity-50"><%= todo_ratio(todolist) %> completed</span>
+      <div class='flex'>
+        <%= todolist_heading(todolist, @show_headline) %>
+      </div>
+  </header>
+  
+  <section class='todos' id='todos-in-progress'>
+    <%= render todolist.todos.in_progress %>
+  </section>
+  <div><%= link_to('Add a to-do', new_todolist_todo_path(todolist),
+                   class: 'button',
+                   data: {turbo_frame: 'modal'}) %></div>
+  <section class='todos'>
+  <%= render todolist.todos.done %>
+  </section>
+</article>

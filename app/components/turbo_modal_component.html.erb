@@ -3,9 +3,14 @@
                       turbo_modal_target: "modal",
                       action: "turbo:submit-end->turbo-modal#submitEnd keyup@window->turbo-modal#closeWithKeyboard click@window->turbo-modal#closeBackground" },
               class: "modal" do %>
-    <%= tag.div class: "modal-window" do %>
-      <%= button_tag "X", data: { action: "turbo-modal#hideModal" }, type: "button", class: 'absolute right-0 bg-red-500 border-red-600 text-white button' %>
-      <h1 class="font-bold text-3xl"><%= @title %></h1>
+    <%= tag.div class: "modal-window dark:bg-gray-800" do %>
+      <button data-action="click->turbo-modal#hideModal"
+              class="absolute right-0 flex items-center justify-center mr-2 border rounded-full w-7 h-7 focus:outline-none focus:bg-gray-600" aria-label="Open action bar">
+        <svg class="w-6 h-6 " stroke="currentColor" fill="none" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+      <h1 class="text-3xl font-bold"><%= @title %></h1>
       <%= content %>
     <% end %>
   <% end %>

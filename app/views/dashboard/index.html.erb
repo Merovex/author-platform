@@ -1,37 +1,51 @@
 
 <div class="main">
-<section class="flex gap-3 font-sans text-sm">
-  <div class="flex-1 py-4 text-center border-2 card border-violet-400 bg-violet-300 text-violet-800">
-    <span id="earned-value" class="block text-4xl font-semibold tracking-tight"><%= number_with_delimiter(@goal.wordcount) %></span>
-    WIP Wordcount
-  </div>
-
-  <div class="flex-1 py-4 text-center text-green-900 bg-green-400 border-2 border-green-400 card">
-    <span id="annual-wordcount" class="block text-4xl font-semibold tracking-tight"><%= number_with_delimiter(WritingEntry.annual_wordcount(Time.now().year)) %></span>
-    Annual Wordcount
-  </div>
-  <div class="flex-1 py-4 text-center text-red-800 bg-red-300 border-2 border-red-400 card">
-    <div>
-      <span id="days-remaining" class="text-4xl font-semibold tracking-tight ">
-      <%= @goal.days_remaining %>
-      </span> /
-      <span id="total-days" class="text-4xl font-semibold tracking-tight "><%= @goal.writing_entries.count %></span>
+  <section class="flex gap-3 font-sans text-sm">
+    <div class="flex-1 py-4 text-center border-2 card border-violet-400 bg-violet-300 text-violet-800">
+      <span id="earned-value" class="block text-4xl font-semibold tracking-tight"><%= number_with_delimiter(@goal.wordcount) %></span>
+      WIP Wordcount
     </div>
-    Days (left/done)
-  </div>
-  <div class="flex-1 py-4 text-center text-indigo-800 bg-indigo-300 border-2 border-indigo-400 card">
-    <span id="tracking-date" class="block text-4xl font-semibold tracking-tight"><%= target_completion(@goal) %></span>
-    Expected Completion
-  </div>
-  
-</section>
-<% if !@wips.empty? and can? :admin, Book %>
-  <table class='w-full'>
-    <%= render 'books/book_row_header' %>
-    <%= render partial: 'books/book_row', collection: @wips, as: :book %>
-  </table>
-<% end %>
 
-<%= headline('Dashboard') %>
-  <%= render "dashboard/heatmap", entries: WritingEntry.all %>
+    <div class="flex-1 py-4 text-center text-green-900 bg-green-400 border-2 border-green-400 card">
+      <span id="annual-wordcount" class="block text-4xl font-semibold tracking-tight"><%= number_with_delimiter(WritingEntry.annual_wordcount(Time.now().year)) %></span>
+      Annual Wordcount
+    </div>
+    <div class="flex-1 py-4 text-center text-red-800 bg-red-300 border-2 border-red-400 card">
+      <div>
+        <span id="days-remaining" class="text-4xl font-semibold tracking-tight ">
+        <%= @goal.days_remaining %>
+        </span> /
+        <span id="total-days" class="text-4xl font-semibold tracking-tight "><%= @goal.writing_entries.count %></span>
+      </div>
+      Days (left/done)
+    </div>
+    <div class="flex-1 py-4 text-center text-indigo-800 bg-indigo-300 border-2 border-indigo-400 card">
+      <span id="tracking-date" class="block text-4xl font-semibold tracking-tight"><%= target_completion(@goal) %></span>
+      Expected Completion
+    </div>
+  </section>
+  <% if !@wips.empty? and can? :admin, Book %>
+    <table class='w-full'>
+      <%= render 'books/book_row_header' %>
+      <%= render partial: 'books/book_row', collection: @wips, as: :book %>
+    </table>
+  <% end %>
+  <hr class='my-8'>
+  <section>
+    <%= render "dashboard/heatmap", entries: WritingEntry.all %>
+  </section>
+
+  <section>
+  <div class="flex items-center justify-between mt-12 mb-4">
+    <%= h2('To-dos') %>
+    <%= link_to icon('plus') +'New list', new_todolist_path, class: 'button', data: { turbo_frame: 'modal' } %>
+  </div>
+  <div id="todolists" class="min-w-full">
+    <%= render @todolists %>
+  </div>
+  </section>
 </div>
+
+
+
+

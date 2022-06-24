@@ -1,6 +1,1 @@
-
-<div class="main">
-  <%= headline('New Praise for '+@book.title) %>
-  <%= render "form", praise: @praise %>
-  <%= link_to "Back to #{@book.title}", book_path(@book) %>
-</div>
+<%= render "form", praise: @praise %>

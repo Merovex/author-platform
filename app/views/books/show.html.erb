@@ -5,7 +5,27 @@
   <%= render 'components/subscribe' %>
 <%#= barchart(Click.group_by_day(:created_at, format: "%d %b").count, 'visits') %>
 </section>
-<%= render 'books/sections/testimonials' %>
+<% if @book.praises.count > 0 %>
+  <section id='testimonials' class="py-4 <%= zebra() %>">
+    
+    <div class="main ">
+    <% if can? :admin, Book %>
+    <div class='text-right'>
+    <%= link_to "Add praise", new_book_praise_path(@book), class: 'button', data: { turbo_frame: 'modal' } %>
+    <%# <%= link_to 'edit', link, class: 'link' %> 
+    </div>
+    <% end %>
+    <%= h2("Praise for <em>#{@book}</em>".html_safe) %>
+    <div id='praises-list'>
+    <%= render @book.praises %>
+      
+    </div>
+    <aside class='py-8 mt-4 text-center'>
+    <%= render 'components/buy-cta', locals: {book: @book} %>
+    </aside>
+    </div>
+  </section>
+<% end %>
 <%= render 'books/sections/series-list' %>
 <%= render 'books/sections/excerpt' %>
 

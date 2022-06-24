@@ -4,8 +4,10 @@ const colors = require('tailwindcss/colors')
 module.exports = {
   content: [
     './app/helpers/**/*.rb',
+    // './app/assets/**/*.svg',
     './app/javascript/**/*.js',
-    './app/views/**/*.{erb,html,slim}'
+    './app/views/**/*.{erb,html,slim}',
+    './vendor/javascript/tailwindcss-stimulus-components.js'
   ],
   theme: {
     extend: {

@@ -1,0 +1,39 @@
+<%= form_with(model: [@todolist, todo], class: "contents") do |form| %>
+  <% if todo.errors.any? %>
+    <div id="error_explanation" class="px-3 py-2 mt-3 font-medium text-red-500 rounded-lg bg-red-50">
+      <h2><%= pluralize(todo.errors.count, "error") %> prohibited this todo from being saved:</h2>
+
+      <ul>
+        <% todo.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="hidden field">
+    <%= form.label :assigned_to_id %>
+    <%= form.text_field :assigned_to_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="field">
+    <%= form.text_area :summary, rows: 2, placeholder: "Describe this to-do...", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+  <div class="field">
+    <%= form.label :due_on %>
+    <%= form.text_field :due_on, 
+          placeholder: "Select Date...",
+          class: 'flatpickr flatpickr-input active form-input rounded',
+          data: {
+            controller: "flatpickr",
+            flatpickr_date_format: "Y-m-d",
+            flatpickr_enable_time: false,
+            flatpickr_min_date: Time.zone.now
+          }
+    %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit "Add this to-do", class: "button bg-indigo-600 text-white dark:bg-indigo-100 text-black" %>
+  </div>
+<% end %>

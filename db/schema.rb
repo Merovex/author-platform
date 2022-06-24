@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_20_123150) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_21_232457) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -321,6 +321,28 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_20_123150) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
+  create_table "todolists", force: :cascade do |t|
+    t.string "name"
+    t.integer "todolistable_id"
+    t.string "todolistable_type"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_todolists_on_user_id"
+  end
+
+  create_table "todos", force: :cascade do |t|
+    t.integer "created_by_id", null: false
+    t.integer "assigned_to_id"
+    t.bigint "todolist_id", null: false
+    t.text "summary"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date "due_on"
+    t.datetime "done_at"
+    t.index ["todolist_id"], name: "index_todos_on_todolist_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -395,6 +417,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_20_123150) do
   add_foreign_key "praises", "books"
   add_foreign_key "subscribers", "users"
   add_foreign_key "subscriptions", "users"
+  add_foreign_key "todolists", "users"
+  add_foreign_key "todos", "todolists"
   add_foreign_key "writing_entries", "writing_goals"
   add_foreign_key "writing_goals", "books"
 end

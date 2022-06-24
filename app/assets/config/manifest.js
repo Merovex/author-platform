@@ -2,3 +2,5 @@
 //= link_directory ../stylesheets .css
 //= link_tree ../../javascript .js
 //= link_tree ../builds
+//= link @hotwired--stimulus.js
+//= link tailwindcss-stimulus-components.js

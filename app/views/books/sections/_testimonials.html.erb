@@ -3,9 +3,9 @@
     <div class="main ">
     <%= h2("Praise for <em>#{@book}</em>".html_safe) %>
     <% @book.praises.each do |p| %>
-      <div class="<%=t('css_prose')%>">
-      <%= p.comment %>
-      <%= link_to "Edit Praise", edit_book_praise_path(@book, p), class: 'action' %>
+      <div class="flex my-8">
+      <div class='flex-1 <%#t('css_prose')%>'><%= p.comment %></div>
+      <div class=""><%= link_to "Edit Praise", edit_book_praise_path(@book, p), class: 'link' %></div>
       </div>
     <%end%>
     <aside class='py-8 mt-4 text-center'>
