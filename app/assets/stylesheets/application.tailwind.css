@@ -165,7 +165,7 @@ main>article,
   @apply inline-block p-2 mx-1 font-sans text-sm uppercase border border-solid rounded-md border-brand hover:bg-blue-500 dark:hover:bg-blue-400 hover:text-white;
 }
 .action-menu a {
-  @apply px-2 border-b border-gray-800/25;
+  @apply inline-block px-2 hover:bg-gray-900/25;
 }
 details summary::-webkit-details-marker,
 details summary::marker {

@@ -11,6 +11,7 @@ export default class extends Controller {
     this.activeClass = this.data.get('activeClass') || null
     this.enteringClass = this.data.get('enteringClass') || null
     this.leavingClass = this.data.get('leavingClass') || null
+    // console.log(this.activeClass)
 
     if (this.hasButtonTarget) {
       this.buttonTarget.addEventListener("keydown", this._onMenuButtonKeydown)
@@ -50,6 +51,7 @@ export default class extends Controller {
         )
 
         this._activeClassList[0].forEach(klass => {
+          console.log(klass, this.activeTarget)
           this.activeTarget.classList.add(klass)
         })
         this._invisibleClassList[0].forEach(klass => this.menuTarget.classList.remove(klass))

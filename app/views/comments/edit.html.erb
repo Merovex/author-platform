@@ -1,13 +1,19 @@
-<%= turbo_frame_tag dom_id(@comment) do %>
-
-<article class='relative flex p-0 my-6 space-x-3 overflow-hidden'>
-  <div class='w-20'>
-  </div>
-  <div class='w-20'>
-    <%= user_avatar_image(@comment.user, 50) %>
-  </div>
-  <div class='flex self-start flex-1 w-3/4'>
-    <%= render "form", locals: {comment: @comment, parent: @parent} %>
+<%= turbo_frame_tag dom_id @comment do %>
+<article class='relative mt-6 mb-8'>
+    <div class='grid grid-cols-12 gap-2 mt-8'>
+    <header class='grid h-12 grid-cols-12 col-span-12 gap-2 mt-2 align-top lg:h-6'>
+      <div class='col-span-10 text-sm text-right lg:col-span-2 lg:text-left text-base-subtle '>
+      </div>
+      <div class='col-span-2 col-end-3 -mt-2 lg:col-end-5 '>
+        <%= user_avatar_image(@comment.user, 60) %>
+      </div>
+      <div class='col-span-10 col-end-13 lg:col-span-6 lg:col-end-11'>
+        <h3 class='font-semibold'><%= @comment.user %></h3>
+      </div>
+    </header>
+    <div class='col-span-10 col-end-13 lg:col-span-8 lg:col-end-13'>
+      <%= render "form", locals: {comment: @comment, parent: @parent} %>
+    </div>
   </div>
 </article>
 <hr>

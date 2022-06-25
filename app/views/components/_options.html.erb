@@ -1,32 +1,28 @@
-<aside class="relative "
+<aside class="relative z-10"
     data-controller="dropdown"
     data-action="click->dropdown#toggle click@window->dropdown#hide"
     data-dropdown-class="invisible"
     data-dropdown-open-value="false"
     data-dropdown-active-target="#action-menu"
-    data-dropdown-active-class="rounded-bl-lg"
+    data-dropdown-active-class=""
     data-dropdown-invisible-class="translate-x-full opacity-0"
     data-dropdown-visible-class="opacity-100 -translate-x-0"
     data-dropdown-entering-class="duration-100 ease-out"
     data-dropdown-enter-timeout="300,300"
     data-dropdown-leaving-class="duration-75 ease-in"
     data-dropdown-leave-timeout="300,300">
-  <div class="absolute top-0 right-0 p-1">
-    <button data-action="click->dropdown#_show click@window->dropdown#hide" class="flex items-center justify-center rounded-full opacity-50 w-7 h-7 focus:outline-none focus:opacity-100" aria-label="Open action bar">
-      <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
-      </svg>
+  <div class="absolute top-0 right-0 z-0 p-1">
+    <button data-action="click->dropdown#_show click@window->dropdown#hide" class="flex items-center justify-center w-6 h-6 mr-1" aria-label="Open action bar">
+      <%= bi_icon('three-dots') %>
     </button>
   </div>
-  <div data-dropdown-target="menu" id='action-menu' class="absolute top-0 right-0 invisible w-40 p-1 text-white transition transform opacity-0 bg-brand-500 z-1000 pin-r">
-    <div class="absolute top-0 right-0 p-1">
-      <button data-action="click->dropdown#_hide" class="flex items-center justify-center border rounded-full w-7 h-7 focus:outline-none focus:bg-gray-600" aria-label="Close action bar">
-        <svg class="w-6 h-6 text-white" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
+  <div data-dropdown-target="menu" id='action-menu' class="absolute top-0 right-0 invisible w-40 mr-1 transition transform rounded-bl-lg opacity-0 text-gray-50 bg-brand pin-r">
+    <div class="absolute top-0 right-0 flex items-center p-1">
+      <button data-action="click->dropdown#_hide" class="flex items-center justify-center w-6 h-6 " aria-label="Close action bar">
+        <%= bi_icon('x-lg') %>
       </button>
     </div>
-    <div class="flex flex-col mt-8 leading-8 action-menu">
+    <div class="z-50 flex flex-col mt-8 leading-8 action-menu">
       <%= yield %>
     </div>
   </div>

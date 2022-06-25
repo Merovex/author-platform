@@ -1,0 +1,24 @@
+<%= turbo_frame_tag dom_id comment do %>
+<article class='relative z-0 flex p-0 my-6 space-x-3'>
+  <div class='w-20'>
+    <div class='text-sm uppercase text-base-subtle'><%= local_relative_time(comment.created_at, type: 'weekday') %></div>
+    <div class='text-sm text-base-subtle'><%= local_relative_time(comment.created_at, type: 'time-or-date') %></div>
+  </div>
+  <div class='w-20'>
+    <%= user_avatar_image(comment.user, 50) %>
+  </div>
+  <div class='flex-1 w-3/4'>
+    <%= render layout: "components/options" do %>
+      <%= edit_link_to(comment, "Edit")%>
+      <%= trash_link_to(comment,'Put in the trash') %>
+      <%= link_to('FNORD', "#") %>
+      <%= link_to('FNORD', "#") %>
+      <%= link_to('FNORD', "#") %>
+      <%= link_to('FNORD', "#") %>
+    <% end %>
+    <h3 class='font-semibold'><%= comment.user %></h3>
+    <div><%= comment.content %></div>
+  </div>
+</article>
+<hr>
+<% end %>

@@ -40,7 +40,13 @@ module ApplicationHelper
     }[color.to_sym]
     "#{bg_color} border-gray-500/50 text-white button shadow-lg shadow-blue-500/50"
   end
-  def trash_link(object, text="")
+  def edit_link_to(object, text="", args={})
+    return link_to(
+      [bi_icon('pencil'), strip_tags(text)].join(' ').html_safe, edit_polymorphic_path(object),
+      data: { turbo_frame: dom_id(object) }
+    )
+  end
+  def trash_link_to(object, text="")
     return link_to(
       [bi_icon('trash'), strip_tags(text)].join(' ').html_safe, polymorphic_path(object),
       data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }
