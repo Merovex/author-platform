@@ -5,8 +5,9 @@ class User < ApplicationRecord
          :magic_link_authenticatable, :registerable,
          :recoverable, :rememberable, :confirmable, :lockable, :validatable
 
+  has_one_attached :avatar
   has_many :posts
-  # has_many :books
+  has_many :comments
   has_many :todolists
   has_many :assigntments, class_name: :todos
 
@@ -40,6 +41,9 @@ class User < ApplicationRecord
   end
   def to_s
     return (name.nil?) ? email : name
+  end
+  def has_avatar?
+    false
   end
   protected
     def password_required?

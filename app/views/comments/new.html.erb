@@ -1,0 +1,3 @@
+<%= turbo_frame_tag "comments-form" do %>
+    <%= render "form", locals: {comment: @comment, parent: @parent} %>
+<% end %>

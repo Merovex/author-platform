@@ -5,12 +5,6 @@
                 edit_book_praise_path(@book, praise), 
                 data: { turbo_frame: 'modal' },
                 class: 'link ml-4' %>
-    <%= link_to bi_icon('trash'),
-                  book_praise_path(@book, praise),
-                  data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  },
-                  class: 'link ml-4' %>
+    <%= link_to trash_link(comment,'Put in the trash') %>
   </div>
 </div>

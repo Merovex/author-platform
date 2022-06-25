@@ -3,7 +3,7 @@
 
 # Use node modules from a JavaScript CDN by running ./bin/importmap
 pin "application"
-pin "helpers/local-time"
+# pin "helpers/local-time"
 pin "@hotwired/turbo-rails", to: "turbo.js"
 pin "@hotwired/stimulus", to: "https://ga.jspm.io/npm:@hotwired/stimulus@3.0.1/dist/stimulus.js"
 pin "@hotwired/stimulus-importmap-autoloader", to: "stimulus-importmap-autoloader.js"
@@ -19,3 +19,5 @@ pin "tailwindcss-stimulus-components" # @3.0.4
 pin "el-transition", to: "https://ga.jspm.io/npm:el-transition@0.0.7/index.js"
 pin "stimulus-transition", to: "https://ga.jspm.io/npm:stimulus-transition@1.1.2/dist/index.js"
 pin "stimulus", to: "https://ga.jspm.io/npm:stimulus@3.0.1/dist/stimulus.js"
+# pin "local-time-cdn" # @2.1.0
+pin "local-time", to: "https://ga.jspm.io/npm:local-time@2.1.0/app/assets/javascripts/local-time.js"

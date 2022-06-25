@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  
   before_action :store_user_location!, if: :storable_location?
   before_action :authenticate_user_from_token!
   before_action :set_current_user, if: :user_signed_in?
@@ -46,6 +47,5 @@ class ApplicationController < ActionController::Base
     end
     def set_current_user
       Current.user = current_user
-    end
-    
+    end    
 end

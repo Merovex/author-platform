@@ -75,26 +75,18 @@ gem "rolify", "~> 6.0"
 gem "mini_magick", "~> 4.11"
 gem "acts-as-taggable-on", "~> 5.0"
 gem "color", "~> 1.8"
-# gem "invisible_captcha", "~> 2.0"
 gem "paper_trail", "~> 12.1"
 gem "meta-tags", "~> 2.16"
 gem "email_validator", "~> 2.2"
 
-
-
 gem "aws-sdk-s3", "~> 1.114", require: false
-
-# gem "asset_sync", "~> 2.15"
-# gem "fog-aws", "~> 3.14"
-
 gem "view_component", "~> 2.57"
-
 gem "tailwindcss-rails", "~> 2.0"
-
 gem "net-http", "~> 0.2.2"
-
 gem "invisible_captcha", "~> 2.0"
-
 gem "rails_heroicons", "~> 0.7.0"
-
 gem "paranoia", "~> 2.6"
+
+gem "local_time", "~> 2.1"
+
+gem "identicon", "~> 0.0.5"

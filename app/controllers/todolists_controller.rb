@@ -11,6 +11,7 @@ class TodolistsController < ApplicationController
   # GET /todolists/1 or /todolists/1.json
   def show
     @show_headline = true
+    @comments = @todolist.comments
   end
 
   # GET /todolists/new

@@ -1,0 +1,9 @@
+<%= form_with(model: @comment, class: "", url: [@parent, @comment]) do |form| %>
+  <div>
+    <%= form.rich_text_area :content %>
+  </div>
+  <div class="inline">
+    <%= form.submit class: button_css('brand') %>
+    <%= link_to("Discard changes", comment_path(@comment, inline: true)) %>
+  </div>
+<% end %>

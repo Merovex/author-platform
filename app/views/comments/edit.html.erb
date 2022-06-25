@@ -1,0 +1,14 @@
+<%= turbo_frame_tag dom_id(@comment) do %>
+
+<article class='relative flex p-0 my-6 space-x-3 overflow-hidden'>
+  <div class='w-20'>
+  </div>
+  <div class='w-20'>
+    <%= user_avatar_image(@comment.user, 50) %>
+  </div>
+  <div class='flex self-start flex-1 w-3/4'>
+    <%= render "form", locals: {comment: @comment, parent: @parent} %>
+  </div>
+</article>
+<hr>
+<% end %>

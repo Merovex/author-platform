@@ -1,27 +1,25 @@
 (function () {
   var t = this;
-  // console.log(t)
   (function () {
     (function () {
       var t = [].slice;
       this.LocalTime = {
-        config: {}, run: function () {
+        config: {},
+        run: function () {
           return this.getController().processElements()
-        }, process: function () {
+        },
+        process: function () {
           var e, n, r, a;
-          for (n = 1 <= arguments.length ? t.call(arguments, 0) : [], r = 0, a = n.length;
-            r < a;
-            r++)e = n[r], this.getController().processElement(e);
+          for (n = 1 <= arguments.length ? t.call(arguments, 0) : [], r = 0, a = n.length; r < a; r++) e = n[r], this.getController().processElement(e);
           return n.length
-        }, getController: function () {
+        },
+        getController: function () {
           return null != this.controller ? this.controller : this.controller = new e.Controller
         }
       }
     }).call(this)
   }).call(t);
-
   var e = t.LocalTime;
-
   (function () {
     (function () {
       e.config.i18n = {
@@ -29,20 +27,36 @@
           date: {
             dayNames: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
             abbrDayNames: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-            monthNames: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"], abbrMonthNames: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            monthNames: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+            abbrMonthNames: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
             yesterday: "yesterday",
             today: "today",
             tomorrow: "tomorrow",
             on: "on {date}",
             formats: {
-              "default": "%b %e, %Y", thisYear: "%b %e"
+              "default": "%b %e, %Y",
+              thisYear: "%b %e"
             }
-          }, time: {
-            am: "am", pm: "pm", singular: "a {time}", singularAn: "an {time}", elapsed: "{time} ago", second: "second", seconds: "seconds", minute: "minute", minutes: "minutes", hour: "hour", hours: "hours", formats: {
+          },
+          time: {
+            am: "am",
+            pm: "pm",
+            singular: "a {time}",
+            singularAn: "an {time}",
+            elapsed: "{time} ago",
+            second: "second",
+            seconds: "seconds",
+            minute: "minute",
+            minutes: "minutes",
+            hour: "hour",
+            hours: "hours",
+            formats: {
               "default": "%l:%M%P"
             }
-          }, datetime: {
-            at: "{date} at { time } ", formats: {
+          },
+          datetime: {
+            at: "{date} at {time}",
+            formats: {
               "default": "%B %e, %Y at %l:%M%P %Z"
             }
           }
@@ -67,9 +81,10 @@
       function () {
         e.elementMatchesSelector = function () {
           var t, e, n, r, a, i;
-          return t = document.documentElement, e = null != (n = null != (r = null != (a = null != (i = t.matches) ? i : t.matchesSelector) ? a : t.webkitMatchesSelector) ? r : t.mozMatchesSelector) ? n : t.msMatchesSelector, function (t, n) {
-            if ((null != t ? t.nodeType : void 0) === Node.ELEMENT_NODE) return e.call(t, n)
-          }
+          return t = document.documentElement, e = null != (n = null != (r = null != (a = null != (i = t.matches) ? i : t.matchesSelector) ? a : t.webkitMatchesSelector) ? r : t.mozMatchesSelector) ? n : t.msMatchesSelector,
+            function (t, n) {
+              if ((null != t ? t.nodeType : void 0) === Node.ELEMENT_NODE) return e.call(t, n)
+            }
         }()
       }.call(this),
       function () {
@@ -88,9 +103,7 @@
           return o
         }, n = function (t, e) {
           var n, r, a, i, o;
-          for (o = t, i = e.split("."), n = 0, a = i.length;
-            n < a;
-            n++) {
+          for (o = t, i = e.split("."), n = 0, a = i.length; n < a; n++) {
             if (r = i[n], null == o[r]) return null;
             o = o[r]
           }
@@ -103,39 +116,59 @@
           var s, u, c, l, d, h, f;
           return u = e.getDay(), s = e.getDate(), d = e.getMonth(), f = e.getFullYear(), c = e.getHours(), l = e.getMinutes(), h = e.getSeconds(), o.replace(/%(-?)([%aAbBcdeHIlmMpPSwyYZ])/g, function (o, m, p) {
             switch (p) {
-              case "%": return "%";
-              case "a": return t("date.abbrDayNames")[u];
-              case "A": return t("date.dayNames")[u];
-              case "b": return t("date.abbrMonthNames")[d];
-              case "B": return t("date.monthNames")[d];
-              case "c": return e.toString();
-              case "d": return n(s, m);
-              case "e": return s;
-              case "H": return n(c, m);
-              case "I": return n(a(e, "%l"), m);
-              case "l": return 0 === c || 12 === c ? 12 : (c + 12) % 12;
-              case "m": return n(d + 1, m);
-              case "M": return n(l, m);
-              case "p": return i("time." + (c > 11 ? "pm" : "am")).toUpperCase();
-              case "P": return i("time." + (c > 11 ? "pm" : "am"));
-              case "S": return n(h, m);
-              case "w": return u;
-              case "y": return n(f % 100, m);
-              case "Y": return f;
-              case "Z": return r(e)
+              case "%":
+                return "%";
+              case "a":
+                return t("date.abbrDayNames")[u];
+              case "A":
+                return t("date.dayNames")[u];
+              case "b":
+                return t("date.abbrMonthNames")[d];
+              case "B":
+                return t("date.monthNames")[d];
+              case "c":
+                return e.toString();
+              case "d":
+                return n(s, m);
+              case "e":
+                return s;
+              case "H":
+                return n(c, m);
+              case "I":
+                return n(a(e, "%l"), m);
+              case "l":
+                return 0 === c || 12 === c ? 12 : (c + 12) % 12;
+              case "m":
+                return n(d + 1, m);
+              case "M":
+                return n(l, m);
+              case "p":
+                return i("time." + (c > 11 ? "pm" : "am")).toUpperCase();
+              case "P":
+                return i("time." + (c > 11 ? "pm" : "am"));
+              case "S":
+                return n(h, m);
+              case "w":
+                return u;
+              case "y":
+                return n(f % 100, m);
+              case "Y":
+                return f;
+              case "Z":
+                return r(e)
             }
           })
-        },
-          n = function (t, e) {
-            switch (e) {
-              case "-": return t;
-              default: return ("0" + t).slice(-2)
-            }
-          },
-          r = function (t) {
-            var e, n, r, a, i;
-            return i = t.toString(), (e = null != (n = i.match(/\(([\w\s]+)\)$/)) ? n[1] : void 0) ? /\s/.test(e) ? e.match(/\b(\w)/g).join("") : e : (e = null != (r = i.match(/(\w{3,4})\s\d{4}$/)) ? r[1] : void 0) ? e : (e = null != (a = i.match(/(UTC[\+\-]\d+)/)) ? a[1] : void 0) ? e : ""
+        }, n = function (t, e) {
+          switch (e) {
+            case "-":
+              return t;
+            default:
+              return ("0" + t).slice(-2)
           }
+        }, r = function (t) {
+          var e, n, r, a, i;
+          return i = t.toString(), (e = null != (n = i.match(/\(([\w\s]+)\)$/)) ? n[1] : void 0) ? /\s/.test(e) ? e.match(/\b(\w)/g).join("") : e : (e = null != (r = i.match(/(\w{3,4})\s\d{4}$/)) ? r[1] : void 0) ? e : (e = null != (a = i.match(/(UTC[\+\-]\d+)/)) ? a[1] : void 0) ? e : ""
+        }
       }.call(this),
       function () {
         e.CalendarDate = function () {
@@ -174,7 +207,8 @@
             return (e = this.toTimeElapsedString()) ? r("time.elapsed", {
               time: e
             }) : (t = this.toWeekdayString()) ? (e = this.toTimeString(), r("datetime.at", {
-              date: t, time: e
+              date: t,
+              time: e
             })) : r("date.on", {
               date: this.toDateString()
             })
@@ -191,11 +225,20 @@
             })) : t < 24 ? t + " " + r("time.hours") : ""
           }, a.prototype.toWeekdayString = function () {
             switch (this.calendarDate.daysPassed()) {
-              case 0: return r("date.today");
-              case 1: return r("date.yesterday");
-              case -1: return r("date.tomorrow");
-              case 2: case 3: case 4: case 5: case 6: return n(this.date, "%A");
-              default: return ""
+              case 0:
+                return r("date.today");
+              case 1:
+                return r("date.yesterday");
+              case -1:
+                return r("date.tomorrow");
+              case 2:
+              case 3:
+              case 4:
+              case 5:
+              case 6:
+                return n(this.date, "%A");
+              default:
+                return ""
             }
           }, a.prototype.toDateString = function () {
             var e;
@@ -220,7 +263,8 @@
           }, e.prototype.observeWithMutationObserver = function () {
             var t;
             if ("undefined" != typeof MutationObserver && null !== MutationObserver) return t = new MutationObserver(this.processMutations), t.observe(document.documentElement, {
-              childList: !0, subtree: !0
+              childList: !0,
+              subtree: !0
             }), !0
           }, e.prototype.observeWithMutationEvent = function () {
             return addEventListener("DOMNodeInserted", this.processInsertion, !1), !0
@@ -229,13 +273,11 @@
             return n = [], (null != e ? e.nodeType : void 0) === Node.ELEMENT_NODE && (t(e, this.selector) && n.push(e), n.push.apply(n, e.querySelectorAll(this.selector))), n
           }, e.prototype.processMutations = function (t) {
             var e, n, r, a, i, o, s, u;
-            for (e = [], n = 0, a = t.length;
-              n < a;
-              n++)switch (o = t[n], o.type) {
-                case "childList": for (u = o.addedNodes, r = 0, i = u.length;
-                  r < i;
-                  r++)s = u[r], e.push.apply(e, this.findSignificantElements(s))
-              }return this.notify(e)
+            for (e = [], n = 0, a = t.length; n < a; n++) switch (o = t[n], o.type) {
+              case "childList":
+                for (u = o.addedNodes, r = 0, i = u.length; r < i; r++) s = u[r], e.push.apply(e, this.findSignificantElements(s))
+            }
+            return this.notify(e)
           }, e.prototype.processInsertion = function (t) {
             var e;
             return e = this.findSignificantElements(t.target), this.notify(e)
@@ -262,20 +304,24 @@
             if (e = t.timerInterval) return null != this.timer ? this.timer : this.timer = setInterval(this.processElements, e)
           }, o.prototype.processElements = function (t) {
             var e, n, r;
-            for (null == t && (t = document.querySelectorAll(s)), n = 0, r = t.length;
-              n < r;
-              n++)e = t[n], this.processElement(e);
+            for (null == t && (t = document.querySelectorAll(s)), n = 0, r = t.length; n < r; n++) e = t[n], this.processElement(e);
             return t.length
           }, o.prototype.processElement = function (t) {
             var e, i, o, s, l, d;
             if (i = t.getAttribute("datetime"), o = t.getAttribute("data-format"), s = t.getAttribute("data-local"), l = r(i), !isNaN(l)) return t.hasAttribute("title") || (d = a(l, n("datetime.formats.default")), t.setAttribute("title", d)), t.textContent = e = function () {
               switch (s) {
-                case "time": return u(t), a(l, o);
-                case "date": return u(t), c(l).toDateString();
-                case "time-ago": return c(l).toString();
-                case "time-or-date": return c(l).toTimeOrDateString();
-                case "weekday": return c(l).toWeekdayString();
-                case "weekday-or-date": return c(l).toWeekdayString() || c(l).toDateString()
+                case "time":
+                  return u(t), a(l, o);
+                case "date":
+                  return u(t), c(l).toDateString();
+                case "time-ago":
+                  return c(l).toString();
+                case "time-or-date":
+                  return c(l).toTimeOrDateString();
+                case "weekday":
+                  return c(l).toWeekdayString();
+                case "weekday-or-date":
+                  return c(l).toWeekdayString() || c(l).toDateString()
               }
             }(), t.hasAttribute("aria-label") ? void 0 : t.setAttribute("aria-label", e)
           }, u = function (t) {

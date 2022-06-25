@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  resources :comments
   # get 'toolbar/show'
   
   resources :todolists, shallow: true do
     resources :todos
+    resources :comments
   end
   put 'todo/:id/complete' => 'todos#complete', format: :turbo_stream, as: 'complete_todo'
   post 'todo/:id/toolbar' => 'todos#toolbar', format: :turbo_stream, as: 'todo_toolbar'

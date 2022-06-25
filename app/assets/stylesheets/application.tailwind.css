@@ -48,6 +48,9 @@
   .bg-error {
     @apply bg-red-700 dark:bg-red-300
   }
+  .bg-error-subtle {
+    @apply bg-red-300 dark:bg-red-600
+  }
 }
 [multiple],
 [type=date],
@@ -74,7 +77,12 @@ body {
     @apply font-medium;
   }
 }
-
+trix-toolbar .trix-button-group button {
+  padding: 0; border: 0; width: 1.6em;
+}
+trix-toolbar .trix-button, trix-toolbar .trix-button:not(:first-child), trix-toolbar .trix-button-group {
+  border:0;
+}
 .card {
   @apply px-8 py-4 my-8 border border-opacity-50 rounded shadow-lg;
 }

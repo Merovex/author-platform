@@ -1,6 +1,6 @@
 <article class='single'>
   <% if can? :admin, Post %>
-    <%= render layout: "components/action_panel" do %>
+    <%= render layout: "components/options" do %>
       <%= link_to "Edit post", edit_post_path(@post) %>
       <%= link_to "Broadcast", posts_broadcast_path(@post) if @post.broadcastable? %>
     <% end %>

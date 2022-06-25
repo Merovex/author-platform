@@ -11,6 +11,7 @@ class TodosController < ApplicationController
 
   # GET /todos/1 or /todos/1.json
   def show
+    # @comments = @todo.comments
   end
 
   # GET /todos/new

@@ -40,6 +40,23 @@ module ApplicationHelper
     }[color.to_sym]
     "#{bg_color} border-gray-500/50 text-white button shadow-lg shadow-blue-500/50"
   end
+  def trash_link(object, text="")
+    return link_to(
+      [bi_icon('trash'), strip_tags(text)].join(' ').html_safe, polymorphic_path(object),
+      data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }
+    )
+  end
+  def format_date(datetime, args={})
+    type = args[:type].to_s || ''
+    klass = args[:class] || ''
+    if type == 'weekday'
+      fmt = (datetime.today?) ? "Today" : "%A"
+    else
+      fmt = (datetime.today?) ? "%l:%M %p" : "%B %d"
+    end
+    label = datetime.strftime(fmt) 
+    return time_tag(datetime, format: fmt, aria: {label: label}, title: label)
+  end
   def zebra()
     cycle('bg-subtle','', name: 'zebra')
   end

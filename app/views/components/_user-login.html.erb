@@ -9,14 +9,16 @@
       <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
       <% if can? :admin, Post %>
       <hr>
-      <%= link_to "Dashboard", dashboard_path(), role: 'menuitem', tabindex: '-1', class: 'user-menu-link' %>
-      <%= link_to "Books Admin", books_admin_path(), role: 'menuitem', tabindex: '-1', class: 'user-menu-link' %>
-      <%= link_to "Posts Admin", posts_admin_path(), role: 'menuitem', tabindex: '-1', class: 'user-menu-link' %>
+      <%= link_to "Dashboard", dashboard_path(), role: 'menuitem', class: 'user-menu-link' %>
+      <%= link_to "Books Admin", books_admin_path(), role: 'menuitem', class: 'user-menu-link' %>
+      <%= link_to "Posts Admin", posts_admin_path(), role: 'menuitem', class: 'user-menu-link' %>
       <%# <a href="#" class="user-menu-link" role="menuitem" tabindex="-1" id="menu-item-0">Dashboard</a> %>
       <%# <a href="#" class="hidden user-menu-link" role="menuitem" tabindex="-1" id="menu-item-1">Support</a> %>
       <%# <a href="#" class="hidden user-menu-link" role="menuitem" tabindex="-1" id="menu-item-2">License</a> %>
       <%= link_to 'Subscriptions', subscriptions_path, class: 'user-menu-link' %>
       <% end %>
+      <hr>
+      <%= link_to "Settings", edit_user_registration_path, class: 'user-menu-link' %>
       <hr>
       <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'user-menu-link' %>
     </div>
