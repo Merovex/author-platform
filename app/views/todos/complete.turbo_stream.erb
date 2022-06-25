@@ -1,0 +1,3 @@
+<%= turbo_stream.remove dom_id(@todo) %>
+<%= turbo_stream.replace("ratio_#{@todolist.id}", partial: "todolists/ratio", locals: {todolist: @todolist}) %>
+<%= turbo_stream.append('todos-done', partial: "todos/todo", locals: {todo: @todo}) %>

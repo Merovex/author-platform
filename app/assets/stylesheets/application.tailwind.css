@@ -27,6 +27,9 @@
   .bg-brand {
     @apply  bg-indigo-600 dark:bg-indigo-400
   }
+  .fill-brand {
+    @apply  fill-indigo-600 dark:fill-indigo-400
+  }
   .border-brand {
     @apply border-indigo-600 dark:border-indigo-400
   }
@@ -138,7 +141,9 @@ main>article,
 .panel-headline {
   @apply mt-4 mb-8 font-sans text-base text-2xl font-bold text-center md:text-3xl;
 }
-
+.button_to {
+  @apply inline-block
+}
 .button {
   @apply inline-flex items-center justify-center inline-block px-2 py-1 m-2 font-sans text-sm font-semibold transition duration-200 ease-in-out border rounded-lg shadow-md focus:outline-none hover:shadow-sm;
 }

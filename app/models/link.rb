@@ -1,4 +1,5 @@
 class Link < ApplicationRecord
+  acts_as_paranoid
   validates :url, presence: true, uniqueness: true
   validates :url, format: URI::regexp(%w[http https])
   # validates :slug, presence: true, uniqueness: true

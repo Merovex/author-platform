@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_21_232457) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_25_003303) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -180,6 +180,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_21_232457) do
     t.string "cover_color"
     t.text "tagline"
     t.boolean "is_wip"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_books_on_deleted_at"
     t.index ["is_featured"], name: "index_books_on_is_featured"
     t.index ["is_wip"], name: "index_books_on_is_wip"
     t.index ["released_on"], name: "index_books_on_released_on"
@@ -224,6 +226,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_21_232457) do
     t.integer "linkable_id"
     t.string "linkable_type"
     t.string "css"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_links_on_deleted_at"
   end
 
   create_table "pages", force: :cascade do |t|
@@ -231,6 +235,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_21_232457) do
     t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_pages_on_deleted_at"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -241,6 +247,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_21_232457) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "broadcasted_at"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_posts_on_deleted_at"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -248,7 +256,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_21_232457) do
     t.bigint "book_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["book_id"], name: "index_praises_on_book_id"
+    t.index ["deleted_at"], name: "index_praises_on_deleted_at"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -267,6 +277,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_21_232457) do
     t.text "synopsis"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_series_on_deleted_at"
     t.index ["slug"], name: "index_series_on_slug"
   end
 
@@ -290,7 +302,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_21_232457) do
     t.string "posts"
     t.string "books"
     t.string "slug"
+    t.datetime "deleted_at"
     t.index ["books"], name: "index_subscriptions_on_books"
+    t.index ["deleted_at"], name: "index_subscriptions_on_deleted_at"
     t.index ["posts"], name: "index_subscriptions_on_posts"
     t.index ["slug"], name: "index_subscriptions_on_slug"
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
@@ -328,6 +342,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_21_232457) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_todolists_on_deleted_at"
     t.index ["user_id"], name: "index_todolists_on_user_id"
   end
 
@@ -340,6 +356,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_21_232457) do
     t.datetime "updated_at", null: false
     t.date "due_on"
     t.datetime "done_at"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_todos_on_deleted_at"
     t.index ["todolist_id"], name: "index_todos_on_todolist_id"
   end
 

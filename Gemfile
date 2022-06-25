@@ -96,3 +96,5 @@ gem "net-http", "~> 0.2.2"
 gem "invisible_captcha", "~> 2.0"
 
 gem "rails_heroicons", "~> 0.7.0"
+
+gem "paranoia", "~> 2.6"

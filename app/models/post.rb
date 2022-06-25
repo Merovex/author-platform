@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  acts_as_paranoid
   include Slug, Sluggable
 
   belongs_to :user

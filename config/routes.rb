@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :todolists, shallow: true do
     resources :todos
   end
+  put 'todo/:id/complete' => 'todos#complete', format: :turbo_stream, as: 'complete_todo'
   post 'todo/:id/toolbar' => 'todos#toolbar', format: :turbo_stream, as: 'todo_toolbar'
   get 'dashboard/' => 'dashboard#index'
   get 'atom.xml' => 'xml#atom', format: :xml, as: :atom

@@ -1,4 +1,5 @@
 class Subscription < ApplicationRecord
+  acts_as_paranoid
   belongs_to :user
 
   include Slug
