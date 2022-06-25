@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "2.7.6"
+ruby "3.1.2"
 
 gem "nokogiri", "~> 1.13"
 gem "mini_portile2", "~> 2.8"
