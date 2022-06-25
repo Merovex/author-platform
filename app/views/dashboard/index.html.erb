@@ -38,7 +38,7 @@
   <section>
   <div class="flex items-center justify-between mt-12 mb-4">
     <%= h2('To-dos') %>
-    <%= link_to icon('plus') +'New list', new_todolist_path, class: 'button', data: { turbo_frame: 'modal' } %>
+    <%= link_to bi_icon('plus') +'New list', new_todolist_path, class: 'button', data: { turbo_frame: 'modal' } %>
   </div>
   <div id="todolists" class="min-w-full">
     <%= render @todolists %>
