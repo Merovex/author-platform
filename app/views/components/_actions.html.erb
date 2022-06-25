@@ -1,11 +1,5 @@
 <%- if can? :edit, obj %>
     <%= link_to "Edit #{obj.model_name}", edit_polymorphic_path(obj), class: 'action' %>
     <% if obj.is_a? Post %>
-        
-    <% elsif obj.is_a? Book %>
-        <%= link_to "Add Praise", new_book_praise_path(obj), class: 'action' %>
-        <%= link_to "Writing Goal", writing_goal_path(obj.writing_goal), class: 'action' %>
-        <%= link_to "Admin", books_admin_path(), class: 'action' %>
-    <% else %>
     <%end%>
 <%- end %>

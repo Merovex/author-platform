@@ -4,12 +4,12 @@ module ApplicationHelper
     return [polymorphic_url(obj.class), obj.slug].join("/").downcase
   end
   def bi_icon(name, args={})
-    klass = strip_tags(args[:class]) || ""
-    return raw("<i class='bi-icon bi-#{name} #{klass}'></i>")
+    klass = ["bi-icon", "bi-#{name}", strip_tags(args[:class])].join(" ")
+    return raw("<i class='#{klass}'></i>")
   end
-  def icon(name, klass='inline-block w-5 h-5')
-    return heroicon(name, class_name: klass)
-  end
+  # def icon(name, klass='inline-block w-5 h-5')
+  #   return heroicon(name, class_name: klass)
+  # end
   def inverse_button_css(color='blue')
     border_color = {
       brand: "border-brand",
@@ -41,9 +41,10 @@ module ApplicationHelper
     "#{bg_color} border-gray-500/50 text-white button shadow-lg shadow-blue-500/50"
   end
   def edit_link_to(object, text="", args={})
+    obj = (object.is_a? Array) ? object.last : object
     return link_to(
       [bi_icon('pencil'), strip_tags(text)].join(' ').html_safe, edit_polymorphic_path(object),
-      data: { turbo_frame: dom_id(object) }
+      data: { turbo_frame: dom_id(obj) }
     )
   end
   def trash_link_to(object, text="")

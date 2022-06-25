@@ -8,9 +8,4 @@ module CommentsHelper
     end
     return time, edit_text
   end
-  def underlap(pad=0)
-    @underlap_counter = 1001 if @underlap_counter.nil?
-    @underlap_counter -= 1
-    return "z-[#{@underlap_counter + pad}]"
-  end
 end

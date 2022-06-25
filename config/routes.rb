@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     resources :praises
     resources :book_links
   end
+  resources :praises
   
   get 'posts/admin' => 'posts#admin'
   resources :posts

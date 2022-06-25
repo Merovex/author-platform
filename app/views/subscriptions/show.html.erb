@@ -2,7 +2,7 @@
 <article class="single">
   <% if can? :admin, Subscription %>
     <aside class="text-right">
-      <%= link_to "Subscribers", subscribers_path, class: button_css('blue') %>
+      <%= link_to "Subscribers", subscribers_path, class: button_css('brand') %>
     </aside>
   <% end %>
   <%= headline("Subscriptions") %>
@@ -34,7 +34,7 @@
       <td class="font-bold py-8">
       &nbsp;
       </td>
-      <td class='text-center'><%= form.submit "Update", class: button_css('blue') %></td>
+      <td class='text-center'><%= form.submit "Update", class: button_css('brand') %></td>
       </tr>
     </tbody>
   </table>

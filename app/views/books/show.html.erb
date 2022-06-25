@@ -1,30 +1,50 @@
 <%# https://lineardesign.com/blog/landing-page-layout/ %>
+
+<% if can? :admin, Book %>
+  <div class='bg-red-500'>
+  &nbsp;
+  <div class='relative'>
+    <%= render layout: "components/options" do %>
+      <%= edit_link_to(@book, "Edit")%>
+      <%= link_to bi_icon('graph-up-arrow') + " Writing Goal", writing_goal_path(@book.writing_goal) %>
+      <%= link_to bi_icon('speedometer2') + " Admin", books_admin_path() %>
+    <% end %>
+  </div>
+  </div>
+<% end %>
+
 <%= render 'books/sections/hero' unless @book.nil? %>
 <section class='py-4 text-center'>
-  <%= render 'components/actions', obj: @book %>
   <%= render 'components/subscribe' %>
 <%#= barchart(Click.group_by_day(:created_at, format: "%d %b").count, 'visits') %>
 </section>
+  
 <% if @book.praises.count > 0 %>
   <section id='testimonials' class="py-4 <%= zebra() %>">
-    
-    <div class="main ">
-    <% if can? :admin, Book %>
-    <div class='text-right'>
-    <%= link_to "Add praise", new_book_praise_path(@book), class: 'button', data: { turbo_frame: 'modal' } %>
-    <%# <%= link_to 'edit', link, class: 'link' %> 
-    </div>
-    <% end %>
+    <div class="main">
     <%= h2("Praise for <em>#{@book}</em>".html_safe) %>
-    <div id='praises-list'>
-    <%= render @book.praises %>
-      
+    <% if can? :admin, Book %>
+      <div class="text-right">
+        <%= link_to bi_icon('emoji-heart-eyes') + " Add praise", new_book_praise_path(@book), class: 'button', data: { turbo_frame: 'modal' } %>
+      </div>
+    <% end %>
+    <div id='praises'>
+      <%= render @book.praises %>
     </div>
     <aside class='py-8 mt-4 text-center'>
     <%= render 'components/buy-cta', locals: {book: @book} %>
     </aside>
     </div>
   </section>
+<% else %>
+  <% if can? :admin, Book %>
+  <div class='main'>    
+    <%= h2("Praise for <em>#{@book}</em>".html_safe) %>
+    <div class="text-right">
+      <%= link_to bi_icon('emoji-heart-eyes') + " Add praise", new_book_praise_path(@book), class: 'button', data: { turbo_frame: 'modal' } %>
+    </div>
+  </div>
+  <% end %>
 <% end %>
 <%= render 'books/sections/series-list' %>
 <%= render 'books/sections/excerpt' %>
