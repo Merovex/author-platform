@@ -13,8 +13,6 @@
   <td class='text-center border'>
   <%= edit_link_to(post) %>
   <%= trash_link_to(post) %>
-  <%#= link_to icon('pencil-alt', 'icon-link'), edit_post_path(post), class: 'link' %>
-  <%#= link_to icon('trash', 'icon-link'), post_path(post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'link' %>
   <%= link_to bi_icon('share-fill', class: 'icon-link'), posts_broadcast_path(post), data: { turbo_method: :get, turbo_confirm: "Are you sure you want to broadcast?"}, class: 'link' if post.broadcastable? %>
   </td>
 </tr>
