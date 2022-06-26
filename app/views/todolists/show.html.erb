@@ -1,4 +1,5 @@
 <article id="<%= dom_id @todolist %>">
+  <% @show_heading = true %>
   <%= render @todolist %>
   <%= render 'comments/index', parent: @todolist %>
 </article>

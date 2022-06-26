@@ -1,25 +1,30 @@
-<%= turbo_frame_tag dom_id comment do %>
+<% debug comment %>
+<%= turbo_frame_tag set_comment_id(comment) do %>
 <article class='relative mt-6 mb-8'>
-    <%= render layout: "components/options" do %>
-      <%= edit_link_to(comment, "Edit")%>
-      <%= trash_link_to(comment,'Put in the trash') %>
+    <% if comment.id %>
+      <%= render layout: "components/options" do %>
+        <%= edit_link_to(comment, "Edit")%>
+        <%= trash_link_to(comment,'Put in the trash') %>
+      <% end %>
     <% end %>
-    <div class='grid grid-cols-12 gap-2 mt-8'>
+  <div class='grid grid-cols-12 gap-2 mt-8'>
     <header class='grid h-12 grid-cols-12 col-span-12 gap-2 mt-2 align-top lg:h-6'>
       <div class='col-span-10 text-sm text-right lg:col-span-2 lg:text-left text-base-subtle '>
+      <% if comment.id %>
         <%- time, edit_text = create_or_update_time(comment) %>
         <div class='hidden uppercase lg:block'><%= local_relative_time(time, type: 'weekday') %></div>
         <div class='inline-block lg:block'><%= [edit_text, local_relative_time(time, type: 'time-or-date')].join(' ').html_safe %></div>
+      <% end %>
       </div>
       <div class='col-span-2 col-end-3 -mt-2 lg:col-end-5 '>
-        <%= (user_avatar_image(comment.user, 60)) %>
+        <%= (user_avatar_image(comment.user || current_user, 60)) %>
       </div>
       <div class='col-span-10 col-end-13 lg:col-span-6 lg:col-end-11'>
-        <h3 class='font-semibold'><%= comment.user %></h3>
+        <h3 class='font-semibold'><%= comment.user || current_user %></h3>
       </div>
     </header>
     <div class='col-span-10 col-end-13 lg:col-span-8 lg:col-end-13'>
-      <%= comment.content %>
+      <%= comment_content_or_new_link(comment) %>
     </div>
   </div>
 </article>

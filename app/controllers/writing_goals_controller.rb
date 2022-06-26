@@ -16,7 +16,6 @@ class WritingGoalsController < ApplicationController
     @writing_goal.writing_entries.each do |entry|
       @entries[entry.wrote_on] = entry
     end
-    # @heatmap_days = build_heatmap(@writing_goal.writing_entries)
   end
 
   # GET /writing_goals/new

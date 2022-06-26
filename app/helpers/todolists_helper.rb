@@ -1,7 +1,14 @@
 module TodolistsHelper
-  def todolist_heading(todolist, show_headline = false)
-    return headline(sanitize(todolist.name)) if show_headline
-    return h3(link_to(sanitize(todolist.name), todolist_path(todolist)), 'link text-xl font-bold')
+  def todolist_title_with_project(todolist)
+    return "" if todolist.todolistable.nil?
+    label = " for #{link_to(todolist.todolistable, todolist.todolistable, class: 'link')}".html_safe
+  end
+  # todolist_heading(todolist, @show_project, @show_heading)
+  def todolist_heading(todolist, show_project, show_heading)
+    label = link_to(sanitize(todolist.name), todolist, class: 'link')
+    label += todolist_title_with_project(todolist) if show_project
+    return headline(label) if show_heading
+    return h3(label, class: 'font-semibold text-xl')
   end
   def todo_ratio(todolist)
     done_todos = todolist.todos.map{ |t| t.done_at }.reject(&:nil?).count

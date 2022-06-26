@@ -1,2 +1,2 @@
-<%= turbo_stream.replace('comments-form', partial: "comments/inline_form", locals: {parent: @parent}) %>
-<%= turbo_stream.append('comments', partial: "comments/comment", locals: {comment: @comment}) %>
+<%= turbo_stream.replace('comments-form', partial: "comments/comment", locals: {parent: @parent, comment: @parent.comments.build}) %>
+<%= turbo_stream.append('comments', partial: "comments/comment", locals: {parent: @parent, comment: @comment}) %>

@@ -1,13 +1,11 @@
 <div class="w-full">
   <hr>
-  <div >
+  <div>
     <div id="comments" class="w-full">
       <%= render @comments %>
     </div>
   </div>
-  <div class=''>
-  <%= turbo_frame_tag "comments-form" do %>
-    <%= render 'comments/inline_form', parent: parent %>
-  <% end %>
+  <div>
+  <%= render 'comments/comment', parent: parent, comment: parent.comments.build %>
   </div>
 </div>

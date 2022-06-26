@@ -5,6 +5,9 @@ class WritingGoal < ApplicationRecord
   
   include Slug, Sluggable
 
+  def to_s
+    book.title
+  end
   def to_param
     slug
   end

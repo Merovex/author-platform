@@ -4,6 +4,6 @@
   </div>
   <div class="inline">
     <%= form.submit class: button_css('brand') %>
-    <%= link_to("Discard changes", comment_path(@comment, inline: true)) %>
+    <%= link_to("Discard changes", polymorphic_path(@comment.commentable, inline: true)) %>
   </div>
 <% end %>

@@ -78,13 +78,16 @@ module ApplicationHelper
   def panel_headline(title)
     content = tag.h1(title, class: 'panel-headline')
   end
-  def h2(text, klass='')
+  def h2(text, args={})
+    args = [class: args] if args.is_a?(String)
+    args[:class] = (args[:class].nil?) ? 'subtitle' : "#{args[:class]} subtitle"
     text = t(text) if text.is_a?(Symbol)
-    content = tag.h2(text, class: "subtitle #{klass}")
+    content = tag.h2(text, class: args[:class])
   end
-  def h3(text, klass='')
+  def h3(text, args={})
+    args = [class: args] if args.is_a?(String)
     text = t(text) if text.is_a?(Symbol)
-    content = tag.h3(text, class: " #{klass}")
+    content = tag.h3(text, class: args[:class])
   end
   def barchart(data, type = 'undefined')
     id = SecureRandom.uuid.split('-').first

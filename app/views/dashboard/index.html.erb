@@ -34,6 +34,7 @@
   <section>
     <%= render "dashboard/heatmap", entries: WritingEntry.all %>
   </section>
+  <% @show_project = true%>
   <%= render 'todolists/index', todolists: @todolists, parent: nil %>
 </div>
 
