@@ -1,4 +1,5 @@
 class TodolistsController < ApplicationController
+  before_action :set_parent, only: %i[ new create ]
   before_action :set_todolist, only: %i[ show edit update destroy ]
   before_action :authenticate_user!#, except: %i[show index]
   load_and_authorize_resource
@@ -26,6 +27,7 @@ class TodolistsController < ApplicationController
   # POST /todolists or /todolists.json
   def create
     @todolist = Todolist.new(todolist_params)
+    @parent.todolists << @todolist unless @parent.nil?
 
     respond_to do |format|
       if @todolist.save
@@ -65,6 +67,11 @@ class TodolistsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_todolist
       @todolist = Todolist.find(params[:id])
+    end
+    def set_parent
+      if (!params[:writing_goal_id].nil?)
+        @parent = WritingGoal.find_using_slug(params[:writing_goal_id])
+      end
     end
 
     # Only allow a list of trusted parameters through.

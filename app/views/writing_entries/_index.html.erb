@@ -1,0 +1,46 @@
+<%= h2('Entries') %>
+  <table class='w-full my-12 table-fixed'>
+    <thead>
+      <tr>
+        <th class='w-40 border'>Date</th>
+        <th class='w-20 border'>Logged</th>
+        <th class='w-40 border' colspan='2'>Running Total</th>
+        <th class='w-20 border'>Daily Target</th>
+        <th class='border'>Comment</th>
+      </tr>
+    </thead>
+    <tbody id='writing_entries'>
+    <% unless (@writing_goal.start_on.nil? or @writing_goal.finish_on.nil?) %>
+    <% (@writing_goal.start_on..@writing_goal.finish_on).each do |date| %>
+      <% @entry = (@entries[date].nil?) ? nil : @entries[date] %>
+      <% @date = date %>
+      <%= render 'writing_entries/writing_entry', entry: @entry %>
+    <%end%>
+    <%end%>
+    </tbody>
+  </table>
+</div>
+<script type="text/javascript">
+  const target = parseInt(document.getElementById('writing-target').innerHTML.replace(/,/g, ''))
+  const end_on = new Date(document.getElementById('end-on').innerHTML)
+  function entryMath() {
+    var total = 0;
+    var el = [...document.getElementsByClassName("entry")];
+    el.forEach(function(entry){
+      var today = new Date(entry.dataset.date)
+      var count = parseInt(entry.dataset.count)
+
+      var days_left = Math.ceil((end_on - today) / (1000 * 60 * 60 * 24))
+      var daily_pace = Math.ceil((target - count) / days_left);
+      
+      total = total + count
+      entry.cells[2].innerHTML = total.toLocaleString()
+      entry.cells[3].innerHTML = parseInt(total / target * 100) + "%";
+      entry.cells[4].innerHTML = daily_pace.toLocaleString()
+    });
+  }
+  const interval = setInterval(function() {
+    entryMath()
+  }, 125);
+ entryMath()
+</script>

@@ -1,6 +1,7 @@
 class WritingGoal < ApplicationRecord
   belongs_to :book
   has_many :writing_entries
+  has_many :todolists, as: :todolistable
   
   include Slug, Sluggable
 

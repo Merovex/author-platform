@@ -18,6 +18,5 @@ module TodolistsHelper
      else
       return tag.span(ratio, id: "ratio_#{todolist.id}")
      end
-     
   end
 end

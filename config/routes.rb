@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   resources :authors
   resources :writing_goals do
     resources :writing_entries, path_names: { new: 'new/:date' }
+    resources :todolists
   end
   get 'books/admin' => 'books#admin'
   resources :books do

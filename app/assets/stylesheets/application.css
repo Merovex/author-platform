@@ -13,7 +13,3 @@
  *= require_tree .
  *= require_self
  */
-.trix-button-row {
-  background-color: #fff;
-  border: 1;
-}
