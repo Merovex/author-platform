@@ -11,8 +11,7 @@
         <table class='w-full border table-fixed'>
         <%= render 'book_row_header' %>
         <tbody>
-          <%- books = serial.episodes.sort_by(&:order).map{ |e| e.book }%>
-          <%= render partial: 'book_row', collection: books, as: :book %>
+          <%= render partial: 'book_row', collection: get_books_in_series(serial), as: :book %>
         </tbody>
         </table>
       </section>

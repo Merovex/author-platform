@@ -26,6 +26,7 @@ class BooksController < ApplicationController
   end
   # GET /books/1 or /books/1.json
   def show
+    @series = @book.series
   end
   
   # GET /books/new
@@ -46,8 +47,8 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       if @book.save
-        @book.episode.order = @book.series.episodes.count
-        @book.episode.save
+        # @book.episode.order = @book.series.episodes.count
+        # @book.episode.save
         format.html { redirect_to @book, notice: "Book was successfully created." }
         format.json { render :show, status: :created, location: @book }
       else

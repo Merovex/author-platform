@@ -8,6 +8,7 @@ class BookLinksController < ApplicationController
   end
 
   def show
+    @series = @book.series
   end
 
   def new

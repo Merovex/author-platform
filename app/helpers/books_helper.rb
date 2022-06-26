@@ -1,5 +1,8 @@
 require 'color/rgb/contrast'
 module BooksHelper
+  def get_books_in_series(serial)
+    serial.books.sort_by(&:position).map{ |b| b }
+  end
   def book_cover_image(book, klass="")
     if book.cover.attached?
       image_tag(

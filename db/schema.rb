@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_25_005826) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_26_142318) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -181,9 +181,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_25_005826) do
     t.text "tagline"
     t.boolean "is_wip"
     t.datetime "deleted_at"
+    t.integer "series_id"
+    t.integer "position"
     t.index ["deleted_at"], name: "index_books_on_deleted_at"
     t.index ["is_featured"], name: "index_books_on_is_featured"
     t.index ["is_wip"], name: "index_books_on_is_wip"
+    t.index ["position"], name: "index_on_book_position"
     t.index ["released_on"], name: "index_books_on_released_on"
     t.index ["slug"], name: "index_books_on_slug"
   end
@@ -370,7 +373,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_25_005826) do
     t.date "due_on"
     t.datetime "done_at"
     t.datetime "deleted_at"
+    t.integer "position"
     t.index ["deleted_at"], name: "index_todos_on_deleted_at"
+    t.index ["position"], name: "index_on_todo_position"
     t.index ["todolist_id"], name: "index_todos_on_todolist_id"
   end
 
