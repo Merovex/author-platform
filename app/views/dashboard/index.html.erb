@@ -25,10 +25,7 @@
     </div>
   </section>
   <% if !@wips.empty? and can? :admin, Book %>
-    <table class='w-full'>
-      <%= render 'books/book_row_header' %>
-      <%= render partial: 'books/book_row', collection: @wips, as: :book %>
-    </table>
+    <%= render partial: 'books/card', collection: @wips, as: :book %>
   <% end %>
   <hr class='my-8'>
   <section>
