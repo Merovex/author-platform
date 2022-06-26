@@ -18,6 +18,6 @@
   <td class='text-center border'>
     <%= link_to bi_icon("pencil-square"), edit_book_path(book), class: 'ml-4 link' %>
     <%= link_to bi_icon("trash"), book_path(book), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'ml-4 link' %>
-    <%= link_to bi_icon("card-checklist"), writing_goal_path(book.writing_goal), class: 'ml-4 link' if book.is_wip %> 
+    <%= link_to bi_icon("card-checklist"), bucket_path(book.bucket), class: 'ml-4 link' if book.is_wip %> 
   </td>
 </tr>

@@ -6,7 +6,7 @@
   <div class='relative'>
     <%= render layout: "components/options" do %>
       <%= edit_link_to(@book, "Edit")%>
-      <%= link_to bi_icon('graph-up-arrow') + " Writing Goal", writing_goal_path(@book.writing_goal) %>
+      <%= link_to bi_icon('graph-up-arrow') + " Writing Goal", bucket_path(@book.bucket) %>
       <%= link_to bi_icon('speedometer2') + " Admin", books_admin_path() %>
     <% end %>
   </div>

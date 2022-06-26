@@ -1,10 +1,10 @@
-<%= form_with(model: writing_goal) do |form| %>
-  <% if writing_goal.errors.any? %>
+<%= form_with(model: bucket) do |form| %>
+  <% if bucket.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(writing_goal.errors.count, "error") %> prohibited this writing_goal from being saved:</h2>
+      <h2><%= pluralize(bucket.errors.count, "error") %> prohibited this bucket from being saved:</h2>
 
       <ul>
-        <% writing_goal.errors.each do |error| %>
+        <% bucket.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>

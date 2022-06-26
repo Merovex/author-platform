@@ -1,7 +1,7 @@
 class DashboardController < ApplicationController
   def index
     @wips = Book.unpublished
-    @goal = @wips.last.writing_goal
+    @goal = @wips.last.bucket
     @todolists = Todolist.all
     # @wip = @wips.last
     
@@ -13,10 +13,10 @@ class DashboardController < ApplicationController
     # @remaining = "---"
 
     # unless (@wip.nil?)
-    #   @wip_wordcount = @wip.writing_goal.wordcount
-    #   @target = @wip.writing_goal.target || 0
-    #   @total_days = @wip.writing_goal.days_written
-    #   @remaining = @wip.writing_goal.days_remaining
+    #   @wip_wordcount = @wip.bucket.wordcount
+    #   @target = @wip.bucket.target || 0
+    #   @total_days = @wip.bucket.days_written
+    #   @remaining = @wip.bucket.days_remaining
     # end
     
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_26_164851) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_26_181732) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -187,6 +187,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_26_164851) do
     t.index ["position"], name: "index_on_book_position"
     t.index ["released_on"], name: "index_books_on_released_on"
     t.index ["slug"], name: "index_books_on_slug"
+  end
+
+  create_table "buckets", force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.date "start_on"
+    t.date "finish_on"
+    t.integer "target"
+    t.text "summary"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["book_id"], name: "index_buckets_on_book_id"
+    t.index ["slug"], name: "index_buckets_on_slug"
   end
 
   create_table "clicks", force: :cascade do |t|
@@ -422,28 +435,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_26_164851) do
     t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "writing_goal_id", null: false
-    t.index ["writing_goal_id"], name: "index_writing_entries_on_writing_goal_id"
+    t.bigint "bucket_id", null: false
+    t.index ["bucket_id"], name: "index_writing_entries_on_bucket_id"
     t.index ["wrote_on"], name: "index_writing_entries_on_wrote_on"
-  end
-
-  create_table "writing_goals", force: :cascade do |t|
-    t.bigint "book_id", null: false
-    t.date "start_on"
-    t.date "finish_on"
-    t.integer "target"
-    t.text "summary"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "slug"
-    t.index ["book_id"], name: "index_writing_goals_on_book_id"
-    t.index ["slug"], name: "index_writing_goals_on_slug"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "authors", "books"
   add_foreign_key "authors", "users"
+  add_foreign_key "buckets", "books"
   add_foreign_key "clicks", "users"
   add_foreign_key "comments", "users"
   add_foreign_key "episodes", "books"
@@ -454,6 +455,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_26_164851) do
   add_foreign_key "subscriptions", "users"
   add_foreign_key "todolists", "users"
   add_foreign_key "todos", "todolists"
-  add_foreign_key "writing_entries", "writing_goals"
-  add_foreign_key "writing_goals", "books"
+  add_foreign_key "writing_entries", "buckets"
 end

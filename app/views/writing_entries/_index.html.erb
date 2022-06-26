@@ -10,8 +10,8 @@
       </tr>
     </thead>
     <tbody id='writing_entries'>
-    <% unless (@writing_goal.start_on.nil? or @writing_goal.finish_on.nil?) %>
-    <% (@writing_goal.start_on..@writing_goal.finish_on).each do |date| %>
+    <% unless (@bucket.start_on.nil? or @bucket.finish_on.nil?) %>
+    <% (@bucket.start_on..@bucket.finish_on).each do |date| %>
       <% @entry = (@entries[date].nil?) ? nil : @entries[date] %>
       <% @date = date %>
       <%= render 'writing_entries/writing_entry', entry: @entry %>

@@ -18,17 +18,16 @@ class Book < ApplicationRecord
   
   accepts_nested_attributes_for :series
 
-  has_one :writing_goal, dependent: :destroy
-  before_create :build_writing_goal
+  has_one :bucket, dependent: :destroy
+  before_create :build_bucket
   
   has_many :praises, dependent: :destroy
   has_many :authors
   has_many :links, as: :linkable, dependent: :destroy
-  has_many :writing_entries, through: :writing_goal, as: :entries
+  has_many :writing_entries, through: :bucket, as: :entries
   # belongs_to :clickable, polymorphic: true, optional: true
 
   scope :featured, -> { where(is_featured: true) }
-  scope :wips, -> { where(is_wip: true) }
   scope :unpublished, -> { where("released_on > ? OR released_on IS NULL", DateTime.now) }
   scope :published, -> { where("released_on <= ?", DateTime.now) }
 

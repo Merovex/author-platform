@@ -1,5 +1,5 @@
 class WritingEntry < ApplicationRecord
-  belongs_to :writing_goal
+  belongs_to :bucket
 
   def self.annual_wordcount(year)
     jan_1 = Date.new(year.to_i,1,1)

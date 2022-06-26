@@ -1,6 +1,6 @@
 class CreateWritingGoals < ActiveRecord::Migration[7.0]
   def change
-    create_table :writing_goals do |t|
+    create_table :buckets do |t|
       t.references :book, null: false, foreign_key: true
       t.date :start_on
       t.date :finish_on

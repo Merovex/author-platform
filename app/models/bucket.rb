@@ -1,4 +1,4 @@
-class WritingGoal < ApplicationRecord
+class Bucket < ApplicationRecord
   belongs_to :book
   has_many :writing_entries
   has_many :todolists, as: :todolistable

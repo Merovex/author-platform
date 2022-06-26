@@ -8,6 +8,6 @@ class AddIsWipToBooks < ActiveRecord::Migration[7.0]
     add_index :subscriptions, :posts
     add_index :subscriptions, :books
     add_index :writing_entries, :wrote_on
-    add_index :writing_goals, :slug
+    add_index :buckets, :slug
   end
 end

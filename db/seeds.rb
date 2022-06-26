@@ -14,11 +14,11 @@ WritingEntry.delete_all
 ].each do |slug, fname|
   puts [slug, fname].inspect
   book = Book.find_using_slug(slug)
-  goal = book.writing_goal
+  goal = book.bucket
   CSV.foreach(Rails.root.join(fname), headers: true) do |row|
     date = Date.parse(row["Date"])
     # raise date.inspect
-    entry = book.writing_goal.writing_entries.create(wrote_on: date, count: row["Words"])
+    entry = book.bucket.writing_entries.create(wrote_on: date, count: row["Words"])
     entry.save
     puts entry.inspect
   end

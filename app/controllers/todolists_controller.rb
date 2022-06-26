@@ -69,8 +69,8 @@ class TodolistsController < ApplicationController
       @todolist = Todolist.find(params[:id])
     end
     def set_parent
-      if (!params[:writing_goal_id].nil?)
-        @parent = WritingGoal.find_using_slug(params[:writing_goal_id])
+      if (!params[:bucket_id].nil?)
+        @parent = Bucket.find_using_slug(params[:bucket_id])
       end
     end
 

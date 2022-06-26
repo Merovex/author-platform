@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     resources :books, only: [:new, :create, :edit, :update]
   end
   resources :authors
-  resources :writing_goals do
+  resources :buckets do
     resources :writing_entries, path_names: { new: 'new/:date' }
     resources :todolists
   end
