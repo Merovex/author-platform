@@ -23,6 +23,7 @@ class Book < ApplicationRecord
   
   has_many :praises, dependent: :destroy
   has_many :authors
+  has_many :episodes
   has_many :links, as: :linkable, dependent: :destroy
   has_many :writing_entries, through: :bucket, as: :entries
   # belongs_to :clickable, polymorphic: true, optional: true
