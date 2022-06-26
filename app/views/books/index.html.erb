@@ -1,15 +1,13 @@
 <div class="main">
-  <% if can? :admin, Book %>
-    <div class="flex mt-5 lg:mt-0 lg:ml-4h">
-      <%= link_to 'Admin', books_admin_path, class: 'action' %>
-    </div>
-  <% end %>
   <%= content_for(:title, 'Books') %>
   <% if @published.empty? %>
-    <div class="text-center text-xl">
+    <div class="text-xl text-center">
       <h2>No Books published.</h2>
     </div>
   <% else %>
-    <%= render @published %>
+    <% @published.keys.each do |serial| %>
+      <header class="text-center text-brand"><%= h2(serial.title) %></header>
+      <%= render @published[serial] %>
+    <% end %>
   <% end %>
 </div>

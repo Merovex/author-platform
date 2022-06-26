@@ -1,13 +1,17 @@
 class BooksController < ApplicationController
   before_action :get_series, only: %i[ new create ]
-  before_action :set_book, only: %i[ show edit update destroy release]
+  before_action :set_book, only: %i[ show edit update destroy release move]
   after_action :get_cover_bgcolor, only: %i[ create update ]
   after_action :track_action, only: %i[show]
   load_and_authorize_resource
 
   # GET /books or /books.json
   def index
-    @published = Book.published
+    @published = {}
+    Book.published.sort_by(&:position).map do |book|
+      @published[book.series] = [] if @published[book.series].nil?
+      @published[book.series] << book
+    end
   end
   def admin
     @series = Series.all
@@ -38,7 +42,6 @@ class BooksController < ApplicationController
   # GET /books/1/edit
   def edit
     @series = Series.all
-    @episode = @book.episode || Episode.new
   end
 
   # POST /books or /books.json
@@ -47,12 +50,9 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       if @book.save
-        # @book.episode.order = @book.series.episodes.count
-        # @book.episode.save
         format.html { redirect_to @book, notice: "Book was successfully created." }
         format.json { render :show, status: :created, location: @book }
       else
-        @episode = @book.episode || Episode.new
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @book.errors, status: :unprocessable_entity }
       end
@@ -61,11 +61,8 @@ class BooksController < ApplicationController
 
   # PATCH/PUT /books/1 or /books/1.json
   def update
-    # raise [params].inspect
     respond_to do |format|
       if @book.update(book_params)
-        @book.episode.series_id = params[:book][:series_id]
-        @book.episode.save
         format.html { redirect_to @book, notice: "Book was successfully updated." }
         format.json { render :show, status: :ok, location: @book }
       else
@@ -74,7 +71,11 @@ class BooksController < ApplicationController
       end
     end
   end
-
+  def move
+    @series = @book.series
+    @book.insert_at(book_params[:position].to_i)
+    head :ok
+  end
   # DELETE /books/1 or /books/1.json
   def destroy
     @book.destroy
@@ -91,12 +92,11 @@ class BooksController < ApplicationController
       redirect_to '/book#index', error: "Book not found" if @book.nil?
     end
     def get_series
-      # raise params.inspect
       @serial = Series.find_using_slug(params[:series_id])
     end
     # Only allow a list of trusted parameters through.
     def book_params
-      params.require(:book).permit(:title, :is_featured, :is_wip, :released_on, :status, :synopsis, :tagline, :excerpt, :cover, :hero_background, series_attributes: [:id])
+      params.require(:book).permit(:position, :title, :is_featured, :released_on, :status, :synopsis, :tagline, :excerpt, :cover, :hero_background, series_attributes: [:id])
     end
     def get_cover_bgcolor
       return unless @book.cover.attached?

@@ -53,19 +53,9 @@ module ApplicationHelper
       data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }
     )
   end
-  def format_date(datetime, args={})
-    type = args[:type].to_s || ''
-    klass = args[:class] || ''
-    if type == 'weekday'
-      fmt = (datetime.today?) ? "Today" : "%A"
-    else
-      fmt = (datetime.today?) ? "%l:%M %p" : "%B %d"
-    end
-    label = datetime.strftime(fmt) 
-    return time_tag(datetime, format: fmt, aria: {label: label}, title: label)
-  end
+
   def zebra()
-    cycle('bg-subtle','', name: 'zebra')
+    cycle('bg-gray-600 text-white','', name: 'zebra')
   end
   def headline(title, wrap_title = true)
     content_for(:title, title)
@@ -110,20 +100,5 @@ module ApplicationHelper
 EOF
   return answer.html_safe
   end
-  def format_time(time, timezone)
-    time = time.to_time
-    content_tag(:span, I18n.l(time, format: :long), data: { timezone: timezone, time: time.iso8601 })
-  end
-  def local_time(time, format="MM/dd/yyyy")
-    return if time.nil?
 
-    time_tag(time, data: { controller: 'localtime', format: format})
-  end
-  def local_time_popover(time)
-    return if time.nil?
-    
-    summary = time_tag(time, data: { controller: 'localtime', format: 'relative'})
-    details = time_tag(time, data: { controller: 'localtime', format: "dd MMMM YYYY"})
-    content_tag(:details,  content_tag(:summary, summary) + content_tag(:span, details) )
-  end
 end

@@ -32,13 +32,6 @@
     <%= form.label :is_featured, "Featured on Homepage" %>
     <%= form.check_box :is_featured, class: 'rounded' %>
   </div>
-  <div class="my-8">
-    <%= form.label :is_wip, "Work in Progress" %>
-    <%= form.check_box :is_wip, class: 'rounded' %>
-  </div>
-
-  
-  
   <% if @series.nil? %>
     <%= form.hidden_field :series_id, value: @serial.id %>
   <% else %>

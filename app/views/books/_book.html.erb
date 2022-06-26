@@ -1,8 +1,8 @@
 <%= render layout: 'books/layout', locals: {book: book, is_card: true} do %>
-  <h3 class="my-6 text-3xl text-center lg:text-4xl font-display">
+  <h3 class="my-6 text-xl text-center lg:text-4xl font-display">
     <%= link_to book.title, book %>
   </h3>
-  <div class="<%=t('css_prose')%>">
+  <div class="font-serif">
     <% if book.tagline.nil? %>
       <%= book.synopsis.to_plain_text.truncate(160) %>
     <% else %>

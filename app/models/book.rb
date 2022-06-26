@@ -1,6 +1,7 @@
 
 class Book < ApplicationRecord
   acts_as_paranoid
+  acts_as_list
   
   include Slug, Sluggable
 
@@ -13,10 +14,9 @@ class Book < ApplicationRecord
   has_one_attached :cover, dependent: :destroy
   has_one_attached :hero_background, dependent: :destroy
 
-  has_one :episode, dependent: :destroy
-  has_one :series, through: :episode
+  belongs_to :series
   
-  accepts_nested_attributes_for :episode, allow_destroy: true
+  accepts_nested_attributes_for :series
 
   has_one :writing_goal, dependent: :destroy
   before_create :build_writing_goal

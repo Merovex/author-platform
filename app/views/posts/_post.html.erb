@@ -1,15 +1,15 @@
 <article class="card">
-  <time datetime="<%= post.published_at %>">
-    <%= post.published_at.strftime('%d %B %Y') %>
-  </time>
+  <%= local_time(post.published_at, format: "%-d %B %Y", class: "block text-center w-full") %>
   <h2><%= link_to(post.title.titlecase, post)%></h2>
   <% if post.broadcasted_at and can? :edit, post %>
-  <p class='text-yellow-600 text-bold text-center'>Sent to subscribers (<%= post.broadcasted_at.strftime('%d %B %Y') %>).</p>
+  <p class='text-center text-yellow-600 text-bold'>
+    Sent to subscribers (<%= local_time(post.broadcasted_at) %>)
+  </p>
   <% end %>
-  <p class='prose font-serif lg:prose-xl dark:text-gray-300 dark:prose-dark'>
+  <p class='font-serif prose lg:prose-xl dark:text-gray-300 dark:prose-dark'>
     <%= post.content.to_plain_text.truncate(256) %>
   </p>
   <p class='my-4 text-center'>
-    <%= link_to 'Read More', post, class: button_css('violet'), aria: {label: "#{post.class}: #{post.title}, on #{post.published_at.strftime('%d %B %Y')}" } %>
+    <%= link_to 'Read More', post, class: button_css('brand'), aria: {label: "#{post.class}: #{post.title}, on #{post.published_at.strftime('%d %B %Y')}" } %>
   </p>
 </article>

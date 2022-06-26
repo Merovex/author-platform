@@ -92,7 +92,7 @@ trix-toolbar .trix-button, trix-toolbar .trix-button:not(:first-child), trix-too
 }
 
 .card time {
-  @apply block text-center text-base-subtle;
+  @apply inline-block text-center text-base-subtle;
 }
 
 .card h2 {

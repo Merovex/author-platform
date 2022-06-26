@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_26_142318) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_26_164851) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -173,19 +173,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_26_142318) do
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "slug"
-    t.boolean "is_featured"
+    t.boolean "is_featured", default: false
     t.date "released_on"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "cover_color"
+    t.string "cover_color", default: "#808080"
     t.text "tagline"
-    t.boolean "is_wip"
     t.datetime "deleted_at"
     t.integer "series_id"
     t.integer "position"
     t.index ["deleted_at"], name: "index_books_on_deleted_at"
     t.index ["is_featured"], name: "index_books_on_is_featured"
-    t.index ["is_wip"], name: "index_books_on_is_wip"
     t.index ["position"], name: "index_on_book_position"
     t.index ["released_on"], name: "index_books_on_released_on"
     t.index ["slug"], name: "index_books_on_slug"

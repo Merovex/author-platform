@@ -37,6 +37,9 @@ Rails.application.routes.draw do
   resources :books do
     resources :praises
     resources :book_links
+    member do
+      patch :move
+    end
   end
   resources :praises
   

@@ -1,0 +1,19 @@
+<article data-id="<%= dom_id(book) %>" data-sortable-update-url="<%= move_book_path(book) %>" class='flex my-2 space-x-4 border rounded shadow-md'>
+  <div class=''>
+    <%= bi_icon('list') %>
+  </div>
+  <div class='flex-1'>
+    <%= book.title %>
+  </div>
+  <td class='flex-1 text-center'>
+    <% if book.is_featured %>
+      <%= bi_icon('asterisk') %>
+    <% end %>
+    <% if book.released_on.nil? %> 
+      <%= link_to(bi_icon('share'), book_release_path(book), class: "link" )%>
+    <% end %>
+    <%= link_to( bi_icon("card-checklist"), writing_goal_path(book.writing_goal), class: 'ml-4 link') %> 
+    <%= link_to bi_icon("pencil-square"), edit_book_path(book), class: 'ml-4 link' %>
+    <%= link_to bi_icon("trash"), book_path(book), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'ml-4 link' %>
+  </td>
+</article>
