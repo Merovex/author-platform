@@ -1,6 +1,7 @@
 class BucketsController < ApplicationController
-  # before_action :set_book, only: %i[ show new edit ]
-  before_action :set_bucket # , only: %i[ create update destroy ]
+  add_breadcrumb "Dashboard", :dashboard_path
+  before_action :set_bucket, except: %i[ new index create ]
+  load_and_authorize_resource
 
   # GET /buckets or /buckets.json
   def index
@@ -76,6 +77,7 @@ class BucketsController < ApplicationController
   def set_bucket
     @bucket = Bucket.find_using_slug(params[:id])
     @book = @bucket.book
+    add_breadcrumb @book.to_s.titleize, book_path(@book)
   end
 
   # Only allow a list of trusted parameters through.

@@ -7,7 +7,13 @@
       <div class="flex content-center justify-between w-full pt-2 md:w-1/2 md:justify-end">
         <ul class="flex items-center justify-center flex-1 list-reset md:flex-none">
           <li>
-          <span class="inline-block px-3 py-2 text-base text-gray-700 hover:opacity-100 dark:text-white opacity-70">Hello from Virginia</span>
+          <span class="inline-block px-3 py-2 text-base text-gray-700 hover:opacity-100 dark:text-white opacity-70">
+          <% if user_signed_in? %>
+          <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'user-menu-link' %>
+          <% else %>
+          <%= link_to "Hello from Virginia", new_user_session_path  %>
+          <% end %>
+          </span>
           </li>
           <li>
           <a class="inline-block px-3 py-2 text-gray-700 no-underline opacitopacity-100y-50 hover:op dark:text-white opacity-60 hover:opacity-100 hover:underline" href="/privacy/">Privacy</a>

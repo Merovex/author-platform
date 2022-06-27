@@ -1,0 +1,9 @@
+
+<aside class='bg-yellow-300 text-center sticky bottom-0 md:top-0 z-60'>
+    <% if can? :admin, Post %>
+      <%= link_to "Author Dashboard", dashboard_path(), role: 'menuitem', class: 'hover:underline mx-2' %>
+      <%= link_to "Manage books", books_admin_path(), role: 'menuitem', class: 'hover:underline mx-2' %>
+      <%= link_to "Manage posts", posts_admin_path(), role: 'menuitem', class: 'hover:underline mx-2' %>
+    <% end %>
+    <%= link_to 'My Subscriptions', subscriptions_path, class: 'hover:underline mx-2' %>
+</aside>

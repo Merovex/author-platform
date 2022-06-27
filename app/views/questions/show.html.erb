@@ -5,7 +5,9 @@
       <%= trash_link_to(@question,'Put in the trash') %>
     <% end %>
   <% end %>
-  <%= headline(@question)%>
+  <%= headline(@question, class: 'text-3xl font-semibold')%>
+  <section id='answers'>
   <%= render @question.answers %>
+  </section>
   <%= render 'answers/answer', parent: @question, answer: @question.answers.build %>
 </article>

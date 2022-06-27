@@ -12,10 +12,10 @@
   </div>
   <div class="container relative max-w-screen-lg p-4 mx-auto rounded-lg md:text-2xl backdrop-filter backdrop-blur-md">
     <%= render layout: 'books/layout', locals: {book: @book} do %>
-      <h1 class="my-6 text-4xl text-center lg:text-6xl <%= text_color(@book.cover_color) %> font-display">
+      <h1 class="my-6 text-4xl text-center lg:text-6xl <%= text_color(@book) %> font-display">
         <%= @book.title %>
       </h1>
-      <div class="font-serif prose max-w-prose lg:prose-xl <%= text_color(@book.cover_color) %> font-bold text-center opacity-100">
+      <div class="font-serif prose max-w-prose lg:prose-xl <%= text_color(@book) %> font-bold text-center opacity-100">
         <%= @book.synopsis %>
       </div>
       <aside class='mt-8 text-center'>

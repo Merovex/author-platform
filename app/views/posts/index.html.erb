@@ -1,13 +1,6 @@
 <div class="max-w-2xl mx-auto">
     <% headline("Posts") %>
-    <% if can? :admin, Post %>
-      <div class="mt-8">
-      <%= link_to "Admin", posts_admin_path(), class: 'action' %>
-      </div>
-    <% end %>
-    
     <%= render 'components/subscribe' %>
-
     <% if @posts.empty? or @posts.published.empty? %>
       <div class="text-center text-xl">
       <h2>No Articles published.</h2>
@@ -15,5 +8,4 @@
     <%else%>
       <%= render @posts.published.order('published_at desc') %>
     <%end%>
-    
 </div>

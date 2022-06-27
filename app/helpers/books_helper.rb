@@ -59,9 +59,8 @@ module BooksHelper
     comp.to_rgb.html
   end
 
-  def text_color(hex)
-    hex = complementary(hex)
-    brightness = brightness(hex)
-    brightness > 0.50 ? 'text-black dark:text-white' : 'text-white dark:text-white'
+  def text_color(book)
+    brightness = brightness(complementary(book.cover_color))
+    brightness > 0.50 ? 'text-brand-900 dark:text-white' : 'text-brand-200 dark:text-white'
   end
 end

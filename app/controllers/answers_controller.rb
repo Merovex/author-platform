@@ -26,11 +26,7 @@ class AnswersController < ApplicationController
     @answer.user = current_user
     respond_to do |format|
       if @answer.save
-        format.html { redirect_to question_url(@question), notice: 'Answer was successfully created.' }
-        format.json { render :show, status: :created, location: @answer }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @answer.errors, status: :unprocessable_entity }
+        format.turbo_stream
       end
     end
   end
@@ -43,9 +39,6 @@ class AnswersController < ApplicationController
           render turbo_stream: turbo_stream.replace(@answer, partial: 'answers/answer',
                                                              locals: { answer: @answer, parent: @parent })
         end
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @answer.errors, status: :unprocessable_entity }
       end
     end
   end

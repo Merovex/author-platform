@@ -1,4 +1,5 @@
 class TodolistsController < ApplicationController
+  add_breadcrumb "Dashboard", :dashboard_path
   before_action :set_parent, only: %i[new create]
   before_action :set_todolist, only: %i[show edit update destroy]
   before_action :authenticate_user! # , except: %i[show index]
@@ -11,8 +12,10 @@ class TodolistsController < ApplicationController
 
   # GET /todolists/1 or /todolists/1.json
   def show
+    @parent = @todolist.todolistable
     @show_headline = true
     @comments = @todolist.comments
+    add_breadcrumb @parent.to_s.titleize, polymorphic_path(@parent) unless @parent.nil?
   end
 
   # GET /todolists/new

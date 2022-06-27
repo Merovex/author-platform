@@ -1,14 +1,14 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Writing goals</h1>
+<h1>Projects</h1>
 
 <div id="buckets">
   <% @buckets.each do |bucket| %>
     <%= render bucket %>
     <p>
-      <%= link_to "Show this writing goal", bucket %>
+      <%= link_to "Show this Project", bucket %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New writing goal", new_bucket_path %>
+<%= link_to "New Project", new_bucket_path %>

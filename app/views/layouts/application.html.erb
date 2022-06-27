@@ -18,9 +18,11 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
   </head>
   <body>
+    <%= render 'components/user_navbar' if user_signed_in? %>
     <%= render 'components/masquerade' if user_masquerade? %>
-    <%= render 'components/navbar' %>
+    <%= render 'components/site_header' %>
     <main class="min-h-screen">
+      <aside class="max-w-sm md:max-w-3xl mx-auto"><%= render_breadcrumbs %></aside>
       <%= yield %>
     </main>
     <%= render 'components/footer' %>

@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def nav_link_to(text, path, options = {})
+    klass = "inline-block w-1/3 py-1 text-center uppercase align-middle rounded md:w-1/6 hover:shadow-md text-brand-800 hover:bg-brand-500/25"
+    return link_to(text, path, class: klass)
+  end
   def slug_url(obj)
     return '' unless obj.respond_to?(:slug)
 
@@ -10,9 +14,6 @@ module ApplicationHelper
     raw("<i class='#{klass}'></i>")
   end
 
-  # def icon(name, klass='inline-block w-5 h-5')
-  #   return heroicon(name, class_name: klass)
-  # end
   def inverse_button_css(color = 'blue')
     border_color = {
       brand: 'border-brand',
@@ -37,8 +38,9 @@ module ApplicationHelper
     "#{bg_color} border-gray-500/50 text-white button"
   end
 
-  def edit_link_to(object, text = '', _args = {})
+  def edit_link_to(object, text = 'Edit', _args = {})
     obj = (object.is_a? Array) ? object.last : object
+    [text, obj.class].join(' ').strip
     link_to(
       [bi_icon('pencil'), strip_tags(text)].join(' ').html_safe, edit_polymorphic_path(object),
       data: { turbo_frame: dom_id(obj) }
@@ -51,19 +53,16 @@ module ApplicationHelper
       data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }
     )
   end
-  # def SubmitButtonComponent.new(form: form)
-  #   form.submit "Save Changes", class: button_css('brand')
-  # end
 
   def zebra
     cycle('bg-gray-600 text-white', '', name: 'zebra')
   end
 
-  def headline(title, wrap_title = true)
+  def headline(title,args = {wrap_title: true})
     content_for(:title, title)
-    content = tag.h1(title, class: 'headline')
-
-    return content unless wrap_title
+    args[:class] = (args[:class].nil?) ? 'headline' : args[:class]
+    content = tag.h1(title, class: args[:class])
+    return content unless args[:wrap_title]
 
     tag.section(content, class: 'section')
   end

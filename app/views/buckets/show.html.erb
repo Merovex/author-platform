@@ -3,7 +3,7 @@
     <%= link_to "Back to #{@book}", book_path(@book), class: 'action' %>
     <%= link_to "Edit", edit_bucket_path(@bucket), class: 'action' %>
   </div>
-  <%= headline("Writing Goal: #{@book}") %>
+  <%= headline("Project: #{@book}") %>
   <table class='w-full my-12 text-xl table-fixed'>
     <tr>
       <th>Start:</th>
@@ -30,7 +30,7 @@
       <%= render "dashboard/heatmap", entries: @bucket.writing_entries %>
     <% end %>
     <%= tab_panel do %>
-      <%= render 'todolists/index', todolists: @bucket.todolists, parent: @bucket %>
+      <%= render partial: 'todolists/index', locals: {todolists: @bucket.todolists, parent: @bucket} %>
     <% end %>
     <%= tab_panel do %>
       <%= render 'writing_entries/index' %>

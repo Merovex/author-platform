@@ -24,15 +24,29 @@
       Expected Completion
     </div>
   </section>
-  <% if !@wips.empty? and can? :admin, Book %>
-    <%= render partial: 'books/card', collection: @wips, as: :book %>
-  <% end %>
   <hr class='my-8'>
-  <section>
-    <%= render "dashboard/heatmap", entries: WritingEntry.all %>
+
+  <section data-controller="tabs" data-tabs-active-tab="tab-active">
+    <ul class="flex border-b list-reset">
+      <%= tab_tag 'Heatmap' %>
+      <%= tab_tag 'Books' %>
+      <%= tab_tag 'Todolists' %>
+      <%= tab_tag 'Questions' %>
+    </ul>
+    <%= tab_panel do %>
+      <%= render "dashboard/heatmap",entries: WritingEntry.all %>
+    <% end %>
+    <%= tab_panel do %>
+      <%= render partial: 'books/card', collection: @wips, as: :book if !@wips.empty? and can? :admin, Book %>
+    <% end %>
+    <%= tab_panel do %>
+      <% @show_project = true%>
+      <%= render 'todolists/index', todolists: @todolists, parent: nil %>
+    <% end %>
+    <%= tab_panel do %>
+      <%= render partial: "questions/question", collection: Question.all %>
+    <% end %>
   </section>
-  <% @show_project = true%>
-  <%= render 'todolists/index', todolists: @todolists, parent: nil %>
 </div>
 
 

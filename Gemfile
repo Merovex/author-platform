@@ -90,3 +90,5 @@ gem 'paranoia', '~> 2.6'
 gem 'rails_heroicons', '~> 0.7.0'
 gem 'tailwindcss-rails', '~> 2.0'
 gem 'view_component', '~> 2.57'
+
+gem "breadcrumbs_on_rails", "~> 4.1"

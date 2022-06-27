@@ -70,7 +70,7 @@ textarea {
   @apply text-black bg-white dark:bg-black dark:text-white;
 }
 body {
-  @apply flex flex-col min-h-screen text-base font-normal bg-base;
+  @apply flex flex-col min-h-screen text-base font-normal bg-base subpixel-antialiased;
 }
 @media only screen and (-webkit-min-device-pixel-ratio : 2) {
   body {
@@ -162,7 +162,7 @@ main>article,
   @apply float-left w-5 h-5 mt-1 mr-2 align-top transition duration-200 bg-white bg-center bg-no-repeat bg-contain border border-gray-300 rounded appearance-none cursor-pointer checked:bg-brand checked:border-brand focus:outline-none
 }
 .action {
-  @apply inline-block p-2 mx-1 font-sans text-sm uppercase border border-solid rounded-md border-brand hover:bg-blue-500 dark:hover:bg-blue-400 hover:text-white;
+  @apply inline-block px-2 py-1 mx-1 font-sans text-xs uppercase border border-solid rounded-md border-brand hover:bg-brand-500 dark:hover:bg-brand-400 hover:text-white;
 }
 .action-menu a {
   @apply inline-block px-2 hover:bg-gray-900/25;

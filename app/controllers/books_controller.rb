@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  add_breadcrumb "Dashboard", :dashboard_path, only: %i[new edit]
   before_action :get_series, only: %i[new create]
   before_action :set_book, only: %i[show edit update destroy release move]
   after_action :get_cover_bgcolor, only: %i[create update]
@@ -44,6 +45,7 @@ class BooksController < ApplicationController
 
   # GET /books/1/edit
   def edit
+    add_breadcrumb @book.to_s.titleize, book_path(@book)
     @series = Series.all
   end
 
@@ -111,7 +113,6 @@ class BooksController < ApplicationController
   def get_cover_bgcolor
     return unless @book.cover.attached?
 
-    # color = '888888'
     color = `convert #{rails_blob_url(@book.cover)} -resize 1x1 txt:-`.match(/#[A-Fa-f0-9]{3,6}/)
     unless color == @book.cover_color
       @book.cover_color = color
