@@ -1,6 +1,5 @@
 <%= turbo_frame_tag @id do %>
 <article class='relative mt-6 mb-8'>
-  <div class='bg-pink-400 h-1'></div>
   <% if @object.id %>
     <%= render OptionMenuComponent.new() do %>
       <%= edit_link_to(@object, "Edit")%>
