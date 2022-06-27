@@ -2,7 +2,7 @@ module TodolistsHelper
   def todolist_title_with_project(todolist)
     return '' if todolist.todolistable.nil?
 
-    label = " for #{link_to(todolist.todolistable, todolist.todolistable, class: 'link')}".html_safe
+    " for #{link_to(todolist.todolistable, todolist.todolistable, class: 'link')}".html_safe
   end
 
   # todolist_heading(todolist, @show_project, @show_heading)

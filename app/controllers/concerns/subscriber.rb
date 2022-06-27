@@ -9,7 +9,7 @@ module Subscriber
     after_commit :subscribe_all, on: :create
 
     def subscribe_all
-      sub = create_subscription
+      create_subscription
     end
   end
 

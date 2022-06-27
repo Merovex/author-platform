@@ -32,7 +32,9 @@ class BucketsController < ApplicationController
 
     respond_to do |format|
       if @bucket.save
-        format.html { redirect_to bucket_url(@bucket), notice: "Writing goal for #{@bucket.book.title} was successfully created." }
+        format.html do
+          redirect_to bucket_url(@bucket), notice: "Writing goal for #{@bucket.book.title} was successfully created."
+        end
         format.json { render :show, status: :created, location: @bucket }
       else
         format.html { render :new, status: :unprocessable_entity }

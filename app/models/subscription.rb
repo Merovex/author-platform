@@ -12,8 +12,8 @@ class Subscription < ApplicationRecord
   # attribute :posts, :string, default: unique_slug(:posts)
   # attribute :books, :string, default: unique_slug(:books)
   def set_subscriptions
-    posts = unique_slug(:posts)
-    books = unique_slug(:books)
+    unique_slug(:posts)
+    unique_slug(:books)
   end
 
   def change(attr)

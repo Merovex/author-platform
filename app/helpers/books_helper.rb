@@ -35,7 +35,7 @@ module BooksHelper
   end
 
   def brightness(hex)
-    brightness = Color::RGB.new(*hex_to_rgb(hex)).to_yiq.brightness
+    Color::RGB.new(*hex_to_rgb(hex)).to_yiq.brightness
   end
 
   def complementary(hex = '#888888')
