@@ -1,0 +1,11 @@
+<article id="<%= dom_id @question %>">
+  <% if can? :admin, Question %>
+    <%= render OptionMenuComponent.new() do %>
+      <%= edit_link_to(@question, "Edit Question")%>
+      <%= trash_link_to(@question,'Put in the trash') %>
+    <% end %>
+  <% end %>
+  <%= headline(@question)%>
+  <%= render @question.answers %>
+  <%= render 'answers/answer', parent: @question, answer: @question.answers.build %>
+</article>

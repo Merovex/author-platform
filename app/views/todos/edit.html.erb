@@ -40,8 +40,8 @@
       </div>
       <hr>
       <div class="my-4">
-        <%= form.submit "Save Changes", class: button_css('brand')%>
-        <%= link_to "Never Mind", :back, class: inverse_button_css('red')%>
+        <%= render SubmitButtonComponent.new(form: form)%>
+        
       </div>
     </div>
   <% end %>

@@ -30,6 +30,6 @@
     <%= form.text_area :comment, class: 'rounded' %>
   </div>
   <div class="actions">
-  <%= form.submit "Save Changes", class: button_css('brand') %>
+  <%= render SubmitButtonComponent.new(form: form) %>
   </div>
 <% end %>

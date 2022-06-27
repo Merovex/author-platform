@@ -1,5 +1,10 @@
 <article class="single">
-<%= render 'components/actions', obj: @page %>
+<% if can? :admin Page %>
+  <%= render OptionMenuComponent.new() do %>
+    <%= edit_link_to(@page, "Edit page") %>
+    <%= trash_link_to(@page,'Put in the trash') %>
+  <% end %>
+<% end %>
 <div class="text-center"><%= headline(@page.title) %></div>
 <section class="<%=t('css_prose')%>">
 <%= @page.content %>

@@ -3,8 +3,8 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   content: [
-    './app/helpers/**/*.rb',
-    // './app/assets/**/*.svg',
+    './app/helpers/**/*',
+    './app/components/**/*',
     './app/javascript/**/*.js',
     './app/views/**/*.{erb,html,slim}',
     './vendor/javascript/tailwindcss-stimulus-components.js'

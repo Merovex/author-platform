@@ -5,7 +5,7 @@
     </div>
 
     <div class="actions">
-      <%= form.submit "Save Changes", class: button_css('brand') %>
+      <%= render SubmitButtonComponent.new(form: form) %>
       <%= link_to("Discard changes", book_path(@book, inline: true)) %>
     </div>
   <% end %>

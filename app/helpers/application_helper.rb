@@ -14,10 +14,6 @@ module ApplicationHelper
     border_color = {
       brand: "border-brand",
       error: "border-error",
-      # blue: "border-blue-500",
-      # red: "border-red-500",
-      # purple: "border-violet-500",
-      # violet: "border-violet-500",
       audible: "border-[#961110]",
       amazon: "border-[#ff9900]",
       kindle: "border-[#198ae2]",
@@ -29,16 +25,12 @@ module ApplicationHelper
     bg_color = {
       brand: "bg-brand",
       error: "bg-error",
-      # blue: "bg-blue-500",
-      # red: "bg-red-500",
-      # purple: "bg-violet-500",
-      # violet: "bg-violet-500",
       audible: "bg-[#961110]",
       amazon: "bg-[#ff9900]",
       kindle: "bg-[#198ae2]",
       nobles: "bg-[#3e5962]"
     }[color.to_sym]
-    "#{bg_color} border-gray-500/50 text-white button shadow-lg shadow-blue-500/50"
+    "#{bg_color} border-gray-500/50 text-white button"
   end
   def edit_link_to(object, text="", args={})
     obj = (object.is_a? Array) ? object.last : object
@@ -53,6 +45,9 @@ module ApplicationHelper
       data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }
     )
   end
+  # def SubmitButtonComponent.new(form: form)
+  #   form.submit "Save Changes", class: button_css('brand')
+  # end
 
   def zebra()
     cycle('bg-gray-600 text-white','', name: 'zebra')

@@ -1,8 +1,10 @@
 <%= turbo_frame_tag dom_id praise do %>
 <div class="relative" ixd='<%= dom_id(praise)%>'>
-  <%= render layout: "components/options" do %>
-    <%= edit_link_to [@book, praise] %>
-    <%= link_to trash_link_to(praise,'Put in the trash') %>
+  <% if can? :admin, Question %>
+    <%= render OptionMenuComponent.new() do %>
+      <%= edit_link_to([@book, praise], "Edit Question")%>
+      <%= trash_link_to(praise,'Put in the trash') %>
+    <% end %>
   <% end %>
   <div class='max-w-xl my-12 mr-8 font-serif' ><%= praise.comment %></div>
   <hr>

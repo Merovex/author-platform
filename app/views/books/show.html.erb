@@ -1,16 +1,11 @@
 <%# https://lineardesign.com/blog/landing-page-layout/ %>
 
 <% if can? :admin, Book %>
-  <div class='bg-red-500'>
-  &nbsp;
-  <div class='relative'>
-    <%= render layout: "components/options" do %>
+    <%= render OptionMenuComponent.new() do %>
       <%= edit_link_to(@book, "Edit")%>
-      <%= link_to bi_icon('graph-up-arrow') + " Writing Goal", bucket_path(@book.bucket) %>
+      <%= link_to bi_icon('graph-up-arrow') + " Project", bucket_path(@book.bucket) %>
       <%= link_to bi_icon('speedometer2') + " Admin", books_admin_path() %>
     <% end %>
-  </div>
-  </div>
 <% end %>
 
 <%= render 'books/sections/hero' unless @book.nil? %>

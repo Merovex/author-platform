@@ -1,0 +1,72 @@
+class AnswersController < ApplicationController
+  before_action :set_question, except: %i[destroy edit]
+  before_action :set_answer, only: %i[ show edit update destroy ]
+
+  # GET /answers or /answers.json
+  def index
+    @answers = Answer.all
+  end
+
+  # GET /answers/1 or /answers/1.json
+  def show
+  end
+
+  # GET /answers/new
+  def new
+    @answer = @question.answers.build
+  end
+
+  # GET /answers/1/edit
+  def edit
+    @question = @answer.question
+  end
+
+  # POST /answers or /answers.json
+  def create
+    @answer = @question.answers.build(answer_params)
+    @answer.user = current_user
+    respond_to do |format|
+      if @answer.save
+        format.html { redirect_to question_url(@question), notice: "Answer was successfully created." }
+        format.json { render :show, status: :created, location: @answer }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @answer.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /answers/1 or /answers/1.json
+  def update
+    respond_to do |format|
+      if @answer.update(answer_params)
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@answer, partial: "answers/answer", locals: {answer: @answer, parent: @parent}) }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @answer.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /answers/1 or /answers/1.json
+  def destroy
+    @answer.destroy
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_answer
+      @answer = Answer.find(params[:id])
+    end
+    def set_question
+      @question = Question.find(params[:question_id])
+    end
+
+    # Only allow a list of trusted parameters through.
+    def answer_params
+      params.require(:answer).permit(:content)
+    end
+end

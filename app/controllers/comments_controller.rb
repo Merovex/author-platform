@@ -1,11 +1,6 @@
 class CommentsController < ApplicationController
-  before_action :set_parent, except: %i[ destory ]
+  before_action :set_parent, except: %i[ destroy ]
   before_action :set_comment, only: %i[ show edit update destroy ]
-
-  # GET /comments or /comments.json
-  def index
-    @comments = Comment.all
-  end
 
   # GET /comments/1 or /comments/1.json
   def show
@@ -14,6 +9,7 @@ class CommentsController < ApplicationController
   # GET /comments/new
   def new
     @comment = @parent.comments.build()
+    @comment.user = current_user
   end
 
   # GET /comments/1/edit

@@ -1,5 +1,0 @@
-<%- if can? :edit, obj %>
-    <%= link_to "Edit #{obj.model_name}", edit_polymorphic_path(obj), class: 'action' %>
-    <% if obj.is_a? Post %>
-    <%end%>
-<%- end %>

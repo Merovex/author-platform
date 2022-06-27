@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_26_181732) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_26_204714) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -102,6 +102,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_26_181732) do
     t.string "announceable_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "answers", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "question_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["question_id"], name: "index_answers_on_question_id"
+    t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
   create_table "authors", force: :cascade do |t|
@@ -288,6 +298,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_26_181732) do
     t.index ["deleted_at"], name: "index_praises_on_deleted_at"
   end
 
+  create_table "questions", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
@@ -442,6 +459,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_26_181732) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "answers", "questions"
+  add_foreign_key "answers", "users"
   add_foreign_key "authors", "books"
   add_foreign_key "authors", "users"
   add_foreign_key "buckets", "books"
