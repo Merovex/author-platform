@@ -21,6 +21,9 @@
     <%= render 'components/user_navbar' if user_signed_in? %>
     <%= render 'components/masquerade' if user_masquerade? %>
     <%= render 'components/site_header' %>
+    <% flash.each do |type, msg| %>
+      <%= render 'components/banner', type: type, msg: msg%>
+    <% end %>
     <main class="min-h-screen">
       <aside class="max-w-sm md:max-w-3xl mx-auto"><%= render_breadcrumbs %></aside>
       <%= yield %>

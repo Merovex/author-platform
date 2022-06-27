@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   resources :links
   get '/s/:slug', to: 'links#show', as: :short
-  get '/landing/:book_id', to: 'landing#show', as: 'landing'
+  get '/landing/:book_id', to: 'books#show', as: 'landing'
 
   resources :pages
   resources :errors
@@ -68,8 +68,16 @@ Rails.application.routes.draw do
   get 'posts/:id/publish' => 'posts#publish'
   get 'posts/:id/broadcast' => 'posts#broadcast', as: 'posts_broadcast'
   get '/404' => 'errors#not_found'
-  get 'landing/index'
+  get 'static/index'
+
+  # get 'static/privacy'
+  # get 'static/terms'
+
+  get '/diceware' => 'static#diceware'
+  get '/privacy' => 'static#privacy'
+  get '/terms' => 'static#terms'
+
   get '/:slug' => 'pages#show'
 
-  root to: 'landing#index'
+  root to: 'static#index'
 end

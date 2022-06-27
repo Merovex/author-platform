@@ -1,0 +1,26 @@
+<article class='main'>
+<h1 class='text-center headline'><%= @title %></h1>
+<section class='prose font-serif mx-auto'>
+<%= content %>
+</section>
+</article>
+<script>
+document.addEventListener('DOMContentLoaded', (e) => {
+    console.log(`Document is ready!`);
+    var emails = document.getElementsByClassName('email');
+    for (var i = 0; i < emails.length; i++) {
+      var email = emails[i];
+      var user = email.getAttribute('data-user');
+      var domain = email.getAttribute('data-domain');
+      var subject = email.getAttribute('data-subject');
+      var text = user + '@' + domain;
+      var link = text;
+      if (subject) { link += "?subject=" + subject.replace(/ /g, '%20'); }
+      var a = document.createElement('a');
+      a.classList.add('link');
+      a.href = "mailto:" + link;
+      a.innerHTML = text;
+      email.appendChild(a);
+    }
+});
+</script>
