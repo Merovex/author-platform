@@ -42,29 +42,30 @@ module LocalTimeHelper
   end
 
   private
-    def find_time_format(format)
-      if format.is_a?(Symbol)
-        if (i18n_format = I18n.t("time.formats.#{format}", default: [:"date.formats.#{format}", ''])).present?
-          i18n_format
-        elsif (date_format = Time::DATE_FORMATS[format] || Date::DATE_FORMATS[format])
-          date_format.is_a?(Proc) ? LocalTime.default_time_format : date_format
-        else
-          LocalTime.default_time_format
-        end
-      else
-        format.presence || LocalTime.default_time_format
-      end
-    end
 
-    def extract_options_and_value(options, value_key = nil)
-      case options
-      when Hash
-        value = options.delete(value_key)
-        [ options, value ]
-      when NilClass
-        [ {} ]
+  def find_time_format(format)
+    if format.is_a?(Symbol)
+      if (i18n_format = I18n.t("time.formats.#{format}", default: [:"date.formats.#{format}", ''])).present?
+        i18n_format
+      elsif (date_format = Time::DATE_FORMATS[format] || Date::DATE_FORMATS[format])
+        date_format.is_a?(Proc) ? LocalTime.default_time_format : date_format
       else
-        [ {}, options ]
+        LocalTime.default_time_format
       end
+    else
+      format.presence || LocalTime.default_time_format
     end
+  end
+
+  def extract_options_and_value(options, value_key = nil)
+    case options
+    when Hash
+      value = options.delete(value_key)
+      [options, value]
+    when NilClass
+      [{}]
+    else
+      [{}, options]
+    end
+  end
 end

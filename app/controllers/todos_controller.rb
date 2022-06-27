@@ -1,7 +1,7 @@
 class TodosController < ApplicationController
-  before_action :set_todolist, only: %i[ new create ] #%i[ show edit update destroy ]
-  before_action :set_todo, only: %i[ show edit update destroy toolbar ]
-  before_action :authenticate_user!#, except: %i[show index]
+  before_action :set_todolist, only: %i[new create] # %i[ show edit update destroy ]
+  before_action :set_todo, only: %i[show edit update destroy toolbar]
+  before_action :authenticate_user! # , except: %i[show index]
   load_and_authorize_resource
 
   # GET /todos or /todos.json
@@ -20,14 +20,16 @@ class TodosController < ApplicationController
   end
 
   # GET /todos/1/edit
-  def edit
-  end
+  def edit; end
+
   # todo_details
   def toolbar
     respond_to do |format|
-      format.html { raise "HTML Not implemented" }
-      format.turbo_stream { render turbo_stream: turbo_stream.replace('toolbar', partial: "todos/toolbar", locals: {todo: @todo}) }
-      format.json { raise "Not implemented"}
+      format.html { raise 'HTML Not implemented' }
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace('toolbar', partial: 'todos/toolbar', locals: { todo: @todo })
+      end
+      format.json { raise 'Not implemented' }
     end
   end
 
@@ -52,8 +54,8 @@ class TodosController < ApplicationController
   def update
     respond_to do |format|
       if @todo.update(todo_params)
-        format.turbo_stream { render turbo_stream: turbo_stream.replace('todo_details', partial: "todos/todo_details") }
-        format.html { redirect_to todolist_url(@todo.todolist_id), notice: "Todo was successfully updated." }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace('todo_details', partial: 'todos/todo_details') }
+        format.html { redirect_to todolist_url(@todo.todolist_id), notice: 'Todo was successfully updated.' }
         format.json { render :show, status: :ok, location: @todo }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -61,13 +63,12 @@ class TodosController < ApplicationController
       end
     end
   end
-  def complete 
+
+  def complete
     @todo.done_at = DateTime.now
     @todolist = @todo.todolist
     respond_to do |format|
-      if @todo.save
-        format.turbo_stream
-      end
+      format.turbo_stream if @todo.save
     end
   end
 
@@ -76,22 +77,24 @@ class TodosController < ApplicationController
     @todo.destroy
 
     respond_to do |format|
-      format.html { redirect_to todolist_url(@todo.todolist_id), notice: "Todo was successfully destroyed." }
+      format.html { redirect_to todolist_url(@todo.todolist_id), notice: 'Todo was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_todo
-      @todo = Todo.find(params[:id])
-    end
-    def set_todolist
-      @todolist = Todolist.find(params[:todolist_id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def todo_params
-      params.require(:todo).permit(:created_by_id, :assigned_to_id, :due_on, :summary)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_todo
+    @todo = Todo.find(params[:id])
+  end
+
+  def set_todolist
+    @todolist = Todolist.find(params[:todolist_id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def todo_params
+    params.require(:todo).permit(:created_by_id, :assigned_to_id, :due_on, :summary)
+  end
 end

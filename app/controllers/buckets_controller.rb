@@ -1,6 +1,6 @@
 class BucketsController < ApplicationController
   # before_action :set_book, only: %i[ show new edit ]
-  before_action :set_bucket#, only: %i[ create update destroy ]
+  before_action :set_bucket # , only: %i[ create update destroy ]
 
   # GET /buckets or /buckets.json
   def index
@@ -24,23 +24,21 @@ class BucketsController < ApplicationController
   end
 
   # GET /buckets/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /buckets or /buckets.json
   def create
-    raise "HERE?".inspect
-    # @bucket = WritingGoal.new(bucket_params)
+    @bucket = Project.new(bucket_params)
 
-    # respond_to do |format|
-    #   if @bucket.save
-    #     format.html { redirect_to bucket_url(@bucket), notice: "Writing goal for #{@bucket.book.title} was successfully created." }
-    #     format.json { render :show, status: :created, location: @bucket }
-    #   else
-    #     format.html { render :new, status: :unprocessable_entity }
-    #     format.json { render json: @bucket.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    respond_to do |format|
+      if @bucket.save
+        format.html { redirect_to bucket_url(@bucket), notice: "Writing goal for #{@bucket.book.title} was successfully created." }
+        format.json { render :show, status: :created, location: @bucket }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @bucket.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /buckets/1 or /buckets/1.json
@@ -48,7 +46,10 @@ class BucketsController < ApplicationController
     # raise @bucket.book.inspect
     respond_to do |format|
       if @bucket.update(bucket_params)
-        format.html { redirect_to bucket_url(@bucket), notice: "Writing goal for <em>#{@bucket.book.title}</em> was successfully updated." }
+        format.html do
+          redirect_to bucket_url(@bucket),
+                      notice: "Writing goal for <em>#{@bucket.book.title}</em> was successfully updated."
+        end
         format.json { render :show, status: :ok, location: @bucket }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -62,20 +63,21 @@ class BucketsController < ApplicationController
     @bucket.destroy
 
     respond_to do |format|
-      format.html { redirect_to buckets_url, notice: "Writing goal was successfully destroyed." }
+      format.html { redirect_to buckets_url, notice: 'Writing goal was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_bucket
-      @bucket = Bucket.find_using_slug(params[:id])
-      @book = @bucket.book
-    end
 
-    # Only allow a list of trusted parameters through.
-    def bucket_params
-      params.require(:bucket).permit(:book_id, :start_on, :finish_on, :target, :summary)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_bucket
+    @bucket = Bucket.find_using_slug(params[:id])
+    @book = @bucket.book
+  end
+
+  # Only allow a list of trusted parameters through.
+  def bucket_params
+    params.require(:bucket).permit(:book_id, :start_on, :finish_on, :target, :summary)
+  end
 end

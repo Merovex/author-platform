@@ -6,7 +6,7 @@ class CreateComments < ActiveRecord::Migration[7.0]
       t.datetime :deleted_at
       t.timestamps
     end
-    add_index :comments, [:commentable_id, :commentable_type], :name => "index_on_commentable"
-    add_index :comments, [:commentable_id, :commentable_type, :user_id], :name => "index_on_commentable_and_user"
+    add_index :comments, %i[commentable_id commentable_type], name: 'index_on_commentable'
+    add_index :comments, %i[commentable_id commentable_type user_id], name: 'index_on_commentable_and_user'
   end
 end

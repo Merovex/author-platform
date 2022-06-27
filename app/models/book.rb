@@ -1,13 +1,13 @@
-
 class Book < ApplicationRecord
   acts_as_paranoid
   acts_as_list
-  
-  include Slug, Sluggable
 
-  attribute :cover_color, :string, default: "#888888"
-  attribute :status, :string, default: "wip"
-  
+  include Sluggable
+  include Slug
+
+  attribute :cover_color, :string, default: '#888888'
+  attribute :status, :string, default: 'wip'
+
   has_rich_text :synopsis
   has_rich_text :excerpt
 
@@ -15,12 +15,12 @@ class Book < ApplicationRecord
   has_one_attached :hero_background, dependent: :destroy
 
   belongs_to :series
-  
+
   accepts_nested_attributes_for :series
 
   has_one :bucket, dependent: :destroy
   before_create :build_bucket
-  
+
   has_many :praises, dependent: :destroy
   has_many :authors
   has_many :links, as: :linkable, dependent: :destroy
@@ -28,12 +28,13 @@ class Book < ApplicationRecord
   # belongs_to :clickable, polymorphic: true, optional: true
 
   scope :featured, -> { where(is_featured: true) }
-  scope :unpublished, -> { where("released_on > ? OR released_on IS NULL", DateTime.now) }
-  scope :published, -> { where("released_on <= ?", DateTime.now) }
+  scope :unpublished, -> { where('released_on > ? OR released_on IS NULL', DateTime.now) }
+  scope :published, -> { where('released_on <= ?', DateTime.now) }
 
   def order
-    return "" if series.nil?
-    return episode.order
+    return '' if series.nil?
+
+    episode.order
   end
 
   # def bgcolor
@@ -42,8 +43,10 @@ class Book < ApplicationRecord
   def to_s
     title
   end
+
   def is_released?
     return false if released_on.nil?
-    return released_on <= DateTime.now
+
+    released_on <= DateTime.now
   end
 end

@@ -4,11 +4,12 @@ class LandingController < ApplicationController
     @series = @book.series
     if @book.nil?
       @posts = Post.all
-      render "posts/index"
+      render 'posts/index'
     else
-      render "books/show"
+      render 'books/show'
     end
   end
+
   def show
     @book = Book.find_using_slug(params[:book_id]) || Book.published.first
   end

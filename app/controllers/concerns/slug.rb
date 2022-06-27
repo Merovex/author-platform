@@ -6,22 +6,25 @@ module Slug
     base.extend ClassMethods
     base.before_create :set_slug
   end
+
   def set_slug
     loop do
-      self.slug = SecureRandom.base64(4).tr('+/=','')
+      self.slug = SecureRandom.base64(4).tr('+/=', '')
       slug = self.slug
-      break unless Book.where(slug: slug).exists?
+      break unless Book.where(slug:).exists?
     end
   end
+
   module ClassMethods
     def find_using_slug(param)
       slug = param.split('-').last || param
-      where(slug: slug).limit(1).first
+      where(slug:).limit(1).first
     end
+
     def unique_slug(key)
       loop do
-        slug = SecureRandom.base64(4).tr('+/=','')
-        return slug unless self.where({key.to_sym => slug}).exists?
+        slug = SecureRandom.base64(4).tr('+/=', '')
+        return slug unless where({ key.to_sym => slug }).exists?
       end
     end
   end

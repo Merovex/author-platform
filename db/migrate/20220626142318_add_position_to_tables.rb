@@ -17,7 +17,7 @@ class AddPositionToTables < ActiveRecord::Migration[7.0]
         item.update_column :position, index
       end
     end
-    add_index :books, :position, :name => "index_on_book_position"
-    add_index :todos, :position, :name => "index_on_todo_position"
+    add_index :books, :position, name: 'index_on_book_position'
+    add_index :todos, :position, name: 'index_on_todo_position'
   end
 end

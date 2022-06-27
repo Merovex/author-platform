@@ -1,1 +1,1 @@
-json.partial! "writing_goals/writing_goal", writing_goal: @writing_goal
+json.partial! 'writing_goals/writing_goal', writing_goal: @writing_goal

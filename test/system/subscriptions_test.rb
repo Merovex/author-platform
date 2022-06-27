@@ -1,45 +1,45 @@
-require "application_system_test_case"
+require 'application_system_test_case'
 
 class SubscriptionsTest < ApplicationSystemTestCase
   setup do
     @subscription = subscriptions(:one)
   end
 
-  test "visiting the index" do
+  test 'visiting the index' do
     visit subscriptions_url
-    assert_selector "h1", text: "Subscriptions"
+    assert_selector 'h1', text: 'Subscriptions'
   end
 
-  test "should create Subscription" do
+  test 'should create Subscription' do
     visit subscriptions_url
-    click_on "New Subscription"
+    click_on 'New Subscription'
 
-    fill_in "Source type", with: @subscription.source_type
-    fill_in "User", with: @subscription.user_id
-    click_on "Create Subscription"
+    fill_in 'Source type', with: @subscription.source_type
+    fill_in 'User', with: @subscription.user_id
+    click_on 'Create Subscription'
 
-    assert_text "Subscription was successfully created"
-    click_on "Back"
+    assert_text 'Subscription was successfully created'
+    click_on 'Back'
   end
 
-  test "should update Subscription" do
+  test 'should update Subscription' do
     visit subscriptions_url
-    click_on "Edit", match: :first
+    click_on 'Edit', match: :first
 
-    fill_in "Source type", with: @subscription.source_type
-    fill_in "User", with: @subscription.user_id
-    click_on "Update Subscription"
+    fill_in 'Source type', with: @subscription.source_type
+    fill_in 'User', with: @subscription.user_id
+    click_on 'Update Subscription'
 
-    assert_text "Subscription was successfully updated"
-    click_on "Back"
+    assert_text 'Subscription was successfully updated'
+    click_on 'Back'
   end
 
-  test "should destroy Subscription" do
+  test 'should destroy Subscription' do
     visit subscriptions_url
     page.accept_confirm do
-      click_on "Destroy", match: :first
+      click_on 'Destroy', match: :first
     end
 
-    assert_text "Subscription was successfully destroyed"
+    assert_text 'Subscription was successfully destroyed'
   end
 end

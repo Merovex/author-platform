@@ -1,7 +1,7 @@
 class TodolistsController < ApplicationController
-  before_action :set_parent, only: %i[ new create ]
-  before_action :set_todolist, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!#, except: %i[show index]
+  before_action :set_parent, only: %i[new create]
+  before_action :set_todolist, only: %i[show edit update destroy]
+  before_action :authenticate_user! # , except: %i[show index]
   load_and_authorize_resource
 
   # GET /todolists or /todolists.json
@@ -21,8 +21,7 @@ class TodolistsController < ApplicationController
   end
 
   # GET /todolists/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /todolists or /todolists.json
   def create
@@ -31,8 +30,11 @@ class TodolistsController < ApplicationController
 
     respond_to do |format|
       if @todolist.save
-        format.turbo_stream { render turbo_stream: turbo_stream.append('todolists', partial: "todolists/todolist", locals: {todolist: @todolist}) }
-        format.html { redirect_to todolist_url(@todolist), notice: "Todolist was successfully created." }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.append('todolists', partial: 'todolists/todolist',
+                                                                locals: { todolist: @todolist })
+        end
+        format.html { redirect_to todolist_url(@todolist), notice: 'Todolist was successfully created.' }
         format.json { render :show, status: :created, location: @todolist }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -45,8 +47,11 @@ class TodolistsController < ApplicationController
   def update
     respond_to do |format|
       if @todolist.update(todolist_params)
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@todolist, partial: "todolists/todolist", locals: {todolist: @todolist}) }
-        format.html { redirect_to todolist_url(@todolist), notice: "Todolist was successfully updated." }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace(@todolist, partial: 'todolists/todolist',
+                                                               locals: { todolist: @todolist })
+        end
+        format.html { redirect_to todolist_url(@todolist), notice: 'Todolist was successfully updated.' }
         format.json { render :show, status: :ok, location: @todolist }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -64,18 +69,18 @@ class TodolistsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_todolist
-      @todolist = Todolist.find(params[:id])
-    end
-    def set_parent
-      if (!params[:bucket_id].nil?)
-        @parent = Bucket.find_using_slug(params[:bucket_id])
-      end
-    end
 
-    # Only allow a list of trusted parameters through.
-    def todolist_params
-      params.require(:todolist).permit(:name, :content)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_todolist
+    @todolist = Todolist.find(params[:id])
+  end
+
+  def set_parent
+    @parent = Bucket.find_using_slug(params[:bucket_id]) unless params[:bucket_id].nil?
+  end
+
+  # Only allow a list of trusted parameters through.
+  def todolist_params
+    params.require(:todolist).permit(:name, :content)
+  end
 end

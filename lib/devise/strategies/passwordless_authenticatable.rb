@@ -10,12 +10,12 @@ module Devise
         if params[:user].present?
           user = User.find_by(email: params[:user][:email])
           if user&.update(
-            authentication_token: SecureRandom.base64(6).tr('+/=',''),
+            authentication_token: SecureRandom.base64(6).tr('+/=', ''),
             authentication_token_expires_at: Time.now.utc + 10.minutes
           )
             url = Rails.application.routes.url_helpers.confirm_email_url(token: user.authentication_token)
             UserMailer.validate_email(User.first, url).deliver_now
-            fail("We sent an authentication email to the email address you provided. Click that link to access the Insiders.")
+            raise('We sent an authentication email to the email address you provided. Click that link to access the Insiders.')
           end
         end
       end

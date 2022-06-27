@@ -14,8 +14,6 @@ module Subscriber
   end
 
   module ClassMethods
-    def self.subscribers(source)
-      
-    end
+    def self.subscribers(source); end
   end
 end

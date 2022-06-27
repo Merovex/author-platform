@@ -4,7 +4,7 @@ module Sluggable
   extend ActiveSupport::Concern
 
   def to_param
-      [title.to_s.parameterize, slug].join('-')
+    [title.to_s.parameterize, slug].join('-')
   end
 
   module ClassMethods

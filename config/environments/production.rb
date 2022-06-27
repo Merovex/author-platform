@@ -1,6 +1,6 @@
-require "active_support/core_ext/integer/time"
+require 'active_support/core_ext/integer/time'
 
-Rails.application.routes.default_url_options[:host] = "www.benwilson.io"
+Rails.application.routes.default_url_options[:host] = 'www.benwilson.io'
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -23,7 +23,7 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
+  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
@@ -32,7 +32,7 @@ Rails.application.configure do
   config.assets.compile = true
   # You set your `config.assets.compile = true` in production.
   # This can negatively impact the performance of your application.
-  # 
+  #
   # For more information can be found in this article:
   #   https://devcenter.heroku.com/articles/rails-asset-pipeline#compile-set-to-true-in-production
 
@@ -59,7 +59,7 @@ Rails.application.configure do
   config.log_level = :info
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
@@ -74,11 +74,11 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   # Sendmail Configuration
   config.action_mailer.smtp_settings = {
-    user_name:      'apikey',
-    password:       Rails.application.credentials.dig(:sendgrid, :api_key),
-    domain:         'merovex-author-platform.herokuapp.com',
-    address:        "smtp.sendgrid.net",
-    port:            587,
+    user_name: 'apikey',
+    password: Rails.application.credentials.dig(:sendgrid, :api_key),
+    domain: 'merovex-author-platform.herokuapp.com',
+    address: 'smtp.sendgrid.net',
+    port: 587,
     authentication: :plain,
     enable_starttls_auto: true
   }
@@ -102,7 +102,7 @@ Rails.application.configure do
   # require "syslog/logger"
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new "app-name")
 
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
+  if ENV['RAILS_LOG_TO_STDOUT'].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)

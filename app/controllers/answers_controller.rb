@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
   before_action :set_question, except: %i[destroy edit]
-  before_action :set_answer, only: %i[ show edit update destroy ]
+  before_action :set_answer, only: %i[show edit update destroy]
 
   # GET /answers or /answers.json
   def index
@@ -8,8 +8,7 @@ class AnswersController < ApplicationController
   end
 
   # GET /answers/1 or /answers/1.json
-  def show
-  end
+  def show; end
 
   # GET /answers/new
   def new
@@ -27,7 +26,7 @@ class AnswersController < ApplicationController
     @answer.user = current_user
     respond_to do |format|
       if @answer.save
-        format.html { redirect_to question_url(@question), notice: "Answer was successfully created." }
+        format.html { redirect_to question_url(@question), notice: 'Answer was successfully created.' }
         format.json { render :show, status: :created, location: @answer }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +39,10 @@ class AnswersController < ApplicationController
   def update
     respond_to do |format|
       if @answer.update(answer_params)
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@answer, partial: "answers/answer", locals: {answer: @answer, parent: @parent}) }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace(@answer, partial: 'answers/answer',
+                                                             locals: { answer: @answer, parent: @parent })
+        end
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @answer.errors, status: :unprocessable_entity }
@@ -57,16 +59,18 @@ class AnswersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_answer
-      @answer = Answer.find(params[:id])
-    end
-    def set_question
-      @question = Question.find(params[:question_id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def answer_params
-      params.require(:answer).permit(:content)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_answer
+    @answer = Answer.find(params[:id])
+  end
+
+  def set_question
+    @question = Question.find(params[:question_id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def answer_params
+    params.require(:answer).permit(:content)
+  end
 end

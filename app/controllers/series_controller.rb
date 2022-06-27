@@ -1,5 +1,5 @@
 class SeriesController < ApplicationController
-  before_action :set_series, only: %i[ show edit update destroy ]
+  before_action :set_series, only: %i[show edit update destroy]
   load_and_authorize_resource
 
   # GET /series or /series.json
@@ -8,8 +8,7 @@ class SeriesController < ApplicationController
   end
 
   # GET /series/1 or /series/1.json
-  def show
-  end
+  def show; end
 
   # GET /series/new
   def new
@@ -17,8 +16,7 @@ class SeriesController < ApplicationController
   end
 
   # GET /series/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /series or /series.json
   def create
@@ -26,7 +24,7 @@ class SeriesController < ApplicationController
 
     respond_to do |format|
       if @series.save
-        format.html { redirect_to @series, notice: "Series was successfully created." }
+        format.html { redirect_to @series, notice: 'Series was successfully created.' }
         format.json { render :show, status: :created, location: @series }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +37,7 @@ class SeriesController < ApplicationController
   def update
     respond_to do |format|
       if @series.update(series_params)
-        format.html { redirect_to @series, notice: "Series was successfully updated." }
+        format.html { redirect_to @series, notice: 'Series was successfully updated.' }
         format.json { render :show, status: :ok, location: @series }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +50,20 @@ class SeriesController < ApplicationController
   def destroy
     @series.destroy
     respond_to do |format|
-      format.html { redirect_to series_index_url, notice: "Series was successfully destroyed." }
+      format.html { redirect_to series_index_url, notice: 'Series was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_series
-      @series = Series.find_using_slug(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def series_params
-      params.require(:series).permit(:title, :synopsis)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_series
+    @series = Series.find_using_slug(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def series_params
+    params.require(:series).permit(:title, :synopsis)
+  end
 end

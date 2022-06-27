@@ -3,7 +3,7 @@
 class Devise::Passwordless::MagicLinksController < DeviseController
   prepend_before_action :require_no_authentication, only: :show
   prepend_before_action :allow_params_authentication!, only: :show
-  prepend_before_action(only: [:show]) { request.env["devise.skip_timeout"] = true }
+  prepend_before_action(only: [:show]) { request.env['devise.skip_timeout'] = true }
 
   def show
     self.resource = warden.authenticate!(auth_options)
@@ -21,7 +21,7 @@ class Devise::Passwordless::MagicLinksController < DeviseController
   end
 
   def translation_scope
-    "devise.sessions"
+    'devise.sessions'
   end
 
   private

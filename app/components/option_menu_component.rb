@@ -2,6 +2,5 @@
 
 class OptionMenuComponent < ViewComponent::Base
   include ApplicationHelper
-  def initialize()
-  end
+  def initialize; end
 end

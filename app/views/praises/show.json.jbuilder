@@ -1,1 +1,1 @@
-json.partial! "praises/praise", praise: @praise
+json.partial! 'praises/praise', praise: @praise

@@ -1,7 +1,7 @@
 class Click < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :clickable, polymorphic: true, optional: true
-  
+
   # We only hold the IP long enough to determine the location in batch.
   def locate(locx)
     self.state = locx.region
@@ -11,8 +11,9 @@ class Click < ApplicationRecord
     self.longitude = locx.longitude
     self.country_code = locx.country_code
   end
+
   def locate!(locx)
-    self.locate(locx)
-    self.save
+    locate(locx)
+    save
   end
 end

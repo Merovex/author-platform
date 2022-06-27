@@ -7,10 +7,11 @@ class NarrativeComponent < ViewComponent::Base
   include Turbo::FramesHelper
   def initialize(parent:, object:)
     @object = object
-    @id = (@object.id) ? dom_id(@object) : 'narrative-form'
-    @datetime = (@object.updated_at.nil?) ? @object.created_at : @object.updated_at
-    @edit_text = (@object.updated_at.nil?) ? "" : "Edited"
+    @id = @object.id ? dom_id(@object) : 'narrative-form'
+    @datetime = @object.updated_at.nil? ? @object.created_at : @object.updated_at
+    @edit_text = @object.updated_at.nil? ? '' : 'Edited'
   end
+
   def content_or_new_link(object)
     return object.content if object.id
   end

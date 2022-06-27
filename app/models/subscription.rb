@@ -4,7 +4,7 @@ class Subscription < ApplicationRecord
 
   include Slug
   before_create :set_subscriptions
-  
+
   def to_param
     slug
   end
@@ -17,30 +17,36 @@ class Subscription < ApplicationRecord
   end
 
   def change(attr)
-    (self.read_attribute(attr.to_sym).nil?) ? subscribe(attr) : unsubscribe(attr)
+    read_attribute(attr.to_sym).nil? ? subscribe(attr) : unsubscribe(attr)
     self
   end
+
   def subscribe(attr)
     slug = unique_slug(attr.to_sym)
-    self.write_attribute(attr.to_sym, slug)
+    write_attribute(attr.to_sym, slug)
     self
   end
+
   def unsubscribe(attr)
-    self.write_attribute(attr.to_sym, nil)
+    write_attribute(attr.to_sym, nil)
     self
   end
+
   def self.users(key)
-    self.where.not({key.to_sym => nil}).map{ |o| o.user }
+    where.not({ key.to_sym => nil }).map { |o| o.user }
   end
+
   def find_using_slug(param)
     slug = param.split('-').last || param
-    where(slug: slug).limit(1).first
+    where(slug:).limit(1).first
   end
+
   protected
-    def unique_slug(key)
-      loop do
-        slug = SecureRandom.base64(4).tr('+/=','')
-        return slug# unless self.exists?({key.to_sym => slug})
-      end
+
+  def unique_slug(_key)
+    loop do
+      slug = SecureRandom.base64(4).tr('+/=', '')
+      return slug # unless self.exists?({key.to_sym => slug})
     end
+  end
 end

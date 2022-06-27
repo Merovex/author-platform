@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Users::ConfirmationsController < Devise::ConfirmationsController
-  
   # GET /resource/confirmation/new
   # def new
   #   super
@@ -31,9 +30,10 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   #   super(resource_name, resource)
   # end
   protected
-    def after_confirmation_path_for(resource_name, resource)
-      token = resource.send(:set_reset_password_token)
-      # edit_password_path(resource, reset_password_token: token) # No password, so not needed.
-      after_sign_in_path_for(resource)
-    end
+
+  def after_confirmation_path_for(_resource_name, resource)
+    token = resource.send(:set_reset_password_token)
+    # edit_password_path(resource, reset_password_token: token) # No password, so not needed.
+    after_sign_in_path_for(resource)
+  end
 end

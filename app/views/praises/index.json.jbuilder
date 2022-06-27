@@ -1,1 +1,1 @@
-json.array! @praises, partial: "praises/praise", as: :praise
+json.array! @praises, partial: 'praises/praise', as: :praise

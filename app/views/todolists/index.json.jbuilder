@@ -1,1 +1,1 @@
-json.array! @todolists, partial: "todolists/todolist", as: :todolist
+json.array! @todolists, partial: 'todolists/todolist', as: :todolist

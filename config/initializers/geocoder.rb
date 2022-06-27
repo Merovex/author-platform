@@ -20,11 +20,11 @@ Geocoder.configure(
   # units: :mi,                 # :km for kilometers or :mi for miles
   # distances: :linear          # :spherical or :linear
   # lookup: :amazon_location_service, # name of
-  # amazon_location_service: { 
+  # amazon_location_service: {
   #   index_name: 'author-platform',
   #  }
   ip_lookup: :geoip2, # name of IP address
-  geoip2: { 
-    file: "./vendor/GeoLite2-City_20211012/GeoLite2-City.mmdb"
+  geoip2: {
+    file: './vendor/GeoLite2-City_20211012/GeoLite2-City.mmdb'
   }
 )

@@ -4,7 +4,7 @@ class DashboardController < ApplicationController
     @goal = @wips.last.bucket
     @todolists = Todolist.all
     # @wip = @wips.last
-    
+
     # @annual_wordcount = WritingEntry.annual_wordcount(Time.now().year)
     # @wip_wordcount = 0
     # @finish_on = Date.today()
@@ -18,12 +18,9 @@ class DashboardController < ApplicationController
     #   @total_days = @wip.bucket.days_written
     #   @remaining = @wip.bucket.days_remaining
     # end
-    
   end
 
-  def admin
-  end
-  
-  def subscribers
-  end
+  def admin; end
+
+  def subscribers; end
 end
