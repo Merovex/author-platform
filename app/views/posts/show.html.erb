@@ -1,9 +1,7 @@
 <article class='single'>
   <% if can? :admin, Post %>
-    <%= render OptionMenuComponent.new() do %>
-      <%= edit_link_to(@post, "Edit Question")%>
+    <%= render OptionMenuComponent.new(object: @post) do %>
       <%= link_to "Broadcast", posts_broadcast_path(@post) if @post.broadcastable? %>
-      <%= trash_link_to(@post,'Put in the trash') %>
     <% end %>
   <% end %>
   <div class='mx-8'>

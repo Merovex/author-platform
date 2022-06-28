@@ -1,6 +1,6 @@
 <article class='relative p-0 my-8 overflow-hidden'>
 <% if can? :admin, Todo %>
-  <%= render OptionMenuComponent.new() do %>
+  <%= render OptionMenuComponent.new(object: nil) do %>
     <%= link_to 'Edit todo', edit_todo_path(@todo), data: { turbo_frame: "todo_details" } %>
     <%= trash_link_to(@todo,'Put in the trash') %>
   <% end %>

@@ -1,4 +1,5 @@
 class TodosController < ApplicationController
+  add_breadcrumb "Dashboard", :dashboard_path
   before_action :set_todolist, only: %i[new create] # %i[ show edit update destroy ]
   before_action :set_todo, only: %i[show edit update destroy toolbar]
   before_action :authenticate_user! # , except: %i[show index]
@@ -40,9 +41,6 @@ class TodosController < ApplicationController
     respond_to do |format|
       if @todo.save
         format.turbo_stream
-        # format.turbo_stream { render turbo_stream: turbo_stream.append('todos-in-progress', partial: "todos/todo", locals: {todo: @todo}) }
-        # format.html { redirect_to todolist_url(@todo.todolist_id), notice: "Todo was successfully created." }
-        # format.json { render :show, status: :created, location: @todo }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @todo.errors, status: :unprocessable_entity }
@@ -87,10 +85,12 @@ class TodosController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_todo
     @todo = Todo.find(params[:id])
+    add_breadcrumb "Todolist", todolist_path(@todo.todolist)
   end
 
   def set_todolist
     @todolist = Todolist.find(params[:todolist_id])
+    add_breadcrumb "Todolist", todolist_path(@todolist)
   end
 
   # Only allow a list of trusted parameters through.

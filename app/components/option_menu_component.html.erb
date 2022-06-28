@@ -23,7 +23,9 @@
       </button>
     </div>
     <div class="z-50 flex flex-col mt-8 leading-8 action-menu">
+      <%= edit_link_to(@object, "Edit #{@object.class}") unless @object.nil? %>
       <%= content %>
+      <%= trash_link_to(@object,'Put in the trash') unless @object.nil? %>
     </div>
   </div>
 </aside>

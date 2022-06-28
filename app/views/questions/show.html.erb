@@ -1,8 +1,6 @@
 <article id="<%= dom_id @question %>">
   <% if can? :admin, Question %>
-    <%= render OptionMenuComponent.new() do %>
-      <%= edit_link_to(@question, "Edit Question")%>
-      <%= trash_link_to(@question,'Put in the trash') %>
+    <%= render OptionMenuComponent.new(object: @question) do %>
     <% end %>
   <% end %>
   <%= headline(@question, class: 'text-3xl font-semibold')%>

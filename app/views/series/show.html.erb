@@ -1,9 +1,7 @@
 <div class="main">
   <article class="single">
   <% if can? :admin, Series %>
-    <%= render OptionMenuComponent.new() do %>
-      <%= edit_link_to(@series, "Edit page") %>
-      <%= trash_link_to(@series,'Put in the trash') %>
+    <%= render OptionMenuComponent.new(object: @series) do %>
     <% end %>
   <% end %>
   <%= headline(@series.title) %>

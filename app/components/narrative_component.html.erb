@@ -1,9 +1,7 @@
 <%= turbo_frame_tag @id do %>
 <article class='relative mt-6 mb-8'>
   <% if @object.id %>
-    <%= render OptionMenuComponent.new() do %>
-      <%= edit_link_to(@object, "Edit")%>
-      <%= trash_link_to(@object,'Put in the trash') %>
+    <%= render OptionMenuComponent.new(object: @object) do %>
     <% end %>
   <% end %>
   <div class='grid grid-cols-12 gap-2 mt-8'>

@@ -1,7 +1,7 @@
 <%= turbo_frame_tag dom_id praise do %>
 <div class="relative" ixd='<%= dom_id(praise)%>'>
   <% if can? :admin, Question %>
-    <%= render OptionMenuComponent.new() do %>
+    <%= render OptionMenuComponent.new(object: nil) do %>
       <%= edit_link_to([@book, praise], "Edit Question")%>
       <%= trash_link_to(praise,'Put in the trash') %>
     <% end %>
