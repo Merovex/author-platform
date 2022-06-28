@@ -8,11 +8,11 @@
       </a>
     </div>
     <nav id="nav-menu" class="w-full max-w-3xl mx-auto mb-8 text-xl text-center print:hidden">
-        <%# {{partial "svg/home.svg" "nav-icon" }} %> <%= nav_link_to('HOME', '/') %>
-        <%# {{partial "svg/book.svg" "nav-icon" }}  %> <%= nav_link_to('Books', books_path) %>
-        <%# {{partial "svg/info.svg" "nav-icon" }}  %> <%= nav_link_to('About', '/about') %>
-        <%# {{partial "svg/bell.svg" "nav-icon" }}  %> <%= nav_link_to('Updates', posts_path, rel: "prefetch") %>
-        <%# {{partial "svg/bell.svg" "nav-icon" }}  %> <%= nav_link_to('Dashboard', '/dashboard', rel: "prefetch") %>
+        <%= nav_link_to('HOME', '/') %>
+        <%= nav_link_to('Books', books_path) %>
+        <%= nav_link_to('About', '/about') %>
+        <%= nav_link_to('Updates', posts_path, rel: "prefetch") %>
+        <%= nav_link_to('Dashboard', '/dashboard', rel: "prefetch") %>
       <!-- <a rel="prefetch" href="/subscribe/" class="">
         Community
       </a> -->

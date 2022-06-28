@@ -17,7 +17,7 @@
     <%= javascript_importmap_tags %>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
   </head>
-  <body>
+  <body class='flex flex-col min-h-screen text-base font-normal bg-white dark:bg-gray-800 dark:text-white text-black subpixel-antialiased'>
     <%= render 'components/user_navbar' if user_signed_in? %>
     <%= render 'components/masquerade' if user_masquerade? %>
     <%= render 'components/site_header' %>

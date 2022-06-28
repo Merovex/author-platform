@@ -70,7 +70,7 @@ textarea {
   @apply text-black bg-white dark:bg-black dark:text-white;
 }
 body {
-  @apply flex flex-col min-h-screen text-base font-normal bg-base subpixel-antialiased;
+  @apply text-base;
 }
 @media only screen and (-webkit-min-device-pixel-ratio : 2) {
   body {

@@ -2,9 +2,10 @@
 <% 
 bg = ""
 bg = { 
-  "alert" => 'bg-[#ffa405] text-black',
-  "info" => 'bg-[#EFB700] text-white',
-  "notice" => 'bg-[#008450] text-white'
+  "alert" => 'bg-[#ffa405] text-black dark:bg-yellow-400',
+  "info" => 'bg-blue-500 text-white dark:bg-blue-600',
+  "error" => 'bg-[#d20053] text-white dark:bg-red-600',
+  "notice" => 'bg-[#008450] text-white dark:bg-green-700'
 }[type]
 bg = 'bg-brand' if bg.blank?
 %>

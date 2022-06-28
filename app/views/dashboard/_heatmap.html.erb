@@ -31,5 +31,7 @@
     })
     document.getElementById('button_'+year).classList.add(...active_classes)
   }
-  build_heatmap(<%= entries_years(entries).first %>)
+  document.addEventListener('DOMContentLoaded', (e) => {
+    build_heatmap(<%= entries_years(entries).first %>)
+  })
 </script>
