@@ -5,6 +5,9 @@ class Book < ApplicationRecord
   include Sluggable
   include Slug
 
+  include PublicActivity::Model
+  tracked owner: Proc.new{ Current.user }
+
   attribute :cover_color, :string, default: '#888888'
   attribute :status, :string, default: 'wip'
 

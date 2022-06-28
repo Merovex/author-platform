@@ -1,13 +1,17 @@
 class Post < ApplicationRecord
-  acts_as_paranoid
+  
   include Sluggable
   include Slug
+
+  acts_as_paranoid
+  include PublicActivity::Model
+  tracked owner: Proc.new{ Current.user }
 
   belongs_to :user
   has_rich_text :content
   has_many_attached :images
 
-  scope :published, -> { where('published_at < ?', Time.now.utc) }
+  scope :published, -> { where('published_at < ?', Time.now.utc).or(where.not(published_at: nil)) }
   scope :unpublished, -> { where('published_at > ?', Time.now.utc).or(where(published_at: nil)) }
 
   def author_name

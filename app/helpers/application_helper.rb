@@ -1,6 +1,6 @@
 module ApplicationHelper
   def nav_link_to(text, path, options = {})
-    klass = "inline-block w-1/3 py-1 text-center uppercase align-middle rounded md:w-1/6 hover:shadow-md text-brand-800 hover:bg-brand-500/25"
+    klass = "inline-block w-1/3 py-1 text-center uppercase align-middle md:w-1/6 text-brand-800 dark:text-brand-200 border-b-4 border-white dark:border-gray-800 hover:border-brand-500"
     return link_to(text, path, class: klass)
   end
   def slug_url(obj)
@@ -38,7 +38,7 @@ module ApplicationHelper
     "#{bg_color} border-gray-500/50 text-white button"
   end
 
-  def edit_link_to(object, text = 'Edit', _args = {})
+  def edit_link_to(object, text = '', _args = {})
     obj = (object.is_a? Array) ? object.last : object
     [text, obj.class].join(' ').strip
     link_to(

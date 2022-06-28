@@ -73,11 +73,12 @@ Rails.application.routes.draw do
   # get 'static/privacy'
   # get 'static/terms'
 
+  get '/about' => 'static#about'
   get '/diceware' => 'static#diceware'
   get '/privacy' => 'static#privacy'
   get '/terms' => 'static#terms'
 
   get '/:slug' => 'pages#show'
 
-  root to: 'static#index'
+  root to: 'landing#index'
 end

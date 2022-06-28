@@ -79,7 +79,7 @@ class TodolistsController < ApplicationController
   end
 
   def set_parent
-    @parent = Bucket.find_using_slug(params[:bucket_id]) unless params[:bucket_id].nil?
+    @parent = Bucket.find(params[:bucket_id]) unless params[:bucket_id].nil?
   end
 
   # Only allow a list of trusted parameters through.

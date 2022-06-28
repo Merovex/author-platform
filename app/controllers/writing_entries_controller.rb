@@ -73,7 +73,7 @@ class WritingEntriesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_bucket
     # http://localhost:3000/buckets/In6BrC9/writing_entries/1/edit
-    @bucket = Bucket.find_using_slug(params[:bucket_id])
+    @bucket = Bucket.find(params[:bucket_id])
     @target = @bucket.target
     @total = 0
   end

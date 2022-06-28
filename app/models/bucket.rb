@@ -3,15 +3,11 @@ class Bucket < ApplicationRecord
   has_many :writing_entries
   has_many :todolists, as: :todolistable
 
-  include Sluggable
-  include Slug
+  include PublicActivity::Model
+  tracked owner: Proc.new{ Current.user }
 
   def to_s
     book.title
-  end
-
-  def to_param
-    slug
   end
 
   def days_written
@@ -26,11 +22,5 @@ class Bucket < ApplicationRecord
     return 0 if finish_on.nil?
 
     (finish_on - Date.today).to_i
-  end
-
-  module ClassMethods
-    def find_using_slug(slug)
-      where(slug:).limit(1).first
-    end
   end
 end

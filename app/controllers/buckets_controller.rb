@@ -75,7 +75,7 @@ class BucketsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_bucket
-    @bucket = Bucket.find_using_slug(params[:id])
+    @bucket = Bucket.find(params[:id])
     @book = @bucket.book
     add_breadcrumb @book.to_s.titleize, book_path(@book)
   end

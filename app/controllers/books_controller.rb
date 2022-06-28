@@ -21,8 +21,10 @@ class BooksController < ApplicationController
 
   def release
     @book.released_on = DateTime.now
+    
     respond_to do |format|
       if @book.save
+        @book.create_activity key: 'book.released_on', owner: current_user
         format.html { redirect_to @book, notice: 'Book was successfully published.' }
         format.json { render :show, status: :created, location: @book }
       else

@@ -92,3 +92,5 @@ gem 'tailwindcss-rails', '~> 2.0'
 gem 'view_component', '~> 2.57'
 
 gem "breadcrumbs_on_rails", "~> 4.1"
+
+gem "public_activity", "~> 2.0"
