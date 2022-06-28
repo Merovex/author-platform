@@ -2,7 +2,7 @@
 <div class="relative" ixd='<%= dom_id(praise)%>'>
   <% if can? :admin, Question %>
     <%= render OptionMenuComponent.new(object: nil) do %>
-      <%= edit_link_to([@book, praise], "Edit Question")%>
+      <%= edit_link_to([@book, praise], "Edit Praise")%>
       <%= trash_link_to(praise,'Put in the trash') %>
     <% end %>
   <% end %>

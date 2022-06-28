@@ -161,11 +161,14 @@ main>article,
 .todo_checkbox {
   @apply float-left w-5 h-5 mt-1 mr-2 align-top transition duration-200 bg-white bg-center bg-no-repeat bg-contain border border-gray-300 rounded appearance-none cursor-pointer checked:bg-brand checked:border-brand focus:outline-none
 }
-.action {
+.action div {
   @apply inline-block px-2 py-1 mx-1 font-sans text-xs uppercase border border-solid rounded-md border-brand hover:bg-brand-500 dark:hover:bg-brand-400 hover:text-white;
 }
+.action-menu a, .action-menu summary {
+  @apply hover:bg-gray-900/25;
+}
 .action-menu a {
-  @apply inline-block px-2 hover:bg-gray-900/25;
+  @apply inline-block px-4;
 }
 details summary::-webkit-details-marker,
 details summary::marker {

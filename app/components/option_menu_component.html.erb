@@ -1,31 +1,12 @@
-<aside class="relative z-10"
-    data-controller="dropdown"
-    data-action="click->dropdown#toggle click@window->dropdown#hide"
-    data-dropdown-class="invisible"
-    data-dropdown-open-value="false"
-    data-dropdown-active-target="#action-menu"
-    data-dropdown-active-class=""
-    data-dropdown-invisible-class="translate-x-full opacity-0"
-    data-dropdown-visible-class="opacity-100 -translate-x-0"
-    data-dropdown-entering-class="duration-100 ease-out"
-    data-dropdown-enter-timeout="300,300"
-    data-dropdown-leaving-class="duration-75 ease-in"
-    data-dropdown-leave-timeout="300,300">
-  <div class="absolute top-0 right-0 z-0 p-1">
-    <button data-action="click->dropdown#_show click@window->dropdown#hide" class="flex items-center justify-center w-6 h-6 mr-1" aria-label="Open action bar">
+<aside class='relative  transition ease-in-out delay-150 motion-reduce:transition-none action-menu'>
+  <details class='absolute top-0 right-0 bg-brand rounded-bl-lg'>
+    <summary role='button' class="absolute right-0 top-0 flex dark:border dark:border-gray-600 rounded items-center justify-center w-6 h-6 m-1" aria-label="Open action bar">
       <%= bi_icon('three-dots') %>
-    </button>
-  </div>
-  <div data-dropdown-target="menu" id='action-menu' class="absolute top-0 right-0 invisible w-40 mr-1 transition transform rounded-bl-lg opacity-0 text-gray-50 bg-brand pin-r">
-    <div class="absolute top-0 right-0 flex items-center p-1">
-      <button data-action="click->dropdown#_hide" class="flex items-center justify-center w-6 h-6 " aria-label="Close action bar">
-        <%= bi_icon('x-lg') %>
-      </button>
-    </div>
-    <div class="z-50 flex flex-col mt-8 leading-8 action-menu">
+    </summary>
+    <div class="z-50 flex flex-col mt-8 leading-8 ">
       <%= edit_link_to(@object, "Edit #{@object.class}") unless @object.nil? %>
       <%= content %>
       <%= trash_link_to(@object,'Put in the trash') unless @object.nil? %>
     </div>
-  </div>
+  </details>
 </aside>
