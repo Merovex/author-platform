@@ -98,12 +98,13 @@ class BooksController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_book
-    @book = Book.find_using_slug(params[:id])
+    # @book = Book.find(params[:id])
+    @book = Book.find(params[:id])
     redirect_to '/book#index', error: 'Book not found' if @book.nil?
   end
 
   def get_series
-    @serial = Series.find_using_slug(params[:series_id])
+    @serial = Series.find(params[:series_id])
   end
 
   # Only allow a list of trusted parameters through.

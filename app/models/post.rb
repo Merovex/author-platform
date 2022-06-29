@@ -3,9 +3,11 @@ class Post < ApplicationRecord
   include Sluggable
   include Slug
 
-  acts_as_paranoid
-  include PublicActivity::Model
+  acts_as_paranoid # Soft delete
+  include PublicActivity::Model # Trackable item.
   tracked owner: Proc.new{ Current.user }
+
+  acts_as_notifiable :users#, tracked: { only: [:create] } # Allows notification to be sent to all subscribers.
 
   belongs_to :user
   has_rich_text :content
@@ -34,7 +36,11 @@ class Post < ApplicationRecord
   end
 
   def broadcastable?
-    (broadcasted_at.nil? && !published_at.nil? && published_at < Time.now.utc)
+    # return if broadcasted_at.nil?
+    return false if broadcasted_at.nil?
+    return false if published_at.nil?
+    return false if published_at > broadcasted_at
+    return true
   end
 
   def broadcast_now

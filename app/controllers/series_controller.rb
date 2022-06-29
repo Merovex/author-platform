@@ -59,7 +59,7 @@ class SeriesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_series
-    @series = Series.find_using_slug(params[:id])
+    @series = Series.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.

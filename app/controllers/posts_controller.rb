@@ -97,7 +97,7 @@ class PostsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_post
-    @post = Post.find_using_slug(params[:id])
+    @post = Post.find(params[:id])
     redirect_to '/posts#index', error: 'Post not found' if @post.nil?
   end
 
