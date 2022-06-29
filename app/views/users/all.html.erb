@@ -15,7 +15,7 @@
           <td class='border py-1 px-2'><%= user.email %></td>
           <%# <td class='border py-1 px-2'>= user.roles.map(&:name)</td> %>
           <td class='border text-center py-1 px-2'><%= user.visits.count %></td>
-          <td class='border text-center py-1 px-2'><%= user.visits.last.started_at.strftime('%Y %B %d @ %H:%M') %></td>
+          <td class='border text-center py-1 px-2'><%= user.visits.last.started_at.strftime('%Y %B %d @ %H:%M') unless user.visits.empty? %></td>
         </tr>
       <% end%>
       </tbody>

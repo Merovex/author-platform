@@ -94,3 +94,5 @@ gem 'view_component', '~> 2.57'
 gem "breadcrumbs_on_rails", "~> 4.1"
 
 gem "public_activity", "~> 2.0"
+
+gem "activity_notification", "~> 2.2"

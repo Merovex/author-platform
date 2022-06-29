@@ -36,15 +36,21 @@
     <%= tab_panel do %>
       <%= render "dashboard/heatmap",entries: WritingEntry.all %>
     <% end %>
-    <%= tab_panel do %>
-      <%= render partial: 'books/card', collection: @wips, as: :book if !@wips.empty? and can? :admin, Book %>
+    <% if can? :manage, Todolist %>
+      <%= tab_panel do %>
+        <%= render partial: 'books/card', collection: @wips, as: :book if !@wips.empty? and can? :admin, Book %>
+      <% end %>
     <% end %>
-    <%= tab_panel do %>
-      <% @show_project = true%>
-      <%= render 'todolists/index', todolists: @todolists, parent: nil %>
+    <% if can? :read, Todolist %>
+      <%= tab_panel do %>
+        <% @show_project = true%>
+        <%= render 'todolists/index', todolists: @todolists, parent: nil %>
+      <% end %>
     <% end %>
-    <%= tab_panel do %>
-      <%= render partial: "questions/question", collection: Question.all %>
+    <% if can? :read, Question %>
+      <%= tab_panel do %>
+        <%= render partial: "questions/question", collection: Question.all %>
+      <% end %>
     <% end %>
   </section>
 </div>

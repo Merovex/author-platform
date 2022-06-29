@@ -16,7 +16,7 @@ module Slug
   end
 
   module ClassMethods
-
+    # https://github.com/hungrymedia/superslug
     def find_by!(arg, *args)
       unless arg[:id].nil?
         input = arg[:id]

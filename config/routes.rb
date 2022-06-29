@@ -4,7 +4,6 @@ Rails.application.routes.draw do
     resources :answers
   end
   resources :comments
-  # get 'toolbar/show'
 
   resources :todolists, shallow: true do
     resources :todos
@@ -58,7 +57,9 @@ Rails.application.routes.draw do
     get '/users/magic_link',
         to: 'devise/passwordless/magic_links#show',
         as: 'users_magic_link'
+
   end
+  notify_to :users
 
   get 'subscriptions/:slug/unsub_posts' => 'subscriptions#unsub_posts', as: 'posts_unsubscribe'
   get 'users/all'
@@ -69,9 +70,6 @@ Rails.application.routes.draw do
   get 'posts/:id/broadcast' => 'posts#broadcast', as: 'posts_broadcast'
   get '/404' => 'errors#not_found'
   get 'static/index'
-
-  # get 'static/privacy'
-  # get 'static/terms'
 
   get '/about' => 'static#about'
   get '/diceware' => 'static#diceware'
