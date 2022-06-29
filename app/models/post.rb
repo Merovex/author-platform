@@ -34,7 +34,11 @@ class Post < ApplicationRecord
   def unbroadcasted?
     broadcasted_at.nil?
   end
-
+  def is_published?
+    return false if published_at.nil?
+    
+    return published_at <= Time.now.utc
+  end
   def broadcastable?
     # return if broadcasted_at.nil?
     return false if broadcasted_at.nil?
