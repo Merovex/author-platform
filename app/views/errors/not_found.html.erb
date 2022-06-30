@@ -1,1 +1,11 @@
-This is an error page.
+<article class="main">
+
+<%= headline("Sorry") %>
+
+<p class='my-8 text-xl'>We could not find that page. Go to <a href="/" class="font-sans text-blue-500 underline dark:text-blue-200 visited:text-violet-500 dark:visited:text-violet-400">our home page</a> and try again.</p>
+
+<% if can? :admin, Page %>
+  <aside class='text-xl '>
+  As an administrator, you can <%= link_to "create a new page", new_page_path + "?slug=#{@slug}", class: "font-sans text-blue-500 dark:text-blue-200 visited:text-violet-500 dark:visited:text-violet-400 underline" %> if you would like.
+  </aside>
+<% end %>

@@ -2,13 +2,19 @@ Rails.application.routes.draw do
   resources :answers
   resources :questions do
     resources :answers
-  end
+  get '404', to: 'errors#not_found'
+get '422', to: 'errors#unacceptable'
+get '500', to: 'errors#internal_error'
+end
   resources :comments
 
   resources :todolists, shallow: true do
     resources :todos
     resources :comments
-  end
+  get '404', to: 'errors#not_found'
+get '422', to: 'errors#unacceptable'
+get '500', to: 'errors#internal_error'
+end
   put 'todo/:id/complete' => 'todos#complete', format: :turbo_stream, as: 'complete_todo'
   post 'todo/:id/toolbar' => 'todos#toolbar', format: :turbo_stream, as: 'todo_toolbar'
   get 'dashboard/' => 'dashboard#index'
@@ -30,20 +36,32 @@ Rails.application.routes.draw do
 
   resources :series do
     resources :books, only: %i[new create edit update]
-  end
+  get '404', to: 'errors#not_found'
+get '422', to: 'errors#unacceptable'
+get '500', to: 'errors#internal_error'
+end
   resources :authors
   resources :buckets do
     resources :writing_entries, path_names: { new: 'new/:date' }
     resources :todolists
-  end
+  get '404', to: 'errors#not_found'
+get '422', to: 'errors#unacceptable'
+get '500', to: 'errors#internal_error'
+end
   get 'books/admin' => 'books#admin'
   resources :books do
     resources :praises
     resources :book_links
     member do
       patch :move
-    end
-  end
+    get '404', to: 'errors#not_found'
+get '422', to: 'errors#unacceptable'
+get '500', to: 'errors#internal_error'
+end
+  get '404', to: 'errors#not_found'
+get '422', to: 'errors#unacceptable'
+get '500', to: 'errors#internal_error'
+end
   resources :praises
 
   get 'posts/admin' => 'posts#admin'
@@ -58,7 +76,10 @@ Rails.application.routes.draw do
         to: 'devise/passwordless/magic_links#show',
         as: 'users_magic_link'
 
-  end
+  get '404', to: 'errors#not_found'
+get '422', to: 'errors#unacceptable'
+get '500', to: 'errors#internal_error'
+end
   notify_to :users
 
   get 'subscriptions/:slug/unsub_posts' => 'subscriptions#unsub_posts', as: 'posts_unsubscribe'
@@ -68,7 +89,6 @@ Rails.application.routes.draw do
   get 'book/:id/release' => 'books#release', as: 'book_release'
   get 'posts/:id/publish' => 'posts#publish'
   get 'posts/:id/broadcast' => 'posts#broadcast', as: 'posts_broadcast'
-  get '/404' => 'errors#not_found'
   get 'static/index'
 
   get '/about' => 'static#about'
@@ -76,7 +96,10 @@ Rails.application.routes.draw do
   get '/privacy' => 'static#privacy'
   get '/terms' => 'static#terms'
 
-  get '/:slug' => 'pages#show'
-
   root to: 'landing#index'
+  get '404', to: 'errors#not_found', as: 'not_found'
+  get '422', to: 'errors#unacceptable'
+  get '500', to: 'errors#internal_error'
+  get '/robots.txt' => 'static#robots'
+  get "/:slug", via: :all, to: "errors#not_found"
 end
