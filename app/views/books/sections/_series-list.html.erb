@@ -1,4 +1,4 @@
-<% if @book.series.books.count > 0 %>
+<% if !@book.series.nil? && @book.series.books.count > 0 %>
 <section id='other-titles' class='p-4'>
   <div class="main">
     <%= h2("Books in #{@book.series.title} series") %>
