@@ -10,23 +10,25 @@ module Slug
   def set_slug
     loop do
       self.slug = SecureRandom.base64(4).tr('+/=', '')
-      slug = self.slug
-      break unless Book.where(slug:).exists?
+      break unless self.class.find(self.slug)
     end
   end
 
   module ClassMethods
     # https://github.com/hungrymedia/superslug
+    # Overloading the default find_by method to allow for slug or id
     def find_by!(arg, *args)
       unless arg[:id].nil?
         input = arg[:id]
         if (input.to_i.to_s != input.to_s)
           arg[:slug] = input.split('-').last
-          arg.delete(:id)
+          arg.delete(:id) # remove the ID from the hash since it's not a valid attribute
         end
       end
       super
     end
+    # https://github.com/hungrymedia/superslug
+    # Overloading the default find method to allow for slug or id
     def find(input)
       if input.class == Array
         super
@@ -35,11 +37,11 @@ module Slug
       end
     end
     def find_using_slug(param)
-      # raise param.inspect
       slug = param.split('-').last || param
       where(slug:).limit(1).first
     end
 
+    # create random/unique slug
     def unique_slug(key)
       loop do
         slug = SecureRandom.base64(4).tr('+/=', '')

@@ -98,9 +98,8 @@ class BooksController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_book
-    # @book = Book.find(params[:id])
     @book = Book.find(params[:id])
-    redirect_to '/book#index', error: 'Book not found' if @book.nil?
+    redirect_to not_found_path, error: 'Book not found' unless @book.present?
   end
 
   def get_series

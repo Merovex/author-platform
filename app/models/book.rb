@@ -34,6 +34,9 @@ class Book < ApplicationRecord
   scope :unpublished, -> { where('released_on > ? OR released_on IS NULL', DateTime.now) }
   scope :published, -> { where('released_on <= ?', DateTime.now) }
 
+  validates :title, presence: true
+  validates :synopsis, presence: true
+
   def order
     return '' if series.nil?
 

@@ -11,7 +11,8 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments
   has_many :todolists
-  has_many :assigntments, class_name: :todos
+  has_many :assignments, class_name: :todos
+  has_many :activities
 
   has_many :visits, class_name: 'Ahoy::Visit'
   has_many :events, class_name: 'Ahoy::Event'
@@ -19,12 +20,10 @@ class User < ApplicationRecord
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
   before_create :set_slug
   attribute :slug, :string
-  # def set_slug
-  #   loop do
-  #     self.slug = SecureRandom.base64(4).tr('+/=', '')
-  #     break unless User.where(slug:).exists?
-  #   end
-  # end
+  
+  def activities
+    PublicActivity::Activity.where(:owner_id => id)#.select(:trackable_id)
+  end
 
   include Subscriber
   include Slug

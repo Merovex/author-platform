@@ -1,7 +1,7 @@
 class LandingController < ApplicationController
   def index
     @book = Book.featured.last || Book.last
-    @series = @book.series
+    @series = @book.series if @book.present?
     if @book.nil?
       @posts = Post.all
       render 'posts/index'
