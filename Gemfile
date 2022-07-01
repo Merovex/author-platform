@@ -59,6 +59,8 @@ group :test do
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver'
   gem 'webdrivers'
+  # gem "shoulda-matchers", "~> 5.1"
+  gem 'shoulda'
 end
 # Application specific
 gem 'devise', git: 'https://github.com/strobilomyces/devise', branch: 'patch-1'
@@ -96,3 +98,4 @@ gem "breadcrumbs_on_rails", "~> 4.1"
 gem "public_activity", "~> 2.0"
 
 gem "activity_notification", "~> 2.2"
+

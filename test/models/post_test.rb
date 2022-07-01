@@ -10,20 +10,20 @@ class PostTest < ActiveSupport::TestCase
       # synopsis: "<div>This is a test book.</div>",
     }.merge(options)
   end
-  test "the truth" do
-    assert true
+
+  context 'associations' do
+    # should have_many(:comments)
+    # should belong_to(:user)
+    # should have_one(:bucket)
+    # should have_many(:authors)
+    should have_rich_text(:content)
+    # should have_rich_text(:excerpt)
+    should have_many_attached(:images)
+    # should have_one_attached(:hero_background)
   end
-  test "Post should have a user" do 
-    post = Post.new(valid_params)
-    assert post.save, post.errors.full_messages.to_s
-    assert post.user == Current.user, post.errors.full_messages.to_s
-  end
-  # Post should have a title.
-  test "post should have a title" do
-    post = Post.new
-    assert_not post.save.nil?, post.errors.full_messages.to_s
-    post.title = "title"
-    assert post.save, post.errors.full_messages.to_s
+  context 'validations' do
+    should validate_presence_of(:title)
+    # should validate_presence_of(:synopsis)
   end
   test "post should default to unpublshed" do
     post = Post.create(valid_params)

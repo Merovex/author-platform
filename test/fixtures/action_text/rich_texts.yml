@@ -3,7 +3,25 @@
 #   name: content
 #   body: <p>In a <i>million</i> stars!</p>
 
-# two:
-#   record: Post
+# book_excerpt:
+#   record: BookOne
+#   name: excerpt
+#   body: <p>In a <i>million</i> stars!</p>
+# book_synopsis:
+#   record: BookOne
+#   name: excerpt
+#   body: <p>In a <i>million</i> stars!</p>
+
+# comment_content:
+#   record: ContentOne
 #   name: content
 #   body: <p>In a <i>million</i> stars!</p>
+
+# comment_content:
+#   record: ContentOne
+#   name: content
+#   body: <p>In a <i>million</i> stars!</p>
+book_synopsis:
+  record: one (Book)
+  name: synopsis
+  body: <p>In a <i>million</i> stars</p>

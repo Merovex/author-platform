@@ -5,12 +5,10 @@ one:
   slug: MyBigString
   is_featured: false
   released_on: 2021-10-11
-  # synopsis: MyText
   series: one
 
 two:
   title: MyBigString
   slug: MyBigString
   released_on: 2021-10-11
-  # synopsis: MyText
   series: one
