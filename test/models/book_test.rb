@@ -3,6 +3,7 @@ require 'test_helper'
 class BookTest < ActiveSupport::TestCase
   setup do
     @series = series(:one)
+    @series1 = series(:two)
     Current.user = users(:one)
   end
   def valid_params(options = {})
@@ -85,6 +86,11 @@ class BookTest < ActiveSupport::TestCase
     book = @series.books.create(valid_params)
     book2 = @series.books.create(valid_params)
     assert_not book.position == book2.position, book.errors.full_messages.to_s
+  end
+  test 'book position should be scoped to series' do
+    book = @series.books.create(valid_params)
+    book2 = @series1.books.create(valid_params)
+    assert (book.position == book2.position), book.errors.full_messages.to_s
   end
   test 'book should have wip as default status' do
     book = @series.books.create(valid_params)

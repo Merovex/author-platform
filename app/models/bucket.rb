@@ -1,6 +1,6 @@
 class Bucket < ApplicationRecord
   belongs_to :book
-  has_many :writing_entries
+  has_many :writing_entries, dependent: :destroy
   has_many :todolists, as: :todolistable
 
   include PublicActivity::Model

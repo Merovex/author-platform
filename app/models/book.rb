@@ -1,6 +1,6 @@
 class Book < ApplicationRecord
   acts_as_paranoid
-  acts_as_list
+  acts_as_list scope: :series
 
   include Sluggable
   include Slug
@@ -22,11 +22,13 @@ class Book < ApplicationRecord
   accepts_nested_attributes_for :series
 
   has_one :bucket, dependent: :destroy
-  before_create :build_bucket
+  before_create :prep_build
 
   has_many :praises, dependent: :destroy
-  has_many :authors
+  
+  has_many :authors, dependent: :destroy
   has_many :users, through: :authors
+  
   has_many :links, as: :linkable, dependent: :destroy
   has_many :writing_entries, through: :bucket, as: :entries
   # belongs_to :clickable, polymorphic: true, optional: true
@@ -38,10 +40,11 @@ class Book < ApplicationRecord
   validates :title, presence: true
   validates :synopsis, presence: true
 
-  before_create :set_default_author
+  
 
-  def set_default_author
-    self.users << Current.user 
+  def prep_build
+    self.authors.build(user: Current.user)# << Current.user 
+    self.bucket = Bucket.new
   end
   def to_s
     title
