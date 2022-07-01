@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+# frozen_BigString_literal: true
 
 require "test_helper"
 

@@ -3,9 +3,9 @@
 one:
   book: one
   user: one
-  summary: MyString
+  summary: MyBigString
 
 two:
   book: two
   user: two
-  summary: MyString
+  summary: MyBigString

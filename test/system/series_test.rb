@@ -15,7 +15,7 @@ class SeriesTest < ApplicationSystemTestCase
     click_on 'New Series'
 
     fill_in 'Slug', with: @series.slug
-    fill_in 'Synopsis', with: @series.synopsis
+    # fill_in 'Synopsis', with: @series.synopsis
     fill_in 'Title', with: @series.title
     click_on 'Create Series'
 

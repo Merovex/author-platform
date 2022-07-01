@@ -3,23 +3,23 @@
 one:
   user: one
   clickable_id: 1
-  clickable_type: MyString
-  country_code: MyString
-  country: MyString
-  state_code: MyString
-  state: MyString
-  city: MyString
-  map: MyString
-  ip: MyString
+  clickable_type: MyBigString
+  country_code: MyBigString
+  country: MyBigString
+  state_code: MyBigString
+  state: MyBigString
+  city: MyBigString
+  map: MyBigString
+  ip: MyBigString
 
 two:
   user: two
   clickable_id: 1
-  clickable_type: MyString
-  country_code: MyString
-  country: MyString
-  state_code: MyString
-  state: MyString
-  city: MyString
-  map: MyString
-  ip: MyString
+  clickable_type: MyBigString
+  country_code: MyBigString
+  country: MyBigString
+  state_code: MyBigString
+  state: MyBigString
+  city: MyBigString
+  map: MyBigString
+  ip: MyBigString

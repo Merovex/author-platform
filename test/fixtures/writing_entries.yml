@@ -3,9 +3,11 @@
 one:
   wrote_on: 2022-06-14
   count: 1
-  comment: MyString
+  comment: MyBigString
+  bucket: one
 
 two:
   wrote_on: 2022-06-14
   count: 1
-  comment: MyString
+  comment: MyBigString
+  bucket: two

@@ -2,8 +2,8 @@
 
 one:
   user: one
-  source_type: MyString
+  source_type: MyBigString
 
 two:
   user: two
-  source_type: MyString
+  source_type: MyBigString

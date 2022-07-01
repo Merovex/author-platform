@@ -17,7 +17,7 @@ class BooksTest < ApplicationSystemTestCase
     check 'Is featured' if @book.is_featured
     fill_in 'Released on', with: @book.released_on
     fill_in 'Slug', with: @book.slug
-    fill_in 'Synopsis', with: @book.synopsis
+    # fill_in 'Synopsis', with: @book.synopsis
     fill_in 'Title', with: @book.title
     click_on 'Create Book'
 

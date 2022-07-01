@@ -26,6 +26,7 @@ class Book < ApplicationRecord
 
   has_many :praises, dependent: :destroy
   has_many :authors
+  has_many :users, through: :authors
   has_many :links, as: :linkable, dependent: :destroy
   has_many :writing_entries, through: :bucket, as: :entries
   # belongs_to :clickable, polymorphic: true, optional: true
@@ -37,15 +38,11 @@ class Book < ApplicationRecord
   validates :title, presence: true
   validates :synopsis, presence: true
 
-  def order
-    return '' if series.nil?
+  before_create :set_default_author
 
-    episode.order
+  def set_default_author
+    self.users << Current.user 
   end
-
-  # def bgcolor
-  #   cover.variant(auto_orient: true, rotate: 0, resize: "1x1^", negate: true)#.processed.url
-  # end
   def to_s
     title
   end

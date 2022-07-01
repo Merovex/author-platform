@@ -2,10 +2,10 @@
 
 one:
   title: MyString
-  slug: MyString
+  slug: MyString1
   synopsis: MyText
 
 two:
   title: MyString
-  slug: MyString
+  slug: MyString2
   synopsis: MyText
