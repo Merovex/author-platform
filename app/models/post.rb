@@ -11,6 +11,10 @@ class Post < ApplicationRecord
   belongs_to :user, default: -> { Current.user }
   has_rich_text :content
   has_many_attached :images
+  
+  validates :title, presence: true
+  
+  
 
   scope :published, -> { where.not(published_at: nil).or(where('published_at < ?', Time.now.utc)) }
   scope :unpublished, -> { where(published_at: nil).or(where.not('published_at < ?', Time.now.utc)) }

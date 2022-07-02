@@ -3,6 +3,7 @@
 one:
   title: Title One
   user: one
+  slug: postone
   published_at: 2021-09-29 07:19:08
 
 two:

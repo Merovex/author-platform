@@ -5,8 +5,23 @@
 # below each fixture, per the syntax in the comments below
 #
 one: {
-  email: 'ben@merovex.com',
-  slug: 'slug1'
+  email: 'ben@example.com',
+  slug: 'one'
+}
+admin: {
+  email: 'admin@example.com',
+  slug: 'admin',
+  roles: admin
+}
+subscriber: {
+  email: 'subscriber@example.com',
+  slug: 'subscriber',
+  roles: subscriber
+}
+author: {
+  email: 'author@example.com',
+  slug: 'author',
+  roles: author
 }
 # column: value
 #
