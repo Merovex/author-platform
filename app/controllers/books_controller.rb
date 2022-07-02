@@ -20,7 +20,7 @@ class BooksController < ApplicationController
   end
 
   def release
-    @book.released_on = DateTime.now
+    @book.released_on = Time.now
     
     respond_to do |format|
       if @book.save

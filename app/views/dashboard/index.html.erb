@@ -49,6 +49,7 @@
     <% end %>
     <% if can? :read, Question %>
       <%= tab_panel do %>
+        <div class='text-right'><%= link_to bi_icon('plus') +'New Question', new_question_path(), class: 'button', xdata: { turbo_frame: 'modal' } %></div>
         <%= render partial: "questions/question", collection: Question.all %>
       <% end %>
     <% end %>
