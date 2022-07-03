@@ -54,7 +54,7 @@ class Reminder < ApplicationRecord
       ans = recurring[:rrules].first[:rule_type]
     elsif key == :interval
       ans = recurring[:rrules].first[:interval]
-    elsif key = :days
+    elsif key == :days
       ans = recurring[:rrules].first[:validations][:day]
     end
     return ans
