@@ -3,6 +3,7 @@ class ReminderMailer < ApplicationMailer
     @title = remindable.title
     @user = user
     @url = polymorphic_url(remindable)
+    puts "URL: #{@url}"
     mail to: user.email, subject: remindable.title
   end
 end
