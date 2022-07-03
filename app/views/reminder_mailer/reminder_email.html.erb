@@ -1,0 +1,17 @@
+<%= @title %>
+
+<p>
+Please take a minute to answer this question.
+<%# You can either reply to this email or %>
+Click the button below to answer on the website.
+</p>
+
+<%= link_to "Write up an answer", "#" %>
+
+<div>
+<hr>
+<h2>Ben Wilson, Author</h2>
+<p style='margin:0; font-size: 0.8em;'>You received this email because you signed up on our website.</p>
+<p style='margin:0; font-size: 0.8em;'>If you are no longer interested, <%= link_to 'unsubscribe', posts_unsubscribe_url(@user.subscription) %></p>
+<%# <p style='margin:0; font-size: 0.8em;'>ADDRESS</p> %>
+</div>

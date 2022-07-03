@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  remindable_id: 1
+  remindable_type: MyString
+  start_time: 2022-07-02 08:18:35
+  recurring: MyText
+
+two:
+  remindable_id: 1
+  remindable_type: MyString
+  start_time: 2022-07-02 08:18:35
+  recurring: MyText

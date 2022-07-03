@@ -5,7 +5,9 @@ registerControllersFrom("controllers", application)
 
 // Import and register all TailwindCSS Components
 import { Alert, Autosave, Dropdown, Modal, Tabs, Popover, Toggle, Slideover } from "tailwindcss-stimulus-components"
+// import { Accordion } from "accordion";
 application.register('alert', Alert)
+// application.register('accordion', Accordion)
 application.register('autosave', Autosave)
 application.register('dropdown', Dropdown)
 application.register('modal', Modal)

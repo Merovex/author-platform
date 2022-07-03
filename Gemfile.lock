@@ -165,6 +165,7 @@ GEM
       tilt
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
+    ice_cube (0.16.4)
     identicon (0.0.5)
       chunky_png
     image_processing (1.12.2)
@@ -233,14 +234,7 @@ GEM
       net-protocol
       timeout
     nio4r (2.5.8)
-    nokogiri (1.13.6)
-      mini_portile2 (~> 2.8.0)
-      racc (~> 1.4)
     nokogiri (1.13.6-arm64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.13.6-x86_64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.13.6-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     paper_trail (12.3.0)
@@ -361,13 +355,7 @@ GEM
       railties (>= 6.0.0)
     strscan (3.0.3)
     swagger-blocks (3.0.0)
-    tailwindcss-rails (2.0.10)
-      railties (>= 6.0.0)
     tailwindcss-rails (2.0.10-arm64-darwin)
-      railties (>= 6.0.0)
-    tailwindcss-rails (2.0.10-x86_64-darwin)
-      railties (>= 6.0.0)
-    tailwindcss-rails (2.0.10-x86_64-linux)
       railties (>= 6.0.0)
     temple (0.8.2)
     thin (1.6.2)
@@ -407,10 +395,7 @@ GEM
     zeitwerk (2.6.0)
 
 PLATFORMS
-  arm64-darwin
-  ruby
-  x86_64-darwin-20
-  x86_64-linux
+  arm64-darwin-21
 
 DEPENDENCIES
   activity_notification (~> 2.2)
@@ -432,6 +417,7 @@ DEPENDENCIES
   email_validator (~> 2.2)
   geocoder (~> 1.7)
   groupdate (~> 5.2)
+  ice_cube (~> 0.16.4)
   identicon (~> 0.0.5)
   image_processing (~> 1.2)
   importmap-rails (>= 0.3.4)
