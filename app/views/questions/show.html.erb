@@ -4,6 +4,7 @@
     <% end %>
   <% end %>
   <%= headline(@question, class: 'text-3xl font-semibold')%>
+  <%# <div class='opacity-25'><%= "Reminders sent #{@question.reminder}" unless @question.reminder.nil? ></div> %>
   <section id='answers'>
   <%= render @question.answers %>
   </section>

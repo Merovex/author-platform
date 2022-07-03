@@ -7,6 +7,8 @@ class DayOfWeek
 end
 module RemindersHelper
   DOW = %i[sunday monday tuesday wednesday thursday friday saturday]
+  STATIC_TIMES = %w(9:00 16:30)
+  def static_time(i); STATIC_TIMES[i]; end
   def label_class
     return "peer-checked:bg-brand-500 inline-flex rounded px-4 text-center"
   end
@@ -16,32 +18,32 @@ module RemindersHelper
   def reminder_label(form, rule_type, text)
     tag.summary do 
       tag.label(class: "h-8 block") do
-        form.radio_button(:rule_type, 'weekly', class: 'hidden') +
-        "#{text} &#8230;".html_safe
-      end
-    end
-  end
-  def reminders_daily(form, reminder, key)
-    days = reminder.days.map do |day|
-      DOW[day].to_sym
-    end
-    tag.div(class: "flex h-10") do
-      form.collection_check_boxes "#{key}_dow", DOW.map{ |d| DayOfWeek.new(d) }, :id, :name do |b|
-        # day = DOW[]
-        # puts [b.object, b.object.id, days.include?(b.object.id)].inspect
-        b.label(class:"flex-1") { b.check_box(class:'peer hidden', checked: checked_if_day?(reminder, b.object.id)) + box_button(b.text) }
+        form.radio_button(:rule_type, rule_type, class: "mr-4") + "#{text} &#8230;".html_safe
       end
     end
   end
   def checked_if_day?(reminder, id)
-    reminder.days.map do |day|
-      DOW[day].to_sym
-    end.include?(id)
+    reminder.days.map { |day| DOW[day].to_sym }.include?(id)
   end
-  def reminders_weekly(form, reminder, key)
+  def checked_if_time?(reminder, time)
+    return STATIC_TIMES.include?(reminder.start_time.strftime('%-H:%M')) if (time.is_a? Array)
+    return (time == reminder.start_time.strftime('%-H:%M')) unless reminder.start_time.nil?
+    return false
+  end
+  def dynamic_time?(reminder)
+    return !STATIC_TIMES.include?(reminder.start_time.strftime('%-H:%M'))
+  end
+  def pick_single_reminder(form, reminder, key)
     tag.div(class: "flex h-10") do
       form.collection_radio_buttons "#{key}_dow", DOW.map{ |d| DayOfWeek.new(d) }, :id, :name do |b|
         b.label(class:"flex-1") { b.radio_button(class:'peer hidden', checked: checked_if_day?(reminder, b.object.id)) + box_button(b.text) }
+      end
+    end
+  end
+  def pick_many_reminders(form, reminder, key)
+    tag.div(class: "flex h-10") do
+      form.collection_check_boxes "#{key}_dow", DOW.map{ |d| DayOfWeek.new(d) }, :id, :name do |b|
+        b.label(class:"flex-1") { b.check_box(class:'peer hidden', checked: checked_if_day?(reminder, b.object.id)) + box_button(b.text) }
       end
     end
   end

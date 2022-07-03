@@ -1,46 +1,40 @@
 <%= form.fields_for :reminder do |reminder_form| %>
   <h2 class='font-semibold text-xl'>How often do you want to ask?</h2>
   <div id="reminder_accordion" class='border rounded-lg py-2'>
-    <%= tag.details class: 'px-4', open: @reminder.daily? do %>
-      <%= reminder_label(reminder_form, :daily, "Daily") %>
-      <%= reminders_daily(reminder_form, @reminder, :daily) %>
+    <% [ 
+      { value: "daily", multiple: true, title: "Daily", class: 'px-4'},
+      { value: "weekly", multiple: false, title: "Once a week on", class: 'px-4 border-t-2'},
+      { value: "fortnightly", multiple: false, title: "Every other week on", class: 'px-4 border-t-2'},
+      { value: "monthly", multiple: false, title: "Every month on the first", class: 'px-4 border-t-2'}
+    ].each do |element| %>
+      <%= tag.details class: element[:class], open: @reminder.frequency == element[:value] do %>
+        <%= reminder_label(reminder_form, element[:value], element[:title]) %>
+        <% if (element[:multiple]) %>
+          <%= pick_many_reminders(reminder_form, @reminder, element[:value]) %>
+        <% else %>
+          <%= pick_single_reminder(reminder_form, @reminder, element[:value]) %>
+        <% end %>
+      <% end %>
     <% end %>
-    <%= tag.details class: 'border-t-2 px-4', open: @reminder.weekly? do %>
-      <%= reminder_label(reminder_form, :weekly, "Once a week on") %>
-      <%= reminders_weekly(reminder_form, @reminder, :weekly) %>
-    <% end %>
-    <details class='border-t-2 px-4'>
-      <%= reminder_label(reminder_form, :fortnightly, "Every other week on") %>
-      <%= reminders_weekly(reminder_form, @reminder, :fortnightly) %>
-    </details>
-    <details class='border-t-2 px-4'>
-      <%= reminder_label(reminder_form, :monthly, "Every month on the first") %>
-      <%= reminders_daily(reminder_form, @reminder, :monthly) %>
-    </details>
+    
   </div>
   <h2 class='font-semibold text-xl mt-8'>At what time of day?</h2>
   <div class='border rounded-lg py-2'>
-    <label class='block px-4 py-2'><%= reminder_form.radio_button(:tod, '6:00', class: 'hidden peer') %> <span class='<%= label_class %>'>Beginning of day (6:00am)</span></label>
-    <label class='border-t-2 block px-4 py-2'><%= reminder_form.radio_button(:tod, '16:30', class: 'hidden peer') %> <span class='<%= label_class %>'>End of day (4:30pm)</span></label>
+    <label class='block px-4 py-2'><%= reminder_form.radio_button(:tod, static_time(0), class: 'peer mr-4', checked: checked_if_time?(@reminder, static_time(0))) %> <span class='<%= label_class %>'>Beginning of day (<%= static_time(0) %>)</span></label>
+    <label class='border-t-2 block px-4 py-2'><%= reminder_form.radio_button(:tod, static_time(1), class: 'peer mr-4', checked: checked_if_time?(@reminder, static_time(1))) %> <span class='<%= label_class %>'>End of day (<%= static_time(1) %>)</span></label>
     <details class='border-t-2 px-4 py-2'>
-      <summary><label class='h-8 block'><%= reminder_form.radio_button(:todc, 'custom', class: 'hidden peer') %> <span class='<%= label_class %>'>Let me pick a time &#8230;</span></label></summary>
-      <%= reminder_form.select :custom, options_for_select(custom_reminder_times,1) %>
+      <summary><label class='h-8 block'><%= reminder_form.radio_button(:todc, 'custom', class: 'peer mr-4', checked: dynamic_time?(@reminder)) %> <span class='<%= label_class %>'>Let me pick a time &#8230;</span></label></summary>
+      <%= reminder_form.select :custom, options_for_select(custom_reminder_times,@reminder.start_time.strftime("%H:%M")) %>
     </details>
   </div>
 <% end %>
 
 <script>
-function sweetness() {
   document.querySelectorAll('details').forEach(function(details) {
-    if (!details.querySelector('input[type="radio"]').checked) {
-      details.open = false;
-    }
+    details.addEventListener('click', function(e) {
+      document.querySelectorAll('details').forEach(function(details) {
+        if (!details.querySelector('input[type="radio"]').checked) { details.open = false; }
+      });
+    });
   });
-}
-document.querySelectorAll('details').forEach(function(details) {
-  details.addEventListener('click', function(e) {
-    sweetness()
-  });
-});
-// sweetness();
 </script>

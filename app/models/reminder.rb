@@ -15,6 +15,16 @@ class Reminder < ApplicationRecord
   def rule
     IceCube::Schedule.from_hash(recurring)
   end
+  def frequency
+    case recurring[:rrules][0][:rule_type]
+    when "IceCube::DailyRule"
+      "daily"
+    when "IceCube::WeeklyRule"
+      (recurring[:rrules].first[:rule_type].include?("Weekly") && recurring[:rrules].first[:interval] == 2) ? "fortnightly" : "weekly"
+    when "IceCube::MonthlyRule"
+      "monthly"
+    end
+  end
   def daily?
     return (recurring[:rrules].first[:rule_type].include?("Daily"))
   end
@@ -29,7 +39,10 @@ class Reminder < ApplicationRecord
   end
   def days
     return recurring[:rrules].first[:validations][:day] unless recurring[:rrules].first[:validations][:day].nil?
-    return recurring[:rrules].first[:validations][:day_of_week][1] # This supports the Monthly rule
+    return recurring[:rrules].first[:validations][:day_of_week].keys # This supports the Monthly rule
+  end
+  def start_time
+    recurring[:start_time]
   end
   def rules(key = :start_time)
     puts self.inspect
