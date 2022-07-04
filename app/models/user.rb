@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_many :visits, class_name: 'Ahoy::Visit'
   has_many :events, class_name: 'Ahoy::Event'
 
+  # validates_inclusion_of :time_zone, in: ActiveSupport::TimeZone.zones_map(&:name)
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
   before_create :set_slug
   attribute :slug, :string

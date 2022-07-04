@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :store_user_location!, if: :storable_location?
   before_action :authenticate_user_from_token!
   before_action :set_current_user, if: :user_signed_in?
+  # around_filter :user_time_zone, if: Current.user
   # after_action :track_action
 
   # rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
@@ -13,8 +14,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  private
 
+  private
+  def user_time_zone(&block)
+    Time.use_zone(current_user.time_zone, &block)
+  end
   # Its important that the location is NOT stored if:
   # - The request method is not GET (non important)
   # - The request is handled by a Devise controller such as Devise::SessionsController as that could cause an

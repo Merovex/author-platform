@@ -4,8 +4,7 @@ task send_reminders: [:environment] do
   # puts now.inspect
   Reminder.all.each do |reminder|
     reminder.rule.occurrences_between(now - 5.minutes, now + 10.minutes, spans: true).each do |_occurrance|
-      puts reminder.rule.to_s
-      puts "Send #{reminder.remindable.inspect} reminder"
+      puts "Send #{reminder.remindable.inspect} reminder (#{reminder.rule}"
       u = User.first
       ReminderMailer.reminder_email(u, reminder.remindable).deliver_now
     end
