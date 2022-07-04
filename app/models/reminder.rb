@@ -10,7 +10,7 @@ class Reminder < ApplicationRecord
   attribute :frequency, default: 'daily'
   attribute :start_time, default: Time.parse('9:00')
   attribute :recurring, default: {
-    start_time: Time.now.change({ hour: 6, min: 0, sec: 0 }),
+    start_time: DateTime.now.change({ hour: 6, min: 0, sec: 0 }),
     rrules: [{
       validations: { day: [1, 2, 3, 4, 5] },
       rule_type: 'IceCube::DailyRule',
@@ -28,7 +28,7 @@ class Reminder < ApplicationRecord
   end
   def set_schedule
     # raise Time.now.change({ hour: start_time.hour, min: start_time.min, sec: 0 }).inspect
-    today = Time.now.change({ hour: start_time.hour, min: start_time.min, sec: 0 })
+    today = DateTime.now.change({ hour: start_time.hour, min: start_time.min, sec: 0 })
     fnord = recurring_start_time
     
 
