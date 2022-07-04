@@ -20,9 +20,9 @@ class User < ApplicationRecord
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
   before_create :set_slug
   attribute :slug, :string
-  
+
   def activities
-    PublicActivity::Activity.where(:owner_id => id)#.select(:trackable_id)
+    PublicActivity::Activity.where(owner_id: id) # .select(:trackable_id)
   end
 
   include Subscriber
@@ -50,6 +50,7 @@ class User < ApplicationRecord
   def has_avatar?
     false
   end
+
   protected
 
   def password_required?

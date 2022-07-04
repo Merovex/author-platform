@@ -16,5 +16,3 @@ end
 # Unsubscribe • Change your notification settings
 
 # Get easier, faster access to Basecamp when it's on your phone. Grab an app!
-
-	

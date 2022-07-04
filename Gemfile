@@ -93,11 +93,10 @@ gem 'rails_heroicons', '~> 0.7.0'
 gem 'tailwindcss-rails', '~> 2.0'
 gem 'view_component', '~> 2.57'
 
-gem "breadcrumbs_on_rails", "~> 4.1"
+gem 'breadcrumbs_on_rails', '~> 4.1'
 
-gem "public_activity", "~> 2.0"
+gem 'public_activity', '~> 2.0'
 
-gem "activity_notification", "~> 2.2"
+gem 'activity_notification', '~> 2.2'
 
-
-gem "ice_cube", "~> 0.16.4"
+gem 'ice_cube', '~> 0.16.4'

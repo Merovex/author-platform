@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  add_breadcrumb "Dashboard", :dashboard_path, only: %i[new edit]
+  add_breadcrumb 'Dashboard', :dashboard_path, only: %i[new edit]
   before_action :get_series, only: %i[new create]
   before_action :set_book, only: %i[show edit update destroy release move]
   after_action :get_cover_bgcolor, only: %i[create update]
@@ -21,7 +21,7 @@ class BooksController < ApplicationController
 
   def release
     @book.released_on = Time.now
-    
+
     respond_to do |format|
       if @book.save
         @book.create_activity key: 'book.released_on', owner: current_user

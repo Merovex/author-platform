@@ -5,5 +5,5 @@ class Answer < ApplicationRecord
   has_rich_text :content
 
   include PublicActivity::Model
-  tracked owner: Proc.new{ Current.user }
+  tracked owner: proc { Current.user }
 end

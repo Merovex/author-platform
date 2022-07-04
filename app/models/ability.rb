@@ -26,7 +26,7 @@ class Ability
       # can :read, :all
       can :read, Post, is_published?: true
       can :read, Book
-      can :read, Page 
+      can :read, Page
     end
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
   end

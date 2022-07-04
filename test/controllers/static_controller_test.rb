@@ -1,12 +1,12 @@
-require "test_helper"
+require 'test_helper'
 
 class StaticControllerTest < ActionDispatch::IntegrationTest
-  test "should get privacy" do
+  test 'should get privacy' do
     get static_privacy_url
     assert_response :success
   end
 
-  test "should get terms" do
+  test 'should get terms' do
     get static_terms_url
     assert_response :success
   end

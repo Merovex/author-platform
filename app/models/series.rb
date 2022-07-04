@@ -4,7 +4,7 @@ class Series < ApplicationRecord
   include Slug
 
   include PublicActivity::Model
-  tracked owner: Proc.new{ Current.user }
+  tracked owner: proc { Current.user }
   # has_many :episodes
   has_many :books # , through: :episodes
 end

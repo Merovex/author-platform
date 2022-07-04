@@ -6,7 +6,7 @@ class Book < ApplicationRecord
   include Slug
 
   include PublicActivity::Model
-  tracked owner: Proc.new{ Current.user }
+  tracked owner: proc { Current.user }
 
   attribute :cover_color, :string, default: '#888888'
   attribute :status, :string, default: 'wip'
@@ -25,10 +25,10 @@ class Book < ApplicationRecord
   before_create :prep_build
 
   has_many :praises, dependent: :destroy
-  
+
   has_many :authors, dependent: :destroy
   has_many :users, through: :authors
-  
+
   has_many :links, as: :linkable, dependent: :destroy
   has_many :writing_entries, through: :bucket, as: :entries
   # belongs_to :clickable, polymorphic: true, optional: true
@@ -41,9 +41,10 @@ class Book < ApplicationRecord
   validates :synopsis, presence: true
 
   def prep_build
-    self.authors.build(user: Current.user)# << Current.user 
+    authors.build(user: Current.user) # << Current.user
     self.bucket = Bucket.new
   end
+
   def to_s
     title
   end

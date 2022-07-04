@@ -1,5 +1,5 @@
 class TodosController < ApplicationController
-  add_breadcrumb "Dashboard", :dashboard_path
+  add_breadcrumb 'Dashboard', :dashboard_path
   before_action :set_todolist, only: %i[new create] # %i[ show edit update destroy ]
   before_action :set_todo, only: %i[show edit update destroy toolbar]
   before_action :authenticate_user! # , except: %i[show index]
@@ -85,12 +85,12 @@ class TodosController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_todo
     @todo = Todo.find(params[:id])
-    add_breadcrumb "Todolist", todolist_path(@todo.todolist)
+    add_breadcrumb 'Todolist', todolist_path(@todo.todolist)
   end
 
   def set_todolist
     @todolist = Todolist.find(params[:todolist_id])
-    add_breadcrumb "Todolist", todolist_path(@todolist)
+    add_breadcrumb 'Todolist', todolist_path(@todolist)
   end
 
   # Only allow a list of trusted parameters through.

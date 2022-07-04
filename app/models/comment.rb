@@ -5,5 +5,5 @@ class Comment < ApplicationRecord
   validates_presence_of :user
 
   include PublicActivity::Model
-  tracked owner: Proc.new{ Current.user }
+  tracked owner: proc { Current.user }
 end

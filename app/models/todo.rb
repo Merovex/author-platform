@@ -2,7 +2,7 @@ class Todo < ApplicationRecord
   acts_as_paranoid
 
   include PublicActivity::Model
-  tracked owner: Proc.new{ Current.user }
+  tracked owner: proc { Current.user }
 
   belongs_to :created_by, class_name: 'User', default: -> { Current.user }
   belongs_to :assigned_to, class_name: 'User', optional: true

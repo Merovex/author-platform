@@ -4,7 +4,7 @@ class Bucket < ApplicationRecord
   has_many :todolists, as: :todolistable
 
   include PublicActivity::Model
-  tracked owner: Proc.new{ Current.user }
+  tracked owner: proc { Current.user }
 
   def to_s
     book.title

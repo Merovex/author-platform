@@ -1,8 +1,9 @@
 module ApplicationHelper
-  def nav_link_to(text, path, options = {})
-    klass = "inline-block w-1/3 py-1 text-center uppercase align-middle md:w-1/6 text-brand-800 dark:text-brand-200 border-b-4 border-white dark:border-gray-800 hover:border-brand-500"
-    return link_to(text, path, class: klass)
+  def nav_link_to(text, path, _options = {})
+    klass = 'inline-block w-1/3 py-1 text-center uppercase align-middle md:w-1/6 text-brand-800 dark:text-brand-200 border-b-4 border-white dark:border-gray-800 hover:border-brand-500'
+    link_to(text, path, class: klass)
   end
+
   def slug_url(obj)
     return '' unless obj.respond_to?(:slug)
 
@@ -58,9 +59,9 @@ module ApplicationHelper
     cycle('bg-gray-600 text-white', '', name: 'zebra')
   end
 
-  def headline(title,args = {wrap_title: true})
+  def headline(title, args = { wrap_title: true })
     content_for(:title, title)
-    args[:class] = (args[:class].nil?) ? 'headline' : args[:class]
+    args[:class] = args[:class].nil? ? 'headline' : args[:class]
     content = tag.h1(title, class: args[:class])
     return content unless args[:wrap_title]
 

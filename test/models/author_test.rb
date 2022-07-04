@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class AuthorTest < ActiveSupport::TestCase
-  
   setup do
     Current.user = users(:one)
     @book = books(:one)
@@ -10,7 +9,7 @@ class AuthorTest < ActiveSupport::TestCase
   def valid_params(options = {})
     {}.merge(options)
   end
-  test "book deletion deletes authors, but not users" do
+  test 'book deletion deletes authors, but not users' do
     @book.authors.create(user: Current.user)
     author = @book.authors.first
     @book.destroy

@@ -25,9 +25,7 @@ class AnswersController < ApplicationController
     @answer = @question.answers.build(answer_params)
     @answer.user = current_user
     respond_to do |format|
-      if @answer.save
-        format.turbo_stream
-      end
+      format.turbo_stream if @answer.save
     end
   end
 

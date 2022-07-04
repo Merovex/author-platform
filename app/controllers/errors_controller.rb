@@ -5,6 +5,7 @@ class ErrorsController < ApplicationController
     # render(status: 404)
   end
 end
+
 class ErrorsController < ApplicationController
   def not_found
     respond_to do |format|

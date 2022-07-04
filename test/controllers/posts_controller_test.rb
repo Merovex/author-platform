@@ -24,7 +24,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   test 'should get new' do
     sign_in @admin
     raise @admin.inspect
-    
+
     get new_post_url
     assert_response :success
   end

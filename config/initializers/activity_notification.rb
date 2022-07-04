@@ -1,20 +1,19 @@
 ActivityNotification.configure do |config|
-
   # Configure if all activity notifications are enabled
   # Set false when you want to turn off activity notifications
   config.enabled = true
 
   # Configure ORM name for ActivityNotification.
   # Set :active_record, :mongoid or :dynamoid.
-  ENV['AN_ORM'] = 'active_record' if ['mongoid', 'dynamoid'].exclude?(ENV['AN_ORM'])
+  ENV['AN_ORM'] = 'active_record' if %w[mongoid dynamoid].exclude?(ENV['AN_ORM'])
   config.orm = ENV['AN_ORM'].to_sym
 
   # Configure table name to store notification data.
-  config.notification_table_name = "notifications"
+  config.notification_table_name = 'notifications'
 
   # Configure table name to store subscription data.
   # config.subscription_table_name = "subscriptions"
-  config.subscription_table_name = "notifications_subscriptions"
+  config.subscription_table_name = 'notifications_subscriptions'
 
   # Configure if email notification is enabled as default.
   # Note that you can configure them for each model by acts_as roles.
@@ -101,5 +100,4 @@ ActivityNotification.configure do |config|
   # Configure if activity_notification internally rescues optional target errors. Default value is true.
   # See https://github.com/simukappu/activity_notification/issues/155 for more details.
   config.rescue_optional_target_errors = true
-
 end

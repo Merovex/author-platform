@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  add_breadcrumb "Dashboard", :dashboard_path
+  add_breadcrumb 'Dashboard', :dashboard_path
   before_action :set_question, only: %i[show edit update destroy]
 
   # GET /questions or /questions.json
@@ -13,18 +13,18 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     @question = Question.new
-    @reminder = @question.build_reminder()
+    @reminder = @question.build_reminder
   end
 
   # GET /questions/1/edit
   def edit
-    @reminder = @question.reminder || @question.build_reminder() 
+    @reminder = @question.reminder || @question.build_reminder
   end
 
   # POST /questions or /questions.json
   def create
     @question = Question.new(title: question_params[:title])
-    @reminder = @question.build_reminder()
+    @reminder = @question.build_reminder
     @reminder.recurring = question_params[:reminder]
     respond_to do |format|
       if @question.save
@@ -40,13 +40,13 @@ class QuestionsController < ApplicationController
 
   # PATCH/PUT /questions/1 or /questions/1.json
   def update
-    @reminder = @question.build_reminder()
+    @reminder = @question.reminder || @question.build_reminder
     @reminder.recurring = question_params[:reminder]
 
     respond_to do |format|
       if @question.update(title: question_params[:title])
         @reminder.save!
-        puts "HERE" + @reminder.inspect
+        puts 'HERE' + @reminder.inspect
         format.html { redirect_to question_url(@question), notice: 'Question was successfully updated.' }
         format.json { render :show, status: :ok, location: @question }
       else
@@ -75,6 +75,8 @@ class QuestionsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def question_params
-    params.require(:question).permit(:title, reminder: [:rule_type, :tod, :todc, :custom, :weekly_dow, :fortnightly_dow, :monthly_dow, daily_dow: []])
+    params.require(:question).permit(:title,
+                                     reminder: [:rule_type, :tod, :todc, :custom, :weekly_dow, :fortnightly_dow,
+                                                :monthly_dow, { daily_dow: [] }])
   end
 end

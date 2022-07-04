@@ -5,8 +5,8 @@ class PostTest < ActiveSupport::TestCase
     Current.user = users(:one)
   end
   def valid_params(options = {})
-    { 
-      title: "Test Post",
+    {
+      title: 'Test Post'
       # synopsis: "<div>This is a test book.</div>",
     }.merge(options)
   end
@@ -25,31 +25,30 @@ class PostTest < ActiveSupport::TestCase
     should validate_presence_of(:title)
     # should validate_presence_of(:synopsis)
   end
-  test "post should default to unpublshed" do
+  test 'post should default to unpublshed' do
     post = Post.create(valid_params)
     assert_not post.is_published?, post.errors.full_messages.to_s
     assert_not Post.published.include?(post), post.errors.full_messages.to_s
     assert Post.unpublished.include?(post), post.errors.full_messages.to_s
   end
-  test "Published post should be published" do
+  test 'Published post should be published' do
     post = Post.create(valid_params(published_at: DateTime.now))
     assert post.is_published?, post.errors.full_messages.to_s
     assert_not Post.unpublished.include?(post), post.errors.full_messages.to_s
     assert Post.published.include?(post), post.errors.full_messages.to_s
   end
-  test "published post should be broadcastable" do
-    
+  test 'published post should be broadcastable' do
     post = Post.create(valid_params(published_at: DateTime.now))
     post2 = Post.create(valid_params(broadcasted_at: DateTime.now, published_at: DateTime.now))
     assert post.broadcastable?, post.errors.full_messages.to_s
     assert_not post2.broadcastable?, post2.errors.full_messages.to_s
   end
-  test "publishing an unpublished post should publish it" do
+  test 'publishing an unpublished post should publish it' do
     post = Post.create(valid_params)
     post.publish_now
     assert post.is_published?, post.errors.full_messages.to_s
   end
-  test "unpublishing a published post should unpublish it" do
+  test 'unpublishing a published post should unpublish it' do
     post = Post.create(valid_params(published_at: DateTime.now))
     post.unpublish
     assert_not post.is_published?, post.errors.full_messages.to_s

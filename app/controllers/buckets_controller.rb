@@ -1,6 +1,6 @@
 class BucketsController < ApplicationController
-  add_breadcrumb "Dashboard", :dashboard_path
-  before_action :set_bucket, except: %i[ new index create ]
+  add_breadcrumb 'Dashboard', :dashboard_path
+  before_action :set_bucket, except: %i[new index create]
   load_and_authorize_resource
 
   # GET /buckets or /buckets.json
