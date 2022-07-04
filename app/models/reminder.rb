@@ -23,11 +23,11 @@ class Reminder < ApplicationRecord
   def rule
     IceCube::Schedule.from_hash(recurring)
   end
-  def start_time
-    t = Time.parse(read_attribute(:start_time))
-    puts t.inspect
-    t
-  end
+  # def start_time
+  #   t = Time.parse(read_attribute(:start_time))
+  #   puts t.inspect
+  #   t
+  # end
   def set_schedule
     today = Time.now.change({ hour: start_time.hour, min: start_time.min, sec: 0 })
 
