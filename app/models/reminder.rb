@@ -31,9 +31,9 @@ class Reminder < ApplicationRecord
   def set_schedule
     today = Time.now.change({ hour: start_time.hour, min: start_time.min, sec: 0 }) #- Current.tz_offset.hours
     # raise today.inspect
-    today += Current.tz_offset.hours
-    puts today.inspect
-    puts Current.tz_offset.inspect
+    today -= Current.tz_offset.hours
+    # puts today.inspect
+    # puts Current.tz_offset.inspect
 
     schedule = IceCube::Schedule.new(today)
     # raise [today, fnord, schedule].inspect
