@@ -1,9 +1,9 @@
 class DayOfWeek
+  attr_reader :id
+  attr_reader :name
   def initialize(day)
     @id = day
     @name = day.capitalize[0..2]
-    attr_reader :id
-    attr_reader :name
   end
 end
 
