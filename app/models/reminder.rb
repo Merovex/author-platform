@@ -28,9 +28,7 @@ class Reminder < ApplicationRecord
   end
   def set_schedule
     # raise Time.now.change({ hour: start_time.hour, min: start_time.min, sec: 0 }).inspect
-    today = DateTime.now.change({ hour: start_time.hour, min: start_time.min, sec: 0 })
-    fnord = recurring_start_time
-    
+    today = Time.now.change({ hour: start_time.hour, min: start_time.min, sec: 0 })
 
     schedule = IceCube::Schedule.new(today)
     # raise [today, fnord, schedule].inspect
