@@ -33,8 +33,7 @@
     <%= turbo_frame_tag "toolbar" %>
   </body>
   <script>
+    // Grabbing timezone for display purposes.
     document.cookie = 'tz='+Intl.DateTimeFormat().resolvedOptions().timeZone;
-    tz_cookie = document.cookie
-    console.log(tz_cookie)
   </script>
 </html>
