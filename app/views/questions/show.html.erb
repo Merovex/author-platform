@@ -4,7 +4,13 @@
     <% end %>
   <% end %>
   <%= headline(@question, class: 'text-3xl font-semibold')%>
-  <%# <div class='opacity-25'><%= "Reminders sent #{@question.reminder}" unless @question.reminder.nil? ></div> %>
+  
+  <% unless @question.reminder.nil? %>
+    <div class='opacity-50 mr-8'>
+      <%= "Reminders sent #{@question.reminder} at" %>
+      <%= local_time(@question.reminder.start_time, format: "%-I:%M%P") %>
+    </div>
+  <% end %>
   <section id='answers'>
   <%= render @question.answers %>
   </section>

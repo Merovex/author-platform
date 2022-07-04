@@ -16,20 +16,26 @@ module RemindersHelper
     'peer-checked:bg-brand-500 inline-flex rounded px-4 text-center'
   end
 
+  def to_12hr(time)
+    time = Time.parse(time) if time.is_a? String
+    time.strftime('%-I:%M%P')
+  end
+
   def box_button(text)
     tag.span(text, class: label_class)
   end
 
-  def reminder_label(form, rule_type, text)
+  def reminder_label(form, frequency, text, checked)
     tag.summary do
       tag.label(class: 'h-8 block') do
-        form.radio_button(:rule_type, rule_type, class: 'mr-4') + "#{text} &#8230;".html_safe
+        form.radio_button(:frequency, frequency, class: 'mr-4', checked: checked) + "#{text} &#8230;".html_safe
       end
     end
   end
 
   def checked_if_day?(reminder, id)
-    reminder.days.map { |day| DOW[day].to_sym }.include?(id)
+    puts [ reminder.days, id ].inspect
+    reminder.days.include?(id.to_s)
   end
 
   def checked_if_time?(reminder, time)
@@ -70,11 +76,11 @@ module RemindersHelper
   end
 
   def custom_reminder_times
-    @today = Date.today
-    stamp = Time.new(@today.year, @today.month, @today.day)
+    today = Date.today
+    stamp = Time.new(today.year, today.month, today.day)
     times = []
     48.times do
-      times << stamp.strftime('%H:%M')
+      times << [stamp.strftime('%-I:%M%P'), stamp.strftime('%H:%M')]
       stamp += 30.minutes
     end
     times
