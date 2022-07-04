@@ -1,8 +1,8 @@
 class MakeStartTimeString < ActiveRecord::Migration[7.0]
   def up
-    change_column :reminders, :start_time, :string
+    add_column :reminders, :start_time, :datetime
   end
   def down
-    change_column :reminders, :start_time, :datetime
+    drop_column :reminders, :start_time
   end
 end
