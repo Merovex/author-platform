@@ -34,7 +34,6 @@ module RemindersHelper
   end
 
   def checked_if_day?(reminder, id)
-    puts [ reminder.days, id ].inspect
     reminder.days.include?(id.to_s)
   end
 
