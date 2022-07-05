@@ -5,15 +5,15 @@
   </aside>
   <div class='border rounded-md border-brand-500/10 flex-1'>
   <% if @object.user %>
-  <header class='flex w-full bg-brand-500/25 px-2 py-2 rounded-t-lg text-sm md:text-base'>
-    <h3 class=' flex-1'>
-      <span class='font-semibold'><%= @object.user %></span>
+  <header class='flex align-middle w-full bg-brand-500/25 px-2 py-2 rounded-t-lg text-sm md:text-base'>
+    <h3 class='flex-1 flex'>
+      <span class='mr-2 inline-block md:hidden flex-none'><%= user_avatar_image(@object.user, 20) if @object.user %></span>
+      <span class='font-semibold'><%= @object.user %>&nbsp;</span>
       <%= @verb %>
       on
       <%= local_relative_time(@datetime) if @object.id %>
-      
     </h3>
-    <div class='flex-none w-40 '>
+    <div class='flex-none w-40'>
     <% if @object.id %>
       <%= render OptionMenuComponent.new(object: @object) do %>
       <% end %>
@@ -21,10 +21,9 @@
     </div>
   </header>
   <% end %>
-  <section class='px-2 prose dark:prose-dark'>
+  <section class='px-2'>
   <%= content %>
   </section>
  </div>
 </article>
-<hr>
 <% end %>
