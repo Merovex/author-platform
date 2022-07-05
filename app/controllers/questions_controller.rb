@@ -79,18 +79,16 @@ class QuestionsController < ApplicationController
     r[:frequency] = question_params[:reminder][:frequency] unless question_params[:reminder][:frequency].nil?
     # Set Days
     r[:days] = if r[:frequency] == 'daily'
-      question_params[:reminder][:daily_dow].reject { |c| c.empty? }
+      question_params[:reminder][:daily].reject { |c| c.empty? }
     elsif r[:frequency] == 'weekly'
-      question_params[:reminder][:weekly_dow].split
+      question_params[:reminder][:weekly].split
     elsif r[:frequency] == 'fortnightly'
-      question_params[:reminder][:fortnightly_dow].split
+      question_params[:reminder][:fortnightly].split
     elsif r[:frequency] == 'monthly'
-      question_params[:reminder][:monthly_dow].split
+      question_params[:reminder][:monthly].split
     end
     # Set Start Time
     time = question_params[:reminder][:tod] == 'custom' ? question_params[:reminder][:custom] : question_params[:reminder][:tod]
-    # x = Time.now.change(hour: time.split(':')[0].to_i, min: time.split(':')[1].to_i)
-    # raise [time,x, Time.now, question_params[:reminder]].inspect
     r[:start_time] = Time.now.change(hour: time.split(':')[0].to_i, min: time.split(':')[1].to_i)
 
     return r
@@ -100,7 +98,7 @@ class QuestionsController < ApplicationController
   def question_params
     params.require(:question).permit(
       :title,
-      reminder: [:frequency, :tod, :custom, :weekly_dow, :fortnightly_dow, :monthly_dow, { daily_dow: [] }]
+      reminder: [:frequency, :tod, :custom, :weekly, :fortnightly, :monthly, { daily: [] }]
     )
   end
 end

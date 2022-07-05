@@ -50,7 +50,7 @@ module RemindersHelper
 
   def pick_single_reminder(form, reminder, key)
     tag.div(class: 'flex h-10') do
-      form.collection_radio_buttons "#{key}_dow", DOW.map { |d| DayOfWeek.new(d) }, :id, :name do |b|
+      form.collection_radio_buttons key, DOW.map { |d| DayOfWeek.new(d) }, :id, :name do |b|
         b.label(class: 'flex-1') do
           b.radio_button(class: 'peer hidden', checked: checked_if_day?(reminder, b.object.id)) + box_button(b.text)
         end
@@ -60,7 +60,7 @@ module RemindersHelper
 
   def pick_many_reminders(form, reminder, key)
     tag.div(class: 'flex h-10') do
-      form.collection_check_boxes "#{key}_dow", DOW.map { |d| DayOfWeek.new(d) }, :id, :name do |b|
+      form.collection_check_boxes key, DOW.map { |d| DayOfWeek.new(d) }, :id, :name do |b|
         b.label(class: 'flex-1') do
           b.check_box(class: 'peer hidden', checked: checked_if_day?(reminder, b.object.id)) + box_button(b.text)
         end
@@ -70,7 +70,7 @@ module RemindersHelper
 
   def daily_check_box(_form, key, day, i)
     tag.label class: 'flex-1' do
-      radio_button_tag("#{key}_dow", i, false, class: 'peer hidden', checked: true) + box_button(day.capitalize[0..2])
+      radio_button_tag(key, i, false, class: 'peer hidden', checked: true) + box_button(day.capitalize[0..2])
     end.html_safe
   end
 
