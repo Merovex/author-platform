@@ -43,4 +43,6 @@ trix-toolbar .trix-button-group {
   border: 0;
 }
 
-.trix-button-row {}
+.trix-button-row {
+  color: #fff !important;
+}

@@ -19,7 +19,7 @@ class PostsController < ApplicationController
     @post.publish_now
     respond_to do |format|
       if @post.save
-        format.html { redirect_to :back, notice: 'Post was successfully published.' }
+        format.html { redirect_to @post, notice: 'Post was successfully published.' }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :index, status: :unprocessable_entity }

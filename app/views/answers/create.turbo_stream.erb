@@ -1,2 +1,2 @@
+<%= turbo_stream.prepend('answers', partial: "answers/answer", locals: {parent: @question, answer: @answer}) %>
 <%= turbo_stream.replace('narrative-form', partial: "answers/answer", locals: {parent: @question, answer: @question.answers.build}) %>
-<%= turbo_stream.append('answers', partial: "answers/answer", locals: {parent: @question, answer: @answer}) %>

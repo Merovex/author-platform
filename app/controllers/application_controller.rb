@@ -56,6 +56,6 @@ class ApplicationController < ActionController::Base
   def set_current_user
     Current.user = current_user
     Current.timezone = cookies[:tz].nil? ? "America/Chicago" : cookies[:tz]
-    tz = ActiveSupport::TimeZone[Current.timezone]
+    # tz = ActiveSupport::TimeZone[Current.timezone]
   end
 end

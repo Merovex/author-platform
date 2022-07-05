@@ -1,5 +1,6 @@
 
 <div class="main">
 <%= headline("Check-ins") %>
+<div class='text-right'><%= link_to bi_icon('plus') +'New Question', new_question_path(), class: 'button' %></div>
 <%= render @questions %>
 </div>

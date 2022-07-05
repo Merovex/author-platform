@@ -1,29 +1,30 @@
 <%= turbo_frame_tag @id do %>
-<article class='relative mt-6 mb-8'>
-  <% if @object.id %>
-    <%= render OptionMenuComponent.new(object: @object) do %>
-    <% end %>
-  <% end %>
-  <div class='grid grid-cols-12 gap-2 mt-8'>
-    <header class='grid h-12 grid-cols-12 col-span-12 gap-2 mt-2 align-top lg:h-6'>
-      <div class='col-span-10 text-sm text-right lg:col-span-2 lg:text-left text-base-subtle '>
-      <% debug(@object) %>
-      <% if @object.id %>
-        <div class='hidden uppercase lg:block'><%= local_relative_time(@datetime, type: 'weekday') %></div>
-        <div class='inline-block lg:block'><%= [@edit_text, local_relative_time(@datetime, type: 'time-or-date')].join(' ').html_safe %></div>
+<article class='relative mt-6 mb-8 flex'>
+  <aside class='w-20 flex-none hidden md:block'>
+     <%= user_avatar_image(@object.user, 45) if @object.user %>
+  </aside>
+  <div class='border rounded-md border-brand-500/10 flex-1'>
+  <% if @object.user %>
+  <header class='flex w-full bg-brand-500/25 px-2 py-2 rounded-t-lg text-sm md:text-base'>
+    <h3 class=' flex-1'>
+      <span class='font-semibold'><%= @object.user %></span>
+      <%= @verb %>
+      on
+      <%= local_relative_time(@datetime) if @object.id %>
+      
+    </h3>
+    <div class='flex-none w-40 '>
+    <% if @object.id %>
+      <%= render OptionMenuComponent.new(object: @object) do %>
       <% end %>
-      </div>
-      <div class='col-span-2 col-end-3 -mt-2 lg:col-end-5 '>
-        <%= user_avatar_image(@object.user, 60) if @object.user %>
-      </div>
-      <div class='col-span-10 col-end-13 lg:col-span-6 lg:col-end-11'>
-        <h3 class='font-semibold'><%= @object.user if @object.user %></h3>
-      </div>
-    </header>
-    <div class='col-span-10 col-end-13 lg:col-span-8 lg:col-end-13'>
-      <%= content %>
+    <% end %>
     </div>
-  </div>
+  </header>
+  <% end %>
+  <section class='px-2 prose dark:prose-dark'>
+  <%= content %>
+  </section>
+ </div>
 </article>
 <hr>
 <% end %>

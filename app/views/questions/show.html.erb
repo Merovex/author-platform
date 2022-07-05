@@ -1,4 +1,4 @@
-<article id="<%= dom_id @question %>">
+<article id="<%= dom_id @question %>" class='main'>
   <% if can? :admin, Question %>
     <%= render OptionMenuComponent.new(object: @question) do %>
     <% end %>
@@ -11,8 +11,8 @@
       <%= local_time(@question.reminder.start_time, format: "%-I:%M%P") unless @question.reminder.start_time.nil? %>
     </div>
   <% end %>
+  <% @question.answers.build %>
   <section id='answers'>
-  <%= render @question.answers %>
+    <%= render @question.answers.reverse %>
   </section>
-  <%= render 'answers/answer', parent: @question, answer: @question.answers.build %>
 </article>

@@ -1,3 +1,5 @@
-<%= render NarrativeComponent.new(object: @answer, parent: @question) do %>
+<article class='main'>
+<%= render NarrativeComponent.new(object: @answer, parent: @question, hide_metadata:true) do %>
   <%= render "form", answer: @answer, parent: @question %>
 <%end %>
+</article>
