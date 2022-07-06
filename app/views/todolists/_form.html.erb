@@ -1,15 +1,5 @@
 <%= form_with(model: todolist, class: "contents", url: [parent, todolist]) do |form| %>
-  <% if todolist.errors.any? %>
-    <div id="error_explanation" class="px-3 py-2 mt-3 text-base font-medium rounded-lg bg-error">
-      <h2><%= pluralize(todolist.errors.count, "error") %> prohibited this todolist from being saved:</h2>
-
-      <ul>
-        <% todolist.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render FormErrorsComponent.new(object: todolist)%>
 
   <div class="my-5">
     <%= form.label :name %>

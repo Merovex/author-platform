@@ -1,15 +1,5 @@
 <%= form_with(model: link, url: book_book_links_path(@book)) do |form| %>
-  <% if link.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(link.errors.count, "error") %> prohibited this link from being saved:</h2>
-
-      <ul>
-        <% link.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render FormErrorsComponent.new(object: link)%>
 
   <div class="field">
     <%= form.label :slug, class: 'block' %>

@@ -1,16 +1,6 @@
 <%= render TurboModalComponent.new(title: "Add new rave!") do %>
   <%= form_with(model: praise, url: [@book, praise]) do |form| %>
-    <% if praise.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(praise.errors.count, "error") %> prohibited this praise from being saved:</h2>
-
-        <ul>
-          <% praise.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+    <%= render FormErrorsComponent.new(object: praise)%>
 
     <div class="my-8">
       <%= form.rich_text_area :comment %>

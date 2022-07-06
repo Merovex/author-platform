@@ -1,15 +1,5 @@
 <%= form_with(model: bucket) do |form| %>
-  <% if bucket.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(bucket.errors.count, "error") %> prohibited this bucket from being saved:</h2>
-
-      <ul>
-        <% bucket.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= render FormErrorsComponent.new(object: bucket)%>
 
   <section class='flex'>
     <div class='flex-1'>
