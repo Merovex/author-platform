@@ -31,7 +31,7 @@ class PostsController < ApplicationController
   def broadcast
     respond_to do |format|
       if @post.unbroadcasted?
-        subscribers = Subscription.users(:posts)
+        subscribers = Users.post_subscribers
         subscribers.each do |subscriber|
           SubscriptionMailer.post_email(subscriber, @post).deliver
         end
@@ -97,8 +97,7 @@ class PostsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_post
-    @post = Post.find(params[:id])
-    redirect_to '/posts#index', error: 'Post not found' if @post.nil?
+    @post = Post.find(params[:id]) or redirect_to posts_path, Error: 'Post not found.'
   end
 
   # Only allow a list of trusted parameters through.

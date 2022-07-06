@@ -20,3 +20,5 @@ pin 'stimulus-transition', to: 'https://ga.jspm.io/npm:stimulus-transition@1.1.2
 pin 'stimulus', to: 'https://ga.jspm.io/npm:stimulus@3.0.1/dist/stimulus.js'
 pin 'local-time', to: 'https://ga.jspm.io/npm:local-time@2.1.0/app/assets/javascripts/local-time.js'
 pin 'stimulus-sortable', to: 'https://ga.jspm.io/npm:stimulus-sortable@3.2.0/dist/stimulus-sortable.es.js'
+pin "@tailwindcss/line-clamp", to: "https://ga.jspm.io/npm:@tailwindcss/line-clamp@0.4.0/src/index.js"
+pin "tailwindcss/plugin", to: "https://ga.jspm.io/npm:tailwindcss@3.1.4/plugin.js"

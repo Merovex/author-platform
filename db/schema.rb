@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_04_185825) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_06_002751) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "action_mailbox_inbound_emails", force: :cascade do |t|
+    t.integer "status", default: 0, null: false
+    t.string "message_id", null: false
+    t.string "message_checksum", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["message_id", "message_checksum"], name: "index_action_mailbox_inbound_emails_uniqueness", unique: true
+  end
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -501,6 +510,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_04_185825) do
     t.string "authentication_token"
     t.datetime "authentication_token_expires_at"
     t.string "name"
+    t.string "unsubscribe_hash"
+    t.boolean "notify_when_added_to_bucket", default: true
+    t.boolean "notify_when_release_book", default: true
+    t.boolean "notify_when_broadcast_post", default: true
+    t.boolean "notify_when_checkin", default: true
+    t.boolean "notify_when_task_completed", default: true
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -514,6 +529,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_04_185825) do
     t.index ["role_id"], name: "index_users_roles_on_role_id"
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
     t.index ["user_id"], name: "index_users_roles_on_user_id"
+  end
+
+  create_table "versions", force: :cascade do |t|
+    t.string "item_type", null: false
+    t.bigint "item_id", null: false
+    t.string "event", null: false
+    t.string "whodunnit"
+    t.text "object"
+    t.datetime "created_at"
+    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
   create_table "writing_entries", force: :cascade do |t|

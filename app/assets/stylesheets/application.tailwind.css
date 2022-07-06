@@ -245,3 +245,6 @@ blockquote .quote-mark {
 .trix-editor {
   @apply overflow-y-auto max-h-96;
 }
+.completed {
+  @apply line-through italic opacity-50;
+}

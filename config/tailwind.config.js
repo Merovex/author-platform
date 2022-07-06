@@ -14,6 +14,12 @@ module.exports = {
       screens: {
         'print': { 'raw': 'print' },
       },
+      lineClamp: {
+        7: '7',
+        8: '8',
+        9: '9',
+        10: '10',
+      },
       typography: (theme) => ({
         light: {
           css: {
@@ -262,5 +268,6 @@ module.exports = {
     require('@tailwindcss/forms'),
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/typography'),
+    require('@tailwindcss/line-clamp'),
   ]
 }

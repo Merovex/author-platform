@@ -68,7 +68,11 @@ class QuestionsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_question
-    @question = Question.find(params[:id])
+    begin
+      @question = Question.find(params[:id])
+    rescue
+      redirect_to questions_path, notice: 'Question not found.'
+    end
   end
   def reminder_params
     r = {
