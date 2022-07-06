@@ -1,3 +1,1 @@
-<p style="font-size: 0.8em; margin-top: 16px;">
-  <%= link_to "turn this notification off", unsubscribe_url(@user.unsubscribe_hash, subscription: subscription_type), style: "color: #bbbbbb;", target: :_blank %>
-</p>
+<%= link_to "turn this notification off", unsubscribe_url(@user.unsubscribe_hash, subscription: subscription_type), target: :_blank %>
