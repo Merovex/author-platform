@@ -1,14 +1,8 @@
-<p style="color: green"><%= notice %></p>
+<article class='main'>
 
-<h1>Projects</h1>
+<%= headline('Projects') %>
 
-<div id="buckets">
-  <% @buckets.each do |bucket| %>
-    <%= render bucket %>
-    <p>
-      <%= link_to "Show this Project", bucket %>
-    </p>
-  <% end %>
+<div id="buckets" class=''>
+  <%= render @buckets %>
 </div>
-
-<%= link_to "New Project", new_bucket_path %>
+</article>
