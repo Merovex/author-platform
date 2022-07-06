@@ -5,7 +5,7 @@ class User < ApplicationRecord
   before_create :set_slug
 
   acts_as_target # Allows user to receive notifications.
-  # has_paper_trail
+  has_paper_trail
 
   devise :database_authenticatable, :trackable,
          :magic_link_authenticatable, :registerable,
