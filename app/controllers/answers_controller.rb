@@ -25,7 +25,15 @@ class AnswersController < ApplicationController
     @answer = @question.answers.build(answer_params)
     @answer.user = current_user
     respond_to do |format|
-      format.turbo_stream if @answer.save
+      
+      if @answer.save
+        # Notify users of the answer
+        notified = User.checkin_subscribers
+        notified.each do |user|
+          NotificationMailer.checkin_answer_email(user, @answer).deliver
+        end
+        format.turbo_stream 
+      end
     end
   end
 

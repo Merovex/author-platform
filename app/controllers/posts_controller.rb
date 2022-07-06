@@ -31,12 +31,12 @@ class PostsController < ApplicationController
   def broadcast
     respond_to do |format|
       if @post.unbroadcasted?
-        subscribers = Users.post_subscribers
+        subscribers = User.post_subscribers
         subscribers.each do |subscriber|
-          SubscriptionMailer.post_email(subscriber, @post).deliver
+          NotificationMailer.post_broadcast_email(subscriber, @post).deliver
         end
-        @post.broadcast_now
-        @post.save
+        @post.update(broadcasted_at: Time.now)
+
         format.html do
           redirect_to @post, notice: "Post was successfully broadcast to #{subscribers.count} subscribers."
         end

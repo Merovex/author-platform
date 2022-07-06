@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :answers
   resources :questions do
     resources :answers
@@ -81,8 +82,9 @@ Rails.application.routes.draw do
     get '500', to: 'errors#internal_error'
   end
   notify_to :users
+  get 'users/unsubscribe/:unsubscribe_hash' => 'emails#unsubscribe', as: 'unsubscribe'
 
-  get 'subscriptions/:slug/unsub_posts' => 'subscriptions#unsub_posts', as: 'posts_unsubscribe'
+  # get 'subscriptions/:slug/unsub_posts' => 'subscriptions#unsub_posts', as: 'posts_unsubscribe'
   get 'users/all'
   get 'users/show'
   get 'users/me'

@@ -1,0 +1,12 @@
+<div>
+<hr>
+<h2>Ben Wilson, Author</h2>
+<p style='margin:0; font-size: 0.8em;'><%= link_to 'View this online', @post %></p>
+<p style='margin:0; font-size: 0.8em;'>You received this email because you signed up on our website.</p>
+<p style='margin:0; font-size: 0.8em;'>
+  If you are no longer interested, 
+  <%= render "shared/unsubscribe_link", subscription_type: subscription_type %>
+</p>
+<%= render "shared/physical_address" %>
+<p style='text-align: center'>Copyright &copy; <%= @post.created_at.year %></p>
+</div>
