@@ -1,0 +1,19 @@
+<article class='single'>
+  <% if can? :admin, Feature %>
+    <%= render OptionMenuComponent.new(object: @feature) do %>
+      <%#= link_to "Broadcast", posts_broadcast_path(@feature) if @feature.broadcastable? %>
+    <% end %>
+  <% end %>
+  <div class='mx-8'>
+    <aside class="mx-12 text-center text-gray-500 opacity-75 dark:text-gray-300">
+    <%= local_time(@feature.released_on, '%-d %B %Y') unless @feature.released_on.nil? %>
+    </aside>
+    <div class="text-center"><%= headline(@feature.name) %></div>
+
+    <section class="<%=t('css_prose')%>">
+    <%= @feature.content %>
+    </section>
+
+    <%= render 'components/subscribe' %>
+  </div>
+</article>

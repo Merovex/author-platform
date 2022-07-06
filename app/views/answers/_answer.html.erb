@@ -1,6 +1,6 @@
 <%= render NarrativeComponent.new(object: answer, parent: @question) do %>
   <% if answer.content.nil? and @form.nil? %>
-      <%= link_to "Add a object here...", new_polymorphic_path([answer.question, answer]), class: "block border h-12 px-4 rounded" if answer.content.nil? %>
+      <%= link_to "Write your answer here...", new_polymorphic_path([answer.question, answer]), class: "block border h-12 px-4 rounded" if answer.content.nil? %>
    <% else %>
       <%= answer.content %>
    <% end %>
