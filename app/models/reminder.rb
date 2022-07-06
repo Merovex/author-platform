@@ -39,13 +39,25 @@ class Reminder < ApplicationRecord
     # raise [today, fnord, schedule].inspect
     dow = days.map(&:to_sym)
     # Get the rule type and set the rule
-    if frequency == 'monthly' # First Day of Week of the Month...
-      schedule.add_recurrence_rule IceCube::Rule.monthly.day_of_week({ dow.first => [1] })
-    elsif frequency == 'fortnightly'
-      schedule.add_recurrence_rule IceCube::Rule.weekly(2).day(dow)
-    else # Daily or weekly (default) (one or more days of the week)
-      schedule.add_recurrence_rule IceCube::Rule.weekly(1).day(dow)
-    end
+    # if frequency == 'monthly' # First Day of Week of the Month...
+    #   schedule.add_recurrence_rule IceCube::Rule.monthly.day_of_week({ dow.first => [1] })
+    # elsif frequency == 'fortnightly'
+    #   schedule.add_recurrence_rule IceCube::Rule.weekly(2).day(dow)
+    # elsif frequency == 'weekly'
+    #   schedule.add_recurrence_rule IceCube::Rule.weekly(1).day(dow)
+    # else # Daily or weekly (default) (one or more days of the week)
+    #   schedule.add_recurrence_rule IceCube::Rule.daily(1).day(dow)
+    # end
+    case frequency
+      when 'daily'
+        schedule.add_recurrence_rule IceCube::Rule.daily(1).day(dow)
+      when 'weekly'
+        schedule.add_recurrence_rule IceCube::Rule.weekly(1).day(dow)
+      when 'fortnightly'
+        schedule.add_recurrence_rule IceCube::Rule.weekly(2).day(dow)
+      when 'monthly'
+        schedule.add_recurrence_rule IceCube::Rule.monthly.day_of_week({ dow.first => [1] })
+      end
     write_attribute(:recurring, schedule.to_hash)
   end
 
