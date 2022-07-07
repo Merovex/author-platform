@@ -34,7 +34,7 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       if @project.save
         format.html do
-          redirect_to project_url(@project), notice: "Writing goal for #{@project.book.title} was successfully created."
+          redirect_to project_url(@project), notice: "Project for #{@project.book.title} was successfully created."
         end
         format.json { render :show, status: :created, location: @project }
       else
@@ -51,7 +51,7 @@ class ProjectsController < ApplicationController
       if @project.update(project_params)
         format.html do
           redirect_to project_url(@project),
-                      notice: "Writing goal for <em>#{@project.book.title}</em> was successfully updated."
+                      notice: "Project for <em>#{@project.book.title}</em> was successfully updated."
         end
         format.json { render :show, status: :ok, location: @project }
       else
@@ -66,7 +66,7 @@ class ProjectsController < ApplicationController
     @project.destroy
 
     respond_to do |format|
-      format.html { redirect_to projects_url, notice: 'Writing goal was successfully destroyed.' }
+      format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
