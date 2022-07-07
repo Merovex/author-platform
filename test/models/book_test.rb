@@ -15,7 +15,7 @@ class BookTest < ActiveSupport::TestCase
   context 'associations' do
     # should have_many(:comments)
     should belong_to(:series)
-    should have_one(:bucket)
+    should have_one(:project)
     should have_many(:authors)
     should have_rich_text(:synopsis)
     should have_rich_text(:excerpt)

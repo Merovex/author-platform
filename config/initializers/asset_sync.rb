@@ -12,7 +12,7 @@
 #     #
 #     # Change canned ACL of uploaded object. Default is unset. Will override fog_public if set.
 #     # Choose from: private | public-read | public-read-write | aws-exec-read |
-#     #              authenticated-read | bucket-owner-read | bucket-owner-full-control
+#     #              authenticated-read | project-owner-read | project-owner-full-control
 #     # config.aws_acl = nil
 #     #
 #     # Change host option in fog (only if you need to)

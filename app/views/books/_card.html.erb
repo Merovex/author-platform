@@ -12,7 +12,7 @@
     <% if book.released_on.nil? %> 
       <%= link_to(bi_icon('share'), book_release_path(book), class: "link" )%>
     <% end %>
-    <%= link_to( bi_icon("card-checklist"), bucket_path(book.bucket), class: 'ml-4 link') %> 
+    <%= link_to( bi_icon("card-checklist"), project_path(book.project), class: 'ml-4 link') %> 
     <%= link_to bi_icon("pencil-square"), edit_book_path(book), class: 'ml-4 link' %>
     <%= link_to bi_icon("trash"), book_path(book), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'ml-4 link' %>
   </td>

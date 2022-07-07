@@ -43,7 +43,7 @@ Rails.application.routes.draw do
     get '500', to: 'errors#internal_error'
   end
   resources :authors
-  resources :buckets do
+  resources :projects do
     resources :writing_entries, path_names: { new: 'new/:date' }
     resources :todolists
     get '404', to: 'errors#not_found'

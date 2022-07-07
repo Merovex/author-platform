@@ -1,4 +1,4 @@
-module BucketsHelper
+module ProjectsHelper
   def dateness(date, fmt = '%Y-%m-%d')
     return '' if date.blank?
 
@@ -17,7 +17,7 @@ module BucketsHelper
     days = {}
     entries.each do |entry|
       day = entry.wrote_on.strftime('%Y-%m-%d')
-      title = entry.bucket.book.title
+      title = entry.project.book.title
       days[day] = { words: 0, target: 1000, title: } if days[day].nil?
       days[day][:words] += entry.count
     end

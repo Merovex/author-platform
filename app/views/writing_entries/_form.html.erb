@@ -1,4 +1,4 @@
-<%= form_for([@bucket, @writing_entry]) do |form| %>
+<%= form_for([@project, @writing_entry]) do |form| %>
   <% if writing_entry.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(writing_entry.errors.count, "error") %> prohibited this writing_entry from being saved:</h2>

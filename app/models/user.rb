@@ -27,7 +27,7 @@ class User < ApplicationRecord
 
   scope :post_subscribers, -> { where(notify_when_broadcast_post: true) }
   scope :book_subscribers, -> { where(notify_when_release_book: true) }
-  scope :bucket_subscribers, -> { where(notify_when_release_book: true) }
+  scope :project_subscribers, -> { where(notify_when_release_book: true) }
   scope :checkin_subscribers, -> { where(notify_when_checkin: true) }
   scope :task_subscribers, -> { where(notify_when_task_completed: true) }
 

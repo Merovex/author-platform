@@ -79,7 +79,7 @@ class TodolistsController < ApplicationController
   end
 
   def set_parent
-    @parent = Bucket.find(params[:bucket_id]) unless params[:bucket_id].nil?
+    @parent = Project.find(params[:project_id]) unless params[:project_id].nil?
   end
 
   # Only allow a list of trusted parameters through.

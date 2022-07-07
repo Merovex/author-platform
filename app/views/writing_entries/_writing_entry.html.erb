@@ -6,7 +6,7 @@ if entry.nil?
   comment = entry.comment
   count = entry.count
 end
-link = (entry.nil?) ? new_bucket_writing_entry_path(@bucket, @date) :  edit_bucket_writing_entry_path(@bucket,entry)
+link = (entry.nil?) ? new_project_writing_entry_path(@project, @date) :  edit_project_writing_entry_path(@project,entry)
  %>
 <tr id='<%= @date %>' class='entry' data-date="<%= @date %>" data-count="<%= count %>">
   <td class='border text-center'>

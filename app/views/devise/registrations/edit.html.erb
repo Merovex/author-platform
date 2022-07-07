@@ -41,7 +41,7 @@
   <section id='email' class="border-t mt-6 p-4">
     <h2 class="h2">Email Preferences</h2>
 
-    <% %i[notify_when_broadcast_post notify_when_added_to_bucket notify_when_checkin notify_when_task_completed].each do |key| %>
+    <% %i[notify_when_broadcast_post notify_when_added_to_project notify_when_checkin notify_when_task_completed].each do |key| %>
     <div class="mb-6">
       <%= f.check_box key, class: 'rounded mr-2' %>
       <%= f.label key %>

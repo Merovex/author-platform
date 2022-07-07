@@ -1,4 +1,4 @@
-class Bucket < ApplicationRecord
+class Project < ApplicationRecord
   belongs_to :book
   has_many :writing_entries, dependent: :destroy
   has_many :todolists, as: :todolistable

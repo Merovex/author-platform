@@ -21,7 +21,7 @@ class Book < ApplicationRecord
 
   accepts_nested_attributes_for :series
 
-  has_one :bucket, dependent: :destroy
+  has_one :project, dependent: :destroy
   before_create :prep_build
 
   has_many :praises, dependent: :destroy
@@ -30,7 +30,7 @@ class Book < ApplicationRecord
   has_many :users, through: :authors
 
   has_many :links, as: :linkable, dependent: :destroy
-  has_many :writing_entries, through: :bucket, as: :entries
+  has_many :writing_entries, through: :project, as: :entries
   # belongs_to :clickable, polymorphic: true, optional: true
 
   scope :featured, -> { where(is_featured: true) }
@@ -42,7 +42,7 @@ class Book < ApplicationRecord
 
   def prep_build
     authors.build(user: Current.user) # << Current.user
-    self.bucket = Bucket.new
+    self.project = Project.new
   end
 
   def to_s

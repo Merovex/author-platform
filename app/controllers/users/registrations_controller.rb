@@ -57,7 +57,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: %i[name avatar notify_when_broadcast_post notify_when_checkin notify_when_task_completed notify_when_added_to_bucket])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[name avatar notify_when_broadcast_post notify_when_checkin notify_when_task_completed notify_when_added_to_project])
   end
 
   # The path used after sign up.

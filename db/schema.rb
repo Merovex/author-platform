@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_06_225159) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_07_080658) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -227,17 +227,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_06_225159) do
     t.index ["slug"], name: "index_books_on_slug"
   end
 
-  create_table "buckets", force: :cascade do |t|
-    t.bigint "book_id", null: false
-    t.date "start_on"
-    t.date "finish_on"
-    t.integer "target"
-    t.text "summary"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["book_id"], name: "index_buckets_on_book_id"
-  end
-
   create_table "clicks", force: :cascade do |t|
     t.bigint "user_id"
     t.integer "clickable_id"
@@ -371,6 +360,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_06_225159) do
     t.integer "position"
     t.index ["book_id"], name: "index_praises_on_book_id"
     t.index ["deleted_at"], name: "index_praises_on_deleted_at"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.date "start_on"
+    t.date "finish_on"
+    t.integer "target"
+    t.text "summary"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_projects_on_book_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -555,8 +555,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_06_225159) do
     t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "bucket_id", null: false
-    t.index ["bucket_id"], name: "index_writing_entries_on_bucket_id"
+    t.bigint "project_id", null: false
+    t.index ["project_id"], name: "index_writing_entries_on_project_id"
     t.index ["wrote_on"], name: "index_writing_entries_on_wrote_on"
   end
 
@@ -566,16 +566,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_06_225159) do
   add_foreign_key "answers", "users"
   add_foreign_key "authors", "books"
   add_foreign_key "authors", "users"
-  add_foreign_key "buckets", "books"
   add_foreign_key "clicks", "users"
   add_foreign_key "comments", "users"
   add_foreign_key "episodes", "books"
   add_foreign_key "episodes", "series"
   add_foreign_key "posts", "users"
   add_foreign_key "praises", "books"
+  add_foreign_key "projects", "books"
   add_foreign_key "subscribers", "users"
   add_foreign_key "subscriptions", "users"
   add_foreign_key "todolists", "users"
   add_foreign_key "todos", "todolists"
-  add_foreign_key "writing_entries", "buckets"
+  add_foreign_key "writing_entries", "projects"
 end

@@ -4,7 +4,7 @@
 <section class='p-4 text-center'>
   <% if can? :admin, Book %>
       <%= render OptionMenuComponent.new(object: @book) do %>
-        <%= link_to bi_icon('graph-up-arrow') + " Project", bucket_path(@book.bucket) %>
+        <%= link_to bi_icon('graph-up-arrow') + " Project", project_path(@book.project) %>
         <%= link_to bi_icon('speedometer2') + " Admin", books_admin_path() %>
       <% end %>
   <% end %>

@@ -1,7 +1,7 @@
 class DashboardController < ApplicationController
   def index
     @wips = Book.unpublished
-    @goal = @wips.last.bucket
+    @goal = @wips.last.project
     @todolists = Todolist.all
   end
 

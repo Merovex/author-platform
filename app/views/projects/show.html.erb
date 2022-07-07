@@ -1,0 +1,39 @@
+<div class="main">
+  <div>
+    <%= link_to "Back to #{@book}", book_path(@book), class: 'action' %>
+    <%= link_to "Edit", edit_project_path(@project), class: 'action' %>
+  </div>
+  <%= headline("Project: #{@book}") %>
+  <table class='w-full my-12 text-xl table-fixed'>
+    <tr>
+      <th>Start:</th>
+      <td class='text-right'><%= dateness(@project.start_on, "%-d %B %Y") || "Not set" %></td>
+      <th>Finish:</th>
+      <td id='end-on' class='text-right' data-end-on="<%= dateness(@project.finish_on) || "" %>"><%= dateness(@project.finish_on, "%-d %B %Y") || "Not set" %></td>
+    </tr>
+    <tr>
+      <th>Current:</th><td class='text-right' id='writing-wordcount'><%= number_with_delimiter(@project.wordcount) %></td>
+      <th>Target:</th><td class='text-right' id='writing-target'><%= number_with_delimiter(@project.target) %></td>
+    </tr>
+    <tr> <th>Summary:</th><td> <%= (@project.summary.nil? or @project.summary.empty?) ? "..." : @project.summary %></td>
+    </tr>
+  </table>
+  
+
+  <div data-controller="tabs" data-tabs-active-tab="tab-active">
+    <ul class="flex border-b list-reset">
+      <%= tab_tag 'Heatmap' %>
+      <%= tab_tag 'Todolists' %>
+      <%= tab_tag 'Writing Entries' %>
+    </ul>
+    <%= tab_panel do %>
+      <%= render "dashboard/heatmap", entries: @project.writing_entries %>
+    <% end %>
+    <%= tab_panel do %>
+      <%= render partial: 'todolists/index', locals: {todolists: @project.todolists, parent: @project} %>
+    <% end %>
+    <%= tab_panel do %>
+      <%= render 'writing_entries/index' %>
+    <% end %>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class BucketTest < ActiveSupport::TestCase
+class ProjectTest < ActiveSupport::TestCase
   setup do
     Current.user = users(:one)
     @book = books(:one)
@@ -12,10 +12,10 @@ class BucketTest < ActiveSupport::TestCase
       count: 1000
     }.merge(options)
   end
-  test 'deleting book deletes buckets and entries' do
+  test 'deleting book deletes projects and entries' do
     book = @book
-    bucket = book.bucket
-    entries = bucket.writing_entries.create(entry_params)
+    project = book.project
+    entries = project.writing_entries.create(entry_params)
     book.destroy
   end
 end
