@@ -3,6 +3,7 @@ class DashboardController < ApplicationController
     @wips = Book.unpublished
     @goal = @wips.last.project
     @todolists = Todolist.all
+    @teams = Team.all
   end
 
   def admin; end

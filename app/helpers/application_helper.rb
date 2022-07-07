@@ -67,6 +67,9 @@ module ApplicationHelper
 
     tag.section(content, class: 'section')
   end
+  def title(object, title)
+    (object.nil?) ? h2(title) : headline(title)
+  end
 
   def panel_headline(title)
     tag.h1(title, class: 'panel-headline')

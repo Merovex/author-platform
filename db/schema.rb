@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_07_080658) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_07_101548) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -290,6 +290,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_07_080658) do
     t.index ["deleted_at"], name: "index_links_on_deleted_at"
   end
 
+  create_table "memberships", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "membershipable_type", null: false
+    t.bigint "membershipable_id", null: false
+    t.boolean "committed", default: true
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["membershipable_type", "membershipable_id"], name: "index_memberships_on_membershipable"
+    t.index ["user_id"], name: "index_memberships_on_user_id"
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.string "target_type", null: false
     t.bigint "target_id", null: false
@@ -466,6 +478,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_07_080658) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
+  create_table "teams", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id", null: false
+    t.text "description"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_teams_on_user_id"
+  end
+
   create_table "todolists", force: :cascade do |t|
     t.string "name"
     t.integer "todolistable_id"
@@ -570,11 +592,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_07_080658) do
   add_foreign_key "comments", "users"
   add_foreign_key "episodes", "books"
   add_foreign_key "episodes", "series"
+  add_foreign_key "memberships", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "praises", "books"
   add_foreign_key "projects", "books"
   add_foreign_key "subscribers", "users"
   add_foreign_key "subscriptions", "users"
+  add_foreign_key "teams", "users"
   add_foreign_key "todolists", "users"
   add_foreign_key "todos", "todolists"
   add_foreign_key "writing_entries", "projects"

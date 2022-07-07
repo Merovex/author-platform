@@ -1,7 +1,7 @@
 module UsersHelper
-  def user_avatar_image(user, size = 60)
+  def user_avatar_image(user, size = 60, klass = 'rounded-full mx-auto')
     image = user_avatar(user, size)
-    image_tag(image, class: 'rounded-full mx-auto')
+    image_tag(image, class: klass)
   end
 
   def user_avatar(user, size = 60)

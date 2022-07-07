@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  membership: one
+  membership_type: Membership
+  deleted_at: 2022-07-07 04:48:50
+
+two:
+  user: two
+  membership: two
+  membership_type: Membership
+  deleted_at: 2022-07-07 04:48:50

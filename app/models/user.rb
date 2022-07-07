@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_many :todolists
   has_many :assignments, class_name: :todos
   has_many :activities
+  has_many :memberships
 
   has_many :visits, class_name: 'Ahoy::Visit'
   has_many :events, class_name: 'Ahoy::Event'

@@ -30,6 +30,7 @@
     <ul class="flex border-b list-reset">
       <%= tab_tag 'Heatmap' %>
       <%= tab_tag 'Books' %>
+      <%= tab_tag 'Teams' %>
       <%= tab_tag 'Todolists' %>
       <%= tab_tag 'Questions' %>
     </ul>
@@ -39,6 +40,12 @@
     <% if can? :manage, Todolist %>
       <%= tab_panel do %>
         <%= render partial: 'books/card', collection: @wips, as: :book if !@wips.empty? and can? :admin, Book %>
+      <% end %>
+    <% end %>
+    <% if can? :read, Team %>
+      <%= tab_panel do %>
+        <% @show_project = true%>
+        <%= render 'teams/index', teams: @teams, parent: nil %>
       <% end %>
     <% end %>
     <% if can? :read, Todolist %>

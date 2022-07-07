@@ -84,7 +84,7 @@ trix-toolbar .trix-button, trix-toolbar .trix-button:not(:first-child), trix-too
   border:0;
 }
 .card {
-  @apply px-8 py-4 my-8 border border-opacity-50 rounded shadow-lg;
+  @apply p-4 my-8 border border-opacity-50 rounded shadow-lg relative;
 }
 
 .panel {

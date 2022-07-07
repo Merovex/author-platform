@@ -1,0 +1,7 @@
+<article id="<%= dom_id team %>" class='main'>
+  <%= title(@team, team) %>
+  <section><%= team.description %></section>
+  <section class='mt-4'>
+    <%= render MembershipListComponent.new(memberships: team.memberships) %>
+  </section>
+</article>

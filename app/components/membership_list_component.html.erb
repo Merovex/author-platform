@@ -1,0 +1,7 @@
+<ul class='text-left'>
+  <% @memberships.each do |membership| %>
+    <li>
+    <%= user_avatar_image(membership.user, 30, 'rounded-full') %>
+    </li>
+  <% end %>
+</ul>
