@@ -2,6 +2,6 @@
   <% if answer.content.nil? and @form.nil? %>
       <%= link_to "Write your answer here...", new_polymorphic_path([answer.question, answer]), class: "block border h-12 px-4 rounded" if answer.content.nil? %>
    <% else %>
-      <%= answer.content %>
+      <div class='px-2'><%= answer.content %></div>
    <% end %>
 <% end %>

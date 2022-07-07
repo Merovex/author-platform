@@ -1,11 +1,11 @@
 <%= turbo_frame_tag @id do %>
-<article class='relative mt-6 mb-8 flex'>
+<article class='relative mt-6 mb-8 flex border-brand-500/10'>
   <aside class='w-20 flex-none hidden md:block'>
      <%= user_avatar_image(@object.user, 45) if @object.user %>
   </aside>
-  <div class='border rounded-md border-brand-500/10 flex-1'>
+  <div class='border rounded-md  flex-1'>
   <% if @object.user %>
-  <header class='flex align-middle w-full bg-brand-500/25 px-2 py-2 rounded-t-lg text-sm md:text-base'>
+  <header class='flex align-middle w-full bg-brand-500/25 px-2 py-2 rounded-t-md text-sm md:text-base'>
     <h3 class='flex-1 flex'>
       <span class='mr-2 inline-block md:hidden flex-none'><%= user_avatar_image(@object.user, 20) if @object.user %></span>
       <span class='font-semibold'><%= @object.user %>&nbsp;</span>
@@ -21,7 +21,7 @@
     </div>
   </header>
   <% end %>
-  <section class='px-2'>
+  <section>
   <%= content %>
   </section>
  </div>

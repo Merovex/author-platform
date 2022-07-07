@@ -11,6 +11,9 @@
       <%= local_time(@question.reminder.start_time, format: "%-I:%M%P") unless @question.reminder.start_time.nil? %>
     </div>
   <% end %>
+  <section class='mt-4'>
+    <%= render MembershipListComponent.new(memberships: @question.memberships) %>
+  </section>
   <% @question.answers.build %>
   <section id='answers'>
     <%= render @question.answers.reverse %>
