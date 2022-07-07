@@ -1,7 +1,8 @@
-<ul class='text-left'>
+<% stacked = (@memberships.count > 5) %>
+<ul class='text-left flex<%= stacked ? ' ml-4' : '' %>'>
   <% @memberships.each do |membership| %>
-    <li>
-    <%= user_avatar_image(membership.user, 30, 'rounded-full') %>
-    </li>
+    <%= tag.li(class: (stacked) ? '-ml-4' : nil) do %>
+      <%= user_avatar_image(membership.user, 30, 'rounded-full') %>
+    <%end%>
   <% end %>
 </ul>

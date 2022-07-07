@@ -94,13 +94,8 @@ gem 'tailwindcss-rails', '~> 2.0'
 gem 'view_component', '~> 2.57'
 
 gem 'breadcrumbs_on_rails', '~> 4.1'
-
 gem 'public_activity', '~> 2.0'
-
 gem 'activity_notification', '~> 2.2'
-
 gem 'ice_cube', '~> 0.16.4'
-
-gem "byebug", "~> 11.1", :group => :test
-
-gem "sidekiq", "~> 6.5"
+# gem "byebug", "~> 11.1", :group => :test
+# gem "sidekiq", "~> 6.5"

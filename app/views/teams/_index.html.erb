@@ -4,12 +4,12 @@
   <%= link_to 'New team', new_team_path, class: "button" %>
   </div>
 
-  <div id="teams" class="min-w-full grid grid-cols-3">
+  <div id="teams" class="min-w-full grid grid-cols-1 md:grid-cols-3 gap-4">
     <% @teams.each do |team| %>
-    <article id="<%= dom_id team %>" class='border rounded p-2 relative'>
+    <article id="<%= dom_id team %>" class='border rounded p-2 relative flex flex-col'>
       <%= title(@team, team) %>
-      <section><%= team.description %></section>
-      <section class='mt-4'>
+      <section class='flex-1'><%= team.description %></section>
+      <section class='mt-4 flex-0'>
         <%= render MembershipListComponent.new(memberships: team.memberships) %>
       </section>
       <%= link_to "", team_path(team), class: 'absolute z-10 w-full h-full top-0 -ml-2' %>

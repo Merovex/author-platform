@@ -1,9 +1,7 @@
 <div class="main">
-  <div>
-    <%= link_to "Back to #{@book}", book_path(@book), class: 'action' %>
-    <%= link_to "Edit", edit_project_path(@project), class: 'action' %>
-  </div>
   <%= headline("Project: #{@book}") %>
+  <%= render OptionMenuComponent.new(object: @project) do %>
+  <% end %>
   <table class='w-full my-12 text-xl table-fixed'>
     <tr>
       <th>Start:</th>

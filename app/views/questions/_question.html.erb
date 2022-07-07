@@ -1,6 +1,8 @@
-<article id="<%= dom_id question %>" class="card">
+<article id="<%= dom_id question %>" class="card relative">
   <%= h2(question) %>
-  <aside class='mt-8 text-center'>
-    <%= link_to 'Read More', question, class: button_css('brand') %>
+  <%= render MembershipListComponent.new(memberships: question.memberships) %>
+  <aside class='my-2 text-center'>
+    <%= tag.span 'Read More', class: button_css('brand') %>
   </aside>
+  <%= link_to "", question_path(question), class: 'coverall -ml-4' %>
 </article>

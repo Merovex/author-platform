@@ -248,3 +248,6 @@ blockquote .quote-mark {
 .completed {
   @apply line-through italic opacity-50;
 }
+.coverall {
+  @apply absolute w-full h-full top-0
+}
