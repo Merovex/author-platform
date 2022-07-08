@@ -5,7 +5,7 @@
         <%= todolist_heading(todolist, @show_project, @show_heading) %>
       </div>
   </header>
-  <section class='todos' id='todos-in-progress'>
+  <section class='todos' id='todos-in-progress_<%= todolist.id %>'>
     <%= render todolist.todos.in_progress %>
   </section>
   <div><%= link_to('Add a to-do', new_todolist_todo_path(todolist),

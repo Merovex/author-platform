@@ -1,2 +1,2 @@
-<%= turbo_stream.replace('narrative-form', partial: "comments/comment", locals: {parent: @parent, comment: @parent.comments.build}) %>
-<%= turbo_stream.append('comments', partial: "comments/comment", locals: {parent: @parent, comment: @comment}) %>
+<%= turbo_stream.replace('narrative-form', partial: "comments/comment", locals: {parent: @comment.commentable, comment: @comment.commentable.comments.build}) %>
+<%= turbo_stream.append('comments', partial: "comments/comment", locals: {comment: @comment}) %>

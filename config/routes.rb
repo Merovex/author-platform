@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :teams
+  resources :teams do
+    resources :todolists
+  end
   resources :memberships
   resources :features
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -13,12 +15,16 @@ Rails.application.routes.draw do
   resources :comments
 
   resources :todolists, shallow: true do
-    resources :todos
+    resources :todos do
+      resources :comments#, shallow: true
+    end
     resources :comments
     get '404', to: 'errors#not_found'
     get '422', to: 'errors#unacceptable'
     get '500', to: 'errors#internal_error'
   end
+  # resources :comments
+
   put 'todo/:id/complete' => 'todos#complete', format: :turbo_stream, as: 'complete_todo'
   post 'todo/:id/toolbar' => 'todos#toolbar', format: :turbo_stream, as: 'todo_toolbar'
   get 'dashboard/' => 'dashboard#index'

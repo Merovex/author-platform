@@ -1,2 +1,2 @@
-<%= turbo_stream.append('todos-in-progress', partial: "todos/todo", locals: {todo: @todo}) %>
+<%= turbo_stream.append("todos-in-progress_#{@todolist.id}", partial: "todos/todo", locals: {todo: @todo}) %>
 <%= turbo_stream.replace("ratio_#{@todolist.id}", partial: "todolists/ratio", locals: {todolist: @todolist}) %>

@@ -1,5 +1,7 @@
-<%= form_with(model: comment, url: [parent, comment]) do |form| %>
-  <div>
+<%= form_with(model: comment) do |form| %>
+  <%= form.hidden_field :commentable_id %>
+  <%= form.hidden_field :commentable_type %>
+  <div class='m-2'>
     <%= form.rich_text_area :content %>
   </div>
   <div class="inline">

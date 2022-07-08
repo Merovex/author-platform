@@ -1,6 +1,6 @@
 class TodolistsController < ApplicationController
   add_breadcrumb 'Dashboard', :dashboard_path
-  before_action :set_parent, only: %i[new create]
+  before_action :set_parent, only: %i[new]
   before_action :set_todolist, only: %i[show edit update destroy]
   before_action :authenticate_user! # , except: %i[show index]
   load_and_authorize_resource
@@ -20,7 +20,7 @@ class TodolistsController < ApplicationController
 
   # GET /todolists/new
   def new
-    @todolist = Todolist.new
+    @todolist = @parent.todolists.build
   end
 
   # GET /todolists/1/edit
@@ -29,7 +29,7 @@ class TodolistsController < ApplicationController
   # POST /todolists or /todolists.json
   def create
     @todolist = Todolist.new(todolist_params)
-    @parent.todolists << @todolist unless @parent.nil?
+    # @parent.todolists << @todolist unless @parent.nil?
 
     respond_to do |format|
       if @todolist.save
@@ -80,10 +80,11 @@ class TodolistsController < ApplicationController
 
   def set_parent
     @parent = Project.find(params[:project_id]) unless params[:project_id].nil?
+    @parent = Team.find(params[:team_id]) unless params[:team_id].nil?
   end
 
   # Only allow a list of trusted parameters through.
   def todolist_params
-    params.require(:todolist).permit(:name, :content)
+    params.require(:todolist).permit(:name, :content, :todolistable_id, :todolistable_type)
   end
 end

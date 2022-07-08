@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: %i[show edit update destroy]
 
   # GET /comments/1 or /comments/1.json
-  def show; end
+  # def show; end
 
   # GET /comments/new
   def new
@@ -16,8 +16,7 @@ class CommentsController < ApplicationController
 
   # POST /comments or /comments.json
   def create
-    @comment = @parent.comments.build(comment_params)
-    @comment.user = current_user
+    @comment = Comment.new(comment_params)
 
     respond_to do |format|
       format.turbo_stream if @comment.save
@@ -52,6 +51,7 @@ class CommentsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_parent
     @parent = Todolist.find(params[:todolist_id]) unless params[:todolist_id].nil?
+    @parent = Todo.find(params[:todo_id]) unless params[:todo_id].nil?
   end
 
   def set_comment
@@ -60,6 +60,6 @@ class CommentsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def comment_params
-    params.require(:comment).permit(:content)
+    params.require(:comment).permit(%i[content commentable_id commentable_type])
   end
 end

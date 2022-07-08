@@ -12,7 +12,7 @@ class TodosController < ApplicationController
 
   # GET /todos/1 or /todos/1.json
   def show
-    # @comments = @todo.comments
+    @comments = @todo.comments
   end
 
   # GET /todos/new
@@ -85,12 +85,14 @@ class TodosController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_todo
     @todo = Todo.find(params[:id])
-    add_breadcrumb 'Todolist', todolist_path(@todo.todolist)
+    @todolist = @todo.todolist
+    add_breadcrumb @todolist, todolist_path(@todolist)
+    add_breadcrumb @todo, todo_path(@todo)
   end
 
   def set_todolist
     @todolist = Todolist.find(params[:todolist_id])
-    add_breadcrumb 'Todolist', todolist_path(@todolist)
+    add_breadcrumb @todolist, todolist_path(@todolist)
   end
 
   # Only allow a list of trusted parameters through.

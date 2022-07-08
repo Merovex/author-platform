@@ -1,6 +1,6 @@
 class Team < ApplicationRecord
   belongs_to :user, default: -> { Current.user }
-  include Communicable
+  include Communicable, Todolistable
 
   def to_s
     name

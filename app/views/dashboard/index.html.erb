@@ -1,16 +1,16 @@
 
 <div class="main">
-  <section class="flex gap-3 font-sans text-sm">
-    <div class="flex-1 py-4 text-center border-2 card border-violet-400 bg-violet-300 text-violet-800">
+  <section class="grid grid-cols-2 lg:grid-cols-4 gap-2 font-sans text-sm">
+    <div class="py-4 text-center border-2 card border-violet-400 bg-violet-300 text-violet-800">
       <span id="earned-value" class="block text-4xl font-semibold tracking-tight"><%= number_with_delimiter(@goal.wordcount) %></span>
       WIP Wordcount
     </div>
 
-    <div class="flex-1 py-4 text-center text-green-900 bg-green-400 border-2 border-green-400 card">
+    <div class="py-4 text-center text-green-900 bg-green-400 border-2 border-green-400 card">
       <span id="annual-wordcount" class="block text-4xl font-semibold tracking-tight"><%= number_with_delimiter(WritingEntry.annual_wordcount(Time.now().year)) %></span>
       Annual Wordcount
     </div>
-    <div class="flex-1 py-4 text-center text-red-800 bg-red-300 border-2 border-red-400 card">
+    <div class="py-4 text-center text-red-800 bg-red-300 border-2 border-red-400 card">
       <div>
         <span id="days-remaining" class="text-4xl font-semibold tracking-tight ">
         <%= @goal.days_remaining %>
@@ -19,47 +19,30 @@
       </div>
       Days (left/done)
     </div>
-    <div class="flex-1 py-4 text-center text-indigo-800 bg-indigo-300 border-2 border-indigo-400 card">
+    <div class="py-4 text-center text-indigo-800 bg-indigo-300 border-2 border-indigo-400 card">
       <span id="tracking-date" class="block text-4xl font-semibold tracking-tight"><%= target_completion(@goal) %></span>
       Expected Completion
     </div>
   </section>
   <hr class='my-8'>
 
-  <section data-controller="tabs" data-tabs-active-tab="tab-active">
-    <ul class="flex border-b list-reset py-2">
-      <%= tab_tag 'Heatmap' %>
-      <%= tab_tag 'Books' %>
-      <%= tab_tag 'Teams' %>
-      <%= tab_tag 'Todolists' %>
-      <%= tab_tag 'Check-ins' %>
-    </ul>
-    <%= tab_panel do %>
-      <%= render "dashboard/heatmap",entries: WritingEntry.all %>
-    <% end %>
-    <% if can? :manage, Todolist %>
-      <%= tab_panel do %>
-        <%= render partial: 'books/card', collection: @wips, as: :book if !@wips.empty? and can? :admin, Book %>
-      <% end %>
-    <% end %>
-    <% if can? :read, Team %>
-      <%= tab_panel do %>
-        <% @show_project = true%>
-        <%= render 'teams/index', teams: @teams, parent: nil %>
-      <% end %>
-    <% end %>
-    <% if can? :read, Todolist %>
-      <%= tab_panel do %>
-        <% @show_project = true%>
-        <%= render 'todolists/index', todolists: @todolists, parent: nil %>
-      <% end %>
-    <% end %>
-    <% if can? :read, Question %>
-      <%= tab_panel do %>
-        <div class='text-right'><%= link_to bi_icon('plus') +'New Question', new_question_path(), class: 'button', xdata: { turbo_frame: 'modal' } %></div>
-        <%= render partial: "questions/question", collection: Question.all %>
-      <% end %>
-    <% end %>
+  <section class='grid grid-cols-2 lg:grid-cols-3 gap-4'>
+    <article class='card'>
+      <%= h2('Books') %>
+      <%= link_to "", books_admin_path, class: 'coverall' %>
+    </article>
+    <article class='card'>
+      <%= h2('Teams') %>
+      <%= link_to "", teams_path, class: 'coverall' %>
+    </article>
+    <article class='card'>
+      <%= h2('Todolists') %>
+      <%= link_to "", todolists_path, class: 'coverall' %>
+    </article>
+    <article class='card'>
+      <%= h2('Checkins') %>
+      <%= link_to "", questions_path, class: 'coverall' %>
+    </article>
   </section>
 </div>
 

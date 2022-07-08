@@ -1,5 +1,13 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto"> 
-    <%= render @team %>
-  </div>
-</div>
+<article class='main'>
+  <aside>
+    <% if @team.todolists.empty? %>
+      <%= link_to 'Add Todolist', new_polymorphic_path([@team, Todolist.new]), class: 'hover-link', data: { turbo_frame: 'modal' } %>
+    <%end%>
+  </aside>
+  <%= render @team %>
+  <section>
+    <% unless @team.todolists.empty? %>
+      <%= render partial: 'todolists/index', locals: {todolists: @team.todolists, parent: @team} %>
+    <% end %>
+  </section>
+</article>

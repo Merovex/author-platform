@@ -1,16 +1,18 @@
 <div class="main">
 <% if can? :admin, Book %>
-    <div class="flex mt-5 lg:mt-0 lg:ml-4h">
-      <%= link_to 'New Series', new_series_path, class: 'action' %>
+    <div class="text-right">
+      <%= link_to 'New Series', new_series_path, class: 'button' %>
     </div>
-    <% @series.each do |serial| %>
-      <section class="p-4 card">
-        <h2 class="h2"><%= serial.title %></h2>
-        <%= link_to 'New Book', new_series_book_path(serial), class: 'action mb-4' %>
-          <div data-controller="sortable" data-sortable-resource-name-value="book" id="<%= dom_id serial %>">
-            <%= render partial: 'books/card', collection: get_books_in_series(serial), as: :book %>
-          </div>
-      </section>
-    <% end %>
+    <div class='flex flex-col space-y-4'>
+      <% @series.each do |serial| %>
+        <section class="card">
+          <h2 class="h2"><%= serial.title %></h2>
+          <%= link_to 'New Book', new_series_book_path(serial), class: 'action mb-4' %>
+            <div data-controller="sortable" data-sortable-resource-name-value="book" id="<%= dom_id serial %>">
+              <%= render partial: 'books/card', collection: get_books_in_series(serial), as: :book %>
+            </div>
+        </section>
+      <% end %>
+    </div>
 <%end%>
 </div>

@@ -1,8 +1,8 @@
 class Project < ApplicationRecord
   belongs_to :book
   has_many :writing_entries, dependent: :destroy
-  has_many :todolists, as: :todolistable
-  include Communicable
+  # has_many :todolists, as: :todolistable
+  include Communicable, Todolistable
 
   include PublicActivity::Model
   tracked owner: proc { Current.user }

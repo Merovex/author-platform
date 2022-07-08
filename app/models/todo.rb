@@ -8,6 +8,7 @@ class Todo < ApplicationRecord
   belongs_to :assigned_to, class_name: 'User', optional: true
   belongs_to :todolist
   has_rich_text :description
+  has_many :comments, as: :commentable
 
   validates_presence_of :summary
   scope :in_progress, -> { where('done_at IS NULL') }

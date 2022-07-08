@@ -84,11 +84,11 @@ trix-toolbar .trix-button, trix-toolbar .trix-button:not(:first-child), trix-too
   border:0;
 }
 .card {
-  @apply p-4 my-8 border border-opacity-50 rounded shadow-lg relative;
+  @apply p-4 border border-opacity-50 rounded shadow-sm relative;
 }
 
 .panel {
-  @apply p-2 border border-opacity-50 rounded shadow-lg;
+  @apply p-2 border border-opacity-50 rounded shadow-sm;
 }
 
 .card time {
@@ -249,5 +249,11 @@ blockquote .quote-mark {
   @apply line-through italic opacity-50;
 }
 .coverall {
-  @apply absolute w-full h-full top-0
+  @apply absolute w-full h-full top-0 left-0;
+}
+.breadcrumbs > a {
+  @apply text-brand hover:underline;
+}
+a.hover-link, .hover-link > a {
+  @apply text-brand hover:text-brand-500 hover:underline;
 }
