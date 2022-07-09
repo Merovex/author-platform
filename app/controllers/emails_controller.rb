@@ -11,7 +11,7 @@ class EmailsController < ApplicationController
         # user.update(notify_when_added_to_project: false)
       when "new_checkins_sent"
         @reason = "recieving progress updates"
-        # user.update(notify_when_added_to_project: false)
+        user.update(notify_when_checkin: false)
       when "task_created"
         @reason = "new tasks"
         # user.update(notify_when_task_created: false)
