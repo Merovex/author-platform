@@ -103,6 +103,7 @@ Rails.application.routes.draw do
 
   get '/about' => 'static#about'
   get '/diceware' => 'static#diceware'
+  get '/fullclock' => 'static#fullclock'
   get '/privacy' => 'static#privacy'
   get '/terms' => 'static#terms'
 

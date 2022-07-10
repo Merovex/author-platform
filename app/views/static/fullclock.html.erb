@@ -1,0 +1,23 @@
+<div class='bg-black h-screen text-yellow-500 xtext-8xl flex items-center justify-center font-serif'>
+<span id='clock' style='font-size: 20em'>CLOCK OF AGES</span>
+</div>
+
+<script>
+// display the current time
+function displayTime() {
+  var now = new Date();
+  options = {
+    timeZone:"America/New_York",
+    hour:  "numeric",
+    minute: "2-digit"
+  }
+  
+  // only display between 4 and 20 hours
+  if (now.getHours() > 4 || now.getHours() < 20) {
+    document.getElementById("clock").innerHTML = now.toLocaleTimeString("en-GB", options)
+  }
+  
+  setTimeout("displayTime()", 1000);
+}
+displayTime()
+</script>
