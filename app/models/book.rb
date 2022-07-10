@@ -60,13 +60,15 @@ class Book < ApplicationRecord
   scope :published, -> { where('released_on <= ?', Time.now) }
 
   validates :title, presence: true
-  validates :synopsis, presence: true
+  # validates :synopsis#, presence: true
 
   def prep_build
     authors.build(user: Current.user) # << Current.user
     self.project = Project.new
   end
-
+  def user
+    authors.first.user
+  end
   def to_s
     title
   end

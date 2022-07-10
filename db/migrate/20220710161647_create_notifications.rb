@@ -1,14 +1,8 @@
 class CreateNotifications < ActiveRecord::Migration[7.0]
-  def change
-    drop_table :notifications
-    create_table :notifications do |t|
-      t.references :recipient, polymorphic: true, null: false
-      t.string :type, null: false
-      t.jsonb :params
-      t.datetime :read_at
-
-      t.timestamps
+  REQUIRED_VERSION = 20220710161647
+  def up
+    if ActiveRecord::Migrator.current_version < REQUIRED_VERSION
+      raise StandardError, "`rails db:schema:load` must be run prior to `rails db:migrate`"
     end
-    add_index :notifications, :read_at
   end
 end

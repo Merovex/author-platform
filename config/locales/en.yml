@@ -42,4 +42,6 @@ en:
       message: 'Released a new post: "%{post}"'
     send_checkin_reminder_notification:
       message: 'Sent a reminder to answer "%{details}"'
+    publish_book_notification:
+      message: 'Published the book <em>%{details}</em>'
 

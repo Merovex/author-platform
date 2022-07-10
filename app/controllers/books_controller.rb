@@ -28,6 +28,7 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       if @book.save
+        PublishBookNotification.with(book: Book.first).deliver(User.first)
         format.html { redirect_to @book, notice: 'Book was successfully published.' }
         format.json { render :show, status: :created, location: @book }
       else

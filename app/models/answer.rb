@@ -25,12 +25,6 @@ class Answer < ApplicationRecord
   belongs_to :question
   has_rich_text :content
 
-  acts_as_notifiable :users,
-    # Notification targets as :targets is a necessary option
-    # Set to notify to author and users commented to the article, except comment owner self
-    targets: ->(answer) { [answer.user, answer.question.user] },
-    notifier: Current.user
-
   def to_s
     question.title
   end

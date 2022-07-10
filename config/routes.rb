@@ -1,6 +1,15 @@
 # == Route Map
 #
 #                                   Prefix Verb   URI Pattern                                                                                       Controller#Action
+#                            notifications GET    /notifications(.:format)                                                                          notifications#index
+#                                          POST   /notifications(.:format)                                                                          notifications#create
+#                         new_notification GET    /notifications/new(.:format)                                                                      notifications#new
+#                        edit_notification GET    /notifications/:id/edit(.:format)                                                                 notifications#edit
+#                             notification GET    /notifications/:id(.:format)                                                                      notifications#show
+#                                          PATCH  /notifications/:id(.:format)                                                                      notifications#update
+#                                          PUT    /notifications/:id(.:format)                                                                      notifications#update
+#                                          DELETE /notifications/:id(.:format)                                                                      notifications#destroy
+#                                          PUT    /notifications/:id/read(.:format)                                                                 notifications#read {"as"=>"notification_read"}
 #                           team_todolists GET    /teams/:team_id/todolists(.:format)                                                               todolists#index
 #                                          POST   /teams/:team_id/todolists(.:format)                                                               todolists#create
 #                        new_team_todolist GET    /teams/:team_id/todolists/new(.:format)                                                           todolists#new

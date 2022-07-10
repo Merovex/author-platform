@@ -1,4 +1,11 @@
 class NotificationMailer < ApplicationMailer
+  def published_book_email
+    @book = params[:book]
+    @user = params[:recipient]
+    @url = book_url(@book)
+    @unsub_url = unsubscribe_url(@user.unsubscribe_hash, subscription: "new_posts_sent")
+    mail to: @user.email, subject: @book.title
+  end
   def broadcast_post_notification
     @post = params[:post]
     @user = params[:recipient]
