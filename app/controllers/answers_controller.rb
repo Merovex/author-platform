@@ -30,6 +30,7 @@ class AnswersController < ApplicationController
     respond_to do |format|
       
       if @answer.save
+        @answer.notify :users, key: "comment.reply"
         # Notify users of the answer
         notified = User.checkin_subscribers
         notified.each do |user|

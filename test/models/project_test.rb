@@ -1,3 +1,24 @@
+# == Schema Information
+#
+# Table name: projects
+#
+#  id         :bigint           not null, primary key
+#  finish_on  :date
+#  start_on   :date
+#  summary    :text
+#  target     :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  book_id    :bigint           not null
+#
+# Indexes
+#
+#  index_projects_on_book_id  (book_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (book_id => books.id)
+#
 require 'test_helper'
 
 class ProjectTest < ActiveSupport::TestCase

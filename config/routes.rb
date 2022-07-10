@@ -9,9 +9,6 @@ Rails.application.routes.draw do
   resources :answers
   resources :questions do
     resources :answers
-    get '404', to: 'errors#not_found'
-    get '422', to: 'errors#unacceptable'
-    get '500', to: 'errors#internal_error'
   end
   resources :comments
 
@@ -20,19 +17,12 @@ Rails.application.routes.draw do
       resources :comments#, shallow: true
     end
     resources :comments
-    get '404', to: 'errors#not_found'
-    get '422', to: 'errors#unacceptable'
-    get '500', to: 'errors#internal_error'
   end
   # resources :comments
 
   put 'todo/:id/complete' => 'todos#complete', format: :turbo_stream, as: 'complete_todo'
   post 'todo/:id/toolbar' => 'todos#toolbar', format: :turbo_stream, as: 'todo_toolbar'
-  get 'dashboard/' => 'dashboard#index'
-  get 'atom.xml' => 'xml#atom', format: :xml, as: :atom
-  get 'sitemap.xml' => 'xml#sitemap', format: :xml, as: :sitemap
 
-  get 'dashboard/subscribers' => 'subscriptions#subscribers', as: 'subscribers'
 
   resources :subscriptions
 
@@ -47,17 +37,11 @@ Rails.application.routes.draw do
 
   resources :series do
     resources :books, only: %i[new create edit update]
-    get '404', to: 'errors#not_found'
-    get '422', to: 'errors#unacceptable'
-    get '500', to: 'errors#internal_error'
   end
   resources :authors
   resources :projects do
     resources :writing_entries, path_names: { new: 'new/:date' }
     resources :todolists
-    get '404', to: 'errors#not_found'
-    get '422', to: 'errors#unacceptable'
-    get '500', to: 'errors#internal_error'
   end
   get 'books/admin' => 'books#admin'
   resources :books do
@@ -65,13 +49,7 @@ Rails.application.routes.draw do
     resources :book_links
     member do
       patch :move
-      get '404', to: 'errors#not_found'
-      get '422', to: 'errors#unacceptable'
-      get '500', to: 'errors#internal_error'
     end
-    get '404', to: 'errors#not_found'
-    get '422', to: 'errors#unacceptable'
-    get '500', to: 'errors#internal_error'
   end
   resources :praises
 
@@ -87,9 +65,6 @@ Rails.application.routes.draw do
         to: 'devise/passwordless/magic_links#show',
         as: 'users_magic_link'
 
-    get '404', to: 'errors#not_found'
-    get '422', to: 'errors#unacceptable'
-    get '500', to: 'errors#internal_error'
   end
   notify_to :users
   get 'users/unsubscribe/:unsubscribe_hash/:subscription' => 'emails#unsubscribe', as: 'unsubscribe'
@@ -102,6 +77,10 @@ Rails.application.routes.draw do
   get 'posts/:id/broadcast' => 'posts#broadcast', as: 'posts_broadcast'
   get 'static/index'
 
+  get 'dashboard' => 'dashboard#index'
+  get 'atom.xml' => 'xml#atom', format: :xml, as: :atom
+  get 'sitemap.xml' => 'xml#sitemap', format: :xml, as: :sitemap
+  get 'dashboard/subscribers' => 'subscriptions#subscribers', as: 'subscribers'
   get '/about' => 'static#about'
   get '/diceware' => 'static#diceware'
   get '/fullclock' => 'static#fullclock'

@@ -1,3 +1,28 @@
+# == Schema Information
+#
+# Table name: books
+#
+#  id          :bigint           not null, primary key
+#  cover_color :string           default("#888888")
+#  deleted_at  :datetime
+#  is_featured :boolean          default(FALSE)
+#  position    :integer
+#  released_on :date
+#  slug        :string
+#  tagline     :text
+#  title       :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  series_id   :integer
+#
+# Indexes
+#
+#  index_books_on_deleted_at   (deleted_at)
+#  index_books_on_is_featured  (is_featured)
+#  index_books_on_released_on  (released_on)
+#  index_books_on_slug         (slug)
+#  index_on_book_position      (position)
+#
 class Book < ApplicationRecord
   acts_as_paranoid
   acts_as_list scope: :series
@@ -5,8 +30,10 @@ class Book < ApplicationRecord
   include Sluggable
   include Slug
 
-  include PublicActivity::Model
-  tracked owner: proc { Current.user }
+  # include PublicActivity::Model
+  # tracked owner: proc { Current.user }
+  # acts_as_notifiable :users
+  # tracked: true
 
   attribute :cover_color, :string, default: '#888888'
   attribute :status, :string, default: 'wip'
