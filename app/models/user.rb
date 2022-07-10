@@ -60,7 +60,7 @@ class User < ApplicationRecord
   has_many :todolists
   has_many :assignments, class_name: :todos
   has_many :activities
-  has_many :notifications
+  has_many :notifications, as: :recipient
   has_many :memberships
 
   has_many :visits, class_name: 'Ahoy::Visit'

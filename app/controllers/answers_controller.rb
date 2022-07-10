@@ -30,12 +30,13 @@ class AnswersController < ApplicationController
     respond_to do |format|
       
       if @answer.save
-        @answer.notify :users, key: "comment.reply"
+        # @answer.notify :users, key: "comment.reply"
+        AnswerNotification.with(answer: @answer).deliver(User.checkin_subscribers)
         # Notify users of the answer
-        notified = User.checkin_subscribers
-        notified.each do |user|
-          NotificationMailer.checkin_answer_email(user, @answer).deliver
-        end
+        # notified = User.checkin_subscribers
+        # notified.each do |user|
+        #   NotificationMailer.checkin_answer_email(user, @answer).deliver
+        # end
         format.turbo_stream 
       end
     end
