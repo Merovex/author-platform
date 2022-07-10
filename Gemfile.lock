@@ -206,6 +206,10 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (2.6.2)
+    launchy (2.5.0)
+      addressable (~> 2.7)
+    letter_opener (1.8.1)
+      launchy (>= 2.2, < 3)
     llhttp-ffi (0.4.0)
       ffi-compiler (~> 1.0)
       rake (~> 13.0)
@@ -461,6 +465,7 @@ DEPENDENCIES
   importmap-rails (>= 0.3.4)
   invisible_captcha (~> 2.0)
   jbuilder (~> 2.7)
+  letter_opener
   local_time (~> 2.1)
   mailcatcher (~> 0.2.4)
   maxminddb (~> 0.1.22)

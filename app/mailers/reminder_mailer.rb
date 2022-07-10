@@ -1,10 +1,13 @@
 class ReminderMailer < ApplicationMailer
-  def reminder_email(user, remindable)
-    @title = remindable.title
-    @user = user
-    @url = polymorphic_url(remindable)
-    puts "URL: #{@url}"
-    mail to: user.email, subject: remindable.title
+  def reminder_email
+    @reminder = params[:reminder]
+    @remindable = @reminder.remindable
+    @user = params[:recipient]
+    @subject = @remindable.title
+    @url = polymorphic_url(@remindable)
+    @unsub_url = unsubscribe_url(@user.unsubscribe_hash, subscription: "new_checkins_sent")
+
+    mail to: @user.email, subject: @subject
   end
 end
 

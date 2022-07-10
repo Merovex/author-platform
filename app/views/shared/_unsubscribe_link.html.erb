@@ -1,1 +1,6 @@
-<%= link_to "turn this notification off", unsubscribe_url(@user.unsubscribe_hash, subscription: subscription_type), target: :_blank %>
+
+
+<p style='margin:0; font-size: 0.8em;'>
+  If you are no longer interested, 
+  <%= link_to "turn this notification off", @unsub_url, target: :_blank %>
+</p>

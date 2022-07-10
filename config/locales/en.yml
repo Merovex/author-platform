@@ -35,28 +35,11 @@ en:
   excerpt: "Excerpt"
   # I need CSS_Prose because it's somehow breaking the CSS build when included inlne or in file
   css_prose: 'font-serif prose max-w-prose lg:prose-xl dark:prose-dark dark:text-gray-300 mx-auto'
-  answer:
-    create: "Answered the question"
-  book: 
-    create: "Created the book <em>%{target}</em>"
-    update: "Updated the book <em>%{target}</em>"
-    destroy: "Destroyed a book"
-    released_on: "Launched <em>%{target}</em>"
-  comment: 
-    create: "Commented on %{target}"
-    update: "Updated a comment on %{target}"
-    destroy: "Destroyed a comment"
-  post:
-    create: "Created %{target}"
-    updated: "Updated %{target}"
-    destroy: "Deleted a post"
-    broadcast: "Emailed %{target} to subscribers"
-  question:
-    create: "Asked the question %{target}"
-    update: "Updated the question %{target}"
-    destroy: "Cancelled a question"
-  series:
-    create: "Asked the book series <em>%{target}</em>"
-    update: "Updated the book series <em>%{target}</em>"
-    destroy: "Cancelled a book series"
+  notifications:
+    answer_notification:
+      message: 'Answered "%{question}"'
+    post_published_notification:
+      message: 'Released a new post: "%{post}"'
+    send_checkin_reminder_notification:
+      message: 'Sent a reminder to answer "%{details}"'
 

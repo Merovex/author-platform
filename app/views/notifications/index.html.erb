@@ -1,0 +1,15 @@
+<div class='main'>
+  <% @unread_notifications.each do |notification|%>
+    <%= render NotificationComponent.new(notification:) %>
+  <% end %>
+  <% unless @unread_notifications.count.zero? %>
+  <div class='flex items-center space-x-2'>
+    <div class='border border-brand flex-1 h-0'></div>
+    <div>New since you last visited</div>
+    <div class='border border-brand flex-1 h-0'></div>
+  </div>
+  <% end %>
+  <% @read_notifications.each do |notification|%>
+    <%= render NotificationComponent.new(notification:) %>
+  <% end %>
+</div>

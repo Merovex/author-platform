@@ -299,6 +299,8 @@
 
 Rails.application.routes.draw do
   resources :notifications
+  put 'notifications/:id/read' => 'notifications#read', format: :turbo_stream, 'as' => 'notification_read'
+
   resources :teams do
     resources :todolists
   end

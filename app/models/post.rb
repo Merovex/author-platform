@@ -26,11 +26,6 @@ class Post < ApplicationRecord
   include Slug
 
   acts_as_paranoid # Soft delete
-  include PublicActivity::Model # Trackable item.
-  tracked owner: proc { Current.user }
-
-  acts_as_notifiable :users # , tracked: { only: [:create] } # Allows notification to be sent to all subscribers.
-
   belongs_to :user, default: -> { Current.user }
   has_rich_text :content
   has_many_attached :images

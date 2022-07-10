@@ -1,0 +1,23 @@
+<article class='my-4 ' id='<%= dom_id(@notification) %>'>
+  <%= link_to @url, class: 'block flex' do %>
+  <div class='w-20 '>
+    <% unless @user.nil? %>
+      <%= user_avatar_image(@user, 40) %>
+    <% end %>
+  </div>
+  <div class='flex-1'>
+    <h4>
+      <span class="sr-only"><%= @user.to_s %></span>
+      <%= @notification.to_notification.message %>
+    </h4>
+    <div class='flex text-sm space-x-2'>
+      <%= 
+        [
+          tag.span(@user&.to_s),
+          local_relative_time(@notification.created_at, type: 'time-or-date'),
+        ].join(tag.span("·", class: "inline-block text-gray-500")).html_safe
+      %>
+    </div>
+  </div>
+  <% end %>
+</article>

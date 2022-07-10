@@ -19,6 +19,7 @@ class PostsController < ApplicationController
     @post.publish_now
     respond_to do |format|
       if @post.save
+        PostPublishedNotification.with(post: @post).deliver(User.post_subscribers)
         format.html { redirect_to @post, notice: 'Post was successfully published.' }
         format.json { render :show, status: :created, location: @post }
       else
