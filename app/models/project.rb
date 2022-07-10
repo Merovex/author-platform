@@ -25,9 +25,6 @@ class Project < ApplicationRecord
   # has_many :todolists, as: :todolistable
   include Communicable, Todolistable
 
-  include PublicActivity::Model
-  tracked owner: proc { Current.user }
-
   def to_s
     book.title
   end

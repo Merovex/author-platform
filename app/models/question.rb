@@ -24,9 +24,7 @@ class Question < ApplicationRecord
   belongs_to :user
   include Communicable
 
-  include PublicActivity::Model
-  tracked owner: proc { Current.user }
   def to_s
-    "HERE"
+    title
   end
 end

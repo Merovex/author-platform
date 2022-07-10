@@ -30,11 +30,6 @@ class Book < ApplicationRecord
   include Sluggable
   include Slug
 
-  # include PublicActivity::Model
-  # tracked owner: proc { Current.user }
-  # acts_as_notifiable :users
-  # tracked: true
-
   attribute :cover_color, :string, default: '#888888'
   attribute :status, :string, default: 'wip'
 

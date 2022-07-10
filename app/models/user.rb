@@ -76,10 +76,6 @@ class User < ApplicationRecord
   scope :checkin_subscribers, -> { where(notify_when_checkin: true) }
   scope :task_subscribers, -> { where(notify_when_task_completed: true) }
 
-  def activities
-    PublicActivity::Activity.where(owner_id: id) # .select(:trackable_id)
-  end
-
   # include Subscriber
   include Slug
   def to_param

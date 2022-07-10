@@ -27,6 +27,4 @@ class Comment < ApplicationRecord
   belongs_to :commentable, polymorphic: true # , optional: true
   validates_presence_of :user
 
-  include PublicActivity::Model
-  tracked owner: proc { Current.user }
 end

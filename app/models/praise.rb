@@ -25,7 +25,4 @@ class Praise < ApplicationRecord
   belongs_to :book
   has_rich_text :comment
   validates :comment, presence: true
-
-  include PublicActivity::Model
-  tracked owner: proc { Current.user }
 end
