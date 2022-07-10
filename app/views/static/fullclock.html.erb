@@ -6,18 +6,20 @@
 // display the current time
 function displayTime() {
   var now = new Date();
-  options = {
-    timeZone:"America/New_York",
-    hour:  "numeric",
-    minute: "2-digit"
-  }
-  
+
   // only display between 4 and 20 hours
   if (now.getHours() > 4 || now.getHours() < 20) {
-    document.getElementById("clock").innerHTML = now.toLocaleTimeString("en-GB", options)
+    document.getElementById("clock").innerHTML = now.toLocaleTimeString("en-GB", {
+      timeZone:"America/New_York",
+      hour:  "numeric",
+      minute: "2-digit"
+    })
   }
-  
-  setTimeout("displayTime()", 1000);
+  else {
+    document.getElementById("clock").innerHTML = ""
+  }
+
+setTimeout("displayTime()", 1000);
 }
 displayTime()
 </script>

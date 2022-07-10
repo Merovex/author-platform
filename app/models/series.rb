@@ -7,4 +7,7 @@ class Series < ApplicationRecord
   tracked owner: proc { Current.user }
   # has_many :episodes
   has_many :books # , through: :episodes
+  def to_s
+    title
+  end
 end

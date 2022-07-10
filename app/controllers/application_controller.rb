@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  layout 'application'
   before_action :store_user_location!, if: :storable_location?
   before_action :authenticate_user_from_token!
   before_action :set_current_user, if: :user_signed_in?
@@ -13,7 +14,6 @@ class ApplicationController < ActionController::Base
       format.js   { head :forbidden, content_type: 'text/html' }
     end
   end
-
 
   private
   def user_time_zone(&block)
@@ -52,7 +52,9 @@ class ApplicationController < ActionController::Base
 
     redirect_to root_path unless turbo_frame_request?
   end
-
+  def forbid_them
+    redirect_to root_path
+  end
   def set_current_user
     Current.user = current_user
     Current.timezone = cookies[:tz].nil? ? "America/Chicago" : cookies[:tz]

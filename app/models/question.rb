@@ -7,6 +7,6 @@ class Question < ApplicationRecord
   include PublicActivity::Model
   tracked owner: proc { Current.user }
   def to_s
-    title
+    "HERE"
   end
 end

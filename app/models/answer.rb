@@ -6,4 +6,7 @@ class Answer < ApplicationRecord
 
   include PublicActivity::Model
   tracked owner: proc { Current.user }
+  def to_s
+    question.title
+  end
 end

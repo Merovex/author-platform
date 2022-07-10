@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     resources :todolists
   end
   resources :memberships
+  resources :notifications
   resources :features
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :answers

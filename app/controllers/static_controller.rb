@@ -1,11 +1,15 @@
 class StaticController < ApplicationController
   # caches_page :robots
+  layout 'blank', only: %i[fullclock]
   def about
     @title = 'About'
   end
 
   def diceware
     @title = 'Diceware'
+  end
+  def fullclock
+    @title = ""
   end
 
   def privacy

@@ -1,4 +1,5 @@
 class TodolistsController < ApplicationController
+  layout 'insiders'
   add_breadcrumb 'Dashboard', :dashboard_path
   before_action :set_parent, only: %i[new]
   before_action :set_todolist, only: %i[show edit update destroy]

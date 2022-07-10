@@ -6,6 +6,7 @@
     <%= csp_meta_tag %>
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
     <link rel="alternate" type="application/rss+xml" title="Subscribe to what's new" href="/atom.xml">
+    
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" integrity="sha384-7ynz3n3tAGNUYFZD3cWe5PDcE36xj85vyFkawcF6tIwxvIecqKvfwLiaFdizhPpN" crossorigin="anonymous">
     <%= stylesheet_link_tag "merovex-fonts", "data-turbo-track": "reload" %>
@@ -19,7 +20,7 @@
   <body class='flex flex-col min-h-screen text-base font-normal bg-white dark:bg-gray-800 dark:text-white text-black subpixel-antialiased'>
     <%= render 'components/insiders_navbar' if user_signed_in? %>
     <%= render 'components/masquerade' if user_masquerade? %>
-    <%= render 'components/site_header' %>
+    
     <% flash.each do |type, msg| %>
       <%= render 'components/banner', type: type, msg: msg%>
     <% end %>
@@ -28,8 +29,8 @@
       <%= yield %>
     </main>
     <%= render 'components/footer' %>
-    <%#= turbo_frame_tag "modal" %>
-    <%#= turbo_frame_tag "toolbar" %>
+    <%= turbo_frame_tag "modal" %>
+    <%= turbo_frame_tag "toolbar" %>
   </body>
   <script>
     // Grabbing timezone for display purposes.

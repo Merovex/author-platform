@@ -23,6 +23,10 @@ class Post < ApplicationRecord
     user.name
   end
 
+  def to_s
+    title
+  end
+
   def publish_now
     write_attribute(:published_at, Time.now.utc)
   end

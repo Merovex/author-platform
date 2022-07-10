@@ -5,6 +5,8 @@ class BooksController < ApplicationController
   after_action :get_cover_bgcolor, only: %i[create update]
   after_action :track_action, only: %i[show]
   load_and_authorize_resource
+  before_action :authenticate_user!, except: %i[show index]
+  layout 'insiders', only: %i[new edit admin]
 
   # GET /books or /books.json
   def index
@@ -16,10 +18,12 @@ class BooksController < ApplicationController
   end
 
   def admin
+    authorize! :admin, Book
     @series = Series.all
   end
 
   def release
+    authorize! :admin, @book
     @book.released_on = Time.now
 
     respond_to do |format|
@@ -41,18 +45,21 @@ class BooksController < ApplicationController
 
   # GET /books/new
   def new
+    authorize! :admin, Book
     @book = Book.new
     @serials = Series.all
   end
 
   # GET /books/1/edit
   def edit
+    authorize! :admin, @book
     add_breadcrumb @book.to_s.titleize, book_path(@book)
     @series = Series.all
   end
 
   # POST /books or /books.json
   def create
+    authorize! :admin, Book
     @book = @serial.books.new(book_params)
 
     respond_to do |format|
@@ -68,6 +75,7 @@ class BooksController < ApplicationController
 
   # PATCH/PUT /books/1 or /books/1.json
   def update
+    authorize! :admin, @book
     respond_to do |format|
       if @book.update(book_params)
         format.html { redirect_to @book, notice: 'Book was successfully updated.' }
@@ -80,6 +88,7 @@ class BooksController < ApplicationController
   end
 
   def move
+    authorize! :admin, @book
     @series = @book.series
     @book.insert_at(book_params[:position].to_i)
     head :ok
@@ -87,6 +96,7 @@ class BooksController < ApplicationController
 
   # DELETE /books/1 or /books/1.json
   def destroy
+    authorize! :admin, @book
     @book.destroy
     respond_to do |format|
       format.html { redirect_to books_url, notice: 'Book was successfully destroyed.' }
