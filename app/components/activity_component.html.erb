@@ -1,6 +1,6 @@
 <article class='my-4 flex' id='<%= dom_id(@activity) %>'>
   <div class='w-20 '>
-    <% if @activity.owner %>
+    <% unless @activity.owner.nil? %>
       <%= user_avatar_image(@activity.owner, 40) %>
     <% end %>
   </div>

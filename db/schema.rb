@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_10_115246) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_10_134602) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -302,28 +302,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_10_115246) do
     t.index ["user_id"], name: "index_memberships_on_user_id"
   end
 
-  create_table "notifications", force: :cascade do |t|
-    t.string "target_type", null: false
-    t.bigint "target_id", null: false
-    t.string "notifiable_type", null: false
-    t.bigint "notifiable_id", null: false
-    t.string "key", null: false
-    t.string "group_type"
-    t.bigint "group_id"
-    t.integer "group_owner_id"
-    t.string "notifier_type"
-    t.bigint "notifier_id"
-    t.text "parameters"
-    t.datetime "opened_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["group_owner_id"], name: "index_notifications_on_group_owner_id"
-    t.index ["group_type", "group_id"], name: "index_notifications_on_group"
-    t.index ["notifiable_type", "notifiable_id"], name: "index_notifications_on_notifiable"
-    t.index ["notifier_type", "notifier_id"], name: "index_notifications_on_notifier"
-    t.index ["target_type", "target_id"], name: "index_notifications_on_target"
-  end
-
   create_table "notifications_subscriptions", force: :cascade do |t|
     t.string "target_type", null: false
     t.bigint "target_id", null: false
@@ -390,6 +368,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_10_115246) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
   create_table "reminders", force: :cascade do |t|
@@ -596,6 +576,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_10_115246) do
   add_foreign_key "posts", "users"
   add_foreign_key "praises", "books"
   add_foreign_key "projects", "books"
+  add_foreign_key "questions", "users"
   add_foreign_key "subscribers", "users"
   add_foreign_key "subscriptions", "users"
   add_foreign_key "teams", "users"

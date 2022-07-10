@@ -31,7 +31,8 @@ class Answer < ApplicationRecord
   acts_as_notifiable :users,
     # Notification targets as :targets is a necessary option
     # Set to notify to author and users commented to the article, except comment owner self
-    targets: ->(answer) { [answer.user, answer.question.user] }
+    targets: ->(answer) { [answer.user, answer.question.user] },
+    notifier: Current.user
     # targets: ->(comment, key) {
     #   ([comment.question.user] + comment.article.commented_users.to_a - [comment.user]).uniq
     # },
