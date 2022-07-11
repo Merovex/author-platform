@@ -257,3 +257,6 @@ blockquote .quote-mark {
 a.hover-link, .hover-link > a {
   @apply text-brand hover:text-brand-500 hover:underline;
 }
+trix-editor {
+  min-height: 20em;
+}
