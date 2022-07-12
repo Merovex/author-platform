@@ -53,7 +53,6 @@ class Book < ApplicationRecord
 
   has_many :links, as: :linkable, dependent: :destroy
   has_many :writing_entries, through: :project, as: :entries
-  # belongs_to :clickable, polymorphic: true, optional: true
 
   scope :featured, -> { where(is_featured: true) }
   scope :unpublished, -> { where('released_on > ? OR released_on IS NULL', Time.now) }
@@ -61,7 +60,9 @@ class Book < ApplicationRecord
 
   validates :title, presence: true
   # validates :synopsis#, presence: true
-
+  def siblings
+    series.books.published.sort_by(&:position)
+  end
   def prep_build
     authors.build(user: Current.user) # << Current.user
     self.project = Project.new
