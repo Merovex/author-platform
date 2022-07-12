@@ -3,7 +3,7 @@
 
 <%= form_with(model: User.new, url: user_registration_path) do |form| %>
   <%= invisible_captcha %>
-  <%= form.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Type your email…", class: 'form-input rounded' %>
+  <%= form.email_field :email, autofocus: false, autocomplete: "email", placeholder: "Type your email…", class: 'form-input rounded' %>
   <%= form.submit "Subscribe", class: button_css('brand') %>
 <% end %>
 
