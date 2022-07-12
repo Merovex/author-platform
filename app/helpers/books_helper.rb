@@ -3,15 +3,40 @@ module BooksHelper
   def get_books_in_series(serial)
     serial.books.sort_by(&:position).map { |b| b }
   end
-
+  def image_set_tag(source, srcset = {}, options = {})
+    srcset = srcset.map { |src, size| "#{path_to_image(src)} #{size}" }.join(', ')
+    image_tag(source, options.merge(srcset: srcset))
+  end
   def book_cover_image(book, klass = '')
+    klass << ' inline-block rounded drop-shadow'
     if book.cover.attached?
       image_tag(
-        book.cover.variant(auto_orient: true, rotate: 0, resize: '200x300^', crop: '200x300+0+0', format: :webp),
-        class: klass
+        book.cover.variant(auto_orient: true, rotate: 0, resize: '400x600^', crop: '400x600+0+0', format: :webp),
+        srcset: cover_srcset(book.cover),
+        class: klass.strip
       )
     else
-      image_tag('https://via.placeholder.com/200x300?text=Book+Cover', class: klass)
+      image_tag('annie-spratt-im8y4BO2hso-unsplash.jpg', 
+        srcset: [
+          [url_for('annie-spratt-im8y4BO2hso-unsplash-660.webp'), '1028w'],
+          [url_for('annie-spratt-im8y4BO2hso-unsplash-500.webp'), '1024w'],
+          [url_for('annie-spratt-im8y4BO2hso-unsplash-330.webp'), '768w'],
+          [url_for('annie-spratt-im8y4BO2hso-unsplash-200.webp'), '512w']
+        ],
+        class: klass)
+    end
+  end
+  def cover_srcset(cover)
+    [
+      ['660x1000','1280w'],
+      ['500x750','1024w'],
+      ['330x500','768w'],
+      ['200x300','512w'],
+    ].map do |variant|
+      [
+        url_for(cover.variant(auto_orient: true, rotate: 0, resize: "#{variant.first}^", crop: "#{variant.first}+0+0", format: :webp)),
+        variant.last
+      ]
     end
   end
 
@@ -61,6 +86,6 @@ module BooksHelper
 
   def text_color(book)
     brightness = brightness(complementary(book.cover_color))
-    brightness > 0.50 ? 'text-brand-900 dark:text-white' : 'text-brand-200 dark:text-white'
+    brightness > 0.50 ? 'text-black dark:text-white' : 'text-white dark:text-white'
   end
 end

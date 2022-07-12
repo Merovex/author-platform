@@ -1,0 +1,22 @@
+<% css_class = (type == 'mobile') ? 'block text-left py-1 hover:bg-black/25' : 'hover:underline mx-2' %>
+<% if can? :admin, Book %>
+  <%= link_to root_path, role: 'menuitem', class: css_class do %>
+    <span class='mx-2'><%= bi_icon('globe') %></span>
+    Public
+  <% end %>
+  <%= link_to dashboard_path(), role: 'menuitem', class: css_class do %>
+    <span class='mx-2'><%= bi_icon('easel2-fill') %></span>
+    Dashboard
+  <% end %>
+  <%= link_to books_admin_path(), role: 'menuitem', class: css_class do %>
+    <span class='mx-2'><%= bi_icon('book-fill') %></span>
+    Books
+  <% end %>
+<% end %>
+<%= link_to notifications_path(), role: 'menuitem', class: css_class do %>
+  <span class='inline-flex relative w-fit mx-2'>
+  <%= bi_icon('inbox-fill') %>
+  <%= notifications_badge() %>
+  </span>
+  Inbox
+<%end%>

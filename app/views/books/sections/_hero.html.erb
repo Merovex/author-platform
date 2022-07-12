@@ -1,6 +1,5 @@
- 
 <%- comp = complementary(@book.cover_color) %>
-<section id='hero' >
+<section id='hero' class='z-0' >
   <div class="relative flex items-center content-center justify-center pt-16 pb-32" style="min-height:75vh">
     <div id='underlay-1' class="absolute top-0 z-0 w-full h-full bg-center bg-cover"
          style="background-image:url(&#x27;<%=book_cover_background_image(@book)%>&#x27;)">
@@ -24,3 +23,5 @@
     <% end %>
   </div>
 </section>
+<%# Photo by <a href="https://unsplash.com/@anniespratt?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Annie Spratt</a> on <a href="https://unsplash.com/s/photos/book-cover?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> %>
+  
