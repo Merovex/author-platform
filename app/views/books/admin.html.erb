@@ -9,10 +9,11 @@
           <h2 class="h2"><%= serial.title %></h2>
           <%= link_to 'New Book', new_series_book_path(serial), class: 'action mb-4' %>
             <div data-controller="sortable" data-sortable-resource-name-value="book" id="<%= dom_id serial %>">
-              <%= render partial: 'books/card', collection: get_books_in_series(serial), as: :book %>
+              <%= render partial: 'books/card', collection: serial.books, as: :book %>
             </div>
         </section>
       <% end %>
     </div>
 <%end%>
 </div>
+
