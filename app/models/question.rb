@@ -21,8 +21,9 @@ class Question < ApplicationRecord
   acts_as_paranoid
   has_many :answers, dependent: :destroy
   has_one :reminder, dependent: :destroy, as: :remindable
-  belongs_to :user
+  belongs_to :user, default: -> { Current.user }
   include Communicable
+  accepts_nested_attributes_for :reminder
 
   def to_s
     title

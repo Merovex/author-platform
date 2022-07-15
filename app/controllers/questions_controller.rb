@@ -28,10 +28,11 @@ class QuestionsController < ApplicationController
   # POST /questions or /questions.json
   def create
     @question = Question.new(title: question_params[:title])
-    @reminder = @question.build_reminder
+    @reminder = @question.build_reminder(reminder_params)
+  
     respond_to do |format|
       if @question.save
-        @reminder.update(reminder_params)
+        @reminder.save
         format.html { redirect_to question_url(@question), notice: 'Question was successfully created.' }
         format.json { render :show, status: :created, location: @question }
       else
@@ -78,25 +79,27 @@ class QuestionsController < ApplicationController
     end
   end
   def reminder_params
+    bits = question_params[:reminder_attributes]
+
     r = {
       frequency: 'daily',
       start_time: Time.now,
       days: [1, 2, 3, 4, 5]
     }
     # Set Frequency
-    r[:frequency] = question_params[:reminder][:frequency] unless question_params[:reminder][:frequency].nil?
+    r[:frequency] = question_params[:reminder_attributes][:frequency] unless question_params[:reminder_attributes][:frequency].nil?
     # Set Days
     r[:days] = if r[:frequency] == 'daily'
-      question_params[:reminder][:daily].reject { |c| c.empty? }
+      question_params[:reminder_attributes][:daily].reject { |c| c.empty? }
     elsif r[:frequency] == 'weekly'
-      question_params[:reminder][:weekly].split
+      question_params[:reminder_attributes][:weekly].split
     elsif r[:frequency] == 'fortnightly'
-      question_params[:reminder][:fortnightly].split
+      question_params[:reminder_attributes][:fortnightly].split
     elsif r[:frequency] == 'monthly'
-      question_params[:reminder][:monthly].split
+      question_params[:reminder_attributes][:monthly].split
     end
     # Set Start Time
-    time = question_params[:reminder][:tod] == 'custom' ? question_params[:reminder][:custom] : question_params[:reminder][:tod]
+    time = question_params[:reminder_attributes][:tod] == 'custom' ? question_params[:reminder_attributes][:custom] : question_params[:reminder_attributes][:tod]
     r[:start_time] = Time.now.change(hour: time.split(':')[0].to_i, min: time.split(':')[1].to_i)
 
     return r
@@ -106,7 +109,7 @@ class QuestionsController < ApplicationController
   def question_params
     params.require(:question).permit(
       :title,
-      reminder: [:frequency, :tod, :custom, :weekly, :fortnightly, :monthly, { daily: [] }]
+      reminder_attributes: [:frequency, :tod, :custom, :weekly, :fortnightly, :monthly, { daily: [] }]
     )
   end
 end
