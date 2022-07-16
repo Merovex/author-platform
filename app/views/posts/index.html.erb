@@ -1,11 +1,13 @@
-<div class="max-w-2xl mx-auto">
-    <% headline("Posts") %>
-    <%= render 'components/subscribe' %>
-    <% if @posts.empty? or @posts.published.empty? %>
-      <div class="text-center text-xl">
+<div class="max-w-2xl md:max-w-4xl mx-auto">
+  <% headline("Posts") %>
+  <%= render 'components/subscribe' %>
+  <% if @posts.empty? or @posts.published.empty? %>
+    <div class="text-center text-xl">
       <h2>No Articles published.</h2>
-      </div>
-    <%else%>
+    </div>
+  <%else%>
+    <section class='grid grid-cols-1 md:grid-cols-2 gap-4 flex-col [&>*]:p-4 [&>*]:px-8'>
       <%= render @posts.published.order('published_at desc') %>
-    <%end%>
+    </section>
+  <%end%>
 </div>

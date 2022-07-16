@@ -54,12 +54,15 @@ class Book < ApplicationRecord
   has_many :links, as: :linkable, dependent: :destroy
   has_many :writing_entries, through: :project, as: :entries
 
+  has_many :cast_members, dependent: :destroy
+  has_many :characters, through: :cast_members
+
   scope :featured, -> { where(is_featured: true) }
   scope :unpublished, -> { where('released_on > ? OR released_on IS NULL', Time.now) }
   scope :published, -> { where('released_on <= ?', Time.now) }
 
   validates :title, presence: true
-  # validates :synopsis#, presence: true
+  
   def siblings
     series.books.published.sort_by(&:position)
   end
@@ -73,7 +76,6 @@ class Book < ApplicationRecord
   def to_s
     title
   end
-
   def is_released?
     return false if released_on.nil?
 

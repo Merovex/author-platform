@@ -6,17 +6,15 @@
     <%= csp_meta_tag %>
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
     <link rel="alternate" type="application/rss+xml" title="Subscribe to what's new" href="/atom.xml">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" integrity="sha384-7ynz3n3tAGNUYFZD3cWe5PDcE36xj85vyFkawcF6tIwxvIecqKvfwLiaFdizhPpN" crossorigin="anonymous">
     <%= stylesheet_link_tag "merovex-fonts", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
     <%= javascript_importmap_tags %>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
   </head>
-  <body class='flex flex-col min-h-screen text-base font-normal bg-white dark:bg-gray-800 dark:text-white text-black subpixel-antialiased'>
+  <body class='flex flex-col min-h-screen text-base font-normal bg-white dark:bg-gray-800 dark:text-gray-50 text-gray-900 subpixel-antialiased'>
     <main class="min-h-screen">
       <%= yield %>
     </main>

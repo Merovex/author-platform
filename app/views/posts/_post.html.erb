@@ -1,16 +1,14 @@
-<article class="card" aria-label="<%= "#{post.class}: #{post.title}, on #{post.published_at.strftime('%d %B %Y')}"%>">
-  <%= local_time(post.published_at, format: "%-d %B %Y", class: "block text-center w-full") %>
-  <h2><%= link_to(post.title.titlecase, post)%></h2>
-  <% if post.broadcasted_at and can? :edit, post %>
-  <p class='text-center text-yellow-600 text-bold'>
-    Sent to subscribers (<%= local_time(post.broadcasted_at) %>)
-  </p>
-  <% end %>
-  <p class='font-serif md:px-12 mx-auto dark:text-gray-300 dark:prose-dark'>
-    <%= post.content.to_plain_text.truncate(256) %>
-  </p>
-  <p class='my-4 text-center'>
-    <span class="<%= button_css('brand') %>">Read More<span>
-  </p>
-  <%= link_to "", post, class: "absolute top-0 w-full h-full -ml-4" %>
-</article>
+<%= render CardComponent.new(object: post, link: post_path(post)) do %>
+  <%= local_time(post.date, format: "%-d %B %Y", class: 'inline-block text-sm font-light text-gray-500 w-full text-center') %>
+  <div class="mt-2">
+    <%= h2(post.title.titlecase)  %>
+    <% if post.broadcasted_at and can? :edit, post %>
+      <p class='text-center text-yellow-600 text-bold'>
+        Sent to subscribers (<%= local_time(post.broadcasted_at) %>)
+      </p>
+    <% end %>
+    <p class="mt-2 text-gray-600 dark:text-gray-300">
+      <%= post.content.to_plain_text.truncate(256) %>
+    </p>
+  </div>
+<% end %>

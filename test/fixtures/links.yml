@@ -12,6 +12,7 @@
 #  url           :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  bookstore_id  :integer
 #  linkable_id   :integer
 #
 # Indexes

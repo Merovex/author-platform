@@ -7,6 +7,7 @@
 #  frequency       :string           default("daily")
 #  recurring       :text
 #  remindable_type :string
+#  reminded_at     :datetime
 #  start_time      :datetime
 #  week_start      :integer          default(0)
 #  created_at      :datetime         not null

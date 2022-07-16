@@ -12,6 +12,7 @@
 #  url           :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  bookstore_id  :integer
 #  linkable_id   :integer
 #
 # Indexes
@@ -23,7 +24,9 @@ class Link < ApplicationRecord
   validates :url, presence: true, uniqueness: true
   validates :url, format: URI::DEFAULT_PARSER.make_regexp(%w[http https])
   # validates :slug, presence: true, uniqueness: true
-  include Slug
+  include Slug#, Sluggable
+  # attribute :bookstore
+  
   # attribute :slug, :string, default: lambda {
   #   loop do
   #     slug = SecureRandom.uuid.split('-').first
@@ -31,6 +34,7 @@ class Link < ApplicationRecord
   #   end
   # }
   belongs_to :linkable, polymorphic: true, optional: true
+  belongs_to :bookstore, optional: true
   acts_as_taggable_on :tags
 
   def short
@@ -38,6 +42,11 @@ class Link < ApplicationRecord
   end
 
   def to_param
-    slug
+    case linkable_type
+    when 'Book'
+      [slug, linkable.to_s, bookstore.key].join('-').parameterize
+    else
+      slug
+    end
   end
 end

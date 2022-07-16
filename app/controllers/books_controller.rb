@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   add_breadcrumb 'Dashboard', :dashboard_path, only: %i[new edit]
+  add_breadcrumb 'Books', :books_path
   before_action :get_series, only: %i[new create]
   before_action :set_book, only: %i[show edit update destroy release move]
   after_action :get_cover_bgcolor, only: %i[create update]
@@ -7,6 +8,7 @@ class BooksController < ApplicationController
   load_and_authorize_resource
   before_action :authenticate_user!, except: %i[show index]
   layout 'insiders', only: %i[new edit admin]
+  
 
   # GET /books or /books.json
   def index
@@ -109,6 +111,7 @@ class BooksController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_book
     @book = Book.find(params[:id])
+    add_breadcrumb @book.to_s.titleize, book_path(@book)
     redirect_to not_found_path, error: 'Book not found' unless @book.present?
   end
 

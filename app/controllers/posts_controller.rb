@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  add_breadcrumb 'Posts', :posts_path
   before_action :set_post, only: %i[show edit update destroy publish broadcast]
   before_action :authenticate_user!, except: %i[show index]
   load_and_authorize_resource
@@ -99,6 +100,7 @@ class PostsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_post
     @post = Post.find(params[:id]) or redirect_to posts_path, Error: 'Post not found.'
+    add_breadcrumb @post.title, @post
   end
 
   # Only allow a list of trusted parameters through.

@@ -1,27 +1,27 @@
-<%- comp = complementary(@book.cover_color) %>
 <section id='hero' class='z-0' >
   <div class="relative flex items-center content-center justify-center pt-16 pb-32" style="min-height:75vh">
     <div id='underlay-1' class="absolute top-0 z-0 w-full h-full bg-center bg-cover"
          style="background-image:url(&#x27;<%=book_cover_background_image(@book)%>&#x27;)">
-    <div id='underlay-2' class="absolute top-0 z-10 w-full h-full bg-center bg-cover opacity-25" 
+      <div id='underlay-2' class="absolute top-0 z-10 w-full h-full bg-center bg-cover opacity-25" 
          style="background-image:url(&#x27;<%= image_url('backgrounds/tin-background.jpeg') %>&#x27;)"></div>
-    <span id="overlay"   class="absolute w-full h-full opacity-75 dark:opacity-0"
-         style="background: <%= comp %>; "></span>
-    <span id="overlay"   class="absolute w-full h-full opacity-0 dark:opacity-90 dark:bg-gray-900 "></span>
-  </div>
-  <div class="container relative max-w-screen-lg p-4 mx-auto rounded-lg md:text-2xl backdrop-filter backdrop-blur-md">
-    <%= render layout: 'books/layout', locals: {book: @book} do %>
-      <h1 class="my-6 text-4xl text-center lg:text-6xl <%= text_color(@book) %> font-display">
-        <%= @book.title %>
-      </h1>
-      <div class="font-serif prose max-w-prose lg:prose-xl <%= text_color(@book) %> font-bold text-center opacity-100">
-        <%= @book.synopsis %>
-      </div>
-      <aside class='mt-8 text-center'>
-        <%= render 'components/buy-cta', locals: {book: @book} %>
-      </aside>
-    <% end %>
-  </div>
-</section>
-<%# Photo by <a href="https://unsplash.com/@anniespratt?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Annie Spratt</a> on <a href="https://unsplash.com/s/photos/book-cover?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> %>
-  
+      <span id="overlay" class="absolute w-full h-full opacity-90 dark:opacity-0"
+         style="background: <%=  complementary(@book.cover_color) %>; "></span>
+    </div>
+    <div class="container relative max-w-screen-lg p-4 mx-auto rounded-lg bg-gray-50/70 md:text-2xl backdrop-filter backdrop-blur-md">
+      <%= render layout: 'books/layout', locals: {book: @book} do %>
+        <h1 class="my-6 text-4xl text-center lg:text-6xl text-gray-900 font-display">
+          <%= @book.title %>
+        </h1>
+        <div class="font-serif prose max-w-prose lg:prose-xl text-gray-900 font-bold text-center opacity-100">
+          <%= @book.synopsis %>
+        </div>
+        <aside class='grid lg:grid-cols-5 gap-4 [&>*]:py-1 [&>*]:px-2'>
+          <%= render CtaButtonComponent.new(book: @book) %>
+          <% if can? :admin, Book %>
+            <%= link_to 'Add Link', new_book_book_link_path(@book), class: 'button bg-gray-300 action', data: { turbo_frame: 'modal' } %>
+          <% end %>
+        </aside>
+      <% end %>
+    </div>
+  </section>
+  <%# Photo by <a href="https://unsplash.com/@anniespratt?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Annie Spratt</a> on <a href="https://unsplash.com/s/photos/book-cover?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> %>

@@ -101,3 +101,5 @@ gem "sidekiq", "~> 6.5"
 gem "annotate", "~> 3.2", :group => :development
 gem "letter_opener", group: :development
 gem "noticed", "~> 1.5"
+
+gem "faker", "~> 2.21"

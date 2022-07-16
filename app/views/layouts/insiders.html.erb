@@ -2,7 +2,6 @@
 <html>
   <head>
     <title>Author Platform</title>
-
     <meta charset="utf-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="Accept-CH" content="DPR,Width,Viewport-Width" />
@@ -12,51 +11,50 @@
     <%= csp_meta_tag %>
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
     <link rel="alternate" type="application/rss+xml" title="Subscribe to what's new" href="/atom.xml">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" integrity="sha384-7ynz3n3tAGNUYFZD3cWe5PDcE36xj85vyFkawcF6tIwxvIecqKvfwLiaFdizhPpN" crossorigin="anonymous">
     <%= stylesheet_link_tag "merovex-fonts", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
     <%= javascript_importmap_tags %>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
   </head>
-  <body class='flex flex-col min-h-screen text-base font-normal bg-white dark:bg-gray-800 dark:text-white text-black subpixel-antialiased'>
+  <body class='flex flex-col min-h-screen text-base font-normal bg-white dark:bg-gray-800 dark:text-gray-50 text-gray-900 subpixel-antialiased'>
     <% if user_signed_in? %>
-    <div data-controller="reveal" data-reveal-hidden-class="hidden" class='sticky bottom-0 md:top-0 z-60'>
-      <nav class='bg-brand text-white md:text-center flex space-x-8 py-2 px-4 justify-between border-b-1 shadow-lg'>
-        <div class='flex justify-center items-center'><%= render 'shared/site_logo', klass: 'fill-white h-12' %></div>
-        <div class='md:flex justify-center hidden items-center w-full'>
-          <%= render 'components/insiders_navbar_menu', type: 'desktop' %>
+      <div data-controller="reveal" data-reveal-hidden-class="hidden" class='sticky bottom-0 md:top-0 z-60'>
+        <nav class='bg-brand text-gray-50 md:text-center flex space-x-8 py-2 px-4 justify-between border-b-1 shadow-lg'>
+          <div class='flex justify-center items-center'><%= render 'shared/site_logo', klass: 'fill-white h-12' %></div>
+          <div class='md:flex justify-center hidden items-center w-full'>
+            <%= render 'components/insiders_navbar_menu', type: 'desktop' %>
+          </div>
+          <button data-action="click->reveal#toggle" type="button" class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="h-6 w-6 cursor-pointer md:hidden block" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z"/>
+            </svg>
+          </button>
+          <div class='justify-center items-center px-8 hidden md:flex'>
+            <details>
+              <summary>Profile</summary>
+              <%= link_to "My Profile", edit_user_registration_path, role: 'menuitem', class: 'hover:underline mx-2' %>
+              <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: button_css('brand') if user_signed_in? %>
+            </details>
+          </div>
+        </nav>
+        <div data-reveal-target="item" class="hidden md:hidden bg-brand text-gray-50 space-y-2 px-8 pb-2">
+          <%= render 'components/insiders_navbar_menu', type: 'mobile' %>
+          <%= link_to "My Profile", edit_user_registration_path, role: 'menuitem', class: 'block text-left py-1 hover:bg-black/25' %>
+          <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'block text-left py-1 px-4 bg-red-400 rounded' if user_signed_in? %>
         </div>
-        <button data-action="click->reveal#toggle" type="button" class="flex items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="h-6 w-6 cursor-pointer md:hidden block" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z"/>
-          </svg>
-        </button>
-        <div class='justify-center items-center px-8 hidden md:flex'>
-          <details>
-            <summary>Profile</summary>
-            <%= link_to "My Profile", edit_user_registration_path, role: 'menuitem', class: 'hover:underline mx-2' %>
-            <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: button_css('brand') if user_signed_in? %>
-          </details>
-        </div>
-      </nav>
-      <div data-reveal-target="item" class="hidden md:hidden bg-brand text-white space-y-2 px-8 pb-2">
-        <%= render 'components/insiders_navbar_menu', type: 'mobile' %>
-        <%= link_to "My Profile", edit_user_registration_path, role: 'menuitem', class: 'block text-left py-1 hover:bg-black/25' %>
-        <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'block text-left py-1 px-4 bg-red-400 rounded' if user_signed_in? %>
       </div>
-    </div>
     <% end %>
     <%= render 'components/masquerade' if user_masquerade? %>
-    
     <% flash.each do |type, msg| %>
-      <%= render 'components/banner', type: type, msg: msg%>
+      <%= render AlertComponent.new(title: type, type: type, message: msg)  %>
     <% end %>
     <main class="min-h-screen">
-      <aside class="hover-link max-w-sm md:max-w-3xl mx-auto"><%= render_breadcrumbs %></aside>
+      <%= render BreadcrumbComponent.new() do %>
+        <%= render_breadcrumbs %>
+      <% end %>
       <%= yield %>
     </main>
     <%= render 'components/footer' %>

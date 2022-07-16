@@ -156,6 +156,8 @@ GEM
     errbase (0.2.2)
     erubi (1.10.0)
     eventmachine (1.0.9.1)
+    faker (2.21.0)
+      i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
@@ -441,6 +443,7 @@ DEPENDENCIES
   devise!
   devise-passwordless
   email_validator (~> 2.2)
+  faker (~> 2.21)
   geocoder (~> 1.7)
   groupdate (~> 5.2)
   ice_cube (~> 0.16.4)

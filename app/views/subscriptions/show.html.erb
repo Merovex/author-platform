@@ -6,37 +6,37 @@
     </aside>
   <% end %>
   <%= headline("Subscriptions") %>
-  <section class="prose lg:prose-xl max-w-none text-black dark:text-white">
-  <p>
-    Whether you are an Insider or just a subscriber, I would like to share periodic updates with you.
-    You are subscribed to any of the following items marked with a checkbox.
-    If you believe this to be in error, or no longer wish to subscribe, then uncheck and hit the button.
-  </p>
-  <p>
-    Your privacy is something I value. The email list is not shared with a third party service.
-    See our <a href="/privacy">privacy policy</a> for more information.
-  </p>
+  <section class="prose lg:prose-xl max-w-none text-gray-900 dark:text-gray-50">
+    <p>
+      Whether you are an Insider or just a subscriber, I would like to share periodic updates with you.
+      You are subscribed to any of the following items marked with a checkbox.
+      If you believe this to be in error, or no longer wish to subscribe, then uncheck and hit the button.
+    </p>
+    <p>
+      Your privacy is something I value. The email list is not shared with a third party service.
+      See our <a href="/privacy">privacy policy</a> for more information.
+    </p>
   </section>
   <%= form_with(model: @subscription) do |form| %>
-  <table class="w-full text-xl">
-    <tbody>
-      <tr>
-        <td class="font-bold py-8">Newsletter</td>
-        <td class='px-8 text-center'><%= form.check_box :wants_posts, {checked: (!@subscription.posts.nil?), class: checkbox_css}, true, false %></td>
-        <td>Get newsworthy emails about what's going on.</td>
-      </tr>
-      <tr>
-        <td class="font-bold py-8">Books</td>
-        <td class='px-8 text-center'><%= form.check_box :wants_books, {checked: (!@subscription.books.nil?), class: checkbox_css}, true, false %></td>
-        <td>Get an email when a new book is published.</td>
-      </tr>
-      <tr>
-      <td class="font-bold py-8">
-      &nbsp;
-      </td>
-      <td class='text-center'><%= form.submit "Update", class: button_css('brand') %></td>
-      </tr>
-    </tbody>
-  </table>
+    <table class="w-full text-xl">
+      <tbody>
+        <tr>
+          <td class="font-bold py-8">Newsletter</td>
+          <td class='px-8 text-center'><%= form.check_box :wants_posts, {checked: (!@subscription.posts.nil?), class: checkbox_css}, true, false %></td>
+          <td>Get newsworthy emails about what's going on.</td>
+        </tr>
+        <tr>
+          <td class="font-bold py-8">Books</td>
+          <td class='px-8 text-center'><%= form.check_box :wants_books, {checked: (!@subscription.books.nil?), class: checkbox_css}, true, false %></td>
+          <td>Get an email when a new book is published.</td>
+        </tr>
+        <tr>
+          <td class="font-bold py-8">
+            &nbsp;
+          </td>
+          <td class='text-center'><%= form.submit "Update", class: button_css('brand') %></td>
+        </tr>
+      </tbody>
+    </table>
   <% end %>
 </article>

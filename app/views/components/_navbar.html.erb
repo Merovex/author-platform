@@ -1,26 +1,22 @@
-
-<div class="font-sans shadow dark:text-white">
+<div class="font-sans shadow dark:text-gray-50">
   <div data-controller="reveal">
     <div class="container px-4 mx-auto">
       <div class="flex items-center justify-between py-4">
         <div class="flex items-center">
-          <div class='text-indigo-700 dark:text-white'>
-            <%= render 'elements/logo', klass: 'h-10 w-10 text-indigo-700 opacity-30 dark:text-white' %>
+          <div class='text-indigo-700 dark:text-gray-50'>
+            <%= render 'elements/logo', klass: 'h-10 w-10 text-indigo-700 opacity-30 dark:text-gray-50' %>
           </div>
           <div class="ml-2 text-3xl tracking-tight text-indigo-700 dark:text-indigo-200 font-display">
             Ben Wilson
             <span class='opacity-30'>Writes</span>
           </div>
         </div>
-
         <div class="hidden tracking-tight sm:flex sm:items-center">
           <%= render 'components/navbar-menu' %>
         </div>
-
         <div class="hidden sm:flex sm:items-center">
           <%= render 'components/user-login' %>
         </div>
-
         <div class="cursor-pointer sm:hidden" data-action="click->reveal#toggle" >
           <%= render 'elements/menu-toggle', klass: 'h-10 w-10 text-indigo-700' %>
         </div>
@@ -30,9 +26,9 @@
           <%= render 'components/navbar-menu' %>
           <hr class='mb-2'>
           <%= render 'components/user-login' %>
-          </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 </div>

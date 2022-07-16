@@ -1,46 +1,53 @@
 <%# https://lineardesign.com/blog/landing-page-layout/ %>
-
 <%= render 'books/sections/hero' unless @book.nil? %>
 <section class='p-4 text-center'>
   <% if can? :admin, Book %>
-      <%= render OptionMenuComponent.new(object: @book) do %>
-        <%= link_to bi_icon('graph-up-arrow') + " Project", project_path(@book.project) %>
-        <%= link_to bi_icon('speedometer2') + " Admin", books_admin_path() %>
-      <% end %>
+    <%= render OptionMenuComponent.new(object: @book) do %>
+      <%= link_to bi_icon('graph-up-arrow') + " Project", project_path(@book.project) %>
+      <%= link_to bi_icon('speedometer2') + " Admin", books_admin_path() %>
+    <% end %>
   <% end %>
   <%= render 'components/subscribe' %>
 </section>
-  
+<%# PRAISE Section %>
 <% if @book.praises.count > 0 %>
   <section id='testimonials' class="py-4 <%= zebra() %>">
     <div class="main">
-    <%= h2("Praise for <em>#{@book}</em>".html_safe) %>
-    <% if can? :admin, Book %>
-      <div class="text-right">
-        <%= link_to bi_icon('emoji-heart-eyes') + " Add praise", new_book_praise_path(@book), class: 'button', data: { turbo_frame: 'modal' } %>
+      <%= h2("Praise for <em>#{@book}</em>".html_safe) %>
+      <% if can? :admin, Book %>
+        <div class="text-right">
+          <%= add_praise_link(@book) %>
+        </div>
+      <% end %>
+      <div id='praises'>
+        <%= render @book.praises %>
       </div>
-    <% end %>
-    <div id='praises'>
-      <%= render @book.praises %>
-    </div>
-    <aside class='py-8 mt-4 text-center'>
-    <%= render 'components/buy-cta', locals: {book: @book} %>
-    </aside>
+      <aside class='py-8 mt-4 text-center'>
+        <%= render 'components/buy-cta', locals: {book: @book} %>
+      </aside>
     </div>
   </section>
 <% else %>
   <% if can? :admin, Book %>
-  <div class='main'>    
-    <%= h2("Praise for <em>#{@book}</em>".html_safe) %>
-    <div class="text-right">
-      <%= link_to bi_icon('emoji-heart-eyes') + " Add praise", new_book_praise_path(@book), class: 'button', data: { turbo_frame: 'modal' } %>
+    <div class='main'>
+      <%= h2("Praise for <em>#{@book}</em>".html_safe) %>
+      <div class="text-right">
+        <%= add_praise_link(@book) %>
+      </div>
     </div>
-  </div>
   <% end %>
 <% end %>
-<%= render 'books/sections/series-list' %>
-<%= render 'books/sections/excerpt' %>
-
-<section class='mb-8'>
-  <%= render 'components/subscribe' %>
-</section>
+<%# OTHER BOOKS IN SERIES LIST %>
+<div class='<%=zebra()%>'>
+  <%= render SeriesListComponent.new(series: @book.series, title: "Other Books in %{title} series") %>
+</div>
+<% unless @book.excerpt.empty? %>
+  <div class='<%= zebra()%>'>
+    <%= render 'books/sections/excerpt' %>
+  </div>
+<% end %>
+<div class='<%= zebra()%>'>
+  <section class='mb-8'>
+    <%= render 'components/subscribe' %>
+  </section>
+</div>

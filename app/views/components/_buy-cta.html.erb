@@ -2,5 +2,5 @@
   <%= render partial: 'components/cta_link', collection: @book.links %>
 </div>
 <% if can? :admin, Book %>
-  <%= link_to 'Add Link', new_book_book_link_path(@book), class: 'action', data: { turbo_frame: 'modal' } %>
+  <%= link_to 'Add Link', new_book_book_link_path(@book), class: 'button bg-gray-300 action', data: { turbo_frame: 'modal' } %>
 <% end %>

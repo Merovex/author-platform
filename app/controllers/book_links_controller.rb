@@ -15,8 +15,7 @@ class BookLinksController < ApplicationController
   end
 
   def create
-    @link = @book.links.build(url: link_params['url'], css: link_params[:type])
-    @link.slug = [@book.title, link_params[:type]].join('').downcase
+    @link = @book.links.build(link_params)
 
     respond_to do |format|
       if @link.save
@@ -62,7 +61,7 @@ class BookLinksController < ApplicationController
   private
 
   def link_params
-    params.require(:link).permit(:url, :comment, :type, :slug)
+    params.require(:link).permit(:url, :bookstore_id)
   end
 
   def set_book

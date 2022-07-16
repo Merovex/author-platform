@@ -6,8 +6,7 @@
     </div>
   <% else %>
     <% @published.keys.each do |serial| %>
-      <header class="text-center text-brand"><%= h2(serial.title) %></header>
-      <%= render @published[serial] %>
+      <%= render SeriesListComponent.new(series: serial, title: "Books in %{title} series") %>
     <% end %>
   <% end %>
 </div>

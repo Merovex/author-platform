@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_10_213414) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_16_174852) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -208,6 +208,30 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_10_213414) do
     t.index ["slug"], name: "index_books_on_slug"
   end
 
+  create_table "bookstores", force: :cascade do |t|
+    t.string "key"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cast_members", force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.bigint "character_id", null: false
+    t.text "summary"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_cast_members_on_book_id"
+    t.index ["character_id"], name: "index_cast_members_on_character_id"
+  end
+
+  create_table "characters", force: :cascade do |t|
+    t.string "name"
+    t.text "summary"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "clicks", force: :cascade do |t|
     t.bigint "user_id"
     t.integer "clickable_id"
@@ -268,6 +292,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_10_213414) do
     t.string "linkable_type"
     t.string "css"
     t.datetime "deleted_at"
+    t.integer "bookstore_id"
     t.index ["deleted_at"], name: "index_links_on_deleted_at"
   end
 
@@ -375,6 +400,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_10_213414) do
     t.string "days"
     t.integer "week_start", default: 0
     t.datetime "start_time"
+    t.datetime "reminded_at"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -561,6 +587,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_10_213414) do
   add_foreign_key "answers", "users"
   add_foreign_key "authors", "books"
   add_foreign_key "authors", "users"
+  add_foreign_key "cast_members", "books"
+  add_foreign_key "cast_members", "characters"
   add_foreign_key "clicks", "users"
   add_foreign_key "comments", "users"
   add_foreign_key "episodes", "books"

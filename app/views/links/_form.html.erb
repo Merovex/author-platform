@@ -1,11 +1,5 @@
 <%= form_with(model: link) do |form| %>
   <%= render FormErrorsComponent.new(object: link)%>
-
-  <div class="field">
-    <%= form.label :slug, class: 'block' %>
-    <%= form.text_field :slug, class: 'rounded' %>
-  </div>
-
   <div class="field">
     <%= form.label :url, class: 'block' %>
     <%= form.text_field :url, class: 'rounded' %>
@@ -18,12 +12,11 @@
     <%= form.label :type_list, class: 'block' %>
     <%= form.text_field :type_list_list, class: 'rounded' %>
   </div>
-
   <div class="field">
     <%= form.label :comment, class: 'block' %>
     <%= form.text_area :comment, class: 'rounded' %>
   </div>
   <div class="actions">
-  <%= render SubmitButtonComponent.new(form: form) %>
+    <%= render SubmitButtonComponent.new(form: form) %>
   </div>
 <% end %>

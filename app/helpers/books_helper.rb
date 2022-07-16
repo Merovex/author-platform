@@ -61,7 +61,7 @@ module BooksHelper
   end
 
   def complementary(hex = '#888888')
-    # comp = Color::RGB.new(*hex_to_rgb(hex)).to_hsl
+    comp = Color::RGB.new(*hex_to_rgb(hex)).to_hsl
     # raise hex.inspect
     hex = '#888888' if hex.nil?
     comp = Color::RGB.from_html(hex).to_hsl
@@ -77,12 +77,15 @@ module BooksHelper
                            5
                          end
     end
-    # raise [base.html, comp.to_rgb.html, base.contrast(comp.to_rgb)].inspect
+    puts  "HERE #{[base.html, comp.to_rgb.html, base.contrast(comp.to_rgb)].inspect}"
     comp.to_rgb.html
   end
 
   def text_color(book)
     brightness = brightness(complementary(book.cover_color))
     brightness > 0.50 ? 'text-black dark:text-white' : 'text-white dark:text-white'
+  end
+  def add_praise_link(book)
+    link_to "Add Praise", new_book_praise_path(book), class: 'button', data: { turbo_frame: 'modal' }
   end
 end

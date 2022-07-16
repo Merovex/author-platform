@@ -2,41 +2,59 @@
 <html>
   <head>
     <title>Author Platform</title>
-
     <meta charset="utf-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="Accept-CH" content="DPR,Width,Viewport-Width" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
     <link rel="alternate" type="application/rss+xml" title="Subscribe to what's new" href="/atom.xml">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" integrity="sha384-7ynz3n3tAGNUYFZD3cWe5PDcE36xj85vyFkawcF6tIwxvIecqKvfwLiaFdizhPpN" crossorigin="anonymous">
     <%= stylesheet_link_tag "merovex-fonts", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
     <%= javascript_importmap_tags %>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
   </head>
-  <body class='flex flex-col min-h-screen text-base font-normal bg-white dark:bg-gray-800 dark:text-white text-black subpixel-antialiased'>
+  <body class='flex flex-col min-h-screen text-base font-normal bg-white dark:bg-gray-800 dark:text-gray-50 text-gray-900 subpixel-antialiased'>
     <%= render 'components/insiders_navbar' if user_signed_in? %>
     <%= render 'components/masquerade' if user_masquerade? %>
     <%= render 'components/site_header' %>
     <% flash.each do |type, msg| %>
-      <%= render 'components/banner', type: type, msg: msg%>
+      <%= render AlertComponent.new(title: type, type: type, message: msg)  %>
     <% end %>
     <main class="min-h-screen">
-      <aside class="hover-link max-w-sm md:max-w-3xl mx-auto"><%= render_breadcrumbs %></aside>
+      <%= render BreadcrumbComponent.new() do %>
+        <%= render_breadcrumbs %>
+      <% end %>
       <%= yield %>
     </main>
-    <%= render 'components/footer' %>
-    <%#= turbo_frame_tag "modal" %>
-    <%#= turbo_frame_tag "toolbar" %>
+    <%= render FooterComponent.new() do %>
+      <ul class="flex items-center justify-center flex-1 list-reset md:flex-none">
+        <li>
+          <span class="inline-block text-gray-500 mx-2 no-underline opacity-70 hover:opacity-100 hover:underline">
+            <% if user_signed_in? %>
+              <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'user-menu-link' %>
+            <% else %>
+              <%= link_to "Hello from Virginia", new_user_session_path  %>
+            <% end %>
+          </span>
+        </li>
+        &middot; 
+        <li>
+          <a class="inline-block text-gray-500 mx-2 no-underline opacity-70 hover:opacity-100 hover:underline" href="/privacy/">Privacy</a>
+        </li>
+        &middot; 
+        <li>
+          <a class="inline-block text-gray-500 mx-2 no-underline opacity-70 hover:opacity-100 hover:underline" href="/terms/">Terms of use</a>
+        </li>
+      </ul>
+    <% end %>
+    <%= turbo_frame_tag "modal" %>
+    <%= turbo_frame_tag "toolbar" %>
   </body>
   <script>
     // Grabbing timezone for display purposes.

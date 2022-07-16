@@ -40,7 +40,9 @@ class Post < ApplicationRecord
 
     user.name
   end
-
+  def date
+    published_at || updated_at || created_at
+  end
   def to_s
     title
   end

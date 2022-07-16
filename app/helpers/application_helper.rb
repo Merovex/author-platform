@@ -55,8 +55,8 @@ module ApplicationHelper
     )
   end
 
-  def zebra
-    cycle('bg-gray-600 text-white', '', name: 'zebra')
+  def zebra(light = '', dark = 'bg-gray-500/[.05]')
+    cycle(light, dark, name: 'zebra')
   end
 
   def headline(title, args = { wrap_title: true })

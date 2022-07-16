@@ -1,17 +1,16 @@
-<% if !@book.series.nil? && @book.series.books.count > 0 %>
-<section id='other-titles' class='<%= zebra() %>'>
+<section id='<%= dom_id(@series) %>' class='<%#= zebra() %>'>
   <div class="main text-center md:text-left">
-    <%= h2("Books in #{@book.series.title} series") %>
+    <%= h2(@title % {title: @series.title}) %>
   </div>
-  <div class="relative w-full flex gap-6 snap-x overflow-x-auto pb-14">
+  <div class="relative w-full flex gap-6 snap-x snap-mandatory overflow-x-auto pb-14">
     <div class="snap-center shrink-0">
       <div class="shrink-0 w-4 sm:w-48"></div>
     </div>
-    <% @book.siblings.each do |book| %>
+    <% @books.each do |book| %>
       <div class="snap-center shrink-0 first:pl-8 last:pr-8">
-        <%= link_to book do %>
+        <%= link_to book, class: 'flex flex-col mx-8 item-center mx-auto w-60' do %>
           <%= book_cover_image(book, "shrink-0 h-80 rounded-lg shadow-xl") %>
-          <h3 class='my-2 text-xl text-center'><em><%= book.title %></em></h3>
+          <h3 class='my-2 text-2xl text-center italic'><%= book.title %></h3>
         <% end %>
       </div>
     <% end %>
@@ -20,4 +19,3 @@
     </div>
   </div>
 </section>
-<%end%>
