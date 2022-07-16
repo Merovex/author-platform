@@ -50,6 +50,7 @@ module BooksHelper
   end
 
   def hex_to_rgb(hex = '#888888')
+    hext = '#888888'
     r = hex[1, 2].to_i(16)
     g = hex[3, 2].to_i(16)
     b = hex[5, 2].to_i(16)
