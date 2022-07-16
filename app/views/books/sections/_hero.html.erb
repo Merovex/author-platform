@@ -5,7 +5,7 @@
       <div id='underlay-2' class="absolute top-0 z-10 w-full h-full bg-center bg-cover opacity-25" 
          style="background-image:url(&#x27;<%= image_url('backgrounds/tin-background.jpeg') %>&#x27;)"></div>
       <span id="overlay" class="absolute w-full h-full opacity-90 dark:opacity-0"
-         style="background: <%=  complementary(@book.cover_color) %>; "></span>
+         style="background: #888888 <%#=  complementary(@book.cover_color) %>; "></span>
     </div>
     <div class="container relative max-w-screen-lg p-4 mx-auto rounded-lg bg-gray-50/70 md:text-2xl backdrop-filter backdrop-blur-md">
       <%= render layout: 'books/layout', locals: {book: @book} do %>
