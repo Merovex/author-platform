@@ -92,7 +92,9 @@ class BooksController < ApplicationController
   def move
     authorize! :admin, @book
     @series = @book.series
-    @book.insert_at(book_params[:position].to_i)
+    puts "HERE"
+    puts @book.insert_at(book_params[:position].to_i)
+    puts @book.inspect
     head :ok
   end
 

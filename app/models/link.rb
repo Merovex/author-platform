@@ -44,7 +44,7 @@ class Link < ApplicationRecord
   def to_param
     case linkable_type
     when 'Book'
-      [slug, linkable.to_s, bookstore.key].join('-').parameterize
+      [linkable.to_s.parameterize, bookstore.key.parameterize, slug].join('-')
     else
       slug
     end

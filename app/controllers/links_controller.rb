@@ -1,6 +1,7 @@
 class LinksController < ApplicationController
   before_action :set_link, only: %i[show edit update destroy]
-  load_and_authorize_resource
+  # load_and_authorize_resource
+  # before_action :authenticate_user!, except: %i[show]
 
   # GET /links or /links.json
   def index
@@ -9,6 +10,7 @@ class LinksController < ApplicationController
 
   # GET /links/1 or /links/1.json
   def show
+    @link.update(clicked: @link.clicked + 1)
     ahoy.track 'Follow Link', object: 'link', id: @link.id
     redirect_to @link.url, allow_other_host: true
   end
@@ -57,7 +59,7 @@ class LinksController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_link
-    @link = Link.find_by_slug(params[:slug] || params[:id])
+    @link = Link.find(params[:id])
   end
 
   def link_params
