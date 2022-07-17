@@ -1,27 +1,12 @@
 # frozen_string_literal: true
 
 class CtaButtonComponent < ViewComponent::Base
+  include ApplicationHelper
   def initialize(book:)
     @book = book
   end
   def bookstore(link)
     link.bookstore.key
-  end
-  def css(link)
-    type = bookstore(link)
-    #     colors = {
-    #   kindle: 'green',
-    #   amazon: 'orange',
-    #   audible: 'blue'
-    # }
-    case type
-    when 'amazon'
-      'bg-orange-500 text-white'
-    when 'kindle'
-      'bg-orange-600 text-white'
-    else 
-      'bg-brand-500 text-white'
-    end
   end
   def icon(link)
     tablet = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="h-5 w-5 opacity-90 flex-shrink-0" viewBox="0 0 16 16">

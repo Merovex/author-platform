@@ -15,7 +15,7 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def destroy
-    flash[:success] = 'It was good to see you. Please come again.'
+    flash[:notice] = 'It was good to see you. Please come again.'
     super
   end
 

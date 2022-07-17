@@ -1,18 +1,18 @@
-<section id='<%= dom_id(@series) %>' class='<%#= zebra() %>'>
+<section id='<%= dom_id(@series) %>'>
   <div class="main text-center md:text-left">
     <%= h2(@title % {title: @series.title}) %>
   </div>
-  <div class="relative w-full flex gap-6 snap-x snap-mandatory overflow-x-auto pb-14">
+  <div class="relative w-full flex gap-6 snap-x snap-mandatory overflow-x-auto p-14 shadow-inner bg-gray-200">
     <div class="snap-center shrink-0">
       <div class="shrink-0 w-4 sm:w-48"></div>
     </div>
     <% @books.each do |book| %>
-      <div class="snap-center shrink-0 first:pl-8 last:pr-8">
+      <article class="snap-center shrink-0 first:pl-8 last:pr-8">
         <%= link_to book, class: 'flex flex-col mx-8 item-center mx-auto w-60' do %>
-          <%= book_cover_image(book, "shrink-0 h-80 rounded-lg shadow-xl") %>
+          <%= book_cover_image(book, "shrink-0 h-320 w-200 rounded-lg shadow-xl") %>
           <h3 class='my-2 text-2xl text-center italic'><%= book.title %></h3>
         <% end %>
-      </div>
+      </article>
     <% end %>
     <div class="snap-center shrink-0">
       <div class="shrink-0 w-4 sm:w-48"></div>

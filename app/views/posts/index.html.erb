@@ -1,6 +1,7 @@
 <div class="max-w-2xl md:max-w-4xl mx-auto">
   <% headline("Posts") %>
   <%= render 'components/subscribe' %>
+  <%= headline("Latest News & Posts") %>
   <% if @posts.empty? or @posts.published.empty? %>
     <div class="text-center text-xl">
       <h2>No Articles published.</h2>

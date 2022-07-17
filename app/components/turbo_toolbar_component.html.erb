@@ -2,7 +2,7 @@
   <%= tag.div data: { controller: "turbo-toolbar",
                       turbo_toolbar_target: "toolbar",
                       action: "turbo:submit-end->turbo-toolbar#submitEnd keyup@window->turbo-toolbar#closeWithKeyboard click@window->turbo-toolbar#closeBackground" },
-              class: "absolute right-0 top-0 bg-blue-500 w-2xl inline-block" do %>
+              class: "absolute right-0 top-0 bg-accent w-2xl inline-block" do %>
     <%= tag.div class: "toolbar-window" do %>
       <%= button_tag "X", data: { action: "turbo-toolbar#hidetoolbar" }, type: "button", class: 'absolute right-0 bg-red-500 border-red-600 text-gray-50 button' %>
       <h1 class="text-3xl font-bold"><%= "HERE" %></h1>

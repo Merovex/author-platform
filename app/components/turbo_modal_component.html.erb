@@ -3,7 +3,7 @@
                       turbo_modal_target: "modal",
                       action: "turbo:submit-end->turbo-modal#submitEnd keyup@window->turbo-modal#closeWithKeyboard click@window->turbo-modal#closeBackground" },
               class: "modal" do %>
-    <%= tag.div class: "modal-window dark:bg-gray-800" do %>
+    <%= tag.div class: "relative w-full max-w-lg p-5 overflow-hidden border-gray-500 rounded dark:bg-gray-800" do %>
       <button data-action="click->turbo-modal#hideModal"
               class="absolute right-0 flex items-center justify-center mr-2 border rounded-full w-7 h-7 focus:outline-none focus:bg-gray-600" aria-label="Open action bar">
         <svg class="w-6 h-6 " stroke="currentColor" fill="none" viewBox="0 0 24 24">

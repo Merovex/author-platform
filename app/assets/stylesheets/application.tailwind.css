@@ -3,54 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  .text-basic {
-    @apply dark:text-gray-50 text-gray-900
-  }
-  .text-base-inverse {
-    @apply text-gray-50 dark:text-gray-900
-  }
-  .bg-base {
-    @apply bg-gray-50 dark:bg-gray-800;
-  }
-  .bg-base-inverse {
-    @apply text-gray-50 bg-gray-700 dark:bg-gray-500 dark:text-gray-900;
-  }
-  .bg-base-subtle {
-    @apply bg-gray-50 dark:bg-gray-900;
-  }
-  .text-base-subtle {
-    @apply text-gray-700 dark:text-gray-200
-  }
-  .text-brand {
-    @apply text-blue-800 dark:text-blue-300
-  }
-  .bg-brand {
-    @apply  bg-blue-800 dark:bg-blue-400
-  }
-  .fill-brand {
-    @apply  fill-blue-600 dark:fill-blue-400
-  }
-  .border-brand {
-    @apply border-blue-600 dark:border-blue-400
-  }
-  .bg-brand-subtle {
-    @apply bg-blue-300 dark:bg-blue-700
-  }
-  .text-success {
-    @apply text-green-700 dark:text-green-400
-  }
-  .bg-success {
-    @apply bg-green-700 dark:bg-green-300
-  }
-  .text-error {
-    @apply text-red-700 dark:text-red-400
-  }
-  .bg-error {
-    @apply bg-red-700 dark:bg-red-300
-  }
-  .bg-error-subtle {
-    @apply bg-red-300 dark:bg-red-600
-  }
+
 }
 [multiple],
 [type=date],
@@ -123,9 +76,11 @@ main>article,
 .form-panel {
   @apply max-w-2xl mx-auto lg:w-2/3;
 }
-
+.tick {
+  @apply after:content-[''] after:bg-brand after:block after:w-8 after:h-1 after:mt-6;
+}
 .headline {
-  @apply mt-4 mb-8 text-3xl text-brand font-display md:text-5xl;
+  @apply mt-4 mb-8 max-w-2xl mx-auto text-3xl font-display md:text-5xl tick;
 }
 
 .user-menu-link {
@@ -133,7 +88,7 @@ main>article,
 }
 
 .subtitle {
-  @apply text-base text-2xl font-display md:text-3xl;
+  @apply text-base text-2xl font-display md:text-3xl text-brand dark:text-brand-light;
 }
 
 .panel-headline {
@@ -202,9 +157,7 @@ blockquote .quote-mark {
 .modal {
   @apply fixed inset-0 z-40 flex items-center justify-center h-full p-6 backdrop-brightness-75 backdrop-blur-sm;
 }
-.modal-window {
-  @apply relative w-full max-w-lg p-5 overflow-hidden border-gray-500 rounded bg-base;
-}
+
 .calgraph-text {
   @apply font-sans text-xs dark:fill-gray-200/50 fill-gray-600/50;
 }

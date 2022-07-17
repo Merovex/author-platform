@@ -15,28 +15,31 @@ module ApplicationHelper
     raw("<i class='#{klass}'></i>")
   end
 
-  def inverse_button_css(color = 'blue')
+  def inverse_button_css(color = 'brand')
     border_color = {
       brand: 'border-brand',
       error: 'border-error',
-      audible: 'border-[#961110]',
-      amazon: 'border-[#ff9900]',
-      kindle: 'border-[#198ae2]',
-      nobles: 'border-[#3e5962]'
+      audible: 'border-audible',
+      amazon: 'border-amazon',
+      kindle: 'border-kindle',
+      nobles: 'border-nobles',
     }[color.to_sym]
     "bg-gray-50 #{border_color} text-black button"
   end
 
-  def button_css(color = 'blue')
+  def button_css(color = 'brand')
     bg_color = {
-      brand: 'bg-brand',
-      error: 'bg-error',
-      audible: 'bg-[#961110]',
-      amazon: 'bg-[#ff9900]',
-      kindle: 'bg-[#198ae2]',
-      nobles: 'bg-[#3e5962]'
+      brand: 'bg-brand border-brand-dark/25',
+      accent: 'bg-accent border-accent-dark/25',
+      detail: 'bg-detail border-detail-500/25',
+      error: 'bg-error border-gray-500/50',
+      audible: 'bg-amazon border-amazon-dark/25',
+      amazon: 'bg-amazon border-amazon-dark/25',
+      kindle: 'bg-kindle border-kindle-dark/25',
+      nobles: 'bg-nobles border-nobles-dark/25',
+      apple: 'bg-apple border-apple-dark/25',
     }[color.to_sym]
-    "#{bg_color} border-gray-500/50 text-white button"
+    "#{bg_color} text-white button"
   end
 
   def edit_link_to(object, text = '', _args = {})
@@ -76,14 +79,14 @@ module ApplicationHelper
   end
 
   def h2(text, args = {})
-    args = [class: args] if args.is_a?(String)
+    args = {class: args} if args.is_a?(String)
     args[:class] = args[:class].nil? ? 'subtitle' : "#{args[:class]} subtitle"
     text = t(text) if text.is_a?(Symbol)
     tag.h2(text, class: args[:class])
   end
 
   def h3(text, args = {})
-    args = [class: args] if args.is_a?(String)
+    args = {class: args} if args.is_a?(String)
     text = t(text) if text.is_a?(Symbol)
     tag.h3(text, class: args[:class])
   end

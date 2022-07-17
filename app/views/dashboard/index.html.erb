@@ -1,11 +1,9 @@
-
 <div class="main">
   <section class="grid grid-cols-2 lg:grid-cols-4 gap-2 font-sans text-sm z-0">
     <div class="py-4 text-center border-2 card border-violet-400 bg-violet-300 text-violet-800">
       <span id="earned-value" class="block text-4xl font-semibold tracking-tight"><%= number_with_delimiter(@goal.wordcount) %></span>
       WIP Wordcount
     </div>
-
     <div class="py-4 text-center text-green-900 bg-green-400 border-2 border-green-400 card">
       <span id="annual-wordcount" class="block text-4xl font-semibold tracking-tight"><%= number_with_delimiter(WritingEntry.annual_wordcount(Time.now().year)) %></span>
       Annual Wordcount
@@ -13,7 +11,7 @@
     <div class="py-4 text-center text-red-800 bg-red-300 border-2 border-red-400 card">
       <div>
         <span id="days-remaining" class="text-4xl font-semibold tracking-tight ">
-        <%= @goal.days_remaining %>
+          <%= @goal.days_remaining %>
         </span> /
         <span id="total-days" class="text-4xl font-semibold tracking-tight "><%= @goal.writing_entries.count %></span>
       </div>
@@ -26,31 +24,26 @@
   </section>
   <hr class='my-8'>
   <%= render "dashboard/heatmap",entries: WritingEntry.all %>
-
   <section class='grid grid-cols-2 lg:grid-cols-3 gap-4'>
-    <article class='card'>
+    <article class='bordered p-4'>
       <%= h2('Books') %>
       <%= link_to "", books_admin_path(), class: 'coverall' %>
     </article>
-    <article class='card'>
+    <article class='bordered p-4'>
       <%= h2('Teams') %>
       <%= link_to "", teams_path(), class: 'coverall' %>
     </article>
-    <article class='card'>
+    <article class='bordered p-4'>
       <%= h2('Todolists') %>
       <%= link_to "", todolists_path(), class: 'coverall' %>
     </article>
-    <article class='card'>
+    <article class='bordered p-4'>
       <%= h2('Checkins') %>
       <%= link_to "", questions_path(), class: 'coverall' %>
     </article>
-    <article class='card'>
+    <article class='bordered p-4'>
       <%= h2('Posts') %>
       <%= link_to "", posts_admin_path(), class: 'coverall' %>
     </article>
   </section>
 </div>
-
-
-
-

@@ -4,13 +4,15 @@ module BooksHelper
     srcset = srcset.map { |src, size| "#{path_to_image(src)} #{size}" }.join(', ')
     image_tag(source, options.merge(srcset: srcset))
   end
-  def book_cover_image(book, klass = '')
-    klass << ' inline-block rounded drop-shadow'
+  def book_cover_image(book, args = {class: ''})
+
+    klass = [args['class'], 'shrink-0 inline-block rounded drop-shadow'].compact.join(' ')
+
     if book.cover.attached?
       image_tag(
         book.cover.variant(auto_orient: true, rotate: 0, resize: '400x600^', crop: '400x600+0+0', format: :webp),
         srcset: cover_srcset(book.cover),
-        class: klass.strip
+        class: klass,
       )
     else
       image_tag('annie-spratt-im8y4BO2hso-unsplash.jpg', 

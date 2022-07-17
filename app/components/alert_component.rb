@@ -6,11 +6,12 @@ class AlertComponent < ViewComponent::Base
     @message = message
     @type = type
     @bg = { 
-      "alert" => 'bg-amber-500 text-black dark:bg-amber-400',
-      "info" => 'bg-blue-500 text-white dark:bg-blue-600',
-      "error" => 'bg-red-500 text-white dark:bg-red-600',
-      "notice" => 'bg-emerald-600 text-white dark:bg-emerald-700'
+      "alert" => 'bg-warning text-black dark:bg-warning-dark dark:text-warning-light',
+      "info" => 'bg-info text-info-dark dark:bg-info-dark',
+      # "error" => 'bg-danger text-danger-dark dark:bg-red-600',
+      "notice" => 'bg-success text-success-dark dark:text-success-light dark:bg-success-dark'
     }[type] || 'bg-brand-500 text-white dark:bg-brand-600'
+    # @bg = 'bg-brand text-brand-light'
     # @bg = 'bg-brand' if bg.blank?
   end
 end

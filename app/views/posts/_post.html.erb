@@ -1,9 +1,9 @@
 <%= render CardComponent.new(object: post, link: post_path(post)) do %>
-  <%= local_time(post.date, format: "%-d %B %Y", class: 'inline-block text-sm font-light text-gray-500 w-full text-center') %>
+  <%= local_time(post.date, format: "%-d %B %Y", class: 'inline-block text-sm font-light text-detail dark:text-detail-light w-full text-center') %>
   <div class="mt-2">
-    <%= h2(post.title.titlecase)  %>
+    <%= h2(post.title.titlecase, class: 'text-center')  %>
     <% if post.broadcasted_at and can? :edit, post %>
-      <p class='text-center text-yellow-600 text-bold'>
+      <p class='text-center text-warning-dark dark:text-warning font-bold'>
         Sent to subscribers (<%= local_time(post.broadcasted_at) %>)
       </p>
     <% end %>

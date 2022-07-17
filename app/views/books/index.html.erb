@@ -1,12 +1,13 @@
 <div class="main">
-  <%= content_for(:title, 'Books') %>
-  <% if @published.empty? %>
-    <div class="text-xl text-center">
-      <h2>No Books published.</h2>
-    </div>
-  <% else %>
-    <% @published.keys.each do |serial| %>
-      <%= render SeriesListComponent.new(series: serial, title: "Books in %{title} series") %>
-    <% end %>
-  <% end %>
+  <%= headline('Books by Ben Wilson') %>
 </div>
+<% if @published.empty? %>
+  <div class="text-xl text-center">
+    <h2>No Books published.</h2>
+  </div>
+<% else %>
+</div>
+<% @published.keys.each do |serial| %>
+  <%= render SeriesListComponent.new(series: serial, title: "Books in %{title} series") %>
+<% end %>
+<% end %>

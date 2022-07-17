@@ -3,10 +3,12 @@ class StaticController < ApplicationController
   layout 'blank', only: %i[fullclock]
   def about
     @title = 'About'
+    add_breadcrumb @title, '#'
   end
 
   def diceware
     @title = 'Diceware'
+    add_breadcrumb @title, '#'
   end
   def fullclock
     @title = ""
@@ -14,7 +16,8 @@ class StaticController < ApplicationController
 
   def privacy
     @title = 'Privacy Policy'
-    flash.alert = 'Updated: 9 January 2022.'
+    add_breadcrumb @title, '#'
+    flash[:info] = 'Updated: 9 January 2022.'
   end
 
   def robots
@@ -24,6 +27,7 @@ class StaticController < ApplicationController
 
   def terms
     @title = 'Terms of Use'
+    add_breadcrumb @title, '#'    
     flash.alert = 'Updated: 30 November 2021'
   end
 end
