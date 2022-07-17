@@ -1,8 +1,8 @@
 <% @book.links.each do |link| %>
-  <%= link_to(link_path(link), target: '_blank', class: "button #{button_css('detail')}") do %>
-    <%= icon(link) %>
-    <div class="ml-4 flex items-start flex-col leading-none">
-      <%= link.bookstore %>
+  <%= link_to(link_path(link), target: '_blank', class: "button bg-detail-700 border-detail-900 hover:text-detail-900 text-detail-100 hover:bg-detail-300") do %>
+    <div class="xml-4 my-0 flex items-start flex-col">
+      <span class='text-sm opacity-[0.70] tracking-tighter'>Available on</span>
+      <span class='text-lg leading-none tracking-wide font-display'><%= link.bookstore %></span>
     </div>
   <% end %>
 <% end %>

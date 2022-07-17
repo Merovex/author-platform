@@ -31,7 +31,7 @@ module ApplicationHelper
     bg_color = {
       brand: 'bg-brand border-brand-dark/25',
       accent: 'bg-accent border-accent-dark/25',
-      detail: 'bg-detail border-detail-500/25',
+      detail: 'bg-detail border-detail-dark/50',
       error: 'bg-error border-gray-500/50',
       audible: 'bg-amazon border-amazon-dark/25',
       amazon: 'bg-amazon border-amazon-dark/25',
