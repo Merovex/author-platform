@@ -1,5 +1,5 @@
 <%= tag.aside aria: {label: 'Subcription form' },
-  class: 'max-w-lg mx-auto my-8 text-center transform p-2 bordered' do %>
+  class: 'max-w-lg mx-auto my-8 text-center transform p-2 dark:bg-cta dark:text-cta-900 bordered' do %>
   <p class="py-2 font-bold">Subscribe to get future posts from Ben Wilson</p>
   <%= form_with(model: User.new, url: user_registration_path) do |form| %>
     <%= invisible_captcha %>

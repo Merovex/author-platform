@@ -34,7 +34,7 @@ en:
   blurb: "Blurb"
   excerpt: "Excerpt"
   # I need CSS_Prose because it's somehow breaking the CSS build when included inlne or in file
-  css_prose: 'font-serif prose max-w-prose lg:prose-xl dark:prose-dark dark:text-gray-300 mx-auto'
+  css_prose: 'font-serif prose max-w-prose lg:prose-lg dark:prose-dark dark:text-gray-300 mx-auto'
   notifications:
     answer_notification:
       message: 'Answered "%{question}"'

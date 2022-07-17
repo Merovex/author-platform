@@ -28,6 +28,29 @@ fonts = %w[FjallaOne-Regular.ttf
            SourceSerifPro-SemiBold.ttf
            SourceSerifPro-SemiBoldItalic.ttf]
 
+fonts = %w[
+  LibreFranklin-Black.ttf
+  LibreFranklin-MediumItalic.ttf
+  LibreFranklin-BlackItalic.ttf
+  LibreFranklin-Regular.ttf
+  LibreFranklin-Bold.ttf
+  LibreFranklin-Italic.ttf
+  LibreFranklin-SemiBold.ttf
+  LibreFranklin-BoldItalic.ttf
+  LibreFranklin-SemiBoldItalic.ttf
+  LibreFranklin-ExtraBold.ttf
+  LibreFranklin-Thin.ttf
+  LibreFranklin-ExtraBoldItalic.ttf
+  LibreFranklin-Medium.ttf
+  LibreFranklin-ThinItalic.ttf
+  Merriweather-Black.ttf
+  Merriweather-Bold.ttf
+  Merriweather-Italic.ttf
+  Merriweather-BlackItalic.ttf 
+  Merriweather-BoldItalic.ttf
+  Merriweather-Regular.ttf
+]
+
 contents = fonts.map do |font|
   weight = case true
            when font.include?('SemiBold')

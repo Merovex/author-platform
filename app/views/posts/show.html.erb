@@ -5,15 +5,13 @@
     <% end %>
   <% end %>
   <div class='mx-8'>
-    <aside class="mx-12 text-center text-gray-500 opacity-75 dark:text-gray-300">
-    <%= local_time(@post.published_at, '%-d %B %Y') unless @post.published_at.nil? %>
+    <aside class=" text-gray-500/80 max-w-2xl mx-auto leading-none">
+      <%= local_time(@post.published_at, '%-d %B %Y') unless @post.published_at.nil? %>
     </aside>
     <%= headline(@post.title.titlecase) %>
-
     <section class="<%=t('css_prose')%>">
-    <%= @post.content %>
+      <%= @post.content %>
     </section>
-
     <%= render 'components/subscribe' %>
   </div>
 </article>
