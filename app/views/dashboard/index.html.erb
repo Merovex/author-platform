@@ -25,23 +25,23 @@
   <hr class='my-8'>
   <%= render "dashboard/heatmap",entries: WritingEntry.all %>
   <section class='grid grid-cols-2 lg:grid-cols-3 gap-4'>
-    <article class='bordered p-4'>
+    <article class='bordered p-4 relative'>
       <%= h2('Books') %>
       <%= link_to "", books_admin_path(), class: 'coverall' %>
     </article>
-    <article class='bordered p-4'>
+    <article class='bordered p-4 relative'>
       <%= h2('Teams') %>
       <%= link_to "", teams_path(), class: 'coverall' %>
     </article>
-    <article class='bordered p-4'>
+    <article class='bordered p-4 relative'>
       <%= h2('Todolists') %>
       <%= link_to "", todolists_path(), class: 'coverall' %>
     </article>
-    <article class='bordered p-4'>
+    <article class='bordered p-4 relative'>
       <%= h2('Checkins') %>
       <%= link_to "", questions_path(), class: 'coverall' %>
     </article>
-    <article class='bordered p-4'>
+    <article class='bordered p-4 relative'>
       <%= h2('Posts') %>
       <%= link_to "", posts_admin_path(), class: 'coverall' %>
     </article>

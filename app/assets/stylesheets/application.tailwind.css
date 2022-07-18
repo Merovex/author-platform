@@ -23,37 +23,25 @@ textarea {
   @apply text-gray-900 bg-gray-50 dark:bg-gray-900 dark:text-gray-50;
 }
 body {
-  @apply text-base;
+  @apply text-black dark:text-white;
 }
 @media only screen and (-webkit-min-device-pixel-ratio : 2) {
   body {
     @apply font-medium;
   }
 }
-trix-toolbar .trix-button-group button {
-  padding: 0; border: 0; width: 1.6em;
-}
-trix-toolbar .trix-button, trix-toolbar .trix-button:not(:first-child), trix-toolbar .trix-button-group {
-  border:0;
-}
-
-
 .panel {
   @apply p-2 border border-opacity-50 rounded shadow-sm;
 }
-
 .link {
   @apply underline text-brand;
 }
-
 .h2 {
-  @apply mt-2 mb-4 text-base text-2xl text-center font-display md:text-3xl;
+  @apply mt-2 mb-4 text-2xl text-center font-display md:text-3xl;
 }
-
 .h3 {
-  @apply mt-2 mb-4 font-sans text-base text-xl text-center md:text-2xl;
+  @apply mt-2 mb-4 font-sans text-xl text-center md:text-2xl;
 }
-
 .bordered {
   @apply border border-gray-900 rounded-lg shadow-lg lg:rounded-xl dark:border-gray-50 dark:border-opacity-20 border-opacity-10;
 }
@@ -84,24 +72,24 @@ main>article,
 }
 
 .user-menu-link {
-  @apply block px-4 py-2 text-sm text-base hover:bg-gray-500 hover:bg-opacity-10;
+  @apply block px-4 py-2 text-sm  hover:bg-gray-500 hover:bg-opacity-10;
 }
 
 .subtitle {
-  @apply text-base text-2xl font-display md:text-3xl text-brand dark:text-brand-light;
+  @apply  text-2xl font-display md:text-3xl text-brand dark:text-brand-light;
 }
 
 .panel-headline {
-  @apply mt-4 mb-8 font-sans text-base text-2xl font-bold text-center md:text-3xl;
+  @apply mt-4 mb-8 font-sans text-2xl font-bold text-center md:text-3xl;
 }
 .button_to {
   @apply inline-block
 }
 .button {
-  @apply inline-flex items-center justify-center inline-block px-2 py-1 m-2 font-sans text-sm font-semibold transition duration-200 ease-in-out border rounded-lg shadow-md focus:outline-none hover:shadow-sm;
+  @apply inline-flex items-center justify-center px-2 py-1 m-2 font-sans text-sm font-semibold transition duration-200 ease-in-out border rounded-lg shadow-md focus:outline-none hover:shadow-sm;
 }
 .year_button-active {
-  @apply bg-violet-500;
+  @apply bg-brand-dark text-white dark:bg-brand-light dark:text-black;
 }
 .todo_checkbox {
   @apply float-left w-5 h-5 mt-1 mr-2 align-top transition duration-200 bg-gray-50 bg-center bg-no-repeat bg-contain border border-gray-300 rounded appearance-none cursor-pointer checked:bg-brand checked:border-brand focus:outline-none
@@ -133,15 +121,23 @@ details summary>* {
 .actions {
   @apply mt-8
 }
-
-@media (prefers-color-scheme:dark) {
-  .dark-image {
-    filter: saturate(105%) contrast(110%) brightness(0.9) greyscale(0%);
-  }
-  .dark-image img {
-    filter: drop-shadow(0em 0em 1em #AAA);
-  }
+.completed {
+  @apply line-through italic opacity-50;
 }
+
+.coverall {
+  @apply absolute w-full h-full top-0 left-0;
+}
+
+.breadcrumbs>a {
+  @apply text-brand hover:underline;
+}
+
+a.hover-link,
+.hover-link>a {
+  @apply text-brand hover:text-brand-500 hover:underline;
+}
+
 
 blockquote .quote-mark {
   font-size: 10rem;
@@ -179,6 +175,7 @@ blockquote .quote-mark {
 .calgraph-5 {
   @apply fill-heatmap-700 dark:fill-heatmap-400 stroke-gray-500/[.15]
 }
+
 .tab-active > a {
   @apply border-b-4 border-brand-500
 }
@@ -188,18 +185,25 @@ blockquote .quote-mark {
 .trix-editor {
   @apply overflow-y-auto max-h-96;
 }
-.completed {
-  @apply line-through italic opacity-50;
-}
-.coverall {
-  @apply absolute w-full h-full top-0 left-0;
-}
-.breadcrumbs > a {
-  @apply text-brand hover:underline;
-}
-a.hover-link, .hover-link > a {
-  @apply text-brand hover:text-brand-500 hover:underline;
-}
 trix-editor {
   min-height: 20em;
+}
+trix-toolbar .trix-button-group button {
+  padding: 0;
+  border: 0;
+  width: 1.6em;
+}
+trix-toolbar .trix-button,
+trix-toolbar .trix-button:not(:first-child),
+trix-toolbar .trix-button-group {
+  border: 0;
+}
+@media (prefers-color-scheme:dark) {
+  .dark-image {
+    filter: saturate(105%) contrast(110%) brightness(0.9) greyscale(0%);
+  }
+
+  .dark-image img {
+    filter: drop-shadow(0em 0em 1em #AAA);
+  }
 }
