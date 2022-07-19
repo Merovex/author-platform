@@ -1,14 +1,14 @@
 <div class="main">
   <% if can? :admin, Book %>
     <div class="text-right">
-      <%= link_to 'New Series', new_series_path, class: 'button' %>
+      <%= link_to 'New Series', new_series_path, class: 'button bg-blue-500 text-white hover:bg-blue-400 hover:text-black' %>
     </div>
     <div class='flex flex-col space-y-4'>
       <% @series.each do |serial| %>
-        <section class="card">
+        <section class="mb-8">
           <h2 class="h2"><%= serial.title %></h2>
-          <%= link_to 'New Book', new_series_book_path(serial), class: 'action mb-4' %>
-          <div data-controller="sortable" data-sortable-resource-name-value="book" id="<%= dom_id serial %>">
+          <p><%= link_to 'New Book', new_series_book_path(serial), class: 'mb-4 button bg-blue-500 text-white hover:bg-blue-400 hover:text-black' %> in <span class='italic'><%= serial.title %></span></p>
+          <div data-controller="sortable" class='grid grid-cols-4 gap-4' data-sortable-resource-name-value="book" id="<%= dom_id serial %>">
             <%= render partial: 'books/card', collection: serial.books.sort_by(&:position), as: :book %>
           </div>
         </section>

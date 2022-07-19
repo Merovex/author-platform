@@ -97,6 +97,18 @@ main>article,
 .action div {
   @apply inline-block px-2 py-1 mx-1 font-sans text-xs uppercase border border-solid rounded-md border-brand hover:bg-brand-500 dark:hover:bg-brand-400 hover:text-gray-50;
 }
+.option-menu {
+  @apply relative inline-block text-left z-50 transition ease-in-out delay-150 motion-reduce:transition-none;
+}
+.option-menu > div {
+  @apply bg-white dark:bg-gray-600;
+}
+.option-menu a, .option-menu .button {
+  @apply block px-2 py-1 text-sm uppercase hover:bg-gray-900/[.10] dark:hover:bg-gray-50/[.10] text-black dark:text-white;
+}
+.triangle-top {
+  @apply w-0 h-0 block border-l-[20px] border-l-transparent border-b-[10px] border-b-gray-300 dark:border-b-gray-500 border-r-[20px] border-r-transparent;
+}
 .action-menu a, .action-menu summary {
   @apply hover:bg-gray-900/25;
 }

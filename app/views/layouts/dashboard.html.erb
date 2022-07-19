@@ -1,0 +1,46 @@
+<% content_for :content do %>
+  <%= render 'components/insiders_navbar' if user_signed_in? %>
+  <div class='flex'>
+    <nav id="right_menu" class='border-r border-gray-500/25 h-screen w-60 px-2 py-4 [&>*]:my-2 [&>*]:px-6 [&>*]:py-2 [&>*]:px-1 [&>*]:rounded [&>*]:block'>
+      <%= link_to root_path(), class: 'hover:bg-gray-300 hover:dark:bg-gray-600' do %>
+        <%= bi_icon('browser-safari', class: 'mr-2') %> Public Website
+      <% end %>
+      <%= link_to dashboard_path(), class: 'hover:bg-gray-300 hover:dark:bg-gray-600' do %>
+        <%= bi_icon('speedometer', class: 'mr-2') %> Dashboard
+      <% end %>
+      <%= link_to series_index_path(), class: 'hover:bg-gray-300 hover:dark:bg-gray-600' do %>
+        <%= bi_icon('journals', class: 'mr-2') %> Series
+      <% end %>
+      <%= link_to books_admin_path(), class: 'hover:bg-gray-300 hover:dark:bg-gray-600' do %>
+        <%= bi_icon('book-half', class: 'mr-2') %> Books
+      <% end %>
+      <div class='text-gray-500 italic'>
+        <%= bi_icon('person-hearts', class: 'mr-2') %>
+        <span>Praises</span>
+      </div>
+      <%= link_to posts_admin_path(), class: 'hover:bg-gray-300 hover:dark:bg-gray-600' do %>
+        <%= bi_icon('postcard-fill', class: 'mr-2') %> Posts
+      <% end %>
+      <%= link_to teams_path(), class: 'hover:bg-gray-300 hover:dark:bg-gray-600' do %>
+        <%= bi_icon('people-fill', class: 'mr-2') %> Teams
+      <% end %>
+      <%= link_to todolists_path(), class: 'hover:bg-gray-300 hover:dark:bg-gray-600' do %>
+        <%= bi_icon('stickies-fill', class: 'mr-2') %> Todo-lists
+      <% end %>
+      <%= link_to questions_path(), class: 'hover:bg-gray-300 hover:dark:bg-gray-600' do %>
+        <%= bi_icon('signpost-split-fill', class: 'mr-2') %> Check-ins
+      <% end %>
+      <div class='text-gray-500 italic'>
+        <%= bi_icon('life-preserver', class: 'mr-2') %>
+        <span>Help</span>
+      </div>
+    </nav>
+    <div class='flex-1 bg-accent-100 dark:bg-gray-900'>
+      <%= render BreadcrumbComponent.new() do %>
+        <%= render_breadcrumbs %>
+      <% end %>
+      <%= yield %>
+    </div>
+  </div>
+<% end %>
+<%= render template: "layouts/base" %>

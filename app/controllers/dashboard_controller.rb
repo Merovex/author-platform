@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
-  layout 'insiders'
+  layout 'dashboard'
   # before_action :authenticate_user! # , except: %i[show index]
   # load_and_authorize_resource
   def index

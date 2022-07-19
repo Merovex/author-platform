@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  
   add_breadcrumb 'Dashboard', :dashboard_path, only: %i[new edit]
   add_breadcrumb 'Books', :books_path
   before_action :get_series, only: %i[new create]
@@ -7,8 +8,7 @@ class BooksController < ApplicationController
   after_action :track_action, only: %i[show]
   load_and_authorize_resource
   before_action :authenticate_user!, except: %i[show index]
-  layout 'insiders', only: %i[new edit admin]
-  
+  layout 'dashboard', except: %i[index show]
 
   # GET /books or /books.json
   def index

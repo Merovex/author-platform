@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  layout 'dashboard', only: %i[admin]
   add_breadcrumb 'Posts', :posts_path
   before_action :set_post, only: %i[show edit update destroy publish broadcast]
   before_action :authenticate_user!, except: %i[show index]

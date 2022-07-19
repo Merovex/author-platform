@@ -1,16 +1,18 @@
- <header>
-    <div class="m-4" id='top'>
-      <a href="{{if .Parent }}{{.Parent.Permalink}}{{else}}/{{end}}">
-        <%= image_tag('backgrounds/ben-wilson-2021-square-160.webp', size: "60x60", class: 'mx-auto mb-2 rounded-full') %>
-        <p class='text-2xl text-center uppercase text-shade-dark/60 dark:text-shade-light/60' style='letter-spacing: 3px'>
-          Ben Wilson
-        </p>
-      </a>
-    </div>
-    <nav id="nav-menu" class="w-full max-w-3xl mx-auto mb-8 text-xl text-center print:hidden">
-      <%= nav_link_to('HOME', '/') %>
-      <%= nav_link_to('Books', books_path) %>
-      <%= nav_link_to('About', '/about') %>
-      <%= nav_link_to('Updates', posts_path, rel: "prefetch") %>
-    </nav>
-    </header>
+ 
+<header>
+  <div class="m-4" id='top'>
+    <a href="{{if .Parent }}{{.Parent.Permalink}}{{else}}/{{end}}">
+      <%= image_tag('backgrounds/ben-wilson-2021-square-160.webp', size: "60x60", class: 'mx-auto mb-2 rounded-full') %>
+      <p class='text-2xl text-center uppercase text-shade-dark/60 dark:text-shade-light/60' style='letter-spacing: 3px'>
+        Ben Wilson
+      </p>
+    </a>
+  </div>
+  <nav id="nav-menu" class="w-full max-w-3xl mx-auto mb-8 text-xl text-center print:hidden">
+    <%= nav_link_to('HOME', '/') %>
+    <%= nav_link_to('Books', books_path) %>
+    <%= nav_link_to('About', '/about') %>
+    <%= nav_link_to('Updates', posts_path, rel: "prefetch") %>
+    <%= nav_link_to('Dashboard', dashboard_path, rel: "prefetch") if can? :admin, Book %>
+  </nav>
+</header>

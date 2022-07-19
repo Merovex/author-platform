@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  layout 'insiders'
+  layout 'dashboard'
   add_breadcrumb 'Dashboard', :dashboard_path
   add_breadcrumb 'Teams', :teams_path
   before_action :set_team, only: %i[ show edit update destroy ]

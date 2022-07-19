@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  layout 'insiders'
+  layout 'dashboard'
   add_breadcrumb 'Dashboard', :dashboard_path
   add_breadcrumb 'Check-ins', :questions_path, only: %i[index show new edit]
   before_action :set_question, only: %i[show edit update destroy]

@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  add_breadcrumb 'Dashboard', :dashboard_path
+  layout 'dashboard'
   before_action :set_project, except: %i[new index create]
   load_and_authorize_resource
 

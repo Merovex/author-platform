@@ -11,10 +11,16 @@
         </svg>
       </button>
       <div class='justify-center items-center px-8 hidden md:flex'>
-        <details>
-          <summary>Profile</summary>
-          <%= link_to "My Profile", edit_user_registration_path, role: 'menuitem', class: 'hover:underline mx-2' %>
-          <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: button_css('brand') if user_signed_in? %>
+        <details class="relative inline-block text-left z-50 option-menu">
+          <summary>
+            Profile
+          </summary>
+          <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-brand-300 ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+            <div class="py-1" role="none">
+              <%= link_to "My Profile", edit_user_registration_path, role: 'menuitem', class: 'hover:underline mx-2' %>
+              <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'button w-full' if user_signed_in? %>
+            </div>
+          </div>
         </details>
       </div>
     </nav>

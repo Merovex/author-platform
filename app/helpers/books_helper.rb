@@ -6,7 +6,7 @@ module BooksHelper
   end
   def book_cover_image(book, args = {class: ''})
 
-    klass = [args['class'], 'shrink-0 inline-block rounded drop-shadow'].compact.join(' ')
+    klass = [args[:class].to_s, 'shrink-0 inline-block rounded drop-shadow'].compact.join(' ')
 
     if book.cover.attached?
       image_tag(

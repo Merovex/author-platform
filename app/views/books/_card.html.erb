@@ -1,19 +1,37 @@
-<article data-id="<%= dom_id(book) %>" data-sortable-update-url="<%= move_book_path(book) %>" class='flex my-2 space-x-4 border rounded shadow-md'>
-  <div class=''>
-    <%= bi_icon('list') %>
-  </div>
-  <div class='flex-1'>
+<%= tag.article class: "flex flex-col p-2 items-start my-2 space-y-4 border border-gray-500/25 bg-white dark:bg-accent-900 rounded shadow-md w-50 justify-center",
+  data: {id: dom_id(book), "sortable-update-url" => move_book_path(book)} do %>
+  <%= link_to book_path(book), class: 'mx-auto flex-0' do %>
+    <%= book_cover_image(book, class: ['w-40', (book.is_featured ? 'border-4 border-red-500' : '')].join(' ')) %>
+  <% end %>
+  <% if book.is_featured %>
+    <span class='sr-only'>This title is featured on homepage</span>
+  <% end %>
+  <h3 class='font-bold italic text-lg text-center block w-full flex-1'>
     <%= book.title %>
+  </h3>
+  <div class='flex justify-between w-full'>
+    <span class='flex-1'><%= book.users.map{ |a| a.to_s }.join(" ") %></span>
+    <details class="option-menu">
+      <summary>
+        <%= bi_icon('three-dots-vertical') %>
+      </summary>
+      <div class="absolute top-6 -right-24 mt-2 w-48 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+        <div class="py-1 relative" role="none">
+          <%= link_to(edit_book_path(book), role: 'menuitem') do %>
+            <%= bi_icon('pencil-square') %> Edit Book Details
+          <% end %>
+          <% if book.released_on.nil? %>
+            <%= link_to(bi_icon('share'), book_release_path(book))%>
+          <% end %>
+          <%= link_to(project_path(book.project)) do %>
+            <%= bi_icon("kanban") %> Book project
+          <% end %>
+          <%= trash_link_to(book,'Put in the trash') %>
+        </div>
+      </div>
+    </details>
   </div>
-  <td class='flex-1 text-center'>
-    <% if book.is_featured %>
-      <%= bi_icon('asterisk') %>
-    <% end %>
-    <% if book.released_on.nil? %> 
-      <%= link_to(bi_icon('share'), book_release_path(book), class: "link" )%>
-    <% end %>
-    <%= link_to( bi_icon("card-checklist"), project_path(book.project), class: 'ml-4 link') %> 
-    <%= link_to bi_icon("pencil-square"), edit_book_path(book), class: 'ml-4 link' %>
-    <%= link_to bi_icon("trash"), book_path(book), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'ml-4 link' %>
-  </td>
-</article>
+<% end %>
+<div class='flex-1 text-center hidden'>
+  <%= link_to bi_icon("trash"), book_path(book), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'ml-4 link' %>
+</div>
