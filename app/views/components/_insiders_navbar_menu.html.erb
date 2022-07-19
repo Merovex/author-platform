@@ -1,5 +1,7 @@
 <% css_class = (type == 'mobile') ? 'block text-left py-1 hover:bg-black/25' : 'mx-2' %>
 <div>
+  <div class='hidden'>Writing</div>
+  <div class='hidden'>Formatting</div>
   <%= link_to notifications_path(), role: 'menuitem', class: css_class do %>
     <span class='inline-flex relative w-fit mx-2'>
       <%= bi_icon('inbox-fill') %>

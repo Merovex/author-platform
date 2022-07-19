@@ -15,14 +15,17 @@ module BooksHelper
         class: klass,
       )
     else
-      image_tag('annie-spratt-im8y4BO2hso-unsplash.jpg', 
-        srcset: [
-          [url_for('annie-spratt-im8y4BO2hso-unsplash-660.webp'), '1028w'],
-          [url_for('annie-spratt-im8y4BO2hso-unsplash-500.webp'), '1024w'],
-          [url_for('annie-spratt-im8y4BO2hso-unsplash-330.webp'), '768w'],
-          [url_for('annie-spratt-im8y4BO2hso-unsplash-200.webp'), '512w']
-        ],
-        class: klass)
+      tag.div(class: [klass, 'bg-gray-800 dark:bg-gray-400 dark:text-black text-white flex text-center justify-center font-bold items-center h-60 flex-1'].join(' ')) do
+        book.title.truncate(20)
+      end
+      # image_tag('annie-spratt-im8y4BO2hso-unsplash.jpg', 
+      #   srcset: [
+      #     [url_for('annie-spratt-im8y4BO2hso-unsplash-660.webp'), '1028w'],
+      #     [url_for('annie-spratt-im8y4BO2hso-unsplash-500.webp'), '1024w'],
+      #     [url_for('annie-spratt-im8y4BO2hso-unsplash-330.webp'), '768w'],
+      #     [url_for('annie-spratt-im8y4BO2hso-unsplash-200.webp'), '512w']
+      #   ],
+      #   class: klass)
     end
   end
   def cover_srcset(cover)

@@ -7,7 +7,7 @@
     <span class='sr-only'>This title is featured on homepage</span>
   <% end %>
   <h3 class='font-bold italic text-lg text-center block w-full flex-1'>
-    <%= book.title %>
+    <%= book.title.truncate(17) %>
   </h3>
   <div class='flex justify-between w-full'>
     <span class='flex-1'><%= book.users.map{ |a| a.to_s }.join(" ") %></span>
@@ -24,7 +24,10 @@
             <%= link_to(bi_icon('share'), book_release_path(book))%>
           <% end %>
           <%= link_to(project_path(book.project)) do %>
-            <%= bi_icon("kanban") %> Book project
+            <%= bi_icon("kanban") %> View Book project
+          <% end %>
+          <%= link_to(project_path(book.project)) do %>
+            <%= bi_icon("globe2") %> Show on Landing Page
           <% end %>
           <%= trash_link_to(book,'Put in the trash') %>
         </div>
