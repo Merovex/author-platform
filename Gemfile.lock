@@ -320,6 +320,7 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     rexml (3.2.5)
+    rmagick (4.2.6)
     rolify (6.0.0)
     rubocop (1.31.2)
       json (~> 2.3)
@@ -472,6 +473,7 @@ DEPENDENCIES
   rails_heroicons (~> 0.7.0)
   rake
   redis (~> 4.0)
+  rmagick (~> 4.2)
   rolify
   rubocop
   selenium-webdriver

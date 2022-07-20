@@ -103,3 +103,5 @@ gem "letter_opener", group: :development
 gem "noticed", "~> 1.5"
 
 gem "faker", "~> 2.21"
+
+gem "rmagick", "~> 4.2"
