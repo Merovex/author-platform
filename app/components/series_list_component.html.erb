@@ -9,7 +9,7 @@
     <% @books.each do |book| %>
       <article class="snap-center shrink-0 first:pl-8 last:pr-8">
         <%= link_to book, class: 'flex flex-col mx-8 item-center mx-auto w-60' do %>
-          <%= book_cover_image(book, class: "shrink-0 h-320 w-200 rounded-lg shadow-xl") %>
+          <%= book_cover_image(book, class: "shrink-0 h-320 w-200 rounded-lg shadow-xl flex-1") %>
           <h3 class='my-2 text-2xl text-center italic'><%= book.title %></h3>
         <% end %>
       </article>

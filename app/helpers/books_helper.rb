@@ -15,7 +15,7 @@ module BooksHelper
         class: klass,
       )
     else
-      tag.div(class: [klass, 'bg-gray-800 dark:bg-gray-400 dark:text-black text-white flex text-center justify-center font-bold items-center h-60 flex-1'].join(' ')) do
+      tag.div(class: [klass, 'bg-gray-800 dark:bg-gray-400 dark:text-black text-white flex text-center justify-center font-bold items-center h-full flex-1'].join(' ')) do
         book.title.truncate(20)
       end
       # image_tag('annie-spratt-im8y4BO2hso-unsplash.jpg', 
@@ -66,30 +66,36 @@ module BooksHelper
     Color::RGB.new(*hex_to_rgb(hex)).to_yiq.brightness
   end
 
-  def complementary(hex = '#888888')
-    comp = Color::RGB.new(*hex_to_rgb(hex)).to_hsl
+  def complementary(hex = '#888888', alpha = 1)
+    # comp = Color::RGB.new(*hex_to_rgb(hex)).to_hsl
     # raise hex.inspect
     hex = '#888888' if hex.nil?
     comp = Color::RGB.from_html(hex).to_hsl
     base = Color::RGB.from_html(hex)
 
     comp.hue -= 180
+    # comp.luminosity = 40
     comp.luminosity = 100 - comp.luminosity
+    # comp.luminosity = 50
 
-    while base.contrast(comp.to_rgb) < 0.25
+    while base.contrast(comp.to_rgb) < 0.35
       comp.luminosity += if base.to_hsl.luminosity > comp.luminosity
                            -5
                          else
                            5
                          end
     end
-    puts  "HERE #{[base.html, comp.to_rgb.html, base.contrast(comp.to_rgb)].inspect}"
-    comp.to_rgb.html
+    comp.css_rgba(alpha)#.html
+  end
+  def hex_to_complementary(hex = '#888888', alpha = 1)
+
   end
 
   def text_color(book)
-    brightness = brightness(complementary(book.cover_color))
-    brightness > 0.50 ? 'text-black dark:text-white' : 'text-white dark:text-white'
+    comp = Color::RGB.from_html(book.cover_color).to_hsl
+    comp.luminosity = 100 - comp.luminosity
+    
+    comp.to_yiq.brightness > 0.50 ? 'text-black' : 'text-white dark:text-white'
   end
   def add_praise_link(book)
     link_to "Add Praise", new_book_praise_path(book), class: 'button', data: { turbo_frame: 'modal' }

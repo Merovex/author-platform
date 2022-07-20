@@ -8,7 +8,7 @@
         <section class="mb-8">
           <h2 class="h2"><%= serial.title %></h2>
           <p><%= link_to 'New Book', new_series_book_path(serial), class: 'mb-4 button bg-blue-500 text-white hover:bg-blue-400 hover:text-black' %> in <span class='italic'><%= serial.title %></span></p>
-          <div data-controller="sortable" class='grid grid-cols-4 gap-4' data-sortable-resource-name-value="book" id="<%= dom_id serial %>">
+          <div data-controller="sortable" class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4' data-sortable-resource-name-value="book" id="<%= dom_id serial %>">
             <%= render partial: 'books/card', collection: serial.books.sort_by(&:position), as: :book %>
           </div>
         </section>
