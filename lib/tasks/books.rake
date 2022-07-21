@@ -20,6 +20,8 @@ task compress_images: [:environment] do
     puts "Processing: #{file}"
     webp = file.gsub(/\.jpg$/, '.webp')
     image = Magick::Image.read(file).first.gaussian_blur(0.05).write(webp)
+    percent = 100 - (File.size(webp).to_f / File.size(file).to_f * 100.0)
+    puts ".. compressed from #{File.size(file)} to #{File.size(webp)} (#{percent.round(0)}% reduction)"
     # cmd = "magick #{file} -strip -interlace Plane -gaussian-blur 0.05 -quality 85% #{webp}"
     # puts cmd
   end

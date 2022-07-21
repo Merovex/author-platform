@@ -1,0 +1,12 @@
+<section id='hero' class='z-0 md:hidden' style="background: url('<%= image_url('backgrounds/sky-purple-blue-galaxy-atmosphere-astronomical-object-1614937-pxhere.com.webp') %>'); background-size: cover;">
+  <div class="relative max-w-screen-lg p-4 mx-auto md:text-xl bg-brand-800/[.85] space-x-8">
+    <div class='w-full flex items-center justify-center'><%= book_cover_image(@book, class: 'h-[480px] w-[320px]') %></div>
+    <div class='w-3/4 mx-auto flex flex-col text-white'>
+      <div style='text-shadow: 1px 1px 1px #000'><%= headline(@book) %></div>
+      <div class='flex-1' style='text-shadow: 1px 1px 1px #000'><%= @book.synopsis %></div>
+      <aside class='flex item-center justify-center mt-8'>
+        <%= render CtaButtonComponent.new(book: @book) %>
+      </aside>
+    </div>
+  </section>
+  <%# Photo by <a href="https://unsplash.com/@anniespratt?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Annie Spratt</a> on <a href="https://unsplash.com/s/photos/book-cover?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> %>
