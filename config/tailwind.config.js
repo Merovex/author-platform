@@ -15,7 +15,7 @@ module.exports = {
         'print': { 'raw': 'print' },
       },
       aspectRatio: {
-        'book': '3 / 5',
+        'book': '2 / 3',
       },
       lineClamp: {
         7: '7',

@@ -5,19 +5,22 @@ module BooksHelper
     image_tag(source, options.merge(srcset: srcset))
   end
   def book_cover_image(book, args = {class: ''})
-
-    klass = [args[:class].to_s, 'shrink-0 inline-block rounded drop-shadow'].compact.join(' ')
+    # klass = [args[:class].to_s, 'shrink-0 inline-block rounded drop-shadow'].compact.join(' ')
 
     if book.cover.attached?
+      style = [args[:style].to_s, ''].compact.join(' ')
       image_tag(
         book.cover.variant(auto_orient: true, rotate: 0, resize: '400x600^', crop: '400x600+0+0', format: :webp),
         srcset: cover_srcset(book.cover),
-        class: klass,
+        class: [args[:class].to_s, ' rounded drop-shadow'].compact.join(' '),
       )
     else
-      tag.div(class: [klass, 'bg-gray-800 dark:bg-gray-400 dark:text-black text-white flex text-center justify-center font-bold items-center h-full flex-1'].join(' ')) do
+      klass = [args[:class].to_s, 'bg-gray-800 dark:bg-gray-400 rounded drop-shadow aspect-book dark:text-black text-white font-bold flex justify-center items-center'].compact.join(' ')
+      
+      tag.div(class: klass) do
         book.title.truncate(20)
       end
+      
       # image_tag('annie-spratt-im8y4BO2hso-unsplash.jpg', 
       #   srcset: [
       #     [url_for('annie-spratt-im8y4BO2hso-unsplash-660.webp'), '1028w'],
