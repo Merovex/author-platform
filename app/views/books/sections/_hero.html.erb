@@ -1,14 +1,18 @@
-<section id='hero' class='z-0 flex dark:bg-brand-800 bg-brand-500 text-white min-h-[600px]' >
-  <div class='flex-1 flex items-center justify-center'>
-    <div class='mx-8 lg:mx-auto lg:w-2/3 text-lg'>
-      <div style='text-shadow: 1px 1px 1px #000'><%= headline(@book) %></div>
-      <div class='flex-1' style='text-shadow: 1px 1px 1px #000'><%= @book.synopsis %></div>
-      <aside class='flex item-center justify-left mt-8'>
-        <%= render CtaButtonComponent.new(book: @book) %>
-      </aside>
+<section id='hero' class='z-0  text-white min-h-[600px]' 
+  style="background: url('<%= image_url('backgrounds/sky-purple-blue-galaxy-atmosphere-astronomical-object-1614937-pxhere.com.webp') %>'); background-size: cover;">
+  <div class='flex bg-brand-900/[0.85]'>
+    <div class='flex-1 flex items-center justify-center'>
+      <div class='mx-8 lg:mx-auto lg:w-2/3 text-lg'>
+        <div style='text-shadow: 1px 1px 1px #000'><%= headline(@book) %></div>
+        <div class='flex-1' style='text-shadow: 1px 1px 1px #000'><%= @book.synopsis %></div>
+        <aside class='flex item-center justify-left mt-8'>
+          <%= render CtaButtonComponent.new(book: @book) %>
+        </aside>
+      </div>
+    </div>
+    <div class='w-1/2 min-h-[600px]' style='clip-path: polygon(7% 0, 100% 0, 100% 100%, 0% 100%);'>
+      <%= image_tag(book_cover_background_image(@book), class: 'w-full h-full', style: 'object-fit: cover') %>
     </div>
   </div>
-  <div class='w-1/2 min-h-[600px]' style='clip-path: polygon(7% 0, 100% 0, 100% 100%, 0% 100%);'>
-    <%= image_tag(book_cover_background_image(@book), class: 'w-full h-full', style: 'object-fit: cover') %>
-  </div>
 </section>
+<p class='hidden'>from <strong><a href="https://pxhere.com/en/photo/1614937?utm_content=clipUser&utm_medium=referral&utm_source=pxhere">PxHere</a></strong></p>
