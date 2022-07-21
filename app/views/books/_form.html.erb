@@ -17,7 +17,6 @@
           }
     %>
   </div>
-
   <div class="my-8">
     <%= form.label :is_featured, "Featured on Homepage" %>
     <%= form.check_box :is_featured, class: 'rounded' %>
@@ -26,39 +25,34 @@
     <%= form.hidden_field :series_id, value: @serial.id %>
   <% else %>
     <div class="field">
-    <%= form.label :series_id, "Series", class: 'h3' %>
-    <%= form.collection_select(:series_id, @series, :id, :title)  %>
+      <%= form.label :series_id, "Series", class: 'h3' %>
+      <%= form.collection_select(:series_id, @series, :id, :title)  %>
     </div>
   <% end %>
-  
   <div class="field">
     <%= form.label :tagline, class: 'h3' %>
     <%= form.text_area :tagline, class: 'form-input w-full block rounded' %>
   </div>
-
   <div class="my-8">
     <%= form.label :synopsis, class: 'h3' %>
     <%= form.rich_text_area :synopsis %>
   </div>
-
   <div class="my-8">
     <%= form.label :excerpt, class: 'h3' %>
     <%= form.rich_text_area :excerpt %>
   </div>
-
   <%= form.label :cover, class: 'h3' %>
   <div class='grid gap-4 px-4 py-5 lg:grid-cols-3 field'>
     <% if book.cover.attached? %>
       <aside class='grid place-content-center'>
-      <%= book_cover_image(book) %>
+        <%= book_cover_image(book) %>
         <%#= image_tag book.thumb, class: 'rounded' %>
       </aside>
     <% end %>
     <div class='grid lg:col-span-2 place-content-center'>
-      <%= form.file_field :cover, accept: 'image/png,image/gif,image/jpeg' %>
+      <%= form.file_field :cover, accept: 'image/png,image/gif,image/jpeg,image/webp' %>
     </div>
   </div>
-  
   <%= form.label :hero_background, class: 'h3' %>
   <div class='grid gap-4 px-4 py-5 lg:grid-cols-3 field'>
     <% if book.hero_background.attached? %>
@@ -67,7 +61,7 @@
       </aside>
     <% end %>
     <div class='grid lg:col-span-2 place-content-center'>
-      <%= form.file_field :hero_background, accept: 'image/png,image/gif,image/jpeg' %>
+      <%= form.file_field :hero_background, accept: 'image/png,image/gif,image/jpeg,image/webp' %>
     </div>
   </div>
   <div class="my-12">

@@ -15,3 +15,13 @@ task set_cover_color: [:environment] do
     File.delete('cover.jpg')
   end
 end
+task compress_images: [:environment] do
+  Dir.glob(Dir.home + '/Downloads/*.jpg').each do |file|
+    puts "Processing: #{file}"
+    webp = file.gsub(/\.jpg$/, '.webp')
+    image = Magick::Image.read(file).first.gaussian_blur(0.05).write(webp)
+    # cmd = "magick #{file} -strip -interlace Plane -gaussian-blur 0.05 -quality 85% #{webp}"
+    # puts cmd
+  end
+  # magick Gambit\ art.jpg -strip -interlace Plane -gaussian-blur 0.05 -quality 85% Gambit\ art.webp
+end
