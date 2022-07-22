@@ -8,6 +8,6 @@ class SeriesListComponent < ViewComponent::Base
     @title = title
 
     @series = series
-    @books = @series.books.sort_by(&:position)
+    @books = @series.books.published.sort_by(&:position)
   end
 end
