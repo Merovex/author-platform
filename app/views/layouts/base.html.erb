@@ -25,8 +25,9 @@
     <% flash.each do |type, msg| %>
       <%= render AlertComponent.new(title: type, type: type, message: msg)  %>
     <% end %>
-    <main class="min-h-screen">
+    <main class="min-h-screen relative">
       <%= content_for?(:content) ? yield(:content) : yield %>
+      <%= render 'shared/flash' %>
     </main>
     <%= render FooterComponent.new() do %>
       <ul class="flex items-center justify-center flex-1 list-reset md:flex-none">

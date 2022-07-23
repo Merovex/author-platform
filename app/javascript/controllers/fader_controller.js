@@ -4,7 +4,6 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["element"]
   connect() {
-    // console.log("Fader connected")
     setTimeout(() => this.element.remove(), 4000)
   }
 }

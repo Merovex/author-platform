@@ -1,5 +1,7 @@
-<% flash.each do |type, msg| %>
-  <div id='flash' class='turbo_flash' data-controller="fader">
-    <%= msg %>
-  </div>
-<% end %>
+<turbo-frame id="flash">
+  <% flash.each do |type, msg| %>
+    <div class='turbo_flash' data-controller="fader">
+      <%= msg %>
+    </div>
+  <% end %>
+</turbo-frame>

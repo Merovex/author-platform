@@ -51,7 +51,7 @@ class ProjectsController < ApplicationController
       if @project.update(project_params)
         format.turbo_stream do |stream|
           flash.now[:success] = "Goals saved"
-          render turbo_stream: turbo_stream.replace('project-form', partial: 'projects/turbo_form', locals: { project: @project })
+          # render turbo_stream#: turbo_stream.replace('project-form', partial: 'projects/turbo_form', locals: { project: @project })
         end
         format.html do
           redirect_to project_url(@project),
