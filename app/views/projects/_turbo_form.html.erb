@@ -1,0 +1,43 @@
+<%= turbo_frame_tag 'project-form' do %>
+  <h3 class='text-2xl text-brand font-bold'>Project Goals</h3>
+  <%= form_with(model: project, class: 'flex flex-col relative') do |form| %>
+    <%= render 'shared/flash' %>
+    <%= render FormErrorsComponent.new(object: project)%>
+    <div class='flex-1 flex'>
+      <div class='flex-1'>
+        <%= form.label :start_on %>
+        <%= form.text_field :start_on, 
+            placeholder: "Select Date...",
+            class: 'flatpickr flatpickr-input active form-input rounded block',
+            data: {
+              controller: "flatpickr",
+              flatpickr_date_format: "Y-m-d",
+              flatpickr_enable_time: false
+            } %>
+      </div>
+      <div class='flex-1'>
+        <%= form.label :finish_on %>
+        <%= form.text_field :finish_on, 
+            placeholder: "Select Date...",
+            xreadonly: 'readonly',
+            enableTime: false,
+            altInput: true,
+            altFormat: "j F Y",
+            dateFormat: "Y-m-d",
+            class: 'flatpickr flatpickr-input active form-input rounded block',
+            data: {
+              controller: "flatpickr",
+              flatpickr_date_format: "Y-m-d",
+              flatpickr_enable_time: false
+            } %>
+      </div>
+    </div>
+    <div class='flex-1 mt-12'>
+      <h3 class='text-2xl text-brand font-bold'><%= form.label :target, "Target Wordcount" %></h3>
+      <%= form.number_field :target, class: 'form-input rounded block' %>
+    </div>
+    <div class='flex-1 '>
+      <%= form.submit 'Save Goal', class: button_css('brand') %>
+    </div>
+  <% end %>
+<% end %>

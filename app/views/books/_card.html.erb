@@ -1,6 +1,6 @@
 <%= tag.article class: "flex flex-col p-2 items-start my-2 space-y-4 border border-gray-500/25 bg-white dark:bg-accent-900 rounded shadow-md w-50 justify-center",
   data: {id: dom_id(book), "sortable-update-url" => move_book_path(book)} do %>
-  <%= link_to book_path(book), class: 'mx-auto mt-2 flex-0' do %>
+  <%= link_to project_path(book.project), class: 'mx-auto mt-2 flex-0' do %>
     <%= book_cover_image(book, class: ['w-40', (book.is_featured ? 'border-4 border-red-500' : '')].join(' ')) %>
   <% end %>
   <% if book.is_featured %>
@@ -23,11 +23,8 @@
           <% if book.released_on.nil? %>
             <%= link_to(bi_icon('share'), book_release_path(book))%>
           <% end %>
-          <%= link_to(project_path(book.project)) do %>
-            <%= bi_icon("kanban") %> View Book project
-          <% end %>
-          <%= link_to(project_path(book.project)) do %>
-            <%= bi_icon("globe2") %> Show on Landing Page
+          <%= link_to(book_path(book)) do %>
+            <%= bi_icon("globe2") %> Show Landing Page
           <% end %>
           <%= trash_link_to(book,'Put in the trash') %>
         </div>

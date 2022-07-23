@@ -11,6 +11,16 @@ module.exports = {
   ],
   theme: {
     extend: {
+      animation: {
+        fade: 'fadeOut 4s ease-in-out',
+      },
+      keyframes: theme => ({
+        fadeOut: {
+          '0%': { opacity: 1.0 },
+          '30%': { opacity: 1.0 },
+          '100%': { opacity: 0.0 },
+        },
+      }),
       screens: {
         'print': { 'raw': 'print' },
       },
@@ -148,6 +158,7 @@ module.exports = {
           DEFAULT: '#52ce5c',
           dark: '#2B502B',
         },
+
         danger: {
           light: '#ffd2d1',
           DEFAULT: '#e24154',
@@ -173,6 +184,7 @@ module.exports = {
           DEFAULT: '#3e5962',
           dark: '#222e32',
         },
+        green: colors.green,
         gray: colors.stone,
         heatmap: colors.emerald,
         'black': {
@@ -181,7 +193,6 @@ module.exports = {
         'white': {
           'DEFAULT': '#fafaf9'
         },
-
       },
       fontFamily: {
         'sans': ["Merovex Sans", ...defaultTheme.fontFamily.sans],

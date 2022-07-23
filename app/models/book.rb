@@ -71,7 +71,7 @@ class Book < ApplicationRecord
     self.project = Project.new
   end
   def user
-    authors.first.user
+    authors.first&.user
   end
   def to_s
     title

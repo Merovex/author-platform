@@ -1,9 +1,10 @@
 class NotificationsController < ApplicationController
-  layout 'insiders'
+  layout 'dashboard'
   after_action :mark_read
   def index
+    # @pagy, @records = pagy(Product.some_scope)
     @unread_notifications = Current.user.notifications.unread.reverse
-    @read_notifications = Current.user.notifications.read.reverse
+    @pagy, @read_notifications = pagy(Current.user.notifications.read)
   end
 
   def mark_read

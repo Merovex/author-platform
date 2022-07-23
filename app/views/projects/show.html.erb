@@ -1,23 +1,11 @@
 <div class="main">
   <%= headline("Project: #{@book}") %>
-  <%= render OptionMenuComponent.new(object: @project) do %>
-  <% end %>
-  <table class='w-full my-12 text-xl table-fixed'>
-    <tr>
-      <th>Start:</th>
-      <td class='text-right'><%= dateness(@project.start_on, "%-d %B %Y") || "Not set" %></td>
-      <th>Finish:</th>
-      <td id='end-on' class='text-right' data-end-on="<%= dateness(@project.finish_on) || "" %>"><%= dateness(@project.finish_on, "%-d %B %Y") || "Not set" %></td>
-    </tr>
-    <tr>
-      <th>Current:</th><td class='text-right' id='writing-wordcount'><%= number_with_delimiter(@project.wordcount) %></td>
-      <th>Target:</th><td class='text-right' id='writing-target'><%= number_with_delimiter(@project.target) %></td>
-    </tr>
-    <tr> <th>Summary:</th><td> <%= (@project.summary.nil? or @project.summary.empty?) ? "..." : @project.summary %></td>
-    </tr>
-  </table>
-  
-
+  <div class='flex space-x-8 mb-12'>
+    <%= book_cover_image(@book, class: "h-[320px] w-[200px] mx-auto") %>
+    <section class='flex-1'>
+      <%= render 'projects/turbo_form', project: @project %>
+    </section>
+  </div>
   <div data-controller="tabs" data-tabs-active-tab="tab-active">
     <ul class="flex border-b list-reset">
       <%= tab_tag 'Heatmap' %>

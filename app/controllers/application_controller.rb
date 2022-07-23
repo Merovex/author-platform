@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Pagy::Backend
   layout 'application'
   before_action :store_user_location!, if: :storable_location?
   before_action :authenticate_user_from_token!
@@ -13,6 +14,9 @@ class ApplicationController < ActionController::Base
       format.html { redirect_to main_app.root_url, alert: exception.message }
       format.js   { head :forbidden, content_type: 'text/html' }
     end
+  end
+  def render_flash
+    render turbo_stream: turbo_stream.update("flash", partial: "shared/flash")
   end
 
   private

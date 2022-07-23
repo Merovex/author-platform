@@ -1,4 +1,5 @@
 module ApplicationHelper
+  include Pagy::Frontend
   def nav_link_to(text, path, _options = {})
     klass = 'inline-block w-1/3 py-1 text-center uppercase align-middle md:w-1/6 text-brand-800 dark:text-brand-200 border-b-4 border-white dark:border-gray-800 hover:border-brand-500'
     link_to(text, path, class: klass)

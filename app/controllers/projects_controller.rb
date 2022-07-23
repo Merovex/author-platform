@@ -49,6 +49,10 @@ class ProjectsController < ApplicationController
     # raise @project.book.inspect
     respond_to do |format|
       if @project.update(project_params)
+        format.turbo_stream do |stream|
+          flash.now[:success] = "Goals saved"
+          render turbo_stream: turbo_stream.replace('project-form', partial: 'projects/turbo_form', locals: { project: @project })
+        end
         format.html do
           redirect_to project_url(@project),
                       notice: "Project for <em>#{@project.book.title}</em> was successfully updated."

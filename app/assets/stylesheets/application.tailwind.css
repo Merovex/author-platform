@@ -91,6 +91,9 @@ main>article,
 .year_button-active {
   @apply bg-brand-dark text-white dark:bg-brand-light dark:text-black;
 }
+.turbo_flash {
+  @apply absolute bottom-0 bg-green-400 text-center mx-auto rounded-full py-2 left-0 right-0 w-40 border animate-fade inline-block text-green-50;
+}
 .todo_checkbox {
   @apply float-left w-5 h-5 mt-1 mr-2 align-top transition duration-200 bg-gray-50 bg-center bg-no-repeat bg-contain border border-gray-300 rounded appearance-none cursor-pointer checked:bg-brand checked:border-brand focus:outline-none
 }
