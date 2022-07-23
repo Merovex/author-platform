@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_16_174852) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_23_210354) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -131,6 +131,25 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_16_174852) do
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_authors_on_book_id"
     t.index ["user_id"], name: "index_authors_on_user_id"
+  end
+
+  create_table "binder_items", force: :cascade do |t|
+    t.string "name"
+    t.string "ancestry"
+    t.text "synopsis"
+    t.bigint "project_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ancestry"], name: "index_binder_items_on_ancestry"
+    t.index ["project_id"], name: "index_binder_items_on_project_id"
+  end
+
+  create_table "binders", force: :cascade do |t|
+    t.bigint "project_id", null: false
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_binders_on_project_id"
   end
 
   create_table "blazer_audits", force: :cascade do |t|
@@ -587,6 +606,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_16_174852) do
   add_foreign_key "answers", "users"
   add_foreign_key "authors", "books"
   add_foreign_key "authors", "users"
+  add_foreign_key "binder_items", "projects"
+  add_foreign_key "binders", "projects"
   add_foreign_key "cast_members", "books"
   add_foreign_key "cast_members", "characters"
   add_foreign_key "clicks", "users"

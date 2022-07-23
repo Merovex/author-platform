@@ -102,8 +102,7 @@ gem "annotate", "~> 3.2", :group => :development
 gem "letter_opener", group: :development
 gem "noticed", "~> 1.5"
 
-gem "faker", "~> 2.21"
-
+gem "faker", "~> 2.21", group: :development
 gem "rmagick", "~> 4.2"
-
 gem "pagy", "~> 5.10"
+gem "ancestry", "~> 4.2"

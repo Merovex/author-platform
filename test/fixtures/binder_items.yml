@@ -1,0 +1,33 @@
+# == Schema Information
+#
+# Table name: binder_items
+#
+#  id         :bigint           not null, primary key
+#  ancestry   :string
+#  name       :string
+#  synopsis   :text
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  project_id :bigint           not null
+#
+# Indexes
+#
+#  index_binder_items_on_ancestry    (ancestry)
+#  index_binder_items_on_project_id  (project_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (project_id => projects.id)
+#
+
+one:
+  name: MyString
+  ancestry: MyString
+  synopsis: MyText
+  project: one
+
+two:
+  name: MyString
+  ancestry: MyString
+  synopsis: MyText
+  project: two

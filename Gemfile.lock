@@ -88,6 +88,8 @@ GEM
       activesupport (>= 5.2)
       device_detector
       safely_block (>= 0.2.1)
+    ancestry (4.2.0)
+      activerecord (>= 5.2.6)
     annotate (3.2.0)
       activerecord (>= 3.2, < 8.0)
       rake (>= 10.4, < 14.0)
@@ -431,6 +433,7 @@ DEPENDENCIES
   acts-as-taggable-on
   acts_as_list (~> 1.0)
   ahoy_matey (~> 4.0)
+  ancestry (~> 4.2)
   annotate (~> 3.2)
   aws-sdk-locationservice (~> 1.9)
   aws-sdk-s3 (~> 1.114)
