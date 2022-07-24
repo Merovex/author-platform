@@ -18,4 +18,5 @@
 #
 class Binder < ApplicationRecord
   belongs_to :project
+  has_many :binder_items
 end

@@ -1,0 +1,13 @@
+<% content_for :content do %>
+  <%= render 'components/insiders_navbar' if user_signed_in? %>
+  <div class='flex'>
+    <nav id="right_menu" class='border-r border-gray-500/25 h-screen w-60 px-2 py-4 [&>*]:my-2 [&>*]:px-6 [&>*]:py-2 [&>*]:px-1 [&>*]:rounded [&>*]:block'>
+      <%= render @binder.binder_items %>
+      <%= link_to 'New Item', new_binder_binder_item_path(@binder), class: "rounded-lg py-3 px-5 bg-blue-600 text-gray-50 block font-medium" %>
+    </nav>
+    <div class='flex-1 h-100'>
+      <%= yield %>
+    </div>
+  </div>
+<% end %>
+<%= render template: "layouts/base" %>

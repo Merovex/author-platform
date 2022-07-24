@@ -1,5 +1,6 @@
 class BindersController < ApplicationController
   before_action :set_binder, only: %i[ show edit update destroy ]
+  layout 'binder'
 
   # GET /binders or /binders.json
   def index
@@ -8,6 +9,7 @@ class BindersController < ApplicationController
 
   # GET /binders/1 or /binders/1.json
   def show
+    
   end
 
   # GET /binders/new

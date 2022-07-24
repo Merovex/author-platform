@@ -1,15 +1,18 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
-
-    <%= render @binder_item %>
-
-    <%= link_to 'Edit this binder_item', edit_binder_item_path(@binder_item), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to 'Destroy this binder_item', binder_item_path(@binder_item), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-    </div>
-    <%= link_to 'Back to binder_items', binder_items_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  </div>
+<div class="mx-auto px-12 py-8 max-h-100" style='height: 100%'>
+  <h1 class='text-2xl strong xmy-8'><%= @binder_item.name %></h1>
+  <%= form_with(
+        model: [@binder, @binder_item], class: '',
+        data: { 
+          controller: "autosave",
+          action: "ajax:success->autosave#success ajax:error->autosave#error",
+          autosave_delay_value: 2000
+        }
+      ) do |form| %>
+    <%= form.rich_text_area(:content,
+        data: { action: 'change->autosave#save keyup->autosave#save blur->autosave#savenow' },
+        class: 'w-full', style:'height: calc(70vh)'
+      )
+    %>
+    <span id='autosave-status' class="text-muted" data-autosave-target="status"></span>
+  <% end %>
 </div>

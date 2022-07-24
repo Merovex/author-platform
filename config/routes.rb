@@ -2,8 +2,10 @@
 #
 
 Rails.application.routes.draw do
-  resources :binder_items
-  resources :binders
+  
+  resources :binders do
+    resources :binder_items
+  end
   resources :cast_members
   resources :characters
   resources :notifications

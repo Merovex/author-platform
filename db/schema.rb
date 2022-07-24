@@ -137,11 +137,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_23_210354) do
     t.string "name"
     t.string "ancestry"
     t.text "synopsis"
-    t.bigint "project_id", null: false
+    t.bigint "binder_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ancestry"], name: "index_binder_items_on_ancestry"
-    t.index ["project_id"], name: "index_binder_items_on_project_id"
+    t.index ["binder_id"], name: "index_binder_items_on_binder_id"
   end
 
   create_table "binders", force: :cascade do |t|
@@ -606,7 +606,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_23_210354) do
   add_foreign_key "answers", "users"
   add_foreign_key "authors", "books"
   add_foreign_key "authors", "users"
-  add_foreign_key "binder_items", "projects"
+  add_foreign_key "binder_items", "binders"
   add_foreign_key "binders", "projects"
   add_foreign_key "cast_members", "books"
   add_foreign_key "cast_members", "characters"

@@ -1,5 +1,6 @@
 class Current < ActiveSupport::CurrentAttributes
   attribute :user
+  attribute :page
   attribute :timezone
   attribute :tz_offset
   def tz_offset

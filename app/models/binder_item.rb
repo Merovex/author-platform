@@ -8,19 +8,19 @@
 #  synopsis   :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  project_id :bigint           not null
+#  binder_id  :bigint           not null
 #
 # Indexes
 #
-#  index_binder_items_on_ancestry    (ancestry)
-#  index_binder_items_on_project_id  (project_id)
+#  index_binder_items_on_ancestry   (ancestry)
+#  index_binder_items_on_binder_id  (binder_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (project_id => projects.id)
+#  fk_rails_...  (binder_id => binders.id)
 #
 class BinderItem < ApplicationRecord
-  belongs_to :project
+  belongs_to :binder
   has_rich_text :content
   has_many_attached :images
   has_ancestry

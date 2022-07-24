@@ -4,7 +4,7 @@ class CreateBinderItems < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :ancestry
       t.text :synopsis
-      t.references :project, null: false, foreign_key: true
+      t.references :binder, null: false, foreign_key: true
 
       t.timestamps
     end

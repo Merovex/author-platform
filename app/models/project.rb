@@ -22,6 +22,7 @@
 class Project < ApplicationRecord
   belongs_to :book
   has_many :writing_entries, dependent: :destroy
+  has_many :binders, dependent: :destroy
   # has_many :todolists, as: :todolistable
   include Communicable, Todolistable
 

@@ -1,5 +1,7 @@
 class BinderItemsController < ApplicationController
   before_action :set_binder_item, only: %i[ show edit update destroy ]
+  before_action :set_binder, only: %i[new create]
+  layout 'binder'
 
   # GET /binder_items or /binder_items.json
   def index
@@ -12,7 +14,7 @@ class BinderItemsController < ApplicationController
 
   # GET /binder_items/new
   def new
-    @binder_item = BinderItem.new
+    @binder_item = @binder.binder_items.build
   end
 
   # GET /binder_items/1/edit
@@ -21,12 +23,11 @@ class BinderItemsController < ApplicationController
 
   # POST /binder_items or /binder_items.json
   def create
-    @binder_item = BinderItem.new(binder_item_params)
+    @binder_item = @binder.binder_items.build(binder_item_params)
 
     respond_to do |format|
       if @binder_item.save
-        format.html { redirect_to binder_item_url(@binder_item), notice: "Binder item was successfully created." }
-        format.json { render :show, status: :created, location: @binder_item }
+        format.turbo_stream #{ render turbo_stream: turbo_stream.replace('binder_items', partial: 'binder_items/binder_item', locals: { binder_item: @binder_item }) }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @binder_item.errors, status: :unprocessable_entity }
@@ -38,8 +39,7 @@ class BinderItemsController < ApplicationController
   def update
     respond_to do |format|
       if @binder_item.update(binder_item_params)
-        format.html { redirect_to binder_item_url(@binder_item), notice: "Binder item was successfully updated." }
-        format.json { render :show, status: :ok, location: @binder_item }
+        format.turbo_stream 
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @binder_item.errors, status: :unprocessable_entity }
@@ -59,12 +59,16 @@ class BinderItemsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_binder
+      @binder = Binder.find(params[:binder_id])
+    end
     def set_binder_item
       @binder_item = BinderItem.find(params[:id])
+      @binder = @binder_item.binder
     end
 
     # Only allow a list of trusted parameters through.
     def binder_item_params
-      params.require(:binder_item).permit(:name, :ancestry, :synopsis, :project_id)
+      params.require(:binder_item).permit(:name, :ancestry, :synopsis, :binder_id, :content)
     end
 end

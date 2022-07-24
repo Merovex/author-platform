@@ -197,11 +197,11 @@ blockquote .quote-mark {
 .trix-button-row {
   @apply dark:bg-gray-500 dark:rounded-t-lg;
 }
-.trix-editor {
-  @apply overflow-y-auto max-h-96;
+trix-editor {
+  @apply overflow-y-auto;
 }
 trix-editor {
-  min-height: 20em;
+  xmin-height: 20em;
 }
 trix-toolbar .trix-button-group button {
   padding: 0;

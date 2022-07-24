@@ -3,6 +3,7 @@
 
 # Use node modules from a JavaScript CDN by running ./bin/importmap
 pin 'application'
+pin "@rails/ujs", to: "https://ga.jspm.io/npm:@rails/ujs@7.0.3-1/lib/assets/compiled/rails-ujs.js"
 pin '@hotwired/turbo-rails', to: 'turbo.js'
 pin '@hotwired/stimulus', to: 'https://ga.jspm.io/npm:@hotwired/stimulus@3.0.1/dist/stimulus.js'
 pin '@hotwired/stimulus-importmap-autoloader', to: 'stimulus-importmap-autoloader.js'
@@ -22,3 +23,4 @@ pin 'local-time', to: 'https://ga.jspm.io/npm:local-time@2.1.0/app/assets/javasc
 pin 'stimulus-sortable', to: 'https://ga.jspm.io/npm:stimulus-sortable@3.2.0/dist/stimulus-sortable.es.js'
 pin "@tailwindcss/line-clamp", to: "https://ga.jspm.io/npm:@tailwindcss/line-clamp@0.4.0/src/index.js"
 pin "tailwindcss/plugin", to: "https://ga.jspm.io/npm:tailwindcss@3.1.4/plugin.js"
+
